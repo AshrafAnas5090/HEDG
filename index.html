@@ -251,6 +251,18 @@ button:focus-visible{outline:1px solid var(--blue);outline-offset:2px}
 .divergence-table th:nth-child(6),.divergence-table td:nth-child(6){width:15%}
 .divergence-table th:nth-child(7),.divergence-table td:nth-child(7){width:14%}
 .divergence-table th:nth-child(8),.divergence-table td:nth-child(8){width:11.8%}
+
+.divergence-table th.sortable-head{position:relative;white-space:nowrap}
+.sort-head-wrap{display:inline-flex;align-items:center;justify-content:center;gap:2px;white-space:nowrap}
+.sort-arrow{
+  width:12px;height:14px;padding:0;margin:0;border:0;background:transparent;color:#4f6074;cursor:pointer;
+  display:inline-grid;place-items:center;font:950 7px/1 system-ui,-apple-system,sans-serif;
+  transition:color .12s,filter .12s,transform .12s;vertical-align:middle;
+}
+.sort-arrow:hover{color:#b9d9f7}
+.sort-arrow.active{color:#5fbaff;filter:drop-shadow(0 0 3px rgba(70,168,255,.38))}
+.sort-arrow:active{transform:translateY(1px)}
+.sort-arrow:focus-visible{outline:1px solid rgba(70,168,255,.65);outline-offset:0;border-radius:2px}
 .div-rate.pos{color:#e8c55f!important}.div-rate.neg{color:#b8a8ff!important}.div-rate.zero{color:#748497!important}
 .timing-cell,.spread-cell,.liquidity-cell{font-size:6.8px;line-height:1.35}
 .timing-line,.data-line{display:flex;align-items:center;justify-content:center;gap:4px;white-space:nowrap}
@@ -390,20 +402,15 @@ button:focus-visible{outline:1px solid var(--blue);outline-offset:2px}
 .cost-head{display:flex;align-items:center;justify-content:space-between;gap:4px;margin-bottom:3px}
 .cost-title{color:#71898c;font-size:5.7px;font-weight:950;letter-spacing:.6px}
 .cost-state{padding:2px 4px;border-radius:3px;font-size:5.2px;font-weight:950;letter-spacing:.28px;white-space:nowrap}
-.cost-state.missing{border:1px solid rgba(241,199,91,.28);background:rgba(241,199,91,.13);color:#f0d476}
-.cost-state.complete{border:1px solid rgba(46,216,137,.18);background:rgba(46,216,137,.04);color:#82d9a8}
-.manual-cost-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2px}
-.manual-cost-field{min-width:0}
-.manual-cost-field label{display:block;margin:0 0 1px;color:#5a7074;font-size:4.55px;font-weight:900;letter-spacing:.34px;white-space:nowrap}
-.manual-cost-input{
-  width:100%;height:21px;padding:0 3px;border-radius:3px;outline:0;
-  font:900 6.7px/1 Consolas,monospace;font-variant-numeric:tabular-nums;
-  transition:background .12s,border-color .12s,color .12s;
-}
-.manual-cost-input.is-missing{border:1px solid rgba(241,199,91,.42);background:rgba(241,199,91,.15);color:#f4d985}
-.manual-cost-input.is-set{border:1px solid #203134;background:#080f11;color:#d4e0e1}
-.manual-cost-input.is-invalid{border:1px solid rgba(255,106,115,.48);background:rgba(255,106,115,.13);color:#ffb0b5}
-.manual-cost-input:focus{border-color:rgba(85,200,239,.55);box-shadow:0 0 0 1px rgba(85,200,239,.08)}
+.cost-state.complete{border:1px solid rgba(46,216,137,.20);background:rgba(46,216,137,.045);color:#82d9a8}
+.cost-state.estimate{border:1px solid rgba(241,199,91,.30);background:rgba(241,199,91,.12);color:#f0d476}
+.cost-state.missing{border:1px solid rgba(255,106,115,.30);background:rgba(255,106,115,.09);color:#f2a0a6}
+.auto-cost-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2px}
+.auto-cost-item{min-width:0;padding:2px 3px;border:1px solid rgba(255,255,255,.045);border-radius:3px;background:#080f11}
+.auto-cost-label{display:block;color:#596f73;font-size:4.55px;font-weight:900;letter-spacing:.34px;white-space:nowrap}
+.auto-cost-value{display:block;margin-top:1px;color:#d8e4e5;font:950 7px/1.1 Consolas,monospace;font-variant-numeric:tabular-nums;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.auto-cost-meta{display:block;margin-top:1px;color:#60777b;font:850 4.9px/1.1 Consolas,monospace;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.auto-cost-item.warn{border-color:rgba(241,199,91,.16);background:rgba(241,199,91,.025)}
 .cost-foot{margin-top:2px;color:#596f73;font-size:5px;line-height:1.2}
 .cost-total-line{display:flex;align-items:center;justify-content:space-between;margin-top:2px;padding-top:2px;border-top:1px solid rgba(255,255,255,.04);color:#809497;font-size:5.3px;font-weight:900}
 .cost-total-line strong{font:950 7.4px/1 Consolas,monospace;color:#d9e4e5}
@@ -416,6 +423,33 @@ button:focus-visible{outline:1px solid var(--blue);outline-offset:2px}
 .account-note{color:#5d7478;font-size:5px;line-height:1.2}
 .action-cell{display:flex;flex-direction:column;justify-content:center;gap:3px}
 .action-cell .console-btn{width:100%;height:27px;padding:0 3px}
+
+
+/* ================= AUTO HEDGE LIFECYCLE ENGINE ================= */
+.auto-manager{border-bottom:1px solid var(--line-soft);background:linear-gradient(90deg,#091315,#0a1114)}
+.auto-manager-head{display:flex;align-items:center;justify-content:space-between;gap:6px;padding:4px 5px;border-bottom:1px solid rgba(255,255,255,.035)}
+.auto-manager-title{display:flex;align-items:center;gap:5px;min-width:0;color:#b9e7d1;font-size:6.2px;font-weight:950;letter-spacing:.65px}
+.auto-manager-title::before{content:"";width:6px;height:6px;border-radius:50%;background:#2ed889;box-shadow:0 0 8px rgba(46,216,137,.45)}
+.auto-manager-rules{color:#667f83;font:800 5.5px/1.15 Consolas,monospace;text-align:right;white-space:nowrap}
+.auto-manager-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:1px;background:rgba(255,255,255,.045)}
+.auto-metric{min-width:0;padding:3px 5px;background:#0a1417}
+.auto-label{color:#587176;font-size:4.8px;font-weight:950;letter-spacing:.5px;margin-bottom:1px;white-space:nowrap}
+.auto-value{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#d8e8e9;font:950 7.6px/1.15 Consolas,monospace;font-variant-numeric:tabular-nums}
+.auto-value.good{color:#7fe0aa}.auto-value.warn{color:#e4c866}.auto-value.bad{color:#f28f96}.auto-value.cyan{color:#8ed5ea}
+.auto-engine-message{min-height:15px;padding:3px 5px;color:#668085;font-size:5.7px;font-weight:780}.auto-engine-message.good{color:#75d59f}.auto-engine-message.warn{color:#ddc36e}.auto-engine-message.bad{color:#ef9198}
+.auto-toggle.on{border-color:rgba(46,216,137,.32)!important;background:rgba(46,216,137,.09)!important;color:#91e8ba!important}
+.auto-toggle.off{border-color:rgba(241,199,91,.25)!important;background:rgba(241,199,91,.05)!important;color:#ddc46f!important}
+.auto-state-pill{display:inline-flex;align-items:center;justify-content:center;padding:2px 4px;border-radius:3px;border:1px solid rgba(85,200,239,.16);background:rgba(85,200,239,.03);color:#88cadd;font-size:5.2px;font-weight:950;white-space:nowrap}
+.auto-state-pill.confirm{border-color:rgba(46,216,137,.22);background:rgba(46,216,137,.045);color:#82dda9}.auto-state-pill.risk{border-color:rgba(255,106,115,.22);background:rgba(255,106,115,.05);color:#f0a1a7}.auto-state-pill.watch{border-color:rgba(241,199,91,.18);background:rgba(241,199,91,.035);color:#dec56f}
+.decision-line{margin-top:2px;padding-top:2px;border-top:1px solid rgba(255,255,255,.04);color:#668084;font:800 5.3px/1.25 Consolas,monospace}
+.decision-line strong{color:#9ac6ca;font-weight:950}
+.audit-log{margin-top:2px;max-height:54px;overflow:hidden;color:#5f7478;font:750 4.9px/1.25 Consolas,monospace}
+.audit-log .audit-item{display:flex;gap:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.audit-time{color:#4f666b}.audit-code{color:#88aeb3;font-weight:900}.audit-close .audit-code{color:#e7c66b}.audit-risk .audit-code{color:#ed979e}
+.action-cell .auto-exit-btn.on{border-color:rgba(46,216,137,.22);background:rgba(46,216,137,.045);color:#84dca9}.action-cell .auto-exit-btn.off{border-color:rgba(241,199,91,.18);background:rgba(241,199,91,.03);color:#d8c06c}
+.close-reason{margin-top:2px;color:#d7bd68;font:850 5.2px/1.25 Consolas,monospace}
+
+@media(max-width:1000px){.auto-manager-grid{grid-template-columns:repeat(4,minmax(0,1fr))}.auto-manager-rules{white-space:normal}}
+@media(max-width:760px){.auto-manager-head{align-items:flex-start;flex-direction:column}.auto-manager-rules{text-align:left}.auto-manager-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 
 .console-flash{animation:consoleFlash 1.1s ease-out}@keyframes consoleFlash{0%{box-shadow:0 0 0 1px rgba(85,200,239,.65),0 0 24px rgba(85,200,239,.16)}100%{box-shadow:var(--shadow)}}
 
@@ -434,7 +468,7 @@ button:focus-visible{outline:1px solid var(--blue);outline-offset:2px}
   .trade-setup-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
   .trade-ledger-row{grid-template-columns:1fr}
   .cost-cell,.account-cell,.action-cell{grid-column:auto}
-  .manual-cost-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .auto-cost-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
   .action-cell{flex-direction:row}
 }
 
@@ -668,7 +702,15 @@ button:focus-visible{outline:1px solid var(--blue);outline-offset:2px}
     <div class="table-wrap">
       <table class="radar-table divergence-table">
         <thead>
-          <tr><th>#</th><th>PAIR</th><th>BINANCE</th><th>BITGET</th><th>TIMING</th><th>SPREAD / 8H</th><th>LIQUIDITY / BASIS</th><th>STATUS</th></tr>
+          <tr>
+            <th>#</th><th>PAIR</th>
+            <th class="sortable-head"><span class="sort-head-wrap">BINANCE<button class="sort-arrow" type="button" data-div-sort="binance" aria-label="Toggle Binance funding sort" title="Toggle sort">▼</button></span></th>
+            <th class="sortable-head"><span class="sort-head-wrap">BITGET<button class="sort-arrow" type="button" data-div-sort="bitget" aria-label="Toggle Bitget funding sort" title="Toggle sort">▼</button></span></th>
+            <th class="sortable-head"><span class="sort-head-wrap">TIMING<button class="sort-arrow" type="button" data-div-sort="timing" aria-label="Toggle settlement timing sort" title="Toggle sort">▼</button></span></th>
+            <th class="sortable-head"><span class="sort-head-wrap">SPREAD / 8H<button class="sort-arrow" type="button" data-div-sort="spread8h" aria-label="Toggle normalized 8 hour spread sort" title="Toggle sort">▼</button></span></th>
+            <th class="sortable-head"><span class="sort-head-wrap">LIQUIDITY / BASIS<button class="sort-arrow" type="button" data-div-sort="liquidity" aria-label="Toggle hedge liquidity sort" title="Toggle sort">▼</button></span></th>
+            <th>STATUS</th>
+          </tr>
         </thead>
         <tbody id="divergenceBody"><tr><td colspan="8"><div class="empty">Waiting for first divergence refresh…</div></td></tr></tbody>
       </table>
@@ -685,13 +727,14 @@ button:focus-visible{outline:1px solid var(--blue);outline-offset:2px}
       <div class="console-title-wrap">
         <div class="console-orb">H2</div>
         <div>
-          <div class="console-kicker">TRANSACTION LEDGER · LIVE HEDGE ACCOUNTING</div>
+          <div class="console-kicker">AUTO LIFECYCLE · TRANSACTION LEDGER · LIVE HEDGE ACCOUNTING</div>
           <h2 class="console-title">MULTI-TRADE CONSOLE · FUTURES HEDGE SIMULATOR</h2>
-          <div class="console-sub">One hedge per row · Binance + Bitget legs isolated per transaction · live P&amp;L + automatic funding · manual costs</div>
+          <div class="console-sub">Rule-driven dual-receive hedges · matched base quantity · automatic funding + trading costs + P&amp;L · auditable auto exits</div>
         </div>
       </div>
       <div class="console-controls">
         <span class="feed-state warn" id="tradeFeedState">MARK FEED IDLE</span>
+        <button class="console-btn auto-toggle on" id="autoEngineToggle" type="button">AUTO SIMULATION ON</button>
         <button class="console-btn" id="tradeReset" type="button">RESET FORM</button>
       </div>
     </div>
@@ -705,20 +748,37 @@ button:focus-visible{outline:1px solid var(--blue);outline-offset:2px}
       <div class="portfolio-metric"><div class="portfolio-label">NET P&amp;L</div><div class="portfolio-value" id="portfolioNetPnl">$0.00</div></div>
     </div>
 
+    <div class="auto-manager" id="autoManager">
+      <div class="auto-manager-head">
+        <div class="auto-manager-title">AUTO HEDGE ENGINE · DUAL RECEIVE REVERSAL</div>
+        <div class="auto-manager-rules">$100 MAX / EXCHANGE · MATCHED BASE QTY · AUTO COSTS · 30S CONFIRM · 15M COOLDOWN · SIMULATION ONLY</div>
+      </div>
+      <div class="auto-manager-grid">
+        <div class="auto-metric"><div class="auto-label">ENGINE</div><div class="auto-value good" id="autoEngineState">ON</div></div>
+        <div class="auto-metric"><div class="auto-label">WATCHED PAIRS</div><div class="auto-value cyan" id="autoWatched">0</div></div>
+        <div class="auto-metric"><div class="auto-label">ARMED / CONFIRM</div><div class="auto-value" id="autoArmed">0 / 0</div></div>
+        <div class="auto-metric"><div class="auto-label">AUTO OPEN</div><div class="auto-value good" id="autoOpenCount">0</div></div>
+        <div class="auto-metric"><div class="auto-label">ENTRY EDGE · 8H MIN</div><div class="auto-value">+0.0120%</div></div>
+        <div class="auto-metric"><div class="auto-label">ENTRY BASIS MAX</div><div class="auto-value">0.350%</div></div>
+        <div class="auto-metric"><div class="auto-label">LAST ACTION</div><div class="auto-value warn" id="autoLastAction">READY</div></div>
+      </div>
+      <div class="auto-engine-message" id="autoEngineMessage">Initializing the cross-exchange watch universe and executable quantity rules…</div>
+    </div>
+
     <div class="trade-composer">
       <div class="trade-setup">
         <div class="trade-setup-grid">
           <div class="form-field"><label>PAIR</label><input id="tradeSymbol" value="BTCUSDT" autocomplete="off" spellcheck="false"></div>
-          <div class="form-field"><label>BINANCE NOTIONAL · USDT</label><input id="tradeBnNotional" type="number" min="1" step="1" placeholder="1000"></div>
-          <div class="form-field"><label>BITGET NOTIONAL · USDT</label><input id="tradeBgNotional" type="number" min="1" step="1" placeholder="1000"></div>
+          <div class="form-field"><label>BINANCE MAX BUDGET · USDT</label><input id="tradeBnNotional" type="number" min="1" step="1" value="100" placeholder="100"></div>
+          <div class="form-field"><label>BITGET MAX BUDGET · USDT</label><input id="tradeBgNotional" type="number" min="1" step="1" value="100" placeholder="100"></div>
           <div class="form-field"><label>BINANCE SIDE</label><select id="tradeBinanceSide"><option value="SHORT">SHORT</option><option value="LONG">LONG</option></select></div>
           <div class="form-field"><label>BITGET SIDE</label><div class="form-readout long" id="tradeBitgetSide">LONG</div></div>
           <div class="form-field"><label>BN LEV.</label><input id="tradeBinanceLev" type="number" min="1" max="125" step="1" value="1"></div>
           <div class="form-field"><label>BG LEV.</label><input id="tradeBitgetLev" type="number" min="1" max="125" step="1" value="1"></div>
-          <button class="console-btn match-btn" id="matchNotional" type="button">MATCH BG = BN</button>
+          <button class="console-btn match-btn" id="matchNotional" type="button">MATCH BUDGETS</button>
           <button class="console-btn primary trade-open-btn" id="tradeOpen" type="button">OPEN HEDGE</button>
         </div>
-        <div class="composer-message" id="tradeComposerMessage">Open the hedge first. Every transaction receives its own manual Binance/Bitget cost fields; funding remains automatic from the exchange feeds.</div>
+        <div class="composer-message" id="tradeComposerMessage">Manual add uses the entered maximum budgets and matches executable base quantity. Funding, commissions and execution-cost estimates are automatic; automatic simulation uses $100 maximum on each exchange.</div>
       </div>
     </div>
 
@@ -740,6 +800,7 @@ const BITGET = "https://api.bitget.com";
 const SCANNER_KEY = "smart_money_opportunity_scanner_v24_4";
 const DIVERGENCE_KEY = "smart_money_funding_divergence_v24_5";
 const TRADE_KEY = "funding_hedge_simulator_trades_v1";
+const AUTO_KEY = "funding_hedge_auto_manager_v1";
 const SCAN_INTERVAL_MS = 60 * 60 * 1000;
 const RETRY_INTERVAL_MS = 5 * 60 * 1000;
 const FUNDING_THRESHOLD = 0.00006;       // +0.006%
@@ -753,26 +814,65 @@ const BINANCE_MARK_WS = "wss://fstream.binance.com/market/stream";
 const BITGET_TICKER_WS = "wss://ws.bitget.com/v2/ws/public";
 const LIVE_STALE_MS = 10_000;
 const LIVE_REST_FALLBACK_MS = 15_000;
+const AUTO_BUDGET_USDT = 100;
+const AUTO_EVAL_MS = 5_000;
+const AUTO_CONFIRM_MS = 30_000;
+const AUTO_CONFIRM_OBS = 3;
+const AUTO_EXIT_CONFIRM_MS = 15_000;
+const AUTO_EXIT_CONFIRM_OBS = 3;
+const AUTO_MIN_EDGE_8H = 0.00012;       // +0.0120% normalized 8H combined receive edge
+const AUTO_EXIT_EDGE_8H = 0.00004;      // +0.0040% normalized 8H edge floor
+const AUTO_ENTRY_MAX_BASIS_PCT = 0.35;
+const AUTO_EXIT_MAX_BASIS_PCT = 0.75;
+const AUTO_MAX_HEDGE_LOSS_PCT = 2.0;    // combined price P&L vs gross entry exposure
+const AUTO_COOLDOWN_MS = 15 * 60 * 1000;
+const AUTO_MIN_HOLD_MS = 60_000;
+const AUTO_HISTORY_MS = 90_000;
+const AUTO_VOLUME_THRESHOLD = 7_000_000;
+const AUTO_UNIVERSE_REFRESH_MS = 15 * 60 * 1000;
+const AUTO_SPEC_CACHE_MS = 30 * 60 * 1000;
+const ACCOUNT_FEE_BACKEND = "http://127.0.0.1:8787/api/futures-fees";
+const FEE_CACHE_MS = 10 * 60 * 1000;
+const DEPTH_CACHE_MS = 12_000;
+const AUTO_COST_REFRESH_MS = 15_000;
+const STANDARD_FEES = Object.freeze({
+  binance:{ taker:0.05 },   // percent: automatic Regular/VIP0 fallback estimate
+  bitget:{ taker:0.06 }     // percent: Bitget standard futures taker rate
+});
 const SOURCES = Object.freeze({
   exchangeInfo: `${FUT}/fapi/v1/exchangeInfo`,
   ticker24: `${FUT}/fapi/v1/ticker/24hr`,
   premium: `${FUT}/fapi/v1/premiumIndex`,
   fundingInfo: `${FUT}/fapi/v1/fundingInfo`,
   bitgetFunding: `${BITGET}/api/v3/market/current-fund-rate?category=USDT-FUTURES`,
-  bitgetTickers: `${BITGET}/api/v3/market/tickers?category=USDT-FUTURES`
+  bitgetTickers: `${BITGET}/api/v3/market/tickers?category=USDT-FUTURES`,
+  bitgetInstruments: `${BITGET}/api/v3/market/instruments?category=USDT-FUTURES`
 });
 
 /* ------------------------------- STATE --------------------------------- */
 let scannerRunning = false;
 let divergenceRunning = false;
+let divergenceSort = { key:"spread8h", dir:"desc" };
 let sharedSnapshot = null;
 let sharedSnapshotPromise = null;
 let sharedContext = null;
 let tradeState = loadTradeState();
+let autoConfig = loadAutoConfig();
 const closingTrades = new Set();
+const autoCandidates = new Map();
+let autoUniverse = new Set();
+let autoUniverseAt = 0;
+let autoEvalRunning = false;
+let autoLastAction = "READY";
+let bitgetInstrumentCache = { at:0, map:new Map() };
 let tradeDraft = { source:"MANUAL", radarType:null, radarIndex:null };
 let fundingReconcileRunning = false;
 let lastFundingReconcileAt = 0;
+let feeBackendRetryAt = 0;
+const feeRateCache = new Map();
+const depthCache = new Map();
+let autoCostRefreshRunning = false;
+let lastAutoCostRefreshAt = 0;
 
 const liveMarket = { binance:new Map(), bitget:new Map(), binanceAt:0, bitgetAt:0 };
 let binanceWs = null, bitgetWs = null;
@@ -801,6 +901,13 @@ const el = Object.freeze({
   divergenceMatches: document.getElementById("divergenceMatches"),
   divergenceUniverse: document.getElementById("divergenceUniverse"),
   tradeFeedState: document.getElementById("tradeFeedState"),
+  autoEngineToggle: document.getElementById("autoEngineToggle"),
+  autoEngineState: document.getElementById("autoEngineState"),
+  autoWatched: document.getElementById("autoWatched"),
+  autoArmed: document.getElementById("autoArmed"),
+  autoOpenCount: document.getElementById("autoOpenCount"),
+  autoLastAction: document.getElementById("autoLastAction"),
+  autoEngineMessage: document.getElementById("autoEngineMessage"),
   tradeReset: document.getElementById("tradeReset"),
   tradeSymbol: document.getElementById("tradeSymbol"),
   tradeBnNotional: document.getElementById("tradeBnNotional"),
@@ -905,26 +1012,39 @@ function saveState(key, state){
 }
 
 
-function normalizeManualCosts(raw){
+function standardFeeProfile(){
+  return {bnOpen:STANDARD_FEES.binance.taker,bnClose:STANDARD_FEES.binance.taker,bgOpen:STANDARD_FEES.bitget.taker,bgClose:STANDARD_FEES.bitget.taker,mode:"STANDARD",role:"TAKER",fetchedAt:null};
+}
+function normalizeFeeProfile(raw){
+  const base=standardFeeProfile(),source=raw&&typeof raw==="object"?raw:{};
+  return {
+    bnOpen:finite(source.bnOpen)?num(source.bnOpen):base.bnOpen,
+    bnClose:finite(source.bnClose)?num(source.bnClose):base.bnClose,
+    bgOpen:finite(source.bgOpen)?num(source.bgOpen):base.bgOpen,
+    bgClose:finite(source.bgClose)?num(source.bgClose):base.bgClose,
+    mode:String(source.mode||"STANDARD"),role:"TAKER",fetchedAt:finite(source.fetchedAt)?num(source.fetchedAt):null
+  };
+}
+function normalizeAutoCosts(raw){
   const source=raw&&typeof raw==="object"?raw:{};
-  const keys=["bnEntry","bnExit","bnOther","bgEntry","bgExit","bgOther"];
-  const out={};
-  for(const key of keys){
-    const value=source[key];
-    out[key]=value===null||value===undefined||value===""?null:(Number.isFinite(Number(value))&&Number(value)>=0?Number(value):null);
-  }
-  return out;
+  return {exitEstimate:source.exitEstimate&&typeof source.exitEstimate==="object"?source.exitEstimate:null,lastRefreshAt:finite(source.lastRefreshAt)?num(source.lastRefreshAt):null};
 }
 function normalizeTradeRecord(trade){
   if(!trade||typeof trade!=="object") return trade;
-  const {fees,costSource,otherCost,...cleanTrade}=trade;
+  const {manualCosts,otherCost,...cleanTrade}=trade;
   const cleanLeg=leg=>{
-    const {entryFee,exitFee,execution,exitExecution,...rest}=(leg&&typeof leg==="object")?leg:{};
-    return {fundingEvents:[],...rest,fundingEvents:Array.isArray(rest.fundingEvents)?rest.fundingEvents:[]};
+    const source=leg&&typeof leg==="object"?leg:{};
+    return {...source,fundingEvents:Array.isArray(source.fundingEvents)?source.fundingEvents:[]};
   };
   return {
     ...cleanTrade,
-    manualCosts:normalizeManualCosts(trade.manualCosts),
+    autoManaged:Boolean(trade.autoManaged),
+    autoExitEnabled:trade.autoExitEnabled===undefined?Boolean(trade.autoManaged):Boolean(trade.autoExitEnabled),
+    decisionLog:Array.isArray(trade.decisionLog)?trade.decisionLog:[],
+    riskWatch:trade.riskWatch&&typeof trade.riskWatch==="object"?trade.riskWatch:null,
+    fees:normalizeFeeProfile(trade.fees),
+    costSource:String(trade.costSource||trade.fees?.mode||"STANDARD"),
+    autoCosts:normalizeAutoCosts(trade.autoCosts),
     legs:{binance:cleanLeg(trade.legs?.binance),bitget:cleanLeg(trade.legs?.bitget)}
   };
 }
@@ -937,6 +1057,76 @@ function loadTradeState(){
 function saveTrades(){
   try{ localStorage.setItem(TRADE_KEY,JSON.stringify(tradeState)); }
   catch(error){ console.warn("Trade state save failed",error); setComposerMessage("Trade persistence failed in this browser.","err"); }
+}
+
+
+function loadAutoConfig(){
+  try{
+    const raw=JSON.parse(localStorage.getItem(AUTO_KEY)||"null");
+    return {enabled:raw?.enabled===undefined?true:Boolean(raw.enabled)};
+  }catch{return{enabled:true}}
+}
+function saveAutoConfig(){try{localStorage.setItem(AUTO_KEY,JSON.stringify(autoConfig))}catch(error){console.warn("Auto config save failed",error)}}
+function setAutoMessage(text,type=""){
+  if(!el.autoEngineMessage)return;
+  el.autoEngineMessage.textContent=text;
+  el.autoEngineMessage.className=`auto-engine-message${type?` ${type}`:""}`;
+}
+function setAutoAction(text,type="warn"){
+  autoLastAction=String(text||"READY");
+  if(el.autoLastAction){el.autoLastAction.textContent=autoLastAction;el.autoLastAction.className=`auto-value ${type}`}
+}
+function logDecision(trade,code,message,snapshot=null){
+  if(!trade)return;
+  trade.decisionLog=Array.isArray(trade.decisionLog)?trade.decisionLog:[];
+  const last=trade.decisionLog[trade.decisionLog.length-1];
+  if(last?.code===code&&last?.message===message&&Date.now()-num(last.time)<5000)return;
+  trade.decisionLog.push({time:Date.now(),code:String(code),message:String(message),snapshot:snapshot||null});
+  if(trade.decisionLog.length>120)trade.decisionLog.splice(0,trade.decisionLog.length-120);
+}
+function decimalPlaces(value){
+  const text=String(value);
+  if(text.includes("e-"))return Math.min(12,Number(text.split("e-")[1])||0);
+  return Math.min(12,(text.split(".")[1]||"").replace(/0+$/g,"").length);
+}
+function gcdInt(a,b){a=Math.abs(Math.trunc(a));b=Math.abs(Math.trunc(b));while(b){const t=b;b=a%b;a=t}return a||1}
+function lcmInt(a,b){if(!a||!b)return Math.max(a,b);return Math.abs(a/gcdInt(a,b)*b)}
+function commonQuantityStep(a,b){
+  const x=Math.abs(num(a)),y=Math.abs(num(b));if(!(x>0))return y;if(!(y>0))return x;
+  const places=Math.max(decimalPlaces(x),decimalPlaces(y)),scale=10**places;
+  return lcmInt(Math.round(x*scale),Math.round(y*scale))/scale;
+}
+function floorToStep(value,step){if(!(step>0))return value;const places=Math.min(12,decimalPlaces(step));return Number((Math.floor((value+step*1e-9)/step)*step).toFixed(places))}
+function ceilToStep(value,step){if(!(step>0))return value;const places=Math.min(12,decimalPlaces(step));return Number((Math.ceil((value-step*1e-9)/step)*step).toFixed(places))}
+function binanceInstrumentSpec(symbol){
+  const row=sharedSnapshot?getMarketContext(sharedSnapshot).binanceSymbolMap.get(symbol):null;if(!row)return null;
+  const filters=Array.isArray(row.filters)?row.filters:[];
+  const marketLot=filters.find(f=>f.filterType==="MARKET_LOT_SIZE"&&num(f.stepSize)>0)||filters.find(f=>f.filterType==="LOT_SIZE");
+  const minNotional=filters.find(f=>f.filterType==="MIN_NOTIONAL"||f.filterType==="NOTIONAL");
+  return {step:num(marketLot?.stepSize),minQty:num(marketLot?.minQty),minAmount:num(minNotional?.notional||minNotional?.minNotional||0)};
+}
+async function bitgetInstrumentMap(force=false){
+  if(!force&&bitgetInstrumentCache.map.size&&Date.now()-bitgetInstrumentCache.at<AUTO_SPEC_CACHE_MS)return bitgetInstrumentCache.map;
+  const response=await requestJson(SOURCES.bitgetInstruments);
+  if(!Array.isArray(response?.data))throw new Error("Bitget instrument specification response is invalid");
+  bitgetInstrumentCache={at:Date.now(),map:new Map(response.data.filter(row=>row?.symbol).map(row=>[normalizeSymbol(row.symbol),{
+    step:num(row.quantityMultiplier),minQty:num(row.minOrderQty),minAmount:num(row.minOrderAmount),status:String(row.status||"")
+  }]))};
+  return bitgetInstrumentCache.map;
+}
+async function matchedBaseSizing(symbol,market,bnBudget,bgBudget){
+  const bnSpec=binanceInstrumentSpec(symbol),bgMap=await bitgetInstrumentMap(),bgSpec=bgMap.get(symbol);
+  if(!bnSpec||!bgSpec)throw new Error(`${symbol} executable quantity rules are unavailable on one exchange.`);
+  const step=commonQuantityStep(bnSpec.step,bgSpec.step);
+  if(!(step>0))throw new Error(`${symbol} quantity step could not be resolved.`);
+  const maxQty=Math.min(num(bnBudget)/num(market.binance.markPrice),num(bgBudget)/num(market.bitget.markPrice));
+  let qty=floorToStep(maxQty,step);
+  const minQty=ceilToStep(Math.max(num(bnSpec.minQty),num(bgSpec.minQty)),step);
+  if(!(qty>0)||qty<minQty)throw new Error(`${symbol} cannot open a matched base quantity within the selected budgets.`);
+  const bnNotional=qty*num(market.binance.markPrice),bgNotional=qty*num(market.bitget.markPrice);
+  if(bnSpec.minAmount>0&&bnNotional+1e-9<bnSpec.minAmount)throw new Error(`${symbol} Binance minimum notional is above the selected budget.`);
+  if(bgSpec.minAmount>0&&bgNotional+1e-9<bgSpec.minAmount)throw new Error(`${symbol} Bitget minimum notional is above the selected budget.`);
+  return {qty,step,minQty,bnNotional,bgNotional,bnBudget:num(bnBudget),bgBudget:num(bgBudget)};
 }
 
 async function requestJson(url){
@@ -996,6 +1186,7 @@ function getMarketContext(snapshot){
   sharedContext = {
     fetchedAt: snapshot.fetchedAt,
     universe,
+    binanceSymbolMap: new Map(snapshot.exchangeInfo.symbols.filter(row => row?.symbol).map(row => [row.symbol, row])),
     tickerMap: new Map(snapshot.ticker24.filter(row => row?.symbol).map(row => [row.symbol, row])),
     premiumMap: new Map(snapshot.premium.filter(row => row?.symbol).map(row => [row.symbol, row])),
     intervalOverrides: new Map(
@@ -1257,6 +1448,65 @@ function duration(ms){
   return `${String(hours).padStart(2,"0")}:${String(minutes).padStart(2,"0")}:${String(secs).padStart(2,"0")}`;
 }
 
+function divergenceSortValue(match,key){
+  if(key === "binance") return finite(match?.binance?.rate) ? num(match.binance.rate) : null;
+  if(key === "bitget") return finite(match?.bitget?.rate) ? num(match.bitget.rate) : null;
+  if(key === "timing") return finite(match?.settlementTimeDifferenceMs) ? Math.abs(num(match.settlementTimeDifferenceMs)) : null;
+  if(key === "spread8h"){
+    if(finite(match?.normalizedSpread8h)) return Math.abs(num(match.normalizedSpread8h));
+    return finite(match?.rawSpread) ? Math.abs(num(match.rawSpread)) : null;
+  }
+  if(key === "liquidity"){
+    const bn=finite(match?.binanceVolume24h)?num(match.binanceVolume24h):null;
+    const bg=finite(match?.bitgetTurnover24h)?num(match.bitgetTurnover24h):null;
+    if(bn===null&&bg===null) return null;
+    if(bn===null) return bg;
+    if(bg===null) return bn;
+    return Math.min(bn,bg); // hedge capacity is constrained by the weaker venue
+  }
+  return null;
+}
+
+function sortedDivergenceEntries(matches){
+  const entries=matches.map((match,originalIndex)=>({match,originalIndex}));
+  const {key,dir}=divergenceSort;
+  if(!key||!dir) return entries;
+  const sign=dir==="asc"?1:-1;
+  entries.sort((a,b)=>{
+    const av=divergenceSortValue(a.match,key),bv=divergenceSortValue(b.match,key);
+    const aMissing=!finite(av),bMissing=!finite(bv);
+    if(aMissing||bMissing){
+      if(aMissing&&bMissing) return a.match.symbol.localeCompare(b.match.symbol);
+      return aMissing?1:-1; // unavailable values always remain at the bottom
+    }
+    const primary=(num(av)-num(bv))*sign;
+    if(primary) return primary;
+    if(key==="liquidity"){
+      const ab=finite(a.match.markPriceGapPct)?Math.abs(num(a.match.markPriceGapPct)):Infinity;
+      const bb=finite(b.match.markPriceGapPct)?Math.abs(num(b.match.markPriceGapPct)):Infinity;
+      if(ab!==bb) return ab-bb; // safer/tighter basis wins equal-liquidity ties
+    }
+    if(key==="timing"){
+      const ai=finite(a.match.intervalDifferenceHours)?Math.abs(num(a.match.intervalDifferenceHours)):Infinity;
+      const bi=finite(b.match.intervalDifferenceHours)?Math.abs(num(b.match.intervalDifferenceHours)):Infinity;
+      if(ai!==bi) return ai-bi;
+    }
+    return a.match.symbol.localeCompare(b.match.symbol);
+  });
+  return entries;
+}
+
+function updateDivergenceSortIndicators(){
+  document.querySelectorAll("[data-div-sort]").forEach(button=>{
+    const active=button.dataset.divSort===divergenceSort.key;
+    const direction=active?divergenceSort.dir:"desc";
+    button.textContent=direction==="asc"?"▲":"▼";
+    button.classList.toggle("active",active);
+    button.setAttribute("aria-pressed",active?"true":"false");
+    button.setAttribute("aria-label",`${active?"Current":"Sort"} ${button.dataset.divSort} ${direction==="asc"?"ascending":"descending"}; click to toggle`);
+  });
+}
+
 function renderDivergence(){
   const matches = Array.isArray(divergenceState.matches) ? divergenceState.matches : [];
   el.divergenceLast.textContent = finite(divergenceState.lastScanAt) ? localTime(divergenceState.lastScanAt) : "—";
@@ -1281,12 +1531,14 @@ function renderDivergence(){
     el.divergenceMessage.innerHTML = "<span>Funding Divergence Radar ready. First refresh starts automatically.</span><span>Shared snapshot • zero duplicate symbol requests</span>";
   }
 
+  updateDivergenceSortIndicators();
   if(!matches.length){
     el.divergenceBody.innerHTML = `<tr><td colspan="8"><div class="empty">${divergenceState.lastScanAt ? "No cross-listed pairs currently have opposite funding signs." : "Waiting for first divergence refresh…"}</div></td></tr>`;
     return;
   }
 
-  el.divergenceBody.innerHTML = matches.map((match, index) => {
+  const sortedEntries = sortedDivergenceEntries(matches);
+  el.divergenceBody.innerHTML = sortedEntries.map(({match,originalIndex}, index) => {
     const intervalGap = finite(match.binance?.intervalHours) && finite(match.bitget?.intervalHours)
       ? Math.abs(num(match.binance.intervalHours) - num(match.bitget.intervalHours)) : null;
     const timeGap = finite(match.binance?.nextFundingTime) && finite(match.bitget?.nextFundingTime)
@@ -1312,7 +1564,7 @@ function renderDivergence(){
         <div class="data-line"><span class="liq-bn">BN ${finite(match.binanceVolume24h) ? formatVolume(match.binanceVolume24h) : "N/A"}</span><span>•</span><span class="liq-bg">BG ${finite(match.bitgetTurnover24h) ? formatVolume(match.bitgetTurnover24h) : "N/A"}</span></div>
         <div class="data-line"><span class="price-gap">MARK Δ ${finite(match.markPriceGapPct) ? `${match.markPriceGapPct >= 0 ? "+" : ""}${match.markPriceGapPct.toFixed(4)}%` : "N/A"}</span></div>
       </td>
-      <td data-label="STATUS"><div class="row-actions"><span><span class="div-status ${statusClass}">${match.strength === "OPPOSITE_SIGN" ? "OPPOSITE SIGN" : `${match.strength} GAP`}</span><span class="direction">${direction}</span></span><button class="hedge-open-btn" type="button" data-radar-open="divergence" data-radar-index="${index}">HEDGE</button></div></td>
+      <td data-label="STATUS"><div class="row-actions"><span><span class="div-status ${statusClass}">${match.strength === "OPPOSITE_SIGN" ? "OPPOSITE SIGN" : `${match.strength} GAP`}</span><span class="direction">${direction}</span></span><button class="hedge-open-btn" type="button" data-radar-open="divergence" data-radar-index="${originalIndex}">HEDGE</button></div></td>
     </tr>`;
   }).join("");
 }
@@ -1415,8 +1667,6 @@ async function copyDivergenceMatches(){
 
 
 /* ---------------------- MULTI-TRADE HEDGE SIMULATOR ------------------- */
-const MANUAL_COST_KEYS=Object.freeze(["bnEntry","bnExit","bnOther","bgEntry","bgExit","bgOther"]);
-
 function setComposerMessage(text,type=""){
   if(!el.tradeComposerMessage) return;
   el.tradeComposerMessage.textContent=text;
@@ -1432,9 +1682,11 @@ function resetTradeDraft(keepNotional=true){
   el.tradeSymbol.value="BTCUSDT";
   el.tradeBinanceSide.value="SHORT";
   syncOppositeSide();
-  if(!keepNotional){el.tradeBnNotional.value="";el.tradeBgNotional.value="";}
-  setComposerMessage("Manual mode · each new hedge becomes an independent row. Enter transaction costs directly inside that row; funding remains automatic.");
+  if(!keepNotional){el.tradeBnNotional.value=String(AUTO_BUDGET_USDT);el.tradeBgNotional.value=String(AUTO_BUDGET_USDT);}
+  setComposerMessage("Manual add · budgets default to $100 per exchange. Matched base quantity, funding, commissions and execution-cost estimates are automatic.");
 }
+function feeFraction(percent){return Math.max(0,num(percent))/100}
+function percentRate(value){return `${Math.max(0,num(value)).toFixed(4)}%`}
 function tradeEntryNotional(trade,exchange){
   const leg=trade?.legs?.[exchange];
   if(finite(leg?.entryNotional)) return num(leg.entryNotional);
@@ -1442,34 +1694,134 @@ function tradeEntryNotional(trade,exchange){
   if(exchange==="bitget"&&finite(trade?.bitgetNotional)) return num(trade.bitgetNotional);
   return num(trade?.valuePerLeg);
 }
-function manualCosts(trade){
-  if(!trade.manualCosts) trade.manualCosts=normalizeManualCosts(null);
-  return trade.manualCosts;
+function tradeFeeProfile(trade){return normalizeFeeProfile(trade?.fees)}
+function parseBackendPercent(value){
+  const x=num(value);if(x<0)return 0;
+  return x<=0.01?x*100:x;
 }
-function manualCostComplete(trade){
-  const costs=manualCosts(trade);
-  return MANUAL_COST_KEYS.every(key=>finite(costs[key])&&num(costs[key])>=0);
+async function resolveFeeProfile(symbol,force=false){
+  const cached=feeRateCache.get(symbol);
+  if(!force&&cached){
+    const ttl=cached.profile?.mode==="STANDARD"?60_000:FEE_CACHE_MS;
+    if(Date.now()-cached.fetchedAt<ttl)return cached.profile;
+  }
+  let profile=standardFeeProfile();
+  if(ACCOUNT_FEE_BACKEND&&Date.now()>=feeBackendRetryAt){
+    try{
+      const join=ACCOUNT_FEE_BACKEND.includes("?")?"&":"?",raw=await requestJson(`${ACCOUNT_FEE_BACKEND}${join}symbol=${encodeURIComponent(symbol)}`);
+      const bnTaker=raw?.binance?.takerFeeRate??raw?.binance?.taker,bgTaker=raw?.bitget?.takerFeeRate??raw?.bitget?.taker;
+      const hasBn=finite(bnTaker),hasBg=finite(bgTaker);
+      if(hasBn){profile.bnOpen=parseBackendPercent(bnTaker);profile.bnClose=profile.bnOpen}
+      if(hasBg){profile.bgOpen=parseBackendPercent(bgTaker);profile.bgClose=profile.bgOpen}
+      if(hasBn||hasBg)profile.mode=hasBn&&hasBg?"ACCOUNT":"MIXED";
+      profile.fetchedAt=Date.now();feeBackendRetryAt=0;
+    }catch(error){console.warn("Secure account fee backend unavailable; automatic standard rates retained",error);feeBackendRetryAt=Date.now()+60_000}
+  }
+  feeRateCache.set(symbol,{profile,fetchedAt:Date.now()});return profile;
 }
-function manualCostTotal(trade){
-  const costs=manualCosts(trade);
-  return MANUAL_COST_KEYS.reduce((sum,key)=>sum+(finite(costs[key])?num(costs[key]):0),0);
+function depthCacheKey(exchange,symbol,limit){return `${exchange}:${symbol}:${limit}`}
+async function fetchDepth(exchange,symbol,limit=100,force=false){
+  const key=depthCacheKey(exchange,symbol,limit),cached=depthCache.get(key);
+  if(!force&&cached&&Date.now()-cached.fetchedAt<DEPTH_CACHE_MS)return cached;
+  let book;
+  if(exchange==="binance"){
+    const raw=await requestJson(`${FUT}/fapi/v1/depth?symbol=${encodeURIComponent(symbol)}&limit=${limit}`);
+    book={bids:raw?.bids||[],asks:raw?.asks||[],fetchedAt:Date.now()};
+  }else{
+    const raw=await requestJson(`${BITGET}/api/v3/market/orderbook?category=USDT-FUTURES&symbol=${encodeURIComponent(symbol)}&limit=${limit}`);
+    book={bids:raw?.data?.b||[],asks:raw?.data?.a||[],fetchedAt:Date.now()};
+  }
+  book.bids=book.bids.map(x=>[num(x[0]),num(x[1])]).filter(x=>x[0]>0&&x[1]>0);
+  book.asks=book.asks.map(x=>[num(x[0]),num(x[1])]).filter(x=>x[0]>0&&x[1]>0);
+  if(!book.bids.length||!book.asks.length)throw new Error(`${exchange} ${symbol} order book is empty`);
+  depthCache.set(key,book);return book;
 }
-function costValueForInput(value){return finite(value)?String(num(value)):""}
-function parseManualCost(raw){
-  const text=String(raw??"").trim();
-  if(text==="") return {valid:true,value:null};
-  const value=Number(text);
-  if(!Number.isFinite(value)||value<0) return {valid:false,value:null};
-  return {valid:true,value};
+function walkBookByQty(book,side,baseQty){
+  const levels=side==="LONG"?book.asks:book.bids,target=Math.max(0,num(baseQty));
+  let qty=0,quote=0,remaining=target;
+  for(const [price,availableQty] of levels){
+    if(!(price>0&&availableQty>0))continue;
+    const take=Math.min(availableQty,remaining);if(!(take>0))break;
+    qty+=take;quote+=take*price;remaining-=take;if(remaining<=1e-12)break;
+  }
+  const vwap=qty>0?quote/qty:0,fillRatio=target>0?qty/target:1,best=levels?.[0]?.[0]||0;
+  return{qty,quote,vwap,best,fillRatio:Math.min(1,fillRatio)};
 }
-function applyCostInputState(input){
-  const parsed=parseManualCost(input.value);
-  input.classList.remove("is-missing","is-set","is-invalid");
-  input.classList.add(!parsed.valid?"is-invalid":parsed.value===null?"is-missing":"is-set");
+function analyzeExecutionByQty(book,side,qty){
+  const fill=walkBookByQty(book,side,qty),bid=book.bids?.[0]?.[0]||0,ask=book.asks?.[0]?.[0]||0,mid=bid&&ask?(bid+ask)/2:fill.best;
+  const spreadBps=mid>0&&bid&&ask?(ask-bid)/mid*10000:0;
+  const impactBps=mid>0&&fill.vwap>0&&fill.best>0?(side==="LONG"?(fill.vwap-fill.best):(fill.best-fill.vwap))/mid*10000:0;
+  const executionCost=mid>0&&fill.qty>0?Math.abs(fill.vwap-mid)*fill.qty:0;
+  return{...fill,bid,ask,mid,spreadBps:Math.max(0,spreadBps),impactBps:Math.max(0,impactBps),executionCost};
 }
-function costField(trade,key,label){
-  const value=manualCosts(trade)[key];
-  return `<div class="manual-cost-field"><label>${label}</label><input class="manual-cost-input ${finite(value)?"is-set":"is-missing"}" type="number" min="0" step="0.01" placeholder="ENTER" value="${finite(value)?escapeHtml(String(num(value))):""}" data-trade-cost="${key}" data-trade-id="${trade.id}" autocomplete="off"></div>`;
+async function entryCostPlan(symbol,bnSide,bgSide,qty,{force=false,deeper=false}={}){
+  const limit=deeper?500:100;
+  const [fees,bnBook,bgBook]=await Promise.all([resolveFeeProfile(symbol,force),fetchDepth("binance",symbol,limit,force),fetchDepth("bitget",symbol,limit,force)]);
+  const bn=analyzeExecutionByQty(bnBook,bnSide,qty),bg=analyzeExecutionByQty(bgBook,bgSide,qty);
+  if(!deeper&&(bn.fillRatio<.999||bg.fillRatio<.999))return entryCostPlan(symbol,bnSide,bgSide,qty,{force:true,deeper:true});
+  if(bn.fillRatio<.999||bg.fillRatio<.999)throw new Error(`${symbol} visible order-book depth cannot fill the matched quantity on both exchanges.`);
+  const bnExit=analyzeExecutionByQty(bnBook,bnSide==="LONG"?"SHORT":"LONG",qty),bgExit=analyzeExecutionByQty(bgBook,bgSide==="LONG"?"SHORT":"LONG",qty);
+  return{fees,bn,bg,bnExit,bgExit,fetchedAt:Date.now()};
+}
+async function exitCostPlan(trade,{force=false,deeper=false}={}){
+  const limit=deeper?500:100,qty=num(trade.matchedBaseQty||trade.legs.binance.qty);
+  const [fees,bnBook,bgBook]=await Promise.all([resolveFeeProfile(trade.symbol,force),fetchDepth("binance",trade.symbol,limit,force),fetchDepth("bitget",trade.symbol,limit,force)]);
+  const bn=analyzeExecutionByQty(bnBook,trade.legs.binance.side==="LONG"?"SHORT":"LONG",qty),bg=analyzeExecutionByQty(bgBook,trade.legs.bitget.side==="LONG"?"SHORT":"LONG",qty);
+  if(!deeper&&(bn.fillRatio<.999||bg.fillRatio<.999))return exitCostPlan(trade,{force:true,deeper:true});
+  if(bn.fillRatio<.999||bg.fillRatio<.999)throw new Error(`${trade.symbol} visible exit depth is insufficient for the matched quantity.`);
+  return{fees,bn,bg,fetchedAt:Date.now()};
+}
+function feeModeLabel(mode){return mode==="ACCOUNT"?"AUTO ACCOUNT":mode==="MIXED"?"AUTO MIXED":"AUTO STANDARD"}
+function feeModeClass(mode,depthFresh=true){return !depthFresh?"missing":mode==="ACCOUNT"?"complete":"estimate"}
+function automaticCosts(trade,bnMark,bgMark){
+  const fees=tradeFeeProfile(trade),bn=trade.legs.binance,bg=trade.legs.bitget,estimate=trade.autoCosts?.exitEstimate;
+  const bnEntryFee=finite(bn.entryFee)?num(bn.entryFee):tradeEntryNotional(trade,"binance")*feeFraction(fees.bnOpen);
+  const bgEntryFee=finite(bg.entryFee)?num(bg.entryFee):tradeEntryNotional(trade,"bitget")*feeFraction(fees.bgOpen);
+  let bnExitFee,bgExitFee,bnExitExec,bgExitExec,depthFresh=true;
+  if(trade.status==="CLOSED"){
+    bnExitFee=num(bn.exitFee);bgExitFee=num(bg.exitFee);bnExitExec=num(bn.exitExecutionCost);bgExitExec=num(bg.exitExecutionCost);
+  }else{
+    const estFresh=finite(estimate?.fetchedAt)&&Date.now()-num(estimate.fetchedAt)<=AUTO_COST_REFRESH_MS*2;
+    depthFresh=Boolean(estFresh);
+    const bnQuote=finite(estimate?.binance?.quote)?num(estimate.binance.quote):Math.abs(num(bn.qty)*bnMark);
+    const bgQuote=finite(estimate?.bitget?.quote)?num(estimate.bitget.quote):Math.abs(num(bg.qty)*bgMark);
+    bnExitFee=bnQuote*feeFraction(fees.bnClose);bgExitFee=bgQuote*feeFraction(fees.bgClose);
+    bnExitExec=finite(estimate?.binance?.executionCost)?num(estimate.binance.executionCost):0;
+    bgExitExec=finite(estimate?.bitget?.executionCost)?num(estimate.bitget.executionCost):0;
+  }
+  const bnEntryExec=num(bn.entryExecutionCost),bgEntryExec=num(bg.entryExecutionCost);
+  const feesTotal=bnEntryFee+bgEntryFee+bnExitFee+bgExitFee,executionTotal=bnEntryExec+bgEntryExec+bnExitExec+bgExitExec,total=feesTotal+executionTotal;
+  return{fees,bnEntryFee,bgEntryFee,bnExitFee,bgExitFee,bnEntryExec,bgEntryExec,bnExitExec,bgExitExec,feesTotal,executionTotal,total,depthFresh,mode:fees.mode};
+}
+async function refreshOpenTradeCostEstimates(force=false){
+  if(autoCostRefreshRunning)return;
+  if(!force&&Date.now()-lastAutoCostRefreshAt<AUTO_COST_REFRESH_MS)return;
+  const open=tradeState.trades.filter(t=>t.status==="OPEN");if(!open.length)return;
+  autoCostRefreshRunning=true;lastAutoCostRefreshAt=Date.now();
+  try{
+    const groups=new Map();for(const trade of open){if(!groups.has(trade.symbol))groups.set(trade.symbol,[]);groups.get(trade.symbol).push(trade)}
+    await Promise.all([...groups.entries()].map(async([symbol,trades])=>{
+      try{
+        const fees=await resolveFeeProfile(symbol,force);
+        let [bnBook,bgBook]=await Promise.all([fetchDepth("binance",symbol,100,force),fetchDepth("bitget",symbol,100,force)]);
+        const analyzeAll=()=>trades.map(trade=>{
+          const qty=num(trade.matchedBaseQty||trade.legs.binance.qty);
+          return {trade,bn:analyzeExecutionByQty(bnBook,trade.legs.binance.side==="LONG"?"SHORT":"LONG",qty),bg:analyzeExecutionByQty(bgBook,trade.legs.bitget.side==="LONG"?"SHORT":"LONG",qty)};
+        });
+        let rows=analyzeAll();
+        if(rows.some(row=>row.bn.fillRatio<.999||row.bg.fillRatio<.999)){
+          [bnBook,bgBook]=await Promise.all([fetchDepth("binance",symbol,500,true),fetchDepth("bitget",symbol,500,true)]);rows=analyzeAll();
+        }
+        for(const {trade,bn,bg} of rows){
+          trade.fees={...tradeFeeProfile(trade),bnClose:fees.bnClose,bgClose:fees.bgClose,mode:fees.mode,fetchedAt:fees.fetchedAt};
+          trade.costSource=fees.mode;trade.autoCosts=trade.autoCosts||{};
+          if(bn.fillRatio>=.999&&bg.fillRatio>=.999)trade.autoCosts.exitEstimate={binance:bn,bitget:bg,fetchedAt:Date.now()};
+          trade.autoCosts.lastRefreshAt=Date.now();
+        }
+      }catch(error){console.warn(`Automatic exit-cost refresh skipped for ${symbol}`,error)}
+    }));
+    refreshTradeMetrics();
+  }finally{autoCostRefreshRunning=false}
 }
 
 function legPricePnl(leg,mark){
@@ -1495,16 +1847,15 @@ function tradeCalc(trade){
   const bgPricePnl=trade.status==="CLOSED"?legRealizedPnl(bg):legPricePnl(bg,bgMark);
   const pricePnl=bnPricePnl+bgPricePnl;
   const bnFunding=fundingPnl(bn),bgFunding=fundingPnl(bg),funding=bnFunding+bgFunding;
-  const costs=manualCostTotal(trade),costsComplete=manualCostComplete(trade);
+  const autoCost=automaticCosts(trade,bnMark,bgMark),costs=autoCost.total;
   const net=pricePnl+funding-costs;
   const margin=(tradeEntryNotional(trade,"binance")/Math.max(1,num(bn.leverage)))+(tradeEntryNotional(trade,"bitget")/Math.max(1,num(bg.leverage)));
   const roi=margin>0?net/margin*100:0,fundingRoi=margin>0?funding/margin*100:0;
   const bnNotional=Math.abs(num(bn.qty)*bnMark),bgNotional=Math.abs(num(bg.qty)*bgMark),maxN=Math.max(bnNotional,bgNotional);
   const hedgeQuality=maxN>0?Math.min(bnNotional,bgNotional)/maxN*100:100;
   const signedDelta=(bn.side==="LONG"?bnNotional:-bnNotional)+(bg.side==="LONG"?bgNotional:-bgNotional);
-  return{bnMark,bgMark,bnPricePnl,bgPricePnl,bnFunding,bgFunding,pricePnl,funding,costs,costsComplete,net,margin,roi,fundingRoi,hedgeQuality,signedDelta,grossExposure:bnNotional+bgNotional};
+  return{bnMark,bgMark,bnPricePnl,bgPricePnl,pricePnl,bnFunding,bgFunding,funding,costs,autoCost,net,margin,roi,fundingRoi,hedgeQuality,signedDelta,grossExposure:bnNotional+bgNotional};
 }
-
 function fundingCash(side,notional,rate){return (side==="SHORT"?1:-1)*num(notional)*num(rate)}
 function hasFundingEvent(leg,time){return (leg.fundingEvents||[]).some(event=>Math.abs(num(event.time)-num(time))<1000)}
 function recordFundingEvent(trade,exchange,time,rate,markPrice,source="LIVE",estimated=false){
@@ -1513,8 +1864,10 @@ function recordFundingEvent(trade,exchange,time,rate,markPrice,source="LIVE",est
   const mark=finite(markPrice)?num(markPrice):currentLegMark(trade,exchange);
   const notional=finite(mark)&&finite(leg.qty)?Math.abs(num(leg.qty)*mark):tradeEntryNotional(trade,exchange);
   leg.fundingEvents=Array.isArray(leg.fundingEvents)?leg.fundingEvents:[];
-  leg.fundingEvents.push({time:num(time),rate:num(rate),markPrice:finite(mark)?mark:null,notional,cash:fundingCash(leg.side,notional,rate),source,estimated:Boolean(estimated)});
+  const cash=fundingCash(leg.side,notional,rate);
+  leg.fundingEvents.push({time:num(time),rate:num(rate),markPrice:finite(mark)?mark:null,notional,cash,source,estimated:Boolean(estimated)});
   leg.fundingEvents.sort((a,b)=>num(a.time)-num(b.time));
+  logDecision(trade,"FUNDING_SETTLED",`${exchange.toUpperCase()} funding ${signedMoney(cash)} at ${ratePct(rate)}${estimated?" · estimated notional":""}.`,{exchange,time:num(time),rate:num(rate),cash,notional,source,estimated:Boolean(estimated)});
   return true;
 }
 function processDueFunding(trade,exchange,now=Date.now()){
@@ -1547,15 +1900,20 @@ function setLiveQuote(exchange,symbol,quote){
   updateTradeLegFromLive(exchange,clean,normalized);
 }
 function openTradeSymbols(){return [...new Set(tradeState.trades.filter(trade=>trade.status==="OPEN").map(trade=>trade.symbol))]}
+function desiredLiveSymbols(){
+  const wanted=new Set(openTradeSymbols());
+  if(autoConfig.enabled)for(const symbol of autoUniverse)wanted.add(symbol);
+  return [...wanted];
+}
 function closeWsIfIdle(){
-  if(openTradeSymbols().length) return;
+  if(desiredLiveSymbols().length) return;
   if(binanceWs){try{binanceWs.close()}catch{} binanceWs=null}
   if(bitgetWs){try{bitgetWs.close()}catch{} bitgetWs=null}
   clearTimeout(binanceWsRetry);clearTimeout(bitgetWsRetry);clearInterval(bitgetPingTimer);
   binanceSubscribed.clear();bitgetSubscribed.clear();
 }
-function scheduleBinanceReconnect(){clearTimeout(binanceWsRetry);if(!openTradeSymbols().length)return;binanceWsRetry=setTimeout(connectBinanceWs,2500)}
-function scheduleBitgetReconnect(){clearTimeout(bitgetWsRetry);if(!openTradeSymbols().length)return;bitgetWsRetry=setTimeout(connectBitgetWs,2500)}
+function scheduleBinanceReconnect(){clearTimeout(binanceWsRetry);if(!desiredLiveSymbols().length)return;binanceWsRetry=setTimeout(connectBinanceWs,2500)}
+function scheduleBitgetReconnect(){clearTimeout(bitgetWsRetry);if(!desiredLiveSymbols().length)return;bitgetWsRetry=setTimeout(connectBitgetWs,2500)}
 function connectBinanceWs(){
   if(binanceWs&&[WebSocket.OPEN,WebSocket.CONNECTING].includes(binanceWs.readyState))return;
   try{binanceWs=new WebSocket(BINANCE_MARK_WS)}catch{scheduleBinanceReconnect();return}
@@ -1600,7 +1958,7 @@ function connectBitgetWs(){
   bitgetWs.onclose=()=>{bitgetWs=null;bitgetSubscribed.clear();clearInterval(bitgetPingTimer);scheduleBitgetReconnect()};
 }
 function syncLiveSubscriptions(){
-  const symbols=new Set(openTradeSymbols());
+  const symbols=new Set(desiredLiveSymbols());
   if(!symbols.size){closeWsIfIdle();renderFeedState();return}
   connectBinanceWs();connectBitgetWs();
   if(binanceWs?.readyState===WebSocket.OPEN){
@@ -1611,13 +1969,13 @@ function syncLiveSubscriptions(){
   }
   if(bitgetWs?.readyState===WebSocket.OPEN){
     const add=[...symbols].filter(symbol=>!bitgetSubscribed.has(symbol)),remove=[...bitgetSubscribed].filter(symbol=>!symbols.has(symbol));
-    if(add.length)bitgetWs.send(JSON.stringify({op:"subscribe",args:add.map(symbol=>({instType:"usdt-futures",topic:"ticker",symbol}))}));
-    if(remove.length)bitgetWs.send(JSON.stringify({op:"unsubscribe",args:remove.map(symbol=>({instType:"usdt-futures",topic:"ticker",symbol}))}));
+    for(let i=0;i<add.length;i+=50)bitgetWs.send(JSON.stringify({op:"subscribe",args:add.slice(i,i+50).map(symbol=>({instType:"usdt-futures",topic:"ticker",symbol}))}));
+    for(let i=0;i<remove.length;i+=50)bitgetWs.send(JSON.stringify({op:"unsubscribe",args:remove.slice(i,i+50).map(symbol=>({instType:"usdt-futures",topic:"ticker",symbol}))}));
     bitgetSubscribed=new Set(symbols);
   }
 }
 async function fallbackLiveRefresh(){
-  const symbols=openTradeSymbols();
+  const symbols=desiredLiveSymbols();
   if(!symbols.length||liveFallbackPromise||Date.now()-lastLiveFallbackAt<LIVE_REST_FALLBACK_MS)return;
   const bnStale=Date.now()-liveMarket.binanceAt>LIVE_STALE_MS,bgStale=Date.now()-liveMarket.bitgetAt>LIVE_STALE_MS;
   if(!bnStale&&!bgStale)return;
@@ -1633,10 +1991,10 @@ async function fallbackLiveRefresh(){
   try{await liveFallbackPromise}finally{liveFallbackPromise=null}
 }
 function renderFeedState(){
-  const open=openTradeSymbols().length;
-  if(!open){el.tradeFeedState.textContent="MARK FEED IDLE";el.tradeFeedState.className="feed-state warn";return}
+  const open=openTradeSymbols().length,watch=autoConfig.enabled?autoUniverse.size:0;
+  if(!open&&!watch){el.tradeFeedState.textContent="MARK FEED IDLE";el.tradeFeedState.className="feed-state warn";return}
   const live=Date.now()-liveMarket.binanceAt<LIVE_STALE_MS&&Date.now()-liveMarket.bitgetAt<LIVE_STALE_MS;
-  el.tradeFeedState.textContent=live?"BN + BG LIVE":"FEED RECOVERING";
+  el.tradeFeedState.textContent=live?(watch?`AUTO WATCH · ${watch}`:"BN + BG LIVE"):"FEED RECOVERING";
   el.tradeFeedState.className=`feed-state${live?"":" warn"}`;
 }
 function marketFromShared(symbol){
@@ -1656,36 +2014,61 @@ async function getOpeningMarket(symbol){
   return market;
 }
 function tradeId(){return `H${Date.now().toString(36).toUpperCase()}${Math.random().toString(36).slice(2,5).toUpperCase()}`}
-function buildLeg(exchange,side,market,value,leverage){
-  const entryPrice=num(market.markPrice),qty=value/entryPrice;
+function buildLeg(exchange,side,market,qty,leverage,feePercent,execution){
+  const entryPrice=num(market.markPrice),entryNotional=Math.abs(num(qty)*entryPrice),executionQuote=finite(execution?.quote)?num(execution.quote):entryNotional;
   return{
-    exchange,side,entryMark:entryPrice,entryPrice,entryNotional:value,qty,leverage,
+    exchange,side,entryMark:entryPrice,entryPrice,entryNotional,qty:num(qty),leverage,
+    entryFee:executionQuote*feeFraction(feePercent),entryFeeRate:num(feePercent),entryExecutionCost:num(execution?.executionCost),entryVwap:finite(execution?.vwap)?num(execution.vwap):entryPrice,
+    entrySpreadBps:num(execution?.spreadBps),entryImpactBps:num(execution?.impactBps),
     currentMark:entryPrice,fundingRate:num(market.fundingRate),nextFundingTime:finite(market.nextFundingTime)?num(market.nextFundingTime):null,
-    intervalHours:finite(market.intervalHours)?num(market.intervalHours):8,exitMark:null,exitPrice:null,fundingEvents:[]
+    intervalHours:finite(market.intervalHours)?num(market.intervalHours):8,exitMark:null,exitPrice:null,exitFee:null,exitExecutionCost:null,exitVwap:null,fundingEvents:[]
   };
+}
+function decisionSnapshotFromSignal(signal){
+  if(!signal)return null;
+  return{
+    symbol:signal.symbol,bnRate:signal.bnRate,bgRate:signal.bgRate,bnInterval:signal.bnInterval,bgInterval:signal.bgInterval,
+    edge8h:signal.edge8h,basisPct:signal.basisPct,bnMark:signal.bnMark,bgMark:signal.bgMark,
+    bnVolume:signal.bnVolume,bgVolume:signal.bgVolume,bnSide:signal.bnSide,bgSide:signal.bgSide,
+    nextBn:signal.bnNext,nextBg:signal.bgNext
+  };
+}
+async function createHedgeTrade({symbol,bnSide,bgSide,bnBudget,bgBudget,bnLev=1,bgLev=1,market,source="MANUAL",autoManaged=false,signal=null}){
+  const sizing=await matchedBaseSizing(symbol,market,bnBudget,bgBudget);
+  const plan=await entryCostPlan(symbol,bnSide,bgSide,sizing.qty,{force:true});
+  const trade={
+    id:tradeId(),symbol,status:"OPEN",source,radarType:tradeDraft.radarType||null,
+    openedAt:Date.now(),closedAt:null,binanceNotional:sizing.bnNotional,bitgetNotional:sizing.bgNotional,valuePerLeg:null,
+    requestedBudgets:{binance:num(bnBudget),bitget:num(bgBudget)},matchedBaseQty:sizing.qty,quantityStep:sizing.step,
+    autoManaged:Boolean(autoManaged),autoExitEnabled:Boolean(autoManaged),fees:normalizeFeeProfile(plan.fees),costSource:plan.fees.mode,
+    autoCosts:{exitEstimate:{binance:plan.bnExit,bitget:plan.bgExit,fetchedAt:plan.fetchedAt},lastRefreshAt:plan.fetchedAt},decisionLog:[],riskWatch:null,
+    openReasonCode:autoManaged?"DUAL_RECEIVE_REVERSAL":"MANUAL_OPEN",
+    openReason:autoManaged?"Confirmed dual-receive funding reversal with widening normalized edge.":"Manual hedge opened by user.",
+    entrySignalSnapshot:decisionSnapshotFromSignal(signal),
+    legs:{
+      binance:buildLeg("binance",bnSide,market.binance,sizing.qty,bnLev,plan.fees.bnOpen,plan.bn),
+      bitget:buildLeg("bitget",bgSide,market.bitget,sizing.qty,bgLev,plan.fees.bgOpen,plan.bg)
+    }
+  };
+  const entryAutoCost=automaticCosts(trade,market.binance.markPrice,market.bitget.markPrice);
+  trade.entrySignalSnapshot={...(trade.entrySignalSnapshot||{}),feeMode:plan.fees.mode,estimatedRoundTripCost:entryAutoCost.total,entryFees:entryAutoCost.bnEntryFee+entryAutoCost.bgEntryFee,entryExecutionCost:entryAutoCost.bnEntryExec+entryAutoCost.bgEntryExec};
+  logDecision(trade,trade.openReasonCode,`${trade.openReason} Automatic transaction costs: ${feeModeLabel(plan.fees.mode)} · estimated round trip ${money(entryAutoCost.total)}.`,trade.entrySignalSnapshot);
+  tradeState.trades.unshift(trade);saveTrades();
+  setLiveQuote("binance",symbol,market.binance);setLiveQuote("bitget",symbol,market.bitget);
+  syncLiveSubscriptions();renderTrades();
+  return trade;
 }
 async function openTrade(){
   el.tradeOpen.disabled=true;
-  setComposerMessage("Validating Binance + Bitget futures marks and funding context…","warn");
+  setComposerMessage("Validating executable quantity, live funding, fee rates and order-book execution costs…","warn");
   try{
-    const symbol=normalizeSymbol(el.tradeSymbol.value),bnValue=num(el.tradeBnNotional.value),bgValue=num(el.tradeBgNotional.value),bnLev=num(el.tradeBinanceLev.value),bgLev=num(el.tradeBitgetLev.value);
+    const symbol=normalizeSymbol(el.tradeSymbol.value),bnBudget=num(el.tradeBnNotional.value),bgBudget=num(el.tradeBgNotional.value),bnLev=num(el.tradeBinanceLev.value),bgLev=num(el.tradeBitgetLev.value);
     if(!symbol)throw new Error("Enter a valid USDT futures pair.");
-    if(!(bnValue>0&&bgValue>0))throw new Error("Enter both Binance and Bitget notionals greater than zero.");
+    if(!(bnBudget>0&&bgBudget>0))throw new Error("Enter both Binance and Bitget maximum budgets greater than zero.");
     if(!(bnLev>=1&&bgLev>=1))throw new Error("Leverage must be at least 1×.");
     const market=await getOpeningMarket(symbol),bnSide=el.tradeBinanceSide.value,bgSide=bnSide==="LONG"?"SHORT":"LONG";
-    const trade={
-      id:tradeId(),symbol,status:"OPEN",source:tradeDraft.source||"MANUAL",radarType:tradeDraft.radarType,
-      openedAt:Date.now(),closedAt:null,binanceNotional:bnValue,bitgetNotional:bgValue,valuePerLeg:null,
-      manualCosts:normalizeManualCosts(null),
-      legs:{
-        binance:buildLeg("binance",bnSide,market.binance,bnValue,bnLev),
-        bitget:buildLeg("bitget",bgSide,market.bitget,bgValue,bgLev)
-      }
-    };
-    tradeState.trades.unshift(trade);saveTrades();
-    setLiveQuote("binance",symbol,market.binance);setLiveQuote("bitget",symbol,market.bitget);
-    syncLiveSubscriptions();renderTrades();
-    setComposerMessage(`${symbol} hedge opened · costs are intentionally blank and highlighted yellow until entered in this transaction row · funding stays automatic.`,"ok");
+    const trade=await createHedgeTrade({symbol,bnSide,bgSide,bnBudget,bgBudget,bnLev,bgLev,market,source:tradeDraft.source||"MANUAL",autoManaged:false});
+    setComposerMessage(`${symbol} manual hedge opened · matched base qty ${num(trade.matchedBaseQty).toPrecision(7)} · BN ${money(trade.binanceNotional)} / BG ${money(trade.bitgetNotional)} · funding + transaction costs automatic.`,"ok");
     tradeDraft={source:"MANUAL",radarType:null,radarIndex:null};
   }catch(error){setComposerMessage(error.message||String(error),"err")}
   finally{el.tradeOpen.disabled=false}
@@ -1697,27 +2080,203 @@ function prefillFromRadar(type,index){
   const bnSide=type==="divergence"?(bnRate>0?"SHORT":"LONG"):(bnRate>=bgRate?"SHORT":"LONG");
   el.tradeSymbol.value=match.symbol;el.tradeBinanceSide.value=bnSide;syncOppositeSide();
   tradeDraft={source:type==="opportunity"?"4H RADAR":"DIVERGENCE RADAR",radarType:type,radarIndex:index};
-  setComposerMessage(`${match.symbol} prefilled from ${tradeDraft.source} · ${bnSide} Binance / ${el.tradeBitgetSide.textContent} Bitget. Enter separate notionals and OPEN HEDGE.`,"ok");
+  if(!finite(el.tradeBnNotional.value))el.tradeBnNotional.value=AUTO_BUDGET_USDT;
+  if(!finite(el.tradeBgNotional.value))el.tradeBgNotional.value=AUTO_BUDGET_USDT;
+  setComposerMessage(`${match.symbol} prefilled from ${tradeDraft.source} · ${bnSide} Binance / ${el.tradeBitgetSide.textContent} Bitget. Budgets are maximums; OPEN HEDGE will match executable base quantity.`,"ok");
   const shell=document.getElementById("tradeConsole");shell.classList.remove("console-flash");void shell.offsetWidth;shell.classList.add("console-flash");shell.scrollIntoView({behavior:"smooth",block:"start"});
 }
-async function closeTrade(id){
+function buildTradeDecisionSnapshot(trade){
+  const c=tradeCalc(trade),signal=tradeFundingSignal(trade);
+  return{pricePnl:c.pricePnl,funding:c.funding,net:c.net,costs:c.costs,hedgeQuality:c.hedgeQuality,signedDelta:c.signedDelta,
+    edge8h:signal.edge8h,basisPct:signal.basisPct,projectedFunding:signal.projectedFunding,bnRate:trade.legs.binance.fundingRate,bgRate:trade.legs.bitget.fundingRate};
+}
+async function closeTrade(id,options={}){
   if(closingTrades.has(id))return;
   const trade=tradeState.trades.find(item=>item.id===id&&item.status==="OPEN");if(!trade)return;
+  const reasonCode=String(options.reasonCode||"MANUAL_CLOSE"),reasonText=String(options.reasonText||"Closed manually by user."),automatic=Boolean(options.automatic);
   closingTrades.add(id);renderTradeActions(trade);
-  processDueFunding(trade,"binance");processDueFunding(trade,"bitget");
-  const bnMark=currentLegMark(trade,"binance"),bgMark=currentLegMark(trade,"bitget");
-  if(!(bnMark>0&&bgMark>0)){closingTrades.delete(id);renderTradeActions(trade);setComposerMessage("Cannot close until both live mark prices are available.","err");return}
-  trade.legs.binance.exitMark=bnMark;trade.legs.binance.exitPrice=bnMark;trade.legs.binance.currentMark=bnMark;
-  trade.legs.bitget.exitMark=bgMark;trade.legs.bitget.exitPrice=bgMark;trade.legs.bitget.currentMark=bgMark;
-  trade.status="CLOSED";trade.closedAt=Date.now();
-  saveTrades();syncLiveSubscriptions();renderTrades();
-  setComposerMessage(`${trade.symbol} hedge closed at the current exchange mark prices. Funding remains recorded automatically; manual cost fields remain editable for final commissions/expenses.`,"ok");
-  closingTrades.delete(id);
+  try{
+    processDueFunding(trade,"binance");processDueFunding(trade,"bitget");
+    const bnMark=currentLegMark(trade,"binance"),bgMark=currentLegMark(trade,"bitget");
+    if(!(bnMark>0&&bgMark>0))throw new Error("Cannot close until both live mark prices are available.");
+    const plan=await exitCostPlan(trade,{force:true});
+    trade.fees={...tradeFeeProfile(trade),bnClose:plan.fees.bnClose,bgClose:plan.fees.bgClose,mode:plan.fees.mode,fetchedAt:plan.fees.fetchedAt};trade.costSource=plan.fees.mode;
+    const applyExit=(exchange,mark,execution,feePercent)=>{
+      const leg=trade.legs[exchange];leg.exitMark=mark;leg.exitPrice=mark;leg.currentMark=mark;leg.exitVwap=execution.vwap;leg.exitExecutionCost=execution.executionCost;leg.exitFee=execution.quote*feeFraction(feePercent);leg.exitFeeRate=feePercent;leg.exitSpreadBps=execution.spreadBps;leg.exitImpactBps=execution.impactBps;
+    };
+    applyExit("binance",bnMark,plan.bn,plan.fees.bnClose);applyExit("bitget",bgMark,plan.bg,plan.fees.bgClose);
+    trade.status="CLOSED";trade.closedAt=Date.now();trade.closedBy=automatic?"AUTO":"MANUAL";
+    trade.closeReasonCode=reasonCode;trade.closeReason=reasonText;trade.riskWatch=null;
+    trade.autoCosts=trade.autoCosts||{};trade.autoCosts.exitEstimate={binance:plan.bn,bitget:plan.bg,fetchedAt:plan.fetchedAt};trade.autoCosts.lastRefreshAt=plan.fetchedAt;
+    const closeSnapshot=buildTradeDecisionSnapshot(trade);trade.closeSignalSnapshot=closeSnapshot;
+    logDecision(trade,reasonCode,`${reasonText} Exit commissions and execution cost captured automatically (${feeModeLabel(plan.fees.mode)}) · final net ${signedMoney(closeSnapshot.net)}.`,closeSnapshot);
+    saveTrades();syncLiveSubscriptions();renderTrades();
+    setComposerMessage(`${trade.symbol} hedge closed · ${reasonCode} · automatic exit fees/execution captured. Funding history and decision record preserved.`,automatic?"warn":"ok");
+    if(automatic)setAutoAction(`${trade.symbol} CLOSE · ${reasonCode}`,reasonCode.includes("LOSS")||reasonCode.includes("RISK")?"bad":"warn");
+  }catch(error){
+    if(automatic)logDecision(trade,"AUTO_CLOSE_COST_BLOCK",`Automatic close delayed: ${error.message||error}`);
+    setComposerMessage(`${trade.symbol} close delayed: ${error.message||error}`,"err");
+  }finally{closingTrades.delete(id);renderTradeActions(trade)}
 }
 function deleteClosedTrade(id){
   const index=tradeState.trades.findIndex(trade=>trade.id===id&&trade.status==="CLOSED");
   if(index<0)return;
   tradeState.trades.splice(index,1);saveTrades();renderTrades();
+}
+
+
+function fundingContribution8h(side,rate,intervalHours){
+  if(!finite(rate)||!finite(intervalHours)||num(intervalHours)<=0)return null;
+  return (side==="SHORT"?num(rate):-num(rate))*(8/num(intervalHours));
+}
+function fundingBasisPct(bnMark,bgMark){
+  const a=num(bnMark),b=num(bgMark),mid=(a+b)/2;if(!(mid>0))return null;return (a-b)/mid*100;
+}
+function getSignal(symbol){
+  if(!sharedSnapshot)return null;
+  const context=getMarketContext(sharedSnapshot),bnBase=context.premiumMap.get(symbol),bgBase=context.bitgetFundingMap.get(symbol),bgTick=context.bitgetTickerMap.get(symbol),bnTick=context.tickerMap.get(symbol);
+  if(!bnBase||!bgBase||!bgTick)return null;
+  const bnLive=liveMarket.binance.get(symbol)||{},bgLive=liveMarket.bitget.get(symbol)||{};
+  const bnMark=finite(bnLive.markPrice)?num(bnLive.markPrice):num(bnBase.markPrice),bgMark=finite(bgLive.markPrice)?num(bgLive.markPrice):(finite(bgTick.markPrice)?num(bgTick.markPrice):num(bgTick.lastPrice));
+  const bnRate=finite(bnLive.fundingRate)?num(bnLive.fundingRate):num(bnBase.lastFundingRate),bgRate=finite(bgLive.fundingRate)?num(bgLive.fundingRate):num(bgBase.fundingRate);
+  const bnInterval=context.intervalOverrides.has(symbol)?context.intervalOverrides.get(symbol):8,bgInterval=finite(bgBase.fundingRateInterval)?num(bgBase.fundingRateInterval):8;
+  const bnNext=finite(bnLive.nextFundingTime)?num(bnLive.nextFundingTime):num(bnBase.nextFundingTime),bgNext=finite(bgLive.nextFundingTime)?num(bgLive.nextFundingTime):num(bgBase.nextUpdate);
+  const opposite=bnRate!==0&&bgRate!==0&&Math.sign(bnRate)!==Math.sign(bgRate),bnSide=bnRate>0?"SHORT":"LONG",bgSide=bgRate>0?"SHORT":"LONG";
+  const bnContribution=fundingContribution8h(bnSide,bnRate,bnInterval),bgContribution=fundingContribution8h(bgSide,bgRate,bgInterval),edge8h=finite(bnContribution)&&finite(bgContribution)?num(bnContribution)+num(bgContribution):null;
+  const bnFresh=finite(bnLive.updatedAt)&&Date.now()-num(bnLive.updatedAt)<=LIVE_STALE_MS,bgFresh=finite(bgLive.updatedAt)&&Date.now()-num(bgLive.updatedAt)<=LIVE_STALE_MS;
+  return{symbol,bnRate,bgRate,bnInterval,bgInterval,bnNext,bgNext,bnMark,bgMark,bnSide,bgSide,bnContribution,bgContribution,edge8h,
+    basisPct:fundingBasisPct(bnMark,bgMark),bnVolume:num(bnTick?.quoteVolume),bgVolume:num(bgTick?.turnover24h),opposite,
+    dualReceive:opposite&&bnContribution>0&&bgContribution>0,fresh:bnFresh&&bgFresh,
+    market:{binance:{markPrice:bnMark,fundingRate:bnRate,nextFundingTime:bnNext,intervalHours:bnInterval},bitget:{markPrice:bgMark,fundingRate:bgRate,nextFundingTime:bgNext,intervalHours:bgInterval}}};
+}
+function candidateState(symbol){
+  if(!autoCandidates.has(symbol))autoCandidates.set(symbol,{symbol,status:"WATCH",history:[],confirmSince:null,confirmCount:0,lastReason:"",lastAt:0});
+  return autoCandidates.get(symbol);
+}
+function pushSignalHistory(state,signal){
+  const now=Date.now();if(state.history.length&&now-num(state.history[state.history.length-1].time)<AUTO_EVAL_MS-500)return;
+  state.history.push({time:now,bnRate:signal.bnRate,bgRate:signal.bgRate,edge8h:signal.edge8h,basisPct:signal.basisPct,bnSide:signal.bnSide,bgSide:signal.bgSide});
+  state.history=state.history.filter(row=>now-num(row.time)<=AUTO_HISTORY_MS);
+}
+function oldSignalSample(state,ageMs=25000){
+  const target=Date.now()-ageMs;let chosen=null;
+  for(const row of state.history){if(row.time<=target)chosen=row;else break}return chosen||state.history[0]||null;
+}
+function inCooldown(symbol){
+  return tradeState.trades.some(trade=>trade.symbol===symbol&&trade.status==="CLOSED"&&trade.autoManaged&&Date.now()-num(trade.closedAt)<AUTO_COOLDOWN_MS);
+}
+function hasOpenSymbol(symbol){return tradeState.trades.some(trade=>trade.status==="OPEN"&&trade.symbol===symbol)}
+function updateCandidate(signal){
+  const state=candidateState(signal.symbol);pushSignalHistory(state,signal);
+  const baseOk=signal.fresh&&signal.dualReceive&&finite(signal.edge8h)&&signal.edge8h>=AUTO_MIN_EDGE_8H&&Math.abs(num(signal.basisPct))<=AUTO_ENTRY_MAX_BASIS_PCT&&signal.bnVolume>=AUTO_VOLUME_THRESHOLD&&signal.bgVolume>=AUTO_VOLUME_THRESHOLD&&finite(signal.bnNext)&&finite(signal.bgNext);
+  if(!baseOk){state.status="WATCH";state.confirmSince=null;state.confirmCount=0;state.lastReason=!signal.fresh?"DATA STALE":!signal.dualReceive?"WAIT OPPOSITE SIGNS":signal.edge8h<AUTO_MIN_EDGE_8H?"EDGE BELOW MIN":Math.abs(num(signal.basisPct))>AUTO_ENTRY_MAX_BASIS_PCT?"BASIS TOO WIDE":"LIQUIDITY / TIMING";return state}
+  if(hasOpenSymbol(signal.symbol)){state.status="OPEN";state.confirmSince=null;state.confirmCount=0;state.lastReason="ALREADY OPEN";return state}
+  if(inCooldown(signal.symbol)){state.status="COOLDOWN";state.confirmSince=null;state.confirmCount=0;state.lastReason="15M COOLDOWN";return state}
+  const old=oldSignalSample(state),enoughHistory=old&&Date.now()-num(old.time)>=20000;
+  const bnMove=enoughHistory?(signal.bnRate-num(old.bnRate))*(signal.bnSide==="SHORT"?1:-1):0;
+  const bgMove=enoughHistory?(signal.bgRate-num(old.bgRate))*(signal.bgSide==="SHORT"?1:-1):0;
+  const edgeMove=enoughHistory?signal.edge8h-num(old.edge8h):0;
+  const favorable=enoughHistory&&old.bnSide===signal.bnSide&&old.bgSide===signal.bgSide&&bnMove>0&&bgMove>0&&edgeMove>0;
+  if(!favorable){state.status="ARMED";state.confirmSince=null;state.confirmCount=0;state.lastReason="DUAL RECEIVE · WAIT REVERSAL MOMENTUM";return state}
+  if(!state.confirmSince)state.confirmSince=Date.now();
+  state.confirmCount+=1;state.status="CONFIRMING";state.lastReason="FAVORABLE EDGE WIDENING";
+  if(Date.now()-state.confirmSince>=AUTO_CONFIRM_MS&&state.confirmCount>=AUTO_CONFIRM_OBS){state.status="CONFIRMED";state.lastReason="DUAL RECEIVE REVERSAL CONFIRMED"}
+  return state;
+}
+async function refreshAutoUniverse(force=false){
+  if(!autoConfig.enabled)return;
+  if(!force&&autoUniverse.size&&Date.now()-autoUniverseAt<AUTO_UNIVERSE_REFRESH_MS)return;
+  await fetchSharedSnapshot();
+  const context=getMarketContext(sharedSnapshot),next=new Set();
+  for(const symbol of context.universe){
+    if(!context.bitgetFundingMap.has(symbol)||!context.bitgetTickerMap.has(symbol))continue;
+    const bnVol=num(context.tickerMap.get(symbol)?.quoteVolume),bgVol=num(context.bitgetTickerMap.get(symbol)?.turnover24h);
+    if(bnVol>=AUTO_VOLUME_THRESHOLD&&bgVol>=AUTO_VOLUME_THRESHOLD)next.add(symbol);
+  }
+  autoUniverse=next;autoUniverseAt=Date.now();syncLiveSubscriptions();renderAutoManager();
+  try{
+    await bitgetInstrumentMap();
+    setAutoMessage(`Watching ${autoUniverse.size} liquid cross-listed USDT perpetual pairs. Auto entry requires dual-receive opposite signs + widening 8H edge + stable basis.`,"good");
+  }catch(error){
+    console.warn("Bitget executable quantity specifications unavailable",error);
+    setAutoMessage(`Watching ${autoUniverse.size} pairs, but automatic opening is temporarily blocked until Bitget quantity specifications recover.`,"warn");
+  }
+}
+function tradeFundingSignal(trade){
+  const bn=trade.legs.binance,bg=trade.legs.bitget,bnMark=currentLegMark(trade,"binance"),bgMark=currentLegMark(trade,"bitget");
+  const bnContribution=fundingContribution8h(bn.side,bn.fundingRate,bn.intervalHours),bgContribution=fundingContribution8h(bg.side,bg.fundingRate,bg.intervalHours);
+  const edge8h=finite(bnContribution)&&finite(bgContribution)?num(bnContribution)+num(bgContribution):0;
+  const bnNotional=Math.abs(num(bn.qty)*bnMark),bgNotional=Math.abs(num(bg.qty)*bgMark);
+  return{edge8h,bnContribution,bgContribution,dualReceive:bnContribution>0&&bgContribution>0,basisPct:fundingBasisPct(bnMark,bgMark),
+    projectedFunding:fundingCash(bn.side,bnNotional,bn.fundingRate)+fundingCash(bg.side,bgNotional,bg.fundingRate)};
+}
+function signalEdgeTrend(symbol,currentEdge){
+  const state=autoCandidates.get(symbol),old=state?oldSignalSample(state,25000):null;
+  if(!old||!finite(currentEdge))return{label:"FLAT",delta:0};
+  const delta=num(currentEdge)-num(old.edge8h);return{label:delta>0?"WIDENING":delta<0?"WEAKENING":"FLAT",delta};
+}
+async function autoOpenTrade(signal){
+  if(hasOpenSymbol(signal.symbol)||inCooldown(signal.symbol))return;
+  try{
+    const trade=await createHedgeTrade({symbol:signal.symbol,bnSide:signal.bnSide,bgSide:signal.bgSide,bnBudget:AUTO_BUDGET_USDT,bgBudget:AUTO_BUDGET_USDT,bnLev:1,bgLev:1,market:signal.market,source:"AUTO · DUAL RECEIVE",autoManaged:true,signal});
+    setAutoAction(`${signal.symbol} AUTO OPEN`,"good");
+    setAutoMessage(`${signal.symbol} opened automatically · ${signal.bnSide} Binance / ${signal.bgSide} Bitget · matched base qty ${num(trade.matchedBaseQty).toPrecision(7)} · BN ${money(trade.binanceNotional)} / BG ${money(trade.bitgetNotional)}.`,"good");
+    const state=candidateState(signal.symbol);state.status="OPEN";state.confirmSince=null;state.confirmCount=0;
+  }catch(error){setAutoAction(`${signal.symbol} SIZE BLOCK`,"bad");setAutoMessage(`${signal.symbol} auto entry blocked: ${error.message}`,"bad")}
+}
+function exitCandidate(trade,code,text,immediate=false){
+  const now=Date.now();
+  if(!trade.riskWatch||trade.riskWatch.code!==code)trade.riskWatch={code,text,since:now,count:1};else trade.riskWatch.count+=1;
+  if(immediate||(trade.riskWatch.count>=AUTO_EXIT_CONFIRM_OBS&&now-num(trade.riskWatch.since)>=AUTO_EXIT_CONFIRM_MS))return{close:true,code,text};
+  return{close:false,code,text};
+}
+function clearExitCandidate(trade){trade.riskWatch=null}
+function evaluateTradeExit(trade){
+  if(trade.status!=="OPEN"||!trade.autoExitEnabled)return null;
+  const bnLive=liveMarket.binance.get(trade.symbol),bgLive=liveMarket.bitget.get(trade.symbol);
+  const fresh=finite(bnLive?.updatedAt)&&finite(bgLive?.updatedAt)&&Date.now()-num(bnLive.updatedAt)<=LIVE_STALE_MS&&Date.now()-num(bgLive.updatedAt)<=LIVE_STALE_MS;
+  if(!fresh){if(trade.riskWatch?.code!=="DATA_RISK")logDecision(trade,"DATA_RISK","Automatic exit suspended until both exchange feeds are fresh.");trade.riskWatch={code:"DATA_RISK",text:"Waiting for fresh exchange data.",since:Date.now(),count:1};return null}
+  const c=tradeCalc(trade),s=tradeFundingSignal(trade),held=Date.now()-num(trade.openedAt),entryEdge=num(trade.entrySignalSnapshot?.edge8h||0);
+  if(Math.abs(num(s.basisPct))>=AUTO_EXIT_MAX_BASIS_PCT)return exitCandidate(trade,"BASIS_RISK",`Cross-exchange basis reached ${Math.abs(num(s.basisPct)).toFixed(3)}%.`,true);
+  const grossEntry=tradeEntryNotional(trade,"binance")+tradeEntryNotional(trade,"bitget");
+  if(grossEntry>0&&c.pricePnl<=-(grossEntry*AUTO_MAX_HEDGE_LOSS_PCT/100))return exitCandidate(trade,"MAX_HEDGE_LOSS",`Combined hedge price P&L reached ${signedMoney(c.pricePnl)} (${AUTO_MAX_HEDGE_LOSS_PCT.toFixed(1)}% risk limit).`,true);
+  const currentReceiverBn=trade.legs.binance.fundingRate>0?"SHORT":"LONG",currentReceiverBg=trade.legs.bitget.fundingRate>0?"SHORT":"LONG";
+  if(currentReceiverBn!==trade.legs.binance.side&&currentReceiverBg!==trade.legs.bitget.side)return exitCandidate(trade,"LOGIC_FLIPPED","Funding receiver sides flipped against both open hedge legs.");
+  if(s.edge8h<=0)return exitCandidate(trade,"EDGE_NEGATIVE",`Projected normalized funding edge turned negative (${ratePct(s.edge8h)}).`);
+  if(!s.dualReceive&&s.edge8h<AUTO_MIN_EDGE_8H)return exitCandidate(trade,"DUAL_RECEIVE_LOST",`Dual-receive condition was lost and edge fell to ${ratePct(s.edge8h)}.`);
+  if(s.edge8h<AUTO_EXIT_EDGE_8H)return exitCandidate(trade,"EDGE_BELOW_MINIMUM",`Normalized 8H funding edge fell below exit floor (${ratePct(s.edge8h)}).`);
+  const trend=signalEdgeTrend(trade.symbol,s.edge8h);
+  if(held>=AUTO_MIN_HOLD_MS&&entryEdge>0&&trend.delta<0&&s.edge8h<entryEdge*.65)return exitCandidate(trade,"ADVERSE_EDGE_TREND",`Funding edge is weakening and has fallen below 65% of entry edge (${ratePct(s.edge8h)}).`);
+  clearExitCandidate(trade);return null;
+}
+function renderAutoManager(){
+  if(!el.autoEngineState)return;
+  const states=[...autoCandidates.values()],armed=states.filter(s=>s.status==="ARMED").length,confirm=states.filter(s=>s.status==="CONFIRMING"||s.status==="CONFIRMED").length,autoOpen=tradeState.trades.filter(t=>t.status==="OPEN"&&t.autoManaged).length;
+  el.autoEngineState.textContent=autoConfig.enabled?"ON":"OFF";el.autoEngineState.className=`auto-value ${autoConfig.enabled?"good":"warn"}`;
+  el.autoWatched.textContent=autoConfig.enabled?String(autoUniverse.size):"0";el.autoArmed.textContent=`${armed} / ${confirm}`;el.autoOpenCount.textContent=String(autoOpen);el.autoLastAction.textContent=autoLastAction;
+  el.autoEngineToggle.textContent=autoConfig.enabled?"AUTO SIMULATION ON":"AUTO SIMULATION OFF";el.autoEngineToggle.className=`console-btn auto-toggle ${autoConfig.enabled?"on":"off"}`;
+}
+async function autoEngineTick(){
+  if(autoEvalRunning)return;autoEvalRunning=true;
+  try{
+    if(autoConfig.enabled&&(!autoUniverse.size||Date.now()-autoUniverseAt>AUTO_UNIVERSE_REFRESH_MS))await refreshAutoUniverse();
+    const symbols=new Set(openTradeSymbols());if(autoConfig.enabled)for(const symbol of autoUniverse)symbols.add(symbol);
+    for(const symbol of symbols){const signal=getSignal(symbol);if(!signal)continue;updateCandidate(signal)}
+    for(const trade of tradeState.trades.filter(t=>t.status==="OPEN"&&t.autoExitEnabled)){
+      const decision=evaluateTradeExit(trade);if(decision?.close){await closeTrade(trade.id,{reasonCode:decision.code,reasonText:decision.text,automatic:true})}
+    }
+    if(autoConfig.enabled){
+      const confirmed=[...autoUniverse].map(symbol=>({signal:getSignal(symbol),state:autoCandidates.get(symbol)})).filter(x=>x.signal&&x.state?.status==="CONFIRMED"&&!hasOpenSymbol(x.signal.symbol)&&!inCooldown(x.signal.symbol)).sort((a,b)=>num(b.signal.edge8h)-num(a.signal.edge8h));
+      if(confirmed.length)await autoOpenTrade(confirmed[0].signal);
+    }
+    renderAutoManager();
+  }catch(error){console.warn("Auto hedge engine tick failed",error);setAutoMessage(`Auto engine warning: ${error.message}`,"bad")}
+  finally{autoEvalRunning=false}
+}
+async function toggleAutoEngine(){
+  autoConfig.enabled=!autoConfig.enabled;saveAutoConfig();
+  if(autoConfig.enabled){setAutoAction("ENGINE ON","good");await refreshAutoUniverse(true)}else{autoUniverse.clear();setAutoAction("ENGINE OFF","warn");setAutoMessage("Automatic opening is paused. Existing trades remain live; per-trade AUTO EXIT settings are unchanged.","warn");syncLiveSubscriptions()}
+  renderAutoManager();renderFeedState();
 }
 
 function legMarkup(trade,exchange,label,cls){
@@ -1737,8 +2296,14 @@ function legMarkup(trade,exchange,label,cls){
     </div>
   </div>`;
 }
+
+function auditLogMarkup(trade){
+  const rows=(Array.isArray(trade.decisionLog)?trade.decisionLog:[]).slice(-7).reverse();
+  if(!rows.length)return '<div class="audit-item"><span class="audit-code">NO EVENTS</span></div>';
+  return rows.map(row=>{const risk=/RISK|LOSS|NEGATIVE|FLIPPED|LOST|BELOW|ADVERSE/.test(row.code),close=/CLOSE|EDGE_|BASIS_|MAX_|LOGIC_|DUAL_RECEIVE_LOST|ADVERSE/.test(row.code);return `<div class="audit-item ${risk?"audit-risk":close?"audit-close":""}"><span class="audit-time">${localTime(row.time)}</span><span class="audit-code">${escapeHtml(row.code)}</span><span>${escapeHtml(row.message)}</span></div>`}).join("");
+}
 function tradeRow(trade){
-  const closed=trade.status==="CLOSED",c=tradeCalc(trade),complete=c.costsComplete;
+  const closed=trade.status==="CLOSED",c=tradeCalc(trade);
   return `<article class="trade-ledger-row" data-trade-id="${trade.id}">
     <div class="trade-cell trade-summary">
       <div>
@@ -1746,34 +2311,41 @@ function tradeRow(trade){
         <div class="trade-summary-top"><span class="trade-id">${trade.id}</span><span class="trade-source">${escapeHtml(trade.source||"MANUAL")}</span></div>
       </div>
       <div class="trade-meta-line" data-dyn="held">${closed?`HELD ${heldDuration(trade.openedAt,trade.closedAt)}`:`LIVE ${heldDuration(trade.openedAt)}`}</div>
-      <div class="trade-main-pnl ${pnlClass(c.net)}" data-dyn="summary-net">${signedMoney(c.net)}${complete?"":"*"}</div>
+      <div class="trade-main-pnl ${pnlClass(c.net)}" data-dyn="summary-net">${signedMoney(c.net)}</div>
+      ${closed&&trade.closeReasonCode?`<div class="close-reason">${escapeHtml(trade.closeReasonCode)} · ${escapeHtml(trade.closeReason||"")}</div>`:""}
     </div>
     ${legMarkup(trade,"binance","BINANCE FUTURES","bn")}
     ${legMarkup(trade,"bitget","BITGET FUTURES","bg")}
     <div class="trade-cell cost-cell">
-      <div class="cost-head"><span class="cost-title">MANUAL TRANSACTION COSTS · USDT</span><span class="cost-state ${complete?"complete":"missing"}" data-dyn="cost-state">${complete?"COMPLETE":"⚠ INCOMPLETE"}</span></div>
-      <div class="manual-cost-grid">
-        ${costField(trade,"bnEntry","BN ENTRY FEE")}
-        ${costField(trade,"bnExit","BN EXIT FEE")}
-        ${costField(trade,"bnOther","BN OTHER")}
-        ${costField(trade,"bgEntry","BG ENTRY FEE")}
-        ${costField(trade,"bgExit","BG EXIT FEE")}
-        ${costField(trade,"bgOther","BG OTHER")}
+      <div class="cost-head"><span class="cost-title">AUTO TRANSACTION COSTS · USDT</span><span class="cost-state ${feeModeClass(c.autoCost.mode,c.autoCost.depthFresh)}" data-dyn="cost-state">${c.autoCost.depthFresh?feeModeLabel(c.autoCost.mode):"⚠ COST FEED"}</span></div>
+      <div class="auto-cost-grid">
+        <div class="auto-cost-item"><span class="auto-cost-label">BN ENTRY FEE</span><strong class="auto-cost-value" data-dyn="bn-entry-fee">${money(c.autoCost.bnEntryFee)}</strong><small class="auto-cost-meta" data-dyn="bn-entry-rate">${percentRate(c.autoCost.fees.bnOpen)} · TAKER</small></div>
+        <div class="auto-cost-item"><span class="auto-cost-label">BN ${closed?"EXIT":"EXIT EST."} FEE</span><strong class="auto-cost-value" data-dyn="bn-exit-fee">${money(c.autoCost.bnExitFee)}</strong><small class="auto-cost-meta" data-dyn="bn-exit-rate">${percentRate(c.autoCost.fees.bnClose)} · TAKER</small></div>
+        <div class="auto-cost-item"><span class="auto-cost-label">BN EXECUTION</span><strong class="auto-cost-value" data-dyn="bn-execution">${money(c.autoCost.bnEntryExec+c.autoCost.bnExitExec)}</strong><small class="auto-cost-meta">OPEN + ${closed?"CLOSE":"EXIT EST."}</small></div>
+        <div class="auto-cost-item"><span class="auto-cost-label">BG ENTRY FEE</span><strong class="auto-cost-value" data-dyn="bg-entry-fee">${money(c.autoCost.bgEntryFee)}</strong><small class="auto-cost-meta" data-dyn="bg-entry-rate">${percentRate(c.autoCost.fees.bgOpen)} · TAKER</small></div>
+        <div class="auto-cost-item"><span class="auto-cost-label">BG ${closed?"EXIT":"EXIT EST."} FEE</span><strong class="auto-cost-value" data-dyn="bg-exit-fee">${money(c.autoCost.bgExitFee)}</strong><small class="auto-cost-meta" data-dyn="bg-exit-rate">${percentRate(c.autoCost.fees.bgClose)} · TAKER</small></div>
+        <div class="auto-cost-item"><span class="auto-cost-label">BG EXECUTION</span><strong class="auto-cost-value" data-dyn="bg-execution">${money(c.autoCost.bgEntryExec+c.autoCost.bgExitExec)}</strong><small class="auto-cost-meta">OPEN + ${closed?"CLOSE":"EXIT EST."}</small></div>
       </div>
-      <div class="cost-total-line"><span>TOTAL MANUAL COST</span><strong data-dyn="cost-total">${money(c.costs)}</strong></div>
-      <div class="cost-foot">Yellow = missing. Entering <b>0</b> is valid and clears the warning. Funding is never entered here; it is tracked automatically per exchange.</div>
+      <div class="cost-total-line"><span>TOTAL AUTO COST</span><strong data-dyn="cost-total">${money(c.costs)}</strong></div>
+      <div class="cost-foot" data-dyn="cost-note">${c.autoCost.mode==="ACCOUNT"?"Exact account taker rates loaded securely. Funding remains separate and automatic.":c.autoCost.mode==="MIXED"?"One account rate is exact; the other uses automatic standard fallback. Funding remains separate and automatic.":"Automatic standard taker-rate fallback. Run the secure fee service for exact account/VIP rates. Funding remains separate and automatic."}</div>
     </div>
     <div class="trade-cell account-cell">
       <div class="account-title"><span>LIVE ACCOUNTING</span><span class="hedge-quality ${c.hedgeQuality<99?"warn":""}" data-dyn="hedge">HEDGE ${c.hedgeQuality.toFixed(2)}%</span></div>
       <div class="account-grid">
         <div class="data-box"><div class="data-label">PRICE P&amp;L</div><div class="data-value" data-dyn="price-pnl">${signedMoney(c.pricePnl)}</div></div>
         <div class="data-box"><div class="data-label">FUNDING · AUTO</div><div class="data-value" data-dyn="funding">${signedMoney(c.funding)}</div></div>
-        <div class="data-box"><div class="data-label">MANUAL COSTS</div><div class="data-value" data-dyn="account-cost">${money(c.costs)}</div></div>
+        <div class="data-box"><div class="data-label">AUTO COSTS</div><div class="data-value" data-dyn="account-cost">${money(c.costs)}</div></div>
         <div class="data-box"><div class="data-label">RESIDUAL Δ</div><div class="data-value" data-dyn="delta">${signedMoney(c.signedDelta)}</div></div>
-        <div class="data-box account-net"><div class="data-label">${closed?"REALIZED NET":"LIVE NET"}${complete?"":" · EST."}</div><div class="data-value strong ${pnlClass(c.net)}" data-dyn="net">${signedMoney(c.net)}${complete?"":"*"}</div></div>
+        <div class="data-box account-net"><div class="data-label">${closed?"REALIZED NET":"LIVE NET · COST-AWARE"}</div><div class="data-value strong ${pnlClass(c.net)}" data-dyn="net">${signedMoney(c.net)}</div></div>
         <div class="data-box"><div class="data-label">ROI / FUNDING ROI</div><div class="data-value" data-dyn="roi">${c.roi>=0?"+":""}${c.roi.toFixed(3)}% · ${c.fundingRoi>=0?"+":""}${c.fundingRoi.toFixed(3)}%</div></div>
+        <div class="data-box"><div class="data-label">LIVE EDGE · 8H</div><div class="data-value" data-dyn="live-edge">--</div></div>
+        <div class="data-box"><div class="data-label">PROJECTED FUNDING</div><div class="data-value" data-dyn="projected-funding">--</div></div>
+        <div class="data-box"><div class="data-label">BASIS Δ</div><div class="data-value" data-dyn="basis">--</div></div>
+        <div class="data-box"><div class="data-label">ENGINE STATE</div><div class="data-value" data-dyn="engine-state">--</div></div>
       </div>
-      <div class="account-note" data-dyn="account-note">${complete?"Net P&L includes all entered transaction costs.":"* Net P&L is provisional until all six manual cost fields are entered."}</div>
+      <div class="account-note" data-dyn="account-note">Net P&amp;L deducts automatic entry/exit commissions and order-book execution impact; funding is recorded independently per exchange.</div>
+      <div class="decision-line"><strong>LATEST DECISION</strong> <span data-dyn="decision">${escapeHtml(trade.decisionLog?.at(-1)?.code||trade.openReasonCode||"MANUAL")}</span></div>
+      <div class="audit-log" data-dyn="audit-log">${auditLogMarkup(trade)}</div>
     </div>
     <div class="trade-cell action-cell" data-dyn="actions"></div>
   </article>`;
@@ -1788,13 +2360,13 @@ function renderTradeActions(trade){
   const row=document.querySelector(`.trade-ledger-row[data-trade-id="${trade.id}"]`),node=dynamicNode(row,"actions");if(!node)return;
   node.innerHTML=trade.status==="CLOSED"
     ?`<button class="console-btn danger" type="button" data-delete-trade="${trade.id}">DELETE</button>`
-    :`<button class="console-btn primary" type="button" data-close-trade="${trade.id}"${closingTrades.has(trade.id)?" disabled":""}>${closingTrades.has(trade.id)?"CLOSING…":"CLOSE HEDGE"}</button>`;
+    :`<button class="console-btn auto-exit-btn ${trade.autoExitEnabled?"on":"off"}" type="button" data-toggle-auto-exit="${trade.id}">AUTO EXIT ${trade.autoExitEnabled?"ON":"OFF"}</button><button class="console-btn primary" type="button" data-close-trade="${trade.id}"${closingTrades.has(trade.id)?" disabled":""}>${closingTrades.has(trade.id)?"CLOSING…":"CLOSE HEDGE"}</button>`;
 }
 function refreshTradeRow(trade){
   const row=document.querySelector(`.trade-ledger-row[data-trade-id="${trade.id}"]`);if(!row)return;
-  const c=tradeCalc(trade),closed=trade.status==="CLOSED",complete=c.costsComplete;
+  const c=tradeCalc(trade),closed=trade.status==="CLOSED";
   setDyn(row,"held",closed?`HELD ${heldDuration(trade.openedAt,trade.closedAt)}`:`LIVE ${heldDuration(trade.openedAt)}`);
-  setDyn(row,"summary-net",`${signedMoney(c.net)}${complete?"":"*"}`,`trade-main-pnl ${pnlClass(c.net)}`);
+  setDyn(row,"summary-net",signedMoney(c.net),`trade-main-pnl ${pnlClass(c.net)}`);
   setDyn(row,"bn-mark",priceText(closed?trade.legs.binance.exitPrice:c.bnMark),"data-value strong");
   setDyn(row,"bg-mark",priceText(closed?trade.legs.bitget.exitPrice:c.bgMark),"data-value strong");
   setDyn(row,"bn-price-pnl",signedMoney(c.bnPricePnl),`data-value ${pnlClass(c.bnPricePnl)}`);
@@ -1806,15 +2378,27 @@ function refreshTradeRow(trade){
   setDyn(row,"bn-funding-next",closed?"CLOSED":countdown(trade.legs.binance.nextFundingTime),"data-value");
   setDyn(row,"bg-funding-next",closed?"CLOSED":countdown(trade.legs.bitget.nextFundingTime),"data-value");
   setDyn(row,"cost-total",money(c.costs));
-  setDyn(row,"cost-state",complete?"COMPLETE":"⚠ INCOMPLETE",`cost-state ${complete?"complete":"missing"}`);
+  setDyn(row,"cost-state",c.autoCost.depthFresh?feeModeLabel(c.autoCost.mode):"⚠ COST FEED",`cost-state ${feeModeClass(c.autoCost.mode,c.autoCost.depthFresh)}`);
+  setDyn(row,"bn-entry-fee",money(c.autoCost.bnEntryFee));setDyn(row,"bn-exit-fee",money(c.autoCost.bnExitFee));setDyn(row,"bn-execution",money(c.autoCost.bnEntryExec+c.autoCost.bnExitExec));
+  setDyn(row,"bg-entry-fee",money(c.autoCost.bgEntryFee));setDyn(row,"bg-exit-fee",money(c.autoCost.bgExitFee));setDyn(row,"bg-execution",money(c.autoCost.bgEntryExec+c.autoCost.bgExitExec));
+  setDyn(row,"bn-entry-rate",`${percentRate(c.autoCost.fees.bnOpen)} · TAKER`);setDyn(row,"bn-exit-rate",`${percentRate(c.autoCost.fees.bnClose)} · TAKER`);
+  setDyn(row,"bg-entry-rate",`${percentRate(c.autoCost.fees.bgOpen)} · TAKER`);setDyn(row,"bg-exit-rate",`${percentRate(c.autoCost.fees.bgClose)} · TAKER`);
+  setDyn(row,"cost-note",c.autoCost.mode==="ACCOUNT"?"Exact account taker rates loaded securely. Funding remains separate and automatic.":c.autoCost.mode==="MIXED"?"One account rate is exact; the other uses automatic standard fallback. Funding remains separate and automatic.":"Automatic standard taker-rate fallback. Run the secure fee service for exact account/VIP rates. Funding remains separate and automatic.");
   setDyn(row,"hedge",`HEDGE ${c.hedgeQuality.toFixed(2)}%`,`hedge-quality ${c.hedgeQuality<99?"warn":""}`);
   setDyn(row,"price-pnl",signedMoney(c.pricePnl),`data-value ${pnlClass(c.pricePnl)}`);
   setDyn(row,"funding",signedMoney(c.funding),`data-value ${pnlClass(c.funding)}`);
   setDyn(row,"account-cost",money(c.costs),"data-value");
   setDyn(row,"delta",signedMoney(c.signedDelta),`data-value ${pnlClass(c.signedDelta)}`);
-  setDyn(row,"net",`${signedMoney(c.net)}${complete?"":"*"}`,`data-value strong ${pnlClass(c.net)}`);
+  setDyn(row,"net",signedMoney(c.net),`data-value strong ${pnlClass(c.net)}`);
   setDyn(row,"roi",`${c.roi>=0?"+":""}${c.roi.toFixed(3)}% · ${c.fundingRoi>=0?"+":""}${c.fundingRoi.toFixed(3)}%`,"data-value");
-  setDyn(row,"account-note",complete?"Net P&L includes all entered transaction costs.":"* Net P&L is provisional until all six manual cost fields are entered.","account-note");
+  const signal=tradeFundingSignal(trade),trend=signalEdgeTrend(trade.symbol,signal.edge8h),engineState=closed?(trade.closeReasonCode||"CLOSED"):(trade.riskWatch?.code||(!trade.autoExitEnabled?"MANUAL CONTROL":trend.label));
+  setDyn(row,"live-edge",`${ratePct(signal.edge8h)} · ${trend.label}`,`data-value ${signal.edge8h>0?"funding-pos":"funding-neg"}`);
+  setDyn(row,"projected-funding",signedMoney(signal.projectedFunding),`data-value ${pnlClass(signal.projectedFunding)}`);
+  setDyn(row,"basis",finite(signal.basisPct)?`${num(signal.basisPct)>=0?"+":""}${num(signal.basisPct).toFixed(3)}%`:"N/A",`data-value ${Math.abs(num(signal.basisPct))>AUTO_ENTRY_MAX_BASIS_PCT?"funding-neg":""}`);
+  setDyn(row,"engine-state",engineState,`data-value ${trade.riskWatch?"funding-neg":trade.autoExitEnabled?"funding-pos":""}`);
+  const lastDecision=trade.decisionLog?.at(-1);setDyn(row,"decision",lastDecision?`${lastDecision.code} · ${lastDecision.message}`:(trade.openReasonCode||"MANUAL"));
+  const auditNode=dynamicNode(row,"audit-log");if(auditNode)auditNode.innerHTML=auditLogMarkup(trade);
+  setDyn(row,"account-note","Net P&L deducts automatic entry/exit commissions and order-book execution impact; funding is recorded independently per exchange.","account-note");
   renderTradeActions(trade);
 }
 function refreshTradeMetrics(){
@@ -1824,34 +2408,24 @@ function refreshTradeMetrics(){
 }
 function renderPortfolio(){
   const open=tradeState.trades.filter(trade=>trade.status==="OPEN"),closed=tradeState.trades.filter(trade=>trade.status==="CLOSED");
-  let exposure=0,price=0,funding=0,net=0,incomplete=0;
+  let exposure=0,price=0,funding=0,net=0;
   for(const trade of tradeState.trades){
     const calc=tradeCalc(trade);price+=calc.pricePnl;funding+=calc.funding;net+=calc.net;
     if(trade.status==="OPEN")exposure+=calc.grossExposure;
-    if(!calc.costsComplete)incomplete++;
   }
   el.portfolioOpen.textContent=open.length;el.portfolioClosed.textContent=closed.length;el.portfolioExposure.textContent=money(exposure);
-  el.portfolioPricePnl.textContent=signedMoney(price);el.portfolioFundingPnl.textContent=signedMoney(funding);el.portfolioNetPnl.textContent=`${signedMoney(net)}${incomplete?"*":""}`;
+  el.portfolioPricePnl.textContent=signedMoney(price);el.portfolioFundingPnl.textContent=signedMoney(funding);el.portfolioNetPnl.textContent=signedMoney(net);
   el.portfolioPricePnl.className=`portfolio-value ${price>0?"pos":price<0?"neg":""}`;
   el.portfolioFundingPnl.className=`portfolio-value ${funding>0?"pos":funding<0?"neg":""}`;
-  el.portfolioNetPnl.className=`portfolio-value ${incomplete?"warn":net>0?"pos":net<0?"neg":""}`;
-  el.portfolioNetPnl.title=incomplete?`${incomplete} transaction${incomplete===1?"":"s"} have incomplete manual costs. Net P&L is provisional.`:"All transaction cost fields are complete.";
+  el.portfolioNetPnl.className=`portfolio-value ${net>0?"pos":net<0?"neg":""}`;
+  el.portfolioNetPnl.title="Net P&L includes automatic trading fees and execution-cost estimates plus realized funding.";
   el.openTradesLabel.textContent=`${open.length} ACTIVE`;el.closedTradesLabel.textContent=`${closed.length} CLOSED`;
 }
 function renderTrades(){
   const open=tradeState.trades.filter(trade=>trade.status==="OPEN"),closed=tradeState.trades.filter(trade=>trade.status==="CLOSED");
   el.openTrades.innerHTML=open.length?open.map(tradeRow).join(""):'<div class="trade-empty">No open simulated hedges.</div>';
   el.closedTrades.innerHTML=closed.length?closed.map(tradeRow).join(""):'<div class="trade-empty">No closed trades yet.</div>';
-  for(const input of document.querySelectorAll(".manual-cost-input"))applyCostInputState(input);
   refreshTradeMetrics();
-}
-function updateManualCost(input){
-  const trade=tradeState.trades.find(item=>item.id===input.dataset.tradeId);if(!trade)return;
-  const key=input.dataset.tradeCost;if(!MANUAL_COST_KEYS.includes(key))return;
-  const parsed=parseManualCost(input.value);applyCostInputState(input);
-  if(!parsed.valid)return;
-  manualCosts(trade)[key]=parsed.value;
-  saveTrades();refreshTradeRow(trade);renderPortfolio();
 }
 function simulatorTick(){
   let fundingChanged=false,needsReconcile=false;
@@ -1864,7 +2438,9 @@ function simulatorTick(){
   if(fundingChanged)saveTrades();
   if(needsReconcile&&!fundingReconcileRunning&&Date.now()-lastFundingReconcileAt>60000)reconcileFundingHistory();
   fallbackLiveRefresh();
+  refreshOpenTradeCostEstimates(false).catch(error=>console.warn("Automatic cost refresh failed",error));
   refreshTradeMetrics();
+  renderAutoManager();
 }
 async function fetchFundingHistory(exchange,symbol){
   if(exchange==="binance"){
@@ -1937,19 +2513,24 @@ el.divergenceCopy.addEventListener("click", copyDivergenceMatches);
 el.tradeBinanceSide.addEventListener("change",syncOppositeSide);
 el.tradeOpen.addEventListener("click",openTrade);
 el.tradeReset.addEventListener("click",()=>resetTradeDraft(false));
+el.autoEngineToggle.addEventListener("click",toggleAutoEngine);
 el.matchNotional.addEventListener("click",()=>{el.tradeBgNotional.value=el.tradeBnNotional.value});
-document.addEventListener("input",event=>{
-  const costInput=event.target.closest("[data-trade-cost]");
-  if(costInput)updateManualCost(costInput);
-});
 document.addEventListener("click",event=>{
+  const sortArrow=event.target.closest("[data-div-sort]");if(sortArrow){
+    const key=sortArrow.dataset.divSort;
+    divergenceSort={key,dir:divergenceSort.key===key&&divergenceSort.dir==="desc"?"asc":"desc"};
+    renderDivergence();
+    return;
+  }
   const radar=event.target.closest("[data-radar-open]");if(radar){prefillFromRadar(radar.dataset.radarOpen,Number(radar.dataset.radarIndex));return}
-  const close=event.target.closest("[data-close-trade]");if(close){closeTrade(close.dataset.closeTrade);return}
+  const close=event.target.closest("[data-close-trade]");if(close){closeTrade(close.dataset.closeTrade,{reasonCode:"MANUAL_CLOSE",reasonText:"Closed manually by user.",automatic:false});return}
+  const autoExit=event.target.closest("[data-toggle-auto-exit]");if(autoExit){const trade=tradeState.trades.find(t=>t.id===autoExit.dataset.toggleAutoExit&&t.status==="OPEN");if(trade){trade.autoExitEnabled=!trade.autoExitEnabled;trade.riskWatch=null;logDecision(trade,trade.autoExitEnabled?"AUTO_EXIT_ENABLED":"AUTO_EXIT_DISABLED",trade.autoExitEnabled?"Automatic exit protection enabled.":"Automatic exit protection disabled; manual close remains available.");saveTrades();refreshTradeRow(trade)}return}
   const del=event.target.closest("[data-delete-trade]");if(del){deleteClosedTrade(del.dataset.deleteTrade);return}
 });
 
-syncOppositeSide();renderScanner();renderDivergence();renderTrades();syncLiveSubscriptions();schedulerTick();reconcileFundingHistory();
-setInterval(schedulerTick,1000);setInterval(simulatorTick,1000);
+syncOppositeSide();renderScanner();renderDivergence();renderTrades();renderAutoManager();schedulerTick();reconcileFundingHistory();
+refreshAutoUniverse().catch(error=>setAutoMessage(`Auto engine initialization warning: ${error.message}`,"bad")).finally(()=>{syncLiveSubscriptions();refreshOpenTradeCostEstimates(true).catch(error=>console.warn("Initial automatic cost refresh failed",error));});
+setInterval(schedulerTick,1000);setInterval(simulatorTick,1000);setInterval(autoEngineTick,AUTO_EVAL_MS);
 </script>
 </body>
 </html>
