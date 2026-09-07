@@ -12,6 +12,8 @@
   --amber:#e0b665;--blue:#7ca7ff;--shadow:0 18px 50px rgba(0,0,0,.28);
 }
 *{box-sizing:border-box}
+html{scrollbar-gutter:stable}
+.decision-dashboard,#opportunityScanner,.rank-board,.scanner{overflow-anchor:none}
 html,body{margin:0;min-height:100%;background:
   radial-gradient(900px 420px at 15% -120px,rgba(82,185,216,.10),transparent 62%),
   radial-gradient(800px 380px at 90% -160px,rgba(124,167,255,.07),transparent 64%),
@@ -21,22 +23,21 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;background-ima
   linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),
   linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);background-size:44px 44px}
 .app{max-width:1920px;margin:auto;padding:16px}
-.panel,.brand,.status,.control,.kpi,.scanner,.details{background:linear-gradient(180deg,rgba(17,24,33,.96),rgba(10,15,20,.96));border:1px solid var(--line);box-shadow:var(--shadow)}
-.header{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(360px,.6fr);gap:10px;margin-bottom:10px}
-.brand{padding:20px 22px;position:relative;overflow:hidden}.brand:after{content:"";position:absolute;right:-70px;top:-120px;width:320px;height:320px;border:1px solid rgba(82,185,216,.12);border-radius:50%}
-.kicker{font-size:10px;font-weight:800;letter-spacing:.18em;color:var(--accent);text-transform:uppercase}
-h1{margin:6px 0 6px;font-size:clamp(28px,4vw,46px);line-height:.98;letter-spacing:-.035em;font-weight:850}
-.sub{font-size:11px;color:var(--muted);letter-spacing:.075em;line-height:1.55}.status{padding:13px 14px;display:grid;gap:2px}
-.statusrow{display:flex;justify-content:space-between;gap:14px;padding:8px 2px;border-bottom:1px solid var(--line);font-size:10px;letter-spacing:.07em}.statusrow:last-child{border-bottom:0}.statusrow b{font:800 11px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
-.dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:currentColor;box-shadow:0 0 10px currentColor;margin-right:7px}
-.online,.positive{color:var(--green)}.offline,.negative{color:var(--red)}.warning{color:var(--amber)}.info{color:var(--accent)}.neutral{color:var(--muted)}
-.toolbar{display:grid;grid-template-columns:repeat(6,minmax(150px,max-content)) minmax(190px,1fr);gap:8px;align-items:stretch;margin-bottom:10px}
-.control{padding:8px 10px;min-height:62px;display:flex;flex-direction:column;justify-content:center;gap:5px}.control label{font-size:8px;color:var(--muted);letter-spacing:.14em;font-weight:800;text-transform:uppercase}
-input,select,button{background:#0a1016;color:var(--text);border:1px solid var(--line2);padding:8px 9px;font:700 11px Inter,Segoe UI,sans-serif;outline:none;border-radius:5px}input:focus,select:focus,button:hover{border-color:var(--accent2)}button{cursor:pointer;letter-spacing:.04em}.searchbox{width:100%;min-width:190px}.feeinput{width:96px;text-align:right}
-.kpis{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:8px;margin-bottom:10px}.kpi{padding:12px;min-height:94px;position:relative;overflow:hidden}.kpi:before{content:"";position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--line2)}.kpi.primary:before{background:var(--accent)}.kpi.good:before{background:var(--green)}.kpi.warn:before{background:var(--amber)}
+.panel,.scanner,.details{background:linear-gradient(180deg,rgba(17,24,33,.96),rgba(10,15,20,.96));border:1px solid var(--line);box-shadow:var(--shadow)}
+/* ===== TOP CONTROL IDENTITY · DENSE PROFESSIONAL WORKSPACE ===== */
+.top-console{margin-bottom:8px;border:1px solid #20313d;background:linear-gradient(180deg,rgba(11,18,25,.985),rgba(6,11,16,.99));box-shadow:0 12px 36px rgba(0,0,0,.22),inset 3px 0 0 var(--accent);overflow:hidden}
+.top-console-head{display:grid;grid-template-columns:minmax(300px,.72fr) minmax(0,1.28fr);min-height:82px;border-bottom:1px solid #1b2a35}
+.top-brand{padding:12px 15px;display:flex;flex-direction:column;justify-content:center;position:relative;background:linear-gradient(90deg,rgba(82,185,216,.075),rgba(10,17,23,.40));overflow:hidden}.top-brand:after{content:"";position:absolute;right:-50px;top:-85px;width:220px;height:220px;border:1px solid rgba(82,185,216,.10);border-radius:50%;pointer-events:none}
+.top-brand .kicker{font-size:8px;font-weight:950;letter-spacing:.18em;color:#79dcfb;text-transform:uppercase}.top-brand h1{margin:4px 0 3px;font-size:clamp(27px,3vw,40px);line-height:.96;letter-spacing:-.045em;font-weight:950}.top-brand .sub{font-size:7.5px;color:#758894;letter-spacing:.09em;line-height:1.35}
+.live-health{display:grid;grid-template-columns:.82fr .82fr 1.36fr;background:#070d12}.live-cell{min-width:0;padding:9px 10px;border-left:1px solid #182632;display:flex;flex-direction:column;justify-content:center}.live-cell span{font:900 6.8px Inter,Segoe UI,sans-serif;color:#718693;letter-spacing:.11em;text-transform:uppercase;white-space:nowrap}.live-cell b{display:block;margin-top:5px;font:950 12px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;white-space:normal;word-break:break-word;line-height:1.18}.live-cell.feed b{font-size:13px}.live-cell.sync b{font-size:8.6px;color:#a9bac4}.live-cell .dot{width:6px;height:6px;margin-right:5px}
+.command-rack{display:grid;grid-template-columns:minmax(230px,1.45fr) minmax(150px,.82fr) minmax(155px,.86fr) minmax(155px,.86fr) minmax(185px,1fr) minmax(150px,.72fr);gap:0;border-bottom:1px solid #1b2a35;background:#081017}
+.command{min-width:0;padding:8px 10px;border-right:1px solid #182632;display:flex;flex-direction:column;justify-content:center}.command:last-of-type{border-right:0}.command label{font:950 6.8px Inter,Segoe UI,sans-serif;color:#758995;letter-spacing:.12em;text-transform:uppercase;margin-bottom:5px}.command-main{display:flex;align-items:center;gap:5px;min-width:0}.command input,.command select,.command button{height:32px;min-width:0;width:100%;background:#060c11;color:#e3edf2;border:1px solid #263846;padding:0 9px;font:850 11px Inter,Segoe UI,sans-serif;outline:none;border-radius:3px}.command input:focus,.command select:focus,.command button:hover{border-color:#4b8daa}.command .unit{font:900 7px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:#738794}.command .assist{margin-top:4px;font-size:6.3px;color:#627580;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.command.search input{font-size:13px;font-weight:900}.command.update button{color:#9cebc3;border-color:rgba(102,209,158,.30);background:rgba(102,209,158,.045);font-weight:950;cursor:pointer}.command.update button:hover{border-color:var(--green);background:rgba(102,209,158,.08)}
+.command-summary{display:flex;align-items:center;gap:8px;margin-top:4px;min-width:0}.command-summary b{font:950 12px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;white-space:nowrap}.command-summary small{font-size:6.1px;color:#657984;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.scope-rail{display:flex;align-items:center;gap:8px;padding:5px 10px;background:#070c11;border-bottom:1px solid #172530}.scope-rail .scope-tag{font:950 6.5px Inter,Segoe UI,sans-serif;letter-spacing:.10em;color:#a99cff;border:1px solid rgba(169,156,255,.24);padding:3px 5px}.scope-rail .scope-text{font-size:6.8px;color:#6f828e;line-height:1.25}.scope-rail .scope-text b{color:#aebdc6}
+.market-rail{display:grid;grid-template-columns:.62fr 1fr 1fr 1fr 1.65fr;background:#060b10}.market-metric{min-width:0;padding:8px 10px;border-right:1px solid #17242e;position:relative}.market-metric:last-child{border-right:0}.market-metric:before{content:"";position:absolute;left:0;right:0;top:0;height:2px;background:#263641}.market-metric.primary:before{background:#52b9d8}.market-metric.good:before{background:var(--green)}.market-metric.warn:before{background:var(--amber)}.market-metric.depth:before{background:#a99cff}.market-metric .label{font:900 6.5px Inter,Segoe UI,sans-serif;color:#6e828e;letter-spacing:.10em;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.market-metric .val{margin-top:4px;font:950 clamp(16px,1.5vw,23px) ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;letter-spacing:-.04em;line-height:1.05;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.market-metric.depth .val{font-size:10px;line-height:1.2;white-space:normal}.market-metric .micro{margin-top:3px;font-size:5.9px;color:#5f727e;line-height:1.15;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .label{font-size:8px;color:var(--muted);letter-spacing:.14em;font-weight:800;text-transform:uppercase}.val{margin-top:8px;font:850 21px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;letter-spacing:-.03em}.micro{margin-top:5px;font-size:9px;color:var(--muted);line-height:1.35}
 .scanner{overflow:hidden;border-color:var(--line2)}.shead{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:12px 14px;border-bottom:1px solid var(--line)}.title{font-size:11px;font-weight:900;letter-spacing:.12em;text-transform:uppercase}.note{font-size:9px;color:var(--muted);line-height:1.45;text-align:right;max-width:950px}
-.tablewrap{max-height:62vh;overflow:auto;background:#090e13}table{width:100%;border-collapse:collapse;min-width:2220px}th,td{padding:9px 10px;border-bottom:1px solid #18222c;white-space:nowrap;text-align:right}th{position:sticky;top:0;background:#101720;color:#8fa1af;font-size:8px;letter-spacing:.10em;text-transform:uppercase;z-index:5;font-weight:900}td{font:11px/1.2 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}th:first-child,td:first-child{position:sticky;left:0;text-align:left;background:#0f161e;z-index:6}tr:hover td{background:#101923}tr.selected td{background:#10202a}
+.tablewrap{max-height:62vh;overflow:auto;scrollbar-gutter:stable both-edges;background:#090e13}table{width:100%;border-collapse:collapse;min-width:2220px}th,td{padding:9px 10px;border-bottom:1px solid #18222c;white-space:nowrap;text-align:right}th{position:sticky;top:0;background:#101720;color:#8fa1af;font-size:8px;letter-spacing:.10em;text-transform:uppercase;z-index:5;font-weight:900}td{font:11px/1.2 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}th:first-child,td:first-child{position:sticky;left:0;text-align:left;background:#0f161e;z-index:6}tr:hover td{background:#101923}tr.selected td{background:#10202a}
 .symbol{font:850 12px Inter,Segoe UI,sans-serif;letter-spacing:.02em}.subline{display:block;margin-top:3px;font-size:8px;color:var(--muted)}.rate{font-weight:800}.spread{font-weight:950;font-size:12px;color:var(--accent)}.cost{font-weight:900;color:var(--amber)}
 .route{display:flex;gap:5px;justify-content:flex-end;align-items:center}.pill{display:inline-flex;align-items:center;padding:3px 6px;border-radius:999px;border:1px solid var(--line2);font:800 8px Inter,Segoe UI,sans-serif;letter-spacing:.06em}.long{color:var(--green);border-color:rgba(102,209,158,.32);background:rgba(102,209,158,.06)}.short{color:var(--red);border-color:rgba(238,124,136,.32);background:rgba(238,124,136,.06)}
 .quality{font:800 8px Inter,Segoe UI,sans-serif;letter-spacing:.06em}.qgood{color:var(--green)}.qwarn{color:var(--amber)}.qbad{color:var(--red)}.footer{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:9px 12px;border-top:1px solid var(--line);font-size:8px;color:#6d7d8b;letter-spacing:.07em}
@@ -67,10 +68,10 @@ input,select,button{background:#0a1016;color:var(--text);border:1px solid var(--
 .depthmeter{height:5px;margin-top:7px;background:#111a22;border-radius:10px;overflow:hidden}.depthmeter>i{display:block;height:100%;background:currentColor;width:0}
 .pending{color:#8294a3}.depth-good{color:var(--green)}.depth-warn{color:var(--amber)}.depth-bad{color:var(--red)}
 
-@media(max-width:1450px){.toolbar{grid-template-columns:repeat(4,1fr)}.kpis{grid-template-columns:repeat(4,1fr)}.detailgrid,.depth-grid,.net-grid{grid-template-columns:repeat(4,1fr)}}
-@media(max-width:980px){.header{grid-template-columns:1fr}.toolbar{grid-template-columns:repeat(3,1fr)}.kpis{grid-template-columns:repeat(3,1fr)}.detailgrid,.depth-grid{grid-template-columns:repeat(3,1fr)}}
-@media(max-width:760px){.app{padding:9px}.toolbar{grid-template-columns:repeat(2,minmax(0,1fr))}.kpis{grid-template-columns:repeat(2,1fr)}.detailgrid,.depth-grid,.net-grid{grid-template-columns:repeat(2,1fr)}.shead,.depth-head{align-items:flex-start;flex-direction:column}.note{text-align:left}.total-cost-summary,.depth-summary{grid-template-columns:1fr}.total-cost-value,.depth-summary .big{text-align:left}.total-cost-foot,.depth-summary .foot{grid-column:auto}}
-@media(max-width:480px){.toolbar{grid-template-columns:1fr}.kpis,.detailgrid{grid-template-columns:1fr 1fr}.val{font-size:18px}}
+@media(max-width:1450px){.top-console-head{grid-template-columns:minmax(280px,.68fr) minmax(0,1.32fr)}.command-rack{grid-template-columns:1.35fr .8fr .8fr .8fr 1fr .8fr}.market-rail{grid-template-columns:.58fr 1fr 1fr 1fr 1.5fr}.detailgrid,.depth-grid,.net-grid{grid-template-columns:repeat(4,1fr)}}
+@media(max-width:1080px){.top-console-head{grid-template-columns:1fr}.live-health{border-top:1px solid #182632}.live-cell:first-child{border-left:0}.command-rack{grid-template-columns:repeat(3,1fr)}.command:nth-child(3n){border-right:0}.command:nth-child(n+4){border-top:1px solid #182632}.market-rail{grid-template-columns:repeat(5,1fr)}.market-metric:nth-child(5n){border-right:0}.detailgrid,.depth-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:760px){.app{padding:7px}.top-brand{padding:10px 11px}.top-brand h1{font-size:30px}.live-health{grid-template-columns:1fr 1fr 1.35fr}.live-cell{border-top:1px solid #182632}.command-rack{grid-template-columns:1fr 1fr}.command:nth-child(n){border-right:1px solid #182632;border-top:1px solid #182632}.command:nth-child(2n){border-right:0}.command.search{grid-column:1/-1}.market-rail{grid-template-columns:repeat(2,1fr)}.market-metric:nth-child(n){border-right:1px solid #17242e;border-top:1px solid #17242e}.market-metric:nth-child(2n){border-right:0}.scope-rail{align-items:flex-start}.scope-rail .scope-text{font-size:6.5px}.detailgrid,.depth-grid,.net-grid{grid-template-columns:repeat(2,1fr)}.shead,.depth-head{align-items:flex-start;flex-direction:column}.note{text-align:left}.total-cost-summary,.depth-summary{grid-template-columns:1fr}.total-cost-value,.depth-summary .big{text-align:left}.total-cost-foot,.depth-summary .foot{grid-column:auto}}
+@media(max-width:480px){.live-health{grid-template-columns:1fr 1fr}.live-cell.sync{grid-column:1/-1}.command-rack{grid-template-columns:1fr}.command.search{grid-column:auto}.command:nth-child(n){border-right:0}.market-rail{grid-template-columns:1fr 1fr}.market-metric .val{font-size:18px}.market-metric.depth .val{font-size:9px}.detailgrid{grid-template-columns:1fr 1fr}.val{font-size:18px}}
 
 /* Layer 5B · flexible-horizon opportunity qualification */
 .opp-panel{margin-bottom:10px;background:linear-gradient(180deg,rgba(17,24,33,.98),rgba(9,14,19,.98));border:1px solid rgba(82,185,216,.38);box-shadow:var(--shadow);overflow:hidden}
@@ -81,7 +82,7 @@ input,select,button{background:#0a1016;color:var(--text);border:1px solid var(--
 .opp-control label{font-size:8px;color:var(--muted);font-weight:900;letter-spacing:.14em;text-transform:uppercase}
 .opp-kpis{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:7px;padding:10px;border-bottom:1px solid var(--line)}
 .opp-kpi{background:#080d12;border:1px solid var(--line);padding:10px;min-height:78px}.opp-kpi .v{margin-top:6px;font:900 19px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}.opp-kpi.dual{border-color:rgba(102,209,158,.32);box-shadow:inset 2px 0 0 var(--green)}
-.opp-tablewrap{max-height:54vh;overflow:auto;background:#080d12}.opp-table{min-width:2420px}.opp-table th:first-child,.opp-table td:first-child{background:#0d151d}.opp-type{font:900 9px Inter,Segoe UI,sans-serif;letter-spacing:.07em}.opp-type.dual{color:var(--green)}.opp-type.spread{color:var(--accent)}.opp-type.none{color:var(--muted)}
+.opp-tablewrap{max-height:54vh;overflow:auto;scrollbar-gutter:stable both-edges;background:#080d12}.opp-table{min-width:2420px}.opp-table th:first-child,.opp-table td:first-child{background:#0d151d}.opp-type{font:900 9px Inter,Segoe UI,sans-serif;letter-spacing:.07em}.opp-type.dual{color:var(--green)}.opp-type.spread{color:var(--accent)}.opp-type.none{color:var(--muted)}
 .receive-yes{color:var(--green);font-weight:900}.receive-no{color:var(--muted)}
 .opp-status{font:900 8px Inter,Segoe UI,sans-serif;letter-spacing:.06em}.opp-pass{color:var(--green)}.opp-reject{color:var(--red)}.opp-candidate{color:var(--amber)}.opp-wait{color:var(--muted)}
 .opp-detail{border-top:1px solid var(--line);padding:10px}.opp-detail-head{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:8px}.opp-detail-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:7px}.opp-detail-item{background:#080d12;border:1px solid var(--line);padding:10px;min-height:67px}.opp-detail-item b{display:block;margin-top:6px;font:850 11px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;white-space:normal;word-break:break-word}
@@ -114,9 +115,9 @@ input,select,button{background:#0a1016;color:var(--text);border:1px solid var(--
 .audit-section-label.amber{color:var(--amber);border-color:rgba(224,182,101,.25);background:rgba(224,182,101,.04)}
 .audit-section-label.purple{color:#a99cff;border-color:rgba(169,156,255,.25);background:rgba(169,156,255,.045)}
 
-.opp-detail-item{position:relative;overflow:hidden;transition:border-color .18s ease,background .18s ease,transform .18s ease}
+.opp-detail-item{position:relative;overflow:hidden;transition:border-color .12s ease,background .12s ease}
 .opp-detail-item:before{content:"";position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--line2)}
-.opp-detail-item:hover{border-color:#344958;background:#0b1219;transform:translateY(-1px)}
+.opp-detail-item:hover{border-color:#344958;background:#0b1219}
 .opp-detail-item b{font-size:12px;line-height:1.25}
 .opp-detail-item.metric-primary b{font-size:15px;font-weight:950}
 .opp-detail-item.metric-hero b{font-size:18px;font-weight:950;letter-spacing:-.035em}
@@ -141,14 +142,25 @@ input,select,button{background:#0a1016;color:var(--text);border:1px solid var(--
 .breakdown-visual-band .band-title{font-size:12px!important;color:#bcf3d8!important;letter-spacing:.16em!important}
 .breakdown-visual-band .band-note{max-width:980px;color:#94a8b5!important}
 
-.break-even-hero{margin-top:10px;display:grid;grid-template-columns:minmax(240px,.8fr) minmax(0,1.2fr);gap:8px}
-.be-required-card,.be-path-card{border:1px solid rgba(169,156,255,.34);background:linear-gradient(135deg,rgba(169,156,255,.10),rgba(82,185,216,.055) 55%,rgba(8,13,18,.98));padding:15px 16px;min-height:112px;position:relative;overflow:hidden}
-.be-required-card:before,.be-path-card:before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:#a99cff}
-.be-required-card .be-label,.be-path-card .be-label{font-size:8px;color:#aaa1e8;font-weight:950;letter-spacing:.18em;text-transform:uppercase}
-.be-required-card .be-big{margin-top:8px;font:950 clamp(28px,3.4vw,44px) ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:#d7d1ff;letter-spacing:-.055em}
-.be-required-card .be-sub,.be-path-card .be-sub{margin-top:6px;font-size:8px;color:#8899a7;letter-spacing:.06em;line-height:1.5}
-.be-path-card .be-formula{margin-top:11px;font:900 clamp(15px,1.8vw,23px) ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:#dff7ff;letter-spacing:-.025em;line-height:1.45}
-.be-path-card .be-formula .arrow{color:#708798;padding:0 5px}
+.break-even-hero{margin-top:9px;display:grid;grid-template-columns:minmax(230px,.82fr) minmax(300px,1.08fr) minmax(390px,1.42fr);gap:7px;align-items:stretch}
+.be-required-card,.be-path-card,.be-projection-card{position:relative;overflow:hidden;min-width:0;min-height:154px;padding:15px 16px;border:1px solid #23313e;background:#081019;box-shadow:0 12px 28px rgba(0,0,0,.18),inset 0 1px 0 rgba(255,255,255,.025)}
+.be-required-card:before,.be-path-card:before,.be-projection-card:before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px}
+.be-required-card:after,.be-path-card:after,.be-projection-card:after{content:"";position:absolute;width:150px;height:150px;border-radius:50%;right:-72px;top:-90px;pointer-events:none;filter:blur(1px)}
+.be-required-card{border-color:rgba(224,182,101,.38);background:linear-gradient(140deg,rgba(224,182,101,.105),rgba(91,64,24,.055) 42%,#081018 78%);box-shadow:0 12px 30px rgba(0,0,0,.20),inset 0 1px 0 rgba(255,226,166,.04)}
+.be-required-card:before{background:var(--amber);box-shadow:0 0 18px rgba(224,182,101,.45)}.be-required-card:after{border:1px solid rgba(224,182,101,.16);background:radial-gradient(circle,rgba(224,182,101,.06),transparent 68%)}
+.be-path-card{border-color:rgba(169,156,255,.38);background:linear-gradient(140deg,rgba(169,156,255,.105),rgba(82,185,216,.055) 48%,#081018 80%)}
+.be-path-card:before{background:#a99cff;box-shadow:0 0 18px rgba(169,156,255,.42)}.be-path-card:after{border:1px solid rgba(169,156,255,.15);background:radial-gradient(circle,rgba(169,156,255,.06),transparent 68%)}
+.be-projection-card{border-color:rgba(82,185,216,.42);background:linear-gradient(140deg,rgba(82,185,216,.105),rgba(102,209,158,.055) 55%,#071018 82%);box-shadow:0 13px 32px rgba(0,0,0,.22),inset 0 1px 0 rgba(175,242,255,.04)}
+.be-projection-card:before{background:var(--accent);box-shadow:0 0 20px rgba(82,185,216,.50)}.be-projection-card:after{border:1px solid rgba(82,185,216,.17);background:radial-gradient(circle,rgba(82,185,216,.07),transparent 68%)}
+.be-label{position:relative;z-index:1;font:950 8.5px Inter,Segoe UI,sans-serif;letter-spacing:.17em;text-transform:uppercase}
+.be-required-card .be-label{color:#efce88}.be-path-card .be-label{color:#c8c0ff}.be-projection-card .be-label{color:#8cdcf2}
+.be-required-card .be-big{position:relative;z-index:1;margin-top:12px;font:950 clamp(33px,3.25vw,48px) ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;line-height:.95;color:#ffe0a1;letter-spacing:-.06em;text-shadow:0 0 20px rgba(224,182,101,.12)}
+.be-required-card .be-sub,.be-path-card .be-sub,.be-projection-card .be-sub{position:relative;z-index:1;margin-top:10px;font:800 7.3px/1.45 Inter,Segoe UI,sans-serif;color:#8296a4;letter-spacing:.055em;text-transform:uppercase}
+.be-path-card .be-formula{position:relative;z-index:1;margin-top:15px;font:950 clamp(17px,1.75vw,26px) ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:#e5e0ff;letter-spacing:-.035em;line-height:1.35;text-shadow:0 0 18px rgba(169,156,255,.10)}
+.be-path-card .be-formula .arrow{color:#7898ab;padding:0 5px}
+.be-proj-head{position:relative;z-index:1;display:flex;align-items:flex-start;justify-content:space-between;gap:10px}.be-proj-badge{padding:4px 7px;border:1px solid rgba(82,185,216,.28);background:rgba(82,185,216,.055);color:#91dff3;font:950 6.5px Inter,Segoe UI,sans-serif;letter-spacing:.12em;white-space:nowrap}
+.be-proj-main{position:relative;z-index:1;display:grid;grid-template-columns:112px minmax(0,1fr);gap:9px;margin-top:9px;align-items:stretch}.be-cycle-control{border:1px solid rgba(82,185,216,.22);background:rgba(4,12,18,.68);padding:8px}.be-cycle-control label{display:block;font:900 6.5px Inter,Segoe UI,sans-serif;color:#7da4b2;letter-spacing:.12em;text-transform:uppercase}.be-cycle-control input{display:block;width:100%;box-sizing:border-box;margin-top:4px;padding:5px 6px;border:0;border-bottom:1px solid rgba(82,185,216,.34);border-radius:0;background:transparent;color:#eafaff;text-align:center;font:950 30px/1 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;letter-spacing:-.06em}.be-cycle-control input:focus{border-color:var(--accent);box-shadow:none}.be-cycle-quick{display:grid;grid-template-columns:repeat(4,1fr);gap:3px;margin-top:6px}.be-cycle-quick button{height:22px;padding:0;border:1px solid #203441;border-radius:2px;background:#07131b;color:#7fa9b8;font:900 6.5px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}.be-cycle-quick button:hover{border-color:var(--accent);color:#d7f6ff;background:rgba(82,185,216,.07)}
+.be-proj-results{display:grid;grid-template-columns:.92fr 1fr 1.12fr;gap:4px}.be-proj-metric{min-width:0;border:1px solid rgba(82,185,216,.15);background:rgba(4,11,16,.58);padding:7px 8px;display:flex;flex-direction:column;justify-content:center}.be-proj-metric span{font:900 6.3px Inter,Segoe UI,sans-serif;color:#6f8e9c;letter-spacing:.10em;text-transform:uppercase}.be-proj-metric b{display:block;margin-top:6px;font:950 clamp(16px,1.5vw,23px) ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;line-height:1;letter-spacing:-.045em;white-space:normal;word-break:break-word}.be-proj-metric.time b{color:#9ee8ff}.be-proj-metric.funding b{color:#a7e8ca}.be-proj-metric.net{border-color:rgba(126,145,160,.18)}.be-proj-metric.net.positive{border-color:rgba(102,209,158,.34);background:rgba(102,209,158,.075);box-shadow:inset 0 -2px 0 rgba(102,209,158,.42)}.be-proj-metric.net.positive b{color:#8ce9b8}.be-proj-metric.net.negative{border-color:rgba(238,124,136,.34);background:rgba(238,124,136,.07);box-shadow:inset 0 -2px 0 rgba(238,124,136,.42)}.be-proj-metric.net.negative b{color:#f08e99}.be-proj-metric.net.neutral b{color:#a8b8c4}
 
 .action-advice{margin-top:8px;padding:13px 15px;border:1px solid rgba(82,185,216,.30);background:linear-gradient(100deg,rgba(82,185,216,.07),rgba(8,13,18,.98));display:grid;grid-template-columns:auto minmax(0,1fr);gap:12px;align-items:center}
 .action-advice .advice-badge{min-width:128px;text-align:center;padding:9px 11px;border:1px solid currentColor;font:950 10px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;letter-spacing:.12em;text-transform:uppercase}
@@ -160,7 +172,8 @@ input,select,button{background:#0a1016;color:var(--text);border:1px solid var(--
 
 #oppBreakdownGrid .opp-detail-item:nth-of-type(1),#oppBreakdownGrid .opp-detail-item:nth-of-type(2){background:rgba(82,185,216,.045)}
 
-@media(max-width:900px){.break-even-hero{grid-template-columns:1fr}.be-required-card,.be-path-card{min-height:auto}}
+@media(max-width:1180px){.break-even-hero{grid-template-columns:1fr 1fr}.be-projection-card{grid-column:1/-1}.be-required-card,.be-path-card,.be-projection-card{min-height:auto}}
+@media(max-width:760px){.break-even-hero{grid-template-columns:1fr}.be-projection-card{grid-column:auto}.be-proj-main{grid-template-columns:104px minmax(0,1fr)}}
 @media(max-width:700px){.opp-detail.visual-audit{padding:8px}.opp-detail-item b{font-size:11px}.opp-detail-item.metric-hero b{font-size:15px}.action-advice{grid-template-columns:1fr}.action-advice .advice-badge{text-align:left;min-width:0}.be-required-card .be-big{font-size:30px}}
 
 /* ===== LAYER 6A QUALIFICATION-GATED SCORE IDENTITY ===== */
@@ -181,7 +194,7 @@ input,select,button{background:#0a1016;color:var(--text);border:1px solid var(--
 .score-row-head{display:flex;justify-content:space-between;gap:8px;align-items:center;font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:#92a4b2;font-weight:900}
 .score-row-head b{font:900 10px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:#d7d1ff}
 .score-track{height:5px;margin-top:9px;background:#111923;border:1px solid #1d2a35;overflow:hidden}
-.score-track i{display:block;width:0;height:100%;background:linear-gradient(90deg,#52b9d8,#a99cff,#66d19e);transition:width .22s ease}
+.score-track i{display:block;width:0;height:100%;background:linear-gradient(90deg,#52b9d8,#a99cff,#66d19e)}
 .score-row small{display:block;margin-top:7px;color:#71828f;font-size:7.5px;line-height:1.45;letter-spacing:.035em}
 .opp-score-pill{display:inline-flex;min-width:72px;justify-content:center;padding:4px 7px;border-radius:4px;border:1px solid rgba(169,156,255,.30);background:rgba(169,156,255,.07);font:950 10px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:#d7d1ff}
 .opp-score-pill.prime{color:var(--green);border-color:rgba(102,209,158,.34);background:rgba(102,209,158,.06)}
@@ -190,53 +203,60 @@ input,select,button{background:#0a1016;color:var(--text);border:1px solid var(--
 @media(max-width:700px){.score-components{grid-template-columns:1fr}.score-row:last-child{grid-column:auto}.opp-kpis{grid-template-columns:1fr}}
 
 
-/* ===== L6A DENSE MARKET INTELLIGENCE IDENTITY · V2 ===== */
-#opportunityScanner{border-color:#293b48;background:linear-gradient(180deg,rgba(12,18,25,.985),rgba(7,11,16,.99));box-shadow:0 20px 60px rgba(0,0,0,.30),inset 0 1px 0 rgba(255,255,255,.025)}
-.opp-head-v2{min-height:92px;padding:11px 13px!important;background:radial-gradient(620px 160px at 0 0,rgba(82,185,216,.115),transparent 68%),linear-gradient(90deg,rgba(12,20,27,.99),rgba(8,13,18,.985));align-items:center!important}
-.opp-title-block{display:flex;align-items:center;gap:11px;min-width:360px}
-.layer-mark{width:58px;height:58px;flex:0 0 58px;display:grid;place-items:center;border:1px solid rgba(82,185,216,.42);background:linear-gradient(145deg,rgba(82,185,216,.16),rgba(10,18,24,.96));box-shadow:inset 0 0 22px rgba(82,185,216,.07),0 0 26px rgba(82,185,216,.05);position:relative;overflow:hidden}
-.layer-mark:after{content:"";position:absolute;inset:7px;border:1px solid rgba(82,185,216,.12)}
-.layer-mark span{font:950 18px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:#c8f3ff;letter-spacing:-.05em;z-index:1}
-.opp-head-v2 .kicker{font-size:8px;letter-spacing:.20em;color:#75cce6}
-.opp-head-v2 .title{margin-top:3px;font-size:17px!important;letter-spacing:-.025em!important;text-transform:none!important;color:#f2f8fb!important;line-height:1.05}
-.opp-subtitle{margin-top:5px;font:800 7.5px/1.3 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:#718795;letter-spacing:.11em}
-.opp-head-intel{margin-left:auto;max-width:900px;display:grid;gap:7px;justify-items:end}
-.engine-chips{display:flex;align-items:center;justify-content:flex-end;gap:5px;flex-wrap:wrap}
-.engine-chip{padding:5px 8px;border:1px solid;font:900 7.5px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;letter-spacing:.09em;white-space:nowrap}
-.engine-chip.market{color:#8fdcf2;border-color:rgba(82,185,216,.36);background:rgba(82,185,216,.07)}
-.engine-chip.verified{color:#8fe2b7;border-color:rgba(102,209,158,.38);background:rgba(102,209,158,.07)}
-.engine-chip.gate{color:#c7bdfb;border-color:rgba(169,156,255,.34);background:rgba(169,156,255,.07)}
-.engine-arrow{color:#4f6676;font:900 11px ui-monospace,monospace}
-.opp-head-note{font-size:8px;line-height:1.42;color:#7f929f;text-align:right;max-width:820px;letter-spacing:.025em}
+/* ===== L6A PROFESSIONAL INTELLIGENCE WORKSPACE · V3 ===== */
+#opportunityScanner{border-color:#263845;background:linear-gradient(180deg,rgba(10,16,22,.99),rgba(6,10,14,.995));box-shadow:0 16px 44px rgba(0,0,0,.24),inset 0 1px 0 rgba(255,255,255,.022)}
+.opp-head-v2{display:grid!important;grid-template-columns:minmax(0,1fr) auto;gap:12px;min-height:0!important;padding:7px 9px!important;background:radial-gradient(480px 100px at 0 0,rgba(82,185,216,.10),transparent 72%),linear-gradient(90deg,#0b141b,#080e13 58%,#080d12);align-items:center!important}
+.opp-title-block{display:flex;align-items:center;gap:8px;min-width:0}
+.layer-mark{width:38px;height:38px;flex:0 0 38px;display:grid;place-items:center;border:1px solid rgba(82,185,216,.40);background:linear-gradient(145deg,rgba(82,185,216,.13),rgba(8,15,20,.98));box-shadow:inset 0 0 14px rgba(82,185,216,.06);position:relative;overflow:hidden}
+.layer-mark:after{content:"";position:absolute;inset:4px;border:1px solid rgba(82,185,216,.10)}
+.layer-mark span{font:950 13px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:#d4f5ff;letter-spacing:-.04em;z-index:1}
+.opp-head-v2 .kicker{font-size:7.2px;letter-spacing:.16em;color:#73c8e1}
+.opp-head-v2 .title{margin-top:2px;font-size:18px!important;letter-spacing:-.025em!important;text-transform:none!important;color:#f2f8fb!important;line-height:1}
+.opp-subtitle{margin-top:3px;font:800 6.8px/1.2 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:#718591;letter-spacing:.085em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.opp-head-intel{margin-left:auto;max-width:860px;display:grid;grid-template-columns:auto;gap:3px;justify-items:end;min-width:0}
+.engine-chips{display:flex;align-items:center;justify-content:flex-end;gap:4px;flex-wrap:nowrap}
+.engine-chip{padding:3px 6px;border:1px solid;font:900 6.8px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;letter-spacing:.075em;white-space:nowrap}
+.engine-chip.market{color:#8fdcf2;border-color:rgba(82,185,216,.32);background:rgba(82,185,216,.055)}
+.engine-chip.verified{color:#92e5ba;border-color:rgba(102,209,158,.34);background:rgba(102,209,158,.055)}
+.engine-chip.gate{color:#c8c0fb;border-color:rgba(169,156,255,.30);background:rgba(169,156,255,.055)}
+.engine-arrow{color:#506674;font:900 9px ui-monospace,monospace}
+.opp-head-note{font-size:7.1px;line-height:1.25;color:#7b8e99;text-align:right;max-width:820px;letter-spacing:.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .opp-head-note b{color:#a9bbc7;font-weight:900}
 
-.opp-controls{grid-template-columns:repeat(5,minmax(0,1fr))!important;gap:6px!important;padding:7px!important;background:#080d12;border-bottom-color:#1b2933!important}
-.opp-control{padding:7px 8px!important;min-height:65px!important;border:1px solid #1b2832!important;background:linear-gradient(180deg,#0b1218,#080d12)!important;position:relative;overflow:hidden}
+.opp-controls{display:grid!important;grid-template-columns:minmax(180px,1.65fr) minmax(95px,.72fr) minmax(175px,1.5fr) repeat(6,minmax(105px,1fr))!important;gap:4px!important;padding:5px 6px!important;background:#070c11;border-top:1px solid #17232c;border-bottom:1px solid #17232c!important}
+.opp-control{padding:5px 6px!important;min-height:0!important;border:1px solid #192630!important;background:#090f14!important;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:center}
 .opp-control:before{content:"";position:absolute;left:0;top:0;bottom:0;width:2px;background:#31424f}
-.opp-control label{font-size:7px!important;letter-spacing:.12em!important;color:#8296a4!important}
-.opp-control .micro{font-size:7.3px!important;line-height:1.28!important;margin-top:3px!important;color:#657784!important}
-.opp-control input,.opp-control select{padding:6px 7px!important;font-size:10px!important;min-height:30px}
-.opp-control.ctl-time:before{background:var(--accent)}.opp-control.ctl-time{background:linear-gradient(180deg,rgba(82,185,216,.045),#080d12)!important}
-.opp-control.ctl-view:before{background:#a99cff}.opp-control.ctl-view{background:linear-gradient(180deg,rgba(169,156,255,.045),#080d12)!important}
-.opp-control.ctl-profit:before{background:var(--green)}.opp-control.ctl-profit{background:linear-gradient(180deg,rgba(102,209,158,.04),#080d12)!important}
-.opp-control.ctl-be:before{background:#a99cff}.opp-control.ctl-be{background:linear-gradient(180deg,rgba(169,156,255,.04),#080d12)!important}
-.opp-control.ctl-cost:before{background:var(--amber)}.opp-control.ctl-cost{background:linear-gradient(180deg,rgba(224,182,101,.04),#080d12)!important}
-.opp-control.ctl-funding:before{background:#7ca7ff}.opp-control.ctl-funding{background:linear-gradient(180deg,rgba(124,167,255,.04),#080d12)!important}
-.opp-control.ctl-rule:before{background:linear-gradient(180deg,var(--green),var(--amber),var(--red))}.opp-control.ctl-rule{background:linear-gradient(180deg,rgba(255,255,255,.025),#080d12)!important}
+.opp-control label{font-size:6.5px!important;letter-spacing:.095em!important;color:#8195a2!important;line-height:1.1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.opp-control>.micro{font-size:6.2px!important;line-height:1.15!important;margin-top:2px!important;color:#5f737f!important;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.opp-control input,.opp-control select{height:27px!important;min-height:27px!important;padding:3px 6px!important;font-size:9.5px!important;margin-top:3px!important;border-color:#253641!important;background:#071017!important}
+.opp-control>div{display:flex;align-items:center;gap:4px;min-width:0}
+.opp-control>div input{width:100%!important;min-width:0!important}
+.opp-control>div .micro{margin:3px 0 0!important;flex:0 0 auto;font-size:6.4px!important}
+.opp-control.ctl-time:before{background:var(--accent)}.opp-control.ctl-time{background:linear-gradient(180deg,rgba(82,185,216,.035),#090f14)!important}
+.opp-control.ctl-view:before{background:#a99cff}.opp-control.ctl-view{background:linear-gradient(180deg,rgba(169,156,255,.035),#090f14)!important}
+.opp-control.ctl-profit:before{background:var(--green)}.opp-control.ctl-profit{background:linear-gradient(180deg,rgba(102,209,158,.03),#090f14)!important}
+.opp-control.ctl-be:before{background:#a99cff}.opp-control.ctl-be{background:linear-gradient(180deg,rgba(169,156,255,.03),#090f14)!important}
+.opp-control.ctl-cost:before{background:var(--amber)}.opp-control.ctl-cost{background:linear-gradient(180deg,rgba(224,182,101,.03),#090f14)!important}
+.opp-control.ctl-funding:before{background:#7ca7ff}.opp-control.ctl-funding{background:linear-gradient(180deg,rgba(124,167,255,.03),#090f14)!important}
+.opp-control.ctl-rule{grid-column:1/-1!important;min-height:25px!important;display:grid!important;grid-template-columns:auto minmax(0,1fr);align-items:center;gap:10px;padding:4px 7px!important;background:#080e13!important}
+.opp-control.ctl-rule:before{background:linear-gradient(180deg,var(--green),var(--amber),var(--red))}
+.opp-control.ctl-rule label{font-size:6.6px!important}
+.opp-control.ctl-rule .micro{margin:0!important;font-size:6.7px!important;white-space:normal;overflow:visible;text-overflow:clip;color:#70838f!important}
 
-.opp-kpis{grid-template-columns:repeat(7,minmax(0,1fr))!important;gap:5px!important;padding:7px!important;background:#070c11}
-.opp-kpi{padding:8px 9px!important;min-height:71px!important;border-color:#1b2832!important;background:linear-gradient(180deg,#0a1117,#080d12)!important;position:relative;overflow:hidden}
-.opp-kpi:before{content:"";position:absolute;left:0;top:0;bottom:0;width:2px;background:#32434f}
-.opp-kpi .label{font-size:7px!important;letter-spacing:.11em!important}
-.opp-kpi .v{margin-top:5px!important;font:950 clamp(15px,1.35vw,20px) ui-monospace,SFMono-Regular,Menlo,Consolas,monospace!important;letter-spacing:-.035em;line-height:1.05}
-.opp-kpi .micro{margin-top:4px!important;font-size:7.1px!important;line-height:1.25!important}
-.kpi-horizon:before{background:var(--accent)}.kpi-horizon .v{color:#bdeeff}
-.kpi-edge:before{background:#7ca7ff}.kpi-edge .v{color:#b8cbff}
-.kpi-dual:before{background:var(--green)!important}.kpi-dual{border-color:rgba(102,209,158,.25)!important}.kpi-dual .v{color:var(--green)}
+.opp-kpis{display:grid!important;grid-template-columns:.72fr .92fr .78fr .88fr 1.55fr 1.28fr 1.18fr!important;gap:0!important;padding:0 6px!important;background:#070c11;border-bottom:1px solid #17232c}
+.opp-kpi{padding:7px 9px!important;min-height:0!important;border:0!important;border-right:1px solid #192630!important;background:transparent!important;position:relative;overflow:hidden}
+.opp-kpi:last-child{border-right:0!important}
+.opp-kpi:before{content:"";position:absolute;left:0;right:0;top:0;height:2px;background:#32434f}
+.opp-kpi .label{font-size:6.5px!important;letter-spacing:.09em!important;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.opp-kpi .v{margin-top:4px!important;font:950 clamp(18px,1.55vw,24px) ui-monospace,SFMono-Regular,Menlo,Consolas,monospace!important;letter-spacing:-.045em;line-height:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.opp-kpi .micro{display:none!important}
+.kpi-horizon:before{background:var(--accent)}.kpi-horizon .v{color:#c9f2ff}
+.kpi-edge:before{background:#7ca7ff}.kpi-edge .v{color:#bfd0ff}
+.kpi-dual:before{background:var(--green)!important}.kpi-dual .v{color:var(--green)}
 .kpi-positive:before{background:#72d8b1}.kpi-positive .v{color:#8be5bc}
-.kpi-qual:before{background:var(--amber)}
-.kpi-score:before{background:#a99cff!important}.kpi-score{border-color:rgba(169,156,255,.28)!important}.kpi-score .v{color:#d8d1ff!important}
-.kpi-be:before{background:#b394ff}.kpi-be .v{color:#c9bdff}
+.kpi-qual:before{background:var(--amber)}.kpi-qual .v{font-size:clamp(12px,1.05vw,16px)!important;letter-spacing:-.02em;white-space:normal;line-height:1.05}
+.kpi-score:before{background:#a99cff!important}.kpi-score .v{color:#ddd7ff!important;font-size:clamp(13px,1.15vw,18px)!important;letter-spacing:-.025em}
+.kpi-be:before{background:#b394ff}.kpi-be .v{color:#d0c6ff;font-size:clamp(13px,1.15vw,18px)!important}
 
 .opp-tablewrap{max-height:57vh!important;background:#070c11!important}
 .opp-table{min-width:2260px!important}
@@ -246,51 +266,313 @@ input,select,button{background:#0a1016;color:var(--text);border:1px solid var(--
 .opp-table .subline{font-size:7px!important;margin-top:2px!important}
 .opp-table tr:hover td{background:#0e1921!important}
 .opp-table tr.selected td{background:#10232d!important;box-shadow:inset 0 1px rgba(82,185,216,.10),inset 0 -1px rgba(82,185,216,.08)}
-#opportunityScanner>.footer{padding:7px 9px!important;font-size:7px!important;line-height:1.35;background:#080d12}
+#opportunityScanner>.footer{padding:6px 8px!important;font-size:6.7px!important;line-height:1.3;background:#080d12}
 
-@media(max-width:1450px){.opp-controls{grid-template-columns:repeat(4,minmax(0,1fr))!important}.opp-head-note{max-width:650px}.opp-kpis{grid-template-columns:repeat(4,minmax(0,1fr))!important}}
-@media(max-width:1050px){.opp-head-v2{align-items:flex-start!important}.opp-title-block{min-width:0}.opp-head-intel{justify-items:start}.engine-chips{justify-content:flex-start}.opp-head-note{text-align:left;max-width:none}.opp-controls{grid-template-columns:repeat(2,minmax(0,1fr))!important}.opp-kpis{grid-template-columns:repeat(3,minmax(0,1fr))!important}}
-@media(max-width:700px){.opp-head-v2{padding:9px!important}.layer-mark{width:48px;height:48px;flex-basis:48px}.layer-mark span{font-size:15px}.opp-head-v2 .title{font-size:15px!important}.opp-subtitle{font-size:6.8px}.engine-chip{font-size:6.8px;padding:4px 6px}.opp-controls{grid-template-columns:1fr 1fr!important;gap:5px!important;padding:5px!important}.opp-control{min-height:60px!important}.opp-kpis{grid-template-columns:repeat(2,minmax(0,1fr))!important;padding:5px!important}.opp-kpi{min-height:65px!important}.opp-kpi .v{font-size:16px!important}.opp-head-note{font-size:7.2px}.opp-table th,.opp-table td{padding:6px 7px!important}}
-@media(max-width:480px){.opp-title-block{align-items:flex-start}.layer-mark{display:none}.opp-controls{grid-template-columns:1fr!important}.opp-kpis{grid-template-columns:1fr 1fr!important}.opp-kpi .micro{display:none}.opp-kpi{min-height:54px!important}.opp-head-v2 .title{font-size:14px!important}.engine-arrow{display:none}}
+/* compact selected-opportunity workspace */
+#opportunityScanner .opp-detail.visual-audit{padding:8px!important;background:radial-gradient(560px 160px at 3% 0%,rgba(82,185,216,.07),transparent 64%),linear-gradient(180deg,rgba(8,14,20,.98),rgba(6,10,15,.99))}
+#opportunityScanner .opp-detail.visual-audit .opp-detail-head{padding:7px 9px!important;margin:0 0 6px!important}
+#opportunityScanner .opp-detail.visual-audit .opp-detail-head .title{font-size:10px!important;letter-spacing:.11em!important}
+#opportunityScanner .opp-detail.visual-audit .opp-detail-head .note{font-size:7px!important}
+#opportunityScanner .opp-detail-grid{gap:4px!important}
+#opportunityScanner .audit-section-label{padding:4px 7px!important;margin:1px 0 0!important;font-size:6.8px!important;letter-spacing:.13em!important}
+#opportunityScanner .opp-detail-item{padding:6px 7px!important;min-height:49px!important}
+#opportunityScanner .opp-detail-item .label{font-size:6.5px!important;letter-spacing:.07em!important}
+#opportunityScanner .opp-detail-item b{margin-top:4px!important;font-size:10.5px!important;line-height:1.12!important}
+#opportunityScanner .opp-detail-item.metric-primary b{font-size:13px!important}
+#opportunityScanner .opp-detail-item.metric-hero b{font-size:16px!important;line-height:1.04!important}
+#opportunityScanner .break-even-hero{margin-top:7px!important;gap:5px!important}
+#opportunityScanner .be-required-card,#opportunityScanner .be-path-card,#opportunityScanner .be-projection-card{padding:11px 12px!important;min-height:126px!important}
+#opportunityScanner .be-label{font-size:7.2px!important;letter-spacing:.13em!important}
+#opportunityScanner .be-required-card .be-big{margin-top:9px!important;font-size:clamp(29px,2.8vw,41px)!important}
+#opportunityScanner .be-path-card .be-formula{margin-top:11px!important;font-size:clamp(16px,1.55vw,22px)!important;line-height:1.3!important}
+#opportunityScanner .be-required-card .be-sub,#opportunityScanner .be-path-card .be-sub,#opportunityScanner .be-projection-card .be-sub{margin-top:7px!important;font-size:6.5px!important;line-height:1.35!important}
+#opportunityScanner .be-proj-main{margin-top:7px!important}.be-proj-metric b{font-size:clamp(16px,1.35vw,21px)!important}
+#opportunityScanner .action-advice{margin-top:5px!important;padding:7px 9px!important;gap:8px!important}
+#opportunityScanner .action-advice .advice-badge{min-width:100px!important;padding:6px 8px!important;font-size:8px!important}
+#opportunityScanner .action-advice .advice-copy{font-size:8px!important;line-height:1.35!important}
+
+/* score = large number, small footprint */
+#opportunityScanner .score-panel{margin-top:5px!important;display:grid!important;grid-template-columns:minmax(190px,.58fr) minmax(0,2.42fr)!important;gap:4px!important;padding:5px!important}
+#opportunityScanner .score-main{padding:9px 10px!important;min-height:0!important;justify-content:center!important}
+#opportunityScanner .score-kicker{font-size:6.8px!important;letter-spacing:.14em!important}
+#opportunityScanner .score-number{margin-top:5px!important;font-size:clamp(28px,3vw,42px)!important;line-height:.95!important}
+#opportunityScanner .score-number.off{font-size:clamp(17px,1.6vw,23px)!important}
+#opportunityScanner .score-grade{margin-top:5px!important;font-size:8px!important;letter-spacing:.10em!important}
+#opportunityScanner .score-note{margin-top:4px!important;font-size:6.8px!important;line-height:1.3!important}
+#opportunityScanner .score-components{display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;gap:4px!important}
+#opportunityScanner .score-row{padding:7px 8px!important;min-height:0!important}
+#opportunityScanner .score-row:last-child{grid-column:auto!important}
+#opportunityScanner .score-row-head{font-size:6.6px!important;letter-spacing:.075em!important}
+#opportunityScanner .score-row-head b{font-size:8.5px!important}
+#opportunityScanner .score-track{height:4px!important;margin-top:6px!important}
+#opportunityScanner .score-row small{margin-top:5px!important;font-size:6.5px!important;line-height:1.25!important}
+#opportunityScanner .qual-summary,#opportunityScanner .opp-net-summary{margin-top:5px!important;padding:8px 10px!important;gap:8px!important}
+#opportunityScanner .qual-summary .big{font-size:clamp(18px,1.8vw,26px)!important}
+#opportunityScanner .opp-net-summary .big{font-size:clamp(22px,2.3vw,32px)!important}
+#opportunityScanner .qual-summary .foot,#opportunityScanner .opp-net-summary .foot{padding-top:5px!important;font-size:6.8px!important;line-height:1.3!important}
+
+@media(max-width:1500px){
+ .opp-controls{grid-template-columns:repeat(5,minmax(0,1fr))!important}.opp-control.ctl-rule{grid-column:1/-1!important}
+ .opp-kpis{grid-template-columns:repeat(4,minmax(0,1fr))!important;padding:0 5px!important}.opp-kpi{border-bottom:1px solid #192630!important}.opp-kpi:nth-child(4n){border-right:0!important}
+ #opportunityScanner .score-components{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+}
+@media(max-width:1050px){
+ .opp-head-v2{grid-template-columns:1fr!important;gap:5px!important}.opp-head-intel{justify-items:start;margin-left:0}.engine-chips{justify-content:flex-start}.opp-head-note{text-align:left;max-width:none}
+ .opp-controls{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+ .opp-kpis{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+ #opportunityScanner .score-panel{grid-template-columns:1fr!important}#opportunityScanner .score-main{display:grid!important;grid-template-columns:auto auto minmax(0,1fr);align-items:center;gap:8px!important}#opportunityScanner .score-number,#opportunityScanner .score-grade,#opportunityScanner .score-note{margin-top:0!important}
+ #opportunityScanner .score-components{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+}
+@media(max-width:700px){
+ .opp-head-v2{padding:7px!important}.layer-mark{width:34px;height:34px;flex-basis:34px}.layer-mark span{font-size:11px}.opp-head-v2 .title{font-size:15px!important}.opp-subtitle{font-size:6.2px}.opp-head-note{display:none}.engine-chip{font-size:6px;padding:3px 5px}
+ .opp-controls{grid-template-columns:1fr 1fr!important;gap:3px!important;padding:4px!important}.opp-control{padding:5px!important}.opp-control.ctl-rule{grid-column:1/-1!important}
+ .opp-kpis{grid-template-columns:1fr 1fr!important;padding:0 4px!important}.opp-kpi{padding:6px 7px!important}.opp-kpi .v{font-size:18px!important}
+ #opportunityScanner .opp-detail-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+ #opportunityScanner .score-components{grid-template-columns:1fr 1fr!important}
+ #opportunityScanner .score-main{grid-template-columns:1fr!important;gap:3px!important}
+}
+@media(max-width:480px){
+ .layer-mark{display:none}.engine-arrow{display:none}.engine-chips{flex-wrap:wrap}.opp-controls{grid-template-columns:1fr!important}.opp-kpis{grid-template-columns:1fr 1fr!important}.opp-kpi .label{font-size:6px!important}.opp-kpi .v{font-size:16px!important}
+ #opportunityScanner .score-components{grid-template-columns:1fr!important}
+}
+
+
+/* ===== L6B RANKED OPPORTUNITY BOARD ===== */
+.rank-board{margin:7px;border:1px solid rgba(94,207,255,.25);background:linear-gradient(180deg,rgba(12,20,29,.98),rgba(6,10,15,.99));box-shadow:inset 3px 0 0 #5ecfff,0 10px 30px rgba(0,0,0,.18)}
+.rank-head{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center;padding:9px 10px;border-bottom:1px solid rgba(94,207,255,.14);background:linear-gradient(90deg,rgba(94,207,255,.06),transparent 45%)}
+.rank-title-wrap{display:flex;align-items:center;gap:9px}.rank-mark{display:grid;place-items:center;width:42px;height:42px;border:1px solid rgba(94,207,255,.35);background:#07111a;box-shadow:inset 0 0 20px rgba(94,207,255,.06)}.rank-mark b{font:950 12px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:#78ddff;letter-spacing:.06em}.rank-head .kicker{font-size:7px;letter-spacing:.16em;color:#78ddff}.rank-head .title{font-size:15px;font-weight:950;letter-spacing:.015em}.rank-sub{margin-top:2px;font-size:7px;color:var(--muted);letter-spacing:.06em}.rank-tools{display:flex;gap:6px;align-items:center}.rank-tools label{font-size:7px;color:var(--muted);font-weight:900;letter-spacing:.08em}.rank-tools select{height:30px;min-width:150px;background:#071019;border:1px solid rgba(94,207,255,.22);color:#dfeaf2;font:800 9px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;padding:0 8px}.rank-cards{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:5px;padding:6px;border-bottom:1px solid rgba(94,207,255,.12)}.rank-card{position:relative;min-height:78px;padding:8px 9px;border:1px solid var(--line);background:#080d12;overflow:hidden}.rank-card:before{content:"";position:absolute;inset:0 auto 0 0;width:2px;background:var(--accent)}.rank-card.verified:before{background:var(--green)}.rank-card.dual:before{background:#74e2bd}.rank-card.fast:before{background:#b68cff}.rank-card.net:before{background:#58d7ff}.rank-card.cost:before{background:var(--amber)}.rank-card .rc-label{font-size:6.8px;color:var(--muted);font-weight:900;letter-spacing:.12em}.rank-card .rc-symbol{margin-top:6px;font:950 17px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:#eef6fb;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.rank-card .rc-value{margin-top:2px;font:900 11px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}.rank-card .rc-meta{margin-top:3px;font-size:6.8px;color:var(--muted);line-height:1.35}.rank-table-wrap{max-height:39vh;overflow:auto;scrollbar-gutter:stable both-edges;background:#060b10}.rank-table{width:100%;min-width:1500px;border-collapse:collapse}.rank-table th{position:sticky;top:0;z-index:3;background:#0b1219;color:#8094a3;font:900 7px Inter,Segoe UI,sans-serif;letter-spacing:.09em;text-transform:uppercase;padding:7px 7px;border-bottom:1px solid rgba(94,207,255,.16);white-space:nowrap}.rank-table td{padding:7px;border-bottom:1px solid rgba(255,255,255,.045);font:800 9px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;white-space:nowrap}.rank-table tr{cursor:pointer}.rank-table tr:hover td{background:rgba(94,207,255,.035)}.rank-table tr.selected td{background:rgba(94,207,255,.055);box-shadow:inset 0 1px 0 rgba(94,207,255,.10),inset 0 -1px 0 rgba(94,207,255,.10)}.rank-num{display:inline-grid;place-items:center;min-width:25px;height:25px;border:1px solid rgba(255,255,255,.09);background:#090f15;color:#9fb3c0;font-weight:950}.rank-num.top{border-color:rgba(94,207,255,.38);color:#78ddff;box-shadow:0 0 14px rgba(94,207,255,.08)}.rank-symbol{font-size:11px;font-weight:950;color:#f3f8fb}.rank-badge{display:inline-flex;align-items:center;padding:3px 6px;border:1px solid var(--line);font:950 7px Inter,Segoe UI,sans-serif;letter-spacing:.06em}.rank-badge.verified{color:var(--green);border-color:rgba(102,209,158,.28);background:rgba(102,209,158,.05)}.rank-badge.market{color:#76d5f6;border-color:rgba(94,207,255,.25);background:rgba(94,207,255,.04)}.rank-badge.watch{color:var(--amber);border-color:rgba(238,183,76,.27);background:rgba(238,183,76,.04)}.rank-score{font:950 14px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}.rank-route{font-size:8px}.rank-route .long{color:var(--green)}.rank-route .short{color:var(--red)}.rank-foot{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:6px 8px;color:var(--muted);font-size:6.7px;letter-spacing:.05em;border-top:1px solid rgba(94,207,255,.08)}
+
+.rank-badge.screen{color:var(--amber);border-color:rgba(255,190,92,.32);background:rgba(255,190,92,.075)}
+@media(max-width:1250px){.rank-cards{grid-template-columns:repeat(3,minmax(0,1fr))}.rank-head{grid-template-columns:1fr}.rank-tools{justify-content:flex-start}}
+@media(max-width:700px){.rank-cards{grid-template-columns:repeat(2,minmax(0,1fr))}.rank-tools{display:grid;grid-template-columns:1fr 1fr}.rank-tools select{min-width:0;width:100%}.rank-mark{display:none}.rank-head{padding:8px}.rank-card{min-height:68px}.rank-card .rc-symbol{font-size:15px}}
+@media(max-width:460px){.rank-cards{grid-template-columns:1fr 1fr}.rank-tools{grid-template-columns:1fr}.rank-sub{display:none}}
+
+
+
+/* ===== L7 PROFESSIONAL DECISION DASHBOARD ===== */
+.decision-dashboard{margin:7px;border:1px solid rgba(92,231,190,.25);background:linear-gradient(180deg,rgba(8,17,22,.99),rgba(5,9,13,.99));box-shadow:inset 3px 0 0 #5ce7be,0 14px 34px rgba(0,0,0,.20)}
+.l7-head{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;align-items:center;padding:10px 11px;border-bottom:1px solid rgba(92,231,190,.14);background:linear-gradient(90deg,rgba(92,231,190,.065),transparent 52%)}
+.l7-title-wrap{display:flex;align-items:center;gap:9px}.l7-mark{display:grid;place-items:center;width:44px;height:44px;border:1px solid rgba(92,231,190,.34);background:#07120f;box-shadow:inset 0 0 22px rgba(92,231,190,.06)}.l7-mark b{font:950 13px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:#72ecc8;letter-spacing:.07em}.l7-head .kicker{font-size:7px;letter-spacing:.16em;color:#72ecc8}.l7-head .title{font-size:16px;font-weight:950;letter-spacing:.012em}.l7-sub{margin-top:2px;font-size:7px;color:var(--muted);letter-spacing:.07em}.l7-chips{display:flex;gap:5px;justify-content:flex-end;flex-wrap:wrap}.l7-chip{padding:4px 7px;border:1px solid var(--line);font:900 6.8px Inter,Segoe UI,sans-serif;letter-spacing:.08em}.l7-chip.gate{color:var(--green);border-color:rgba(102,209,158,.27);background:rgba(102,209,158,.05)}.l7-chip.score{color:#75d8f8;border-color:rgba(94,207,255,.25);background:rgba(94,207,255,.04)}.l7-chip.depth{color:#c49bff;border-color:rgba(190,138,255,.27);background:rgba(190,138,255,.04)}
+.l7-hero{display:grid;grid-template-columns:1.35fr .9fr .9fr;gap:6px;padding:6px;border-bottom:1px solid rgba(92,231,190,.10)}.l7-card{position:relative;min-height:138px;padding:10px;border:1px solid var(--line);background:#070d12;overflow:hidden}.l7-card:before{content:"";position:absolute;left:0;top:0;bottom:0;width:2px;background:#5ecfff}.l7-card.top:before{background:#5ce7be}.l7-card.decision:before{background:var(--amber)}.l7-card.readiness:before{background:#b98cff}.l7-label{font-size:6.8px;color:var(--muted);font-weight:950;letter-spacing:.13em;text-transform:uppercase}.l7-topline{display:flex;align-items:flex-end;justify-content:space-between;gap:10px;margin-top:6px}.l7-symbol{font:950 clamp(24px,3vw,38px) ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:#f1f8fb;line-height:1}.l7-scorebox{text-align:right}.l7-score{font:950 20px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:#79dcfb}.l7-tier{margin-top:2px;font-size:6.7px;color:var(--muted);letter-spacing:.08em}.l7-badges{display:flex;gap:5px;flex-wrap:wrap;margin-top:8px}.l7-badge{padding:3px 6px;border:1px solid var(--line);font:900 7px Inter,Segoe UI,sans-serif;letter-spacing:.06em}.l7-badge.dual{color:var(--green);border-color:rgba(102,209,158,.28);background:rgba(102,209,158,.05)}.l7-badge.spread{color:#78dafa;border-color:rgba(94,207,255,.26)}.l7-badge.route{color:#d6e1e8}.l7-metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px;margin-top:8px}.l7-metric{padding:6px 7px;border:1px solid rgba(255,255,255,.055);background:#060b0f}.l7-metric span{display:block;font-size:6.3px;color:var(--muted);letter-spacing:.08em}.l7-metric b{display:block;margin-top:4px;font:900 10px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}.l7-decision{margin-top:9px;font:950 clamp(20px,2.5vw,31px) ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;line-height:1.02}.l7-decision.enter{color:var(--green)}.l7-decision.watch{color:var(--amber)}.l7-decision.reject{color:var(--red)}.l7-decision.verify{color:#78dafa}.l7-decision.wait{color:var(--muted)}.l7-reason{margin-top:7px;font-size:7.2px;color:#adbdc7;line-height:1.5;letter-spacing:.035em}.l7-focus{margin-top:6px;font:900 8px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:#dce9ef}.l7-ready-grid{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-top:8px}.l7-ready-item{padding:6px;border:1px solid rgba(255,255,255,.055);background:#060b10}.l7-ready-item span{display:block;font-size:6.2px;color:var(--muted);letter-spacing:.07em}.l7-ready-item b{display:block;margin-top:3px;font:900 8.7px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;white-space:normal;word-break:break-word}.l7-ready-item.good b{color:var(--green)}.l7-ready-item.warn b{color:var(--amber)}.l7-ready-item.bad b{color:var(--red)}
+.l7-mid{display:grid;grid-template-columns:1fr 1.35fr;gap:6px;padding:0 6px 6px}.l7-timeline,.l7-top5{border:1px solid var(--line);background:#070c11}.l7-section-head{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:7px 8px;border-bottom:1px solid rgba(255,255,255,.055)}.l7-section-head b{font-size:8px;letter-spacing:.08em}.l7-section-head span{font-size:6.5px;color:var(--muted)}.l7-time-grid{display:grid;grid-template-columns:1fr 1fr;gap:5px;padding:6px}.l7-time{padding:7px;border:1px solid rgba(255,255,255,.055);background:#060b10}.l7-time .venue{font-size:6.6px;color:var(--muted);font-weight:900;letter-spacing:.1em}.l7-time .rate{margin-top:4px;font:950 13px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}.l7-time .next{margin-top:3px;font:800 8px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:#c7d7df}.l7-time .position{margin-top:3px;font-size:6.6px;color:var(--muted)}.l7-time-foot{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;padding:0 6px 6px}.l7-time-foot div{padding:6px;border:1px solid rgba(255,255,255,.045);background:#060b10}.l7-time-foot span{display:block;font-size:6px;color:var(--muted)}.l7-time-foot b{display:block;margin-top:3px;font:900 8.5px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}.l7-top5 table{width:100%;border-collapse:collapse}.l7-top5 th{padding:6px;background:#091118;color:#758a98;font:900 6.3px Inter,Segoe UI,sans-serif;letter-spacing:.08em;text-transform:uppercase}.l7-top5 td{padding:6px;border-top:1px solid rgba(255,255,255,.045);font:850 8px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;white-space:nowrap}.l7-top5 tr[data-l7-symbol]{cursor:pointer}.l7-top5 tr[data-l7-symbol]:hover td{background:rgba(94,207,255,.035)}.l7-rank{color:#76d9fa;font-weight:950}.l7-top5-symbol{font-size:9.5px;color:#f0f6fa;font-weight:950}.l7-top5-score{font-size:10px;font-weight:950;color:#78dafa}
+.l7-risk{margin:0 6px 6px;padding:8px 10px;border:1px solid var(--line);background:#070c11;display:grid;grid-template-columns:auto 1fr;gap:9px;align-items:center}.l7-risk .tag{padding:4px 7px;font:950 7px Inter,Segoe UI,sans-serif;letter-spacing:.09em;border:1px solid var(--line)}.l7-risk .text{font-size:7.2px;line-height:1.45;color:#b8c7d0;letter-spacing:.035em}.l7-risk.info{border-color:rgba(94,207,255,.24);background:linear-gradient(90deg,rgba(94,207,255,.045),#070c11 35%)}.l7-risk.info .tag{color:#78dafa;border-color:rgba(94,207,255,.28)}.l7-risk.good{border-color:rgba(102,209,158,.25);background:linear-gradient(90deg,rgba(102,209,158,.045),#070c11 35%)}.l7-risk.good .tag{color:var(--green);border-color:rgba(102,209,158,.28)}.l7-risk.warn{border-color:rgba(238,183,76,.28);background:linear-gradient(90deg,rgba(238,183,76,.05),#070c11 35%)}.l7-risk.warn .tag{color:var(--amber);border-color:rgba(238,183,76,.30)}.l7-risk.bad{border-color:rgba(244,104,104,.28);background:linear-gradient(90deg,rgba(244,104,104,.05),#070c11 35%)}.l7-risk.bad .tag{color:var(--red);border-color:rgba(244,104,104,.30)}
+@media(max-width:1180px){.l7-hero{grid-template-columns:1fr 1fr}.l7-card.top{grid-column:1/-1}.l7-mid{grid-template-columns:1fr}.l7-head{grid-template-columns:1fr}.l7-chips{justify-content:flex-start}}
+@media(max-width:700px){.l7-mark{display:none}.l7-head{padding:8px}.l7-head .title{font-size:14px}.l7-hero{grid-template-columns:1fr}.l7-card.top{grid-column:auto}.l7-card{min-height:0}.l7-metrics{grid-template-columns:repeat(2,minmax(0,1fr))}.l7-time-grid{grid-template-columns:1fr}.l7-time-foot{grid-template-columns:1fr 1fr}.l7-risk{grid-template-columns:1fr}.l7-top5{overflow:auto}.l7-top5 table{min-width:680px}}
+
+
+/* ===== L7 TOP 5 SPACE-EFFICIENT / NO-SCROLL OVERRIDE ===== */
+.l7-mid{grid-template-columns:minmax(285px,.72fr) minmax(0,2.28fr);gap:4px;padding:0 4px 4px;align-items:stretch}
+.l7-timeline,.l7-top5{min-width:0;overflow:visible}
+.l7-section-head{min-height:34px;padding:4px 6px;gap:6px}
+.l7-section-head b{font-size:11px;line-height:1;font-weight:950;letter-spacing:.035em}
+.l7-section-head span{font-size:7.5px;line-height:1.1;letter-spacing:.03em}
+.l7-top5{display:flex;flex-direction:column;background:linear-gradient(180deg,#081017,#060b0f)}
+.l7-top5-head{background:linear-gradient(90deg,rgba(94,207,255,.07),transparent 70%)}
+.l7-top5-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:3px;padding:3px;min-width:0;overflow:visible}
+.l7-short-card{min-width:0;cursor:pointer;padding:5px 6px 6px;border:1px solid rgba(255,255,255,.07);background:linear-gradient(180deg,#09131b,#060b10);box-shadow:inset 0 2px 0 rgba(94,207,255,.10);transition:background .12s ease,border-color .12s ease}
+.l7-short-card:hover{background:#0a1720;border-color:rgba(94,207,255,.32)}
+.l7-short-card.is-first{border-color:rgba(92,231,190,.32);box-shadow:inset 0 2px 0 rgba(92,231,190,.42)}
+.l7-short-top{display:flex;align-items:center;justify-content:space-between;gap:4px;min-height:18px}
+.l7-short-rank{font:950 13px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:#76d9fa;line-height:1}
+.l7-short-card.is-first .l7-short-rank{color:#67e7c0}
+.l7-short-top .rank-badge{max-width:72%;padding:2px 4px;font-size:6.5px;line-height:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.l7-short-main{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:5px;margin-top:3px;padding-bottom:4px;border-bottom:1px solid rgba(255,255,255,.055)}
+.l7-short-symbol{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font:950 clamp(15px,1.5vw,21px) ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:#f2f8fb;line-height:1}
+.l7-short-score{text-align:right;line-height:1}.l7-short-score span{display:block;font:900 5.8px Inter,Segoe UI,sans-serif;color:#6f8593;letter-spacing:.08em}.l7-short-score b{display:block;margin-top:2px;font:950 clamp(16px,1.35vw,20px) ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:#7edfff}
+.l7-short-metrics{display:grid;grid-template-columns:1fr 1fr;gap:3px;margin-top:4px}
+.l7-short-metrics>div{min-width:0;padding:3px 4px;background:#050a0e;border:1px solid rgba(255,255,255,.04)}
+.l7-short-metrics span{display:block;font:900 5.7px Inter,Segoe UI,sans-serif;color:#728694;letter-spacing:.06em;white-space:nowrap}
+.l7-short-metrics b{display:block;margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font:950 clamp(10px,.95vw,14px) ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;line-height:1.05}
+.l7-short-route{display:flex;align-items:center;justify-content:center;gap:4px;margin-top:4px;padding-top:3px;font:900 7.5px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;white-space:nowrap}.l7-short-route i{font-style:normal;color:#5c707d}.l7-short-route .long{color:var(--green)}.l7-short-route .short{color:var(--red)}
+.l7-short-empty{grid-column:1/-1;display:grid;place-items:center;min-height:88px;font:900 11px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:var(--muted);letter-spacing:.05em}
+/* Compress adjacent funding timeline so both blocks use vertical space efficiently. */
+.l7-time-grid{gap:3px;padding:3px}.l7-time{padding:5px}.l7-time .venue{font-size:7px}.l7-time .rate{margin-top:3px;font-size:15px}.l7-time .next{font-size:9px}.l7-time .position{font-size:7px}.l7-time-foot{gap:3px;padding:0 3px 3px}.l7-time-foot div{padding:4px}.l7-time-foot span{font-size:6.3px}.l7-time-foot b{font-size:9.5px}
+/* Kill the old horizontal-scroll behavior explicitly. */
+.l7-top5 table{display:none!important}.l7-top5{overflow-x:hidden!important;overflow-y:visible!important}
+@media(max-width:1180px){.l7-mid{grid-template-columns:1fr;gap:4px;padding:0 4px 4px}.l7-top5-grid{grid-template-columns:repeat(5,minmax(0,1fr))}}
+@media(max-width:900px){.l7-top5-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.l7-short-symbol{font-size:18px}.l7-short-score b{font-size:18px}}
+@media(max-width:700px){.l7-top5{overflow:visible!important}.l7-top5-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:3px}.l7-section-head{padding:4px 5px}.l7-section-head b{font-size:10.5px}.l7-section-head span{font-size:7px}.l7-short-card{padding:5px}.l7-short-symbol{font-size:18px}.l7-short-score b{font-size:18px}}
+@media(max-width:460px){.l7-top5-grid{grid-template-columns:1fr}.l7-short-card{display:grid;grid-template-columns:auto minmax(0,1fr);grid-template-areas:"top main" "metrics metrics" "route route";column-gap:6px}.l7-short-top{grid-area:top;display:grid;align-content:center;justify-items:start}.l7-short-main{grid-area:main;margin-top:0}.l7-short-metrics{grid-area:metrics}.l7-short-route{grid-area:route}.l7-short-top .rank-badge{max-width:100%}}
+
+/* ===== DIRECT OPPORTUNITY SELECTOR ===== */
+.opp-detail.visual-audit>.opp-detail-head{grid-template-columns:minmax(0,1fr) minmax(300px,.72fr);display:grid!important;align-items:center!important}
+.opp-audit-heading{min-width:0}
+.opp-symbol-selector{display:grid;grid-template-columns:minmax(150px,1fr) auto;gap:5px;align-items:end;padding:5px;border:1px solid rgba(94,207,255,.18);background:#060d12;min-width:0}
+.opp-symbol-selector label{grid-column:1/-1;font:950 6.3px Inter,Segoe UI,sans-serif;color:#76d9fa;letter-spacing:.12em;text-transform:uppercase}
+.opp-symbol-selector input{width:100%;min-width:0;height:34px;padding:0 9px;border:1px solid rgba(94,207,255,.28);background:#07121a;color:#f1f8fb;font:950 14px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;text-transform:uppercase}
+.opp-symbol-selector button{height:34px;padding:0 12px;border:1px solid rgba(92,231,190,.34);background:rgba(92,231,190,.075);color:#8ce9c6;font:950 8px Inter,Segoe UI,sans-serif;letter-spacing:.08em;white-space:nowrap}
+.opp-symbol-selector .selector-status{grid-column:1/-1;min-height:12px;font:850 6.4px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:#718896;letter-spacing:.04em}
+.opp-symbol-selector .selector-status.good{color:var(--green)}.opp-symbol-selector .selector-status.bad{color:var(--red)}.opp-symbol-selector .selector-status.warn{color:var(--amber)}
+@media(max-width:900px){.opp-detail.visual-audit>.opp-detail-head{grid-template-columns:1fr!important}.opp-symbol-selector{margin-top:5px}}
+@media(max-width:520px){.opp-symbol-selector{grid-template-columns:1fr}.opp-symbol-selector button{width:100%}}
+
+
+/* ===== L5B FINANCIAL INTERPRETATION IDENTITY · V3 ===== */
+.opp-detail.visual-audit{padding:0 7px 7px;background:linear-gradient(180deg,#070c10,#060a0e)}
+.opp-detail.visual-audit>.opp-detail-head{margin:0 -7px 7px;padding:10px 12px;border-bottom:1px solid rgba(115,216,248,.15);background:linear-gradient(90deg,rgba(82,185,216,.075),transparent 50%)}
+.opp-detail.visual-audit>.opp-detail-head .title{font-size:15px;letter-spacing:.05em;text-transform:none}
+.opp-detail.visual-audit>.opp-detail-head .note{font-size:7.4px;max-width:760px}
+.l5-fin-audit{display:grid;gap:5px}
+.l5-fin-audit .label{font:900 6.7px Inter,Segoe UI,sans-serif;color:#78909e;letter-spacing:.095em;text-transform:uppercase}
+.l5-identity-row{display:grid;grid-template-columns:1.35fr 1.35fr 1fr 1fr .72fr 1.15fr;border:1px solid #1b2933;background:#070d12}
+.l5-identity-row>div{min-width:0;padding:8px 10px;border-right:1px solid #18242d;display:flex;flex-direction:column;justify-content:center;min-height:66px}
+.l5-identity-row>div:last-child{border-right:0}
+.l5-id-symbol{box-shadow:inset 3px 0 0 #5ecfff;background:linear-gradient(90deg,rgba(94,207,255,.07),transparent)}
+.l5-id-symbol b{margin-top:5px;font:950 clamp(22px,2.4vw,33px) ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;line-height:1;color:#f1f8fb;letter-spacing:-.05em}
+.l5-id-state{box-shadow:inset 3px 0 0 #a99cff}
+.l5-id-state b{margin-top:5px;font:950 clamp(13px,1.35vw,18px) ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;line-height:1.08}
+.l5-id-state.tone-green{box-shadow:inset 3px 0 0 var(--green);background:rgba(102,209,158,.05)}.l5-id-state.tone-green b{color:var(--green)}
+.l5-id-state.tone-amber{box-shadow:inset 3px 0 0 var(--amber);background:rgba(224,182,101,.05)}.l5-id-state.tone-amber b{color:var(--amber)}
+.l5-id-state.tone-red{box-shadow:inset 3px 0 0 var(--red);background:rgba(238,124,136,.055)}.l5-id-state.tone-red b{color:var(--red)}
+.l5-id-state.tone-blue{box-shadow:inset 3px 0 0 var(--accent);background:rgba(82,185,216,.05)}.l5-id-state.tone-blue b{color:#bdeeff}
+.l5-id-route b,.l5-id-mini b{margin-top:5px;font:950 14px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;white-space:normal;word-break:break-word}
+.l5-id-route.long{background:rgba(102,209,158,.035)}.l5-id-route.long b{color:var(--green)}
+.l5-id-route.short{background:rgba(238,124,136,.035)}.l5-id-route.short b{color:var(--red)}
+.l5-id-mini.type b{color:#c8c0ff}
+.l5-logic-row{display:grid;grid-template-columns:1.4fr 1fr;gap:5px}
+.l5-logic-row>div{padding:7px 9px;border:1px solid #1a2630;background:#070c11;min-width:0}
+.l5-logic-row b{display:block;margin-top:4px;font:850 9px/1.35 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:#c7d5dd;white-space:normal;word-break:break-word}
+.l5-logic-main{box-shadow:inset 2px 0 0 #a99cff}.l5-logic-threshold{box-shadow:inset 2px 0 0 #5ecfff}
+.l5-section-title{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:2px;padding:5px 8px;border:1px solid #1b2832;background:#081018}
+.l5-section-title span{font:950 8px Inter,Segoe UI,sans-serif;letter-spacing:.12em;text-transform:uppercase}.l5-section-title small{font:850 6.2px Inter,Segoe UI,sans-serif;color:#6d8290;letter-spacing:.10em}
+.l5-section-title.blue span{color:#78dafa}.l5-section-title.money span{color:#8ee6bb}.l5-section-title.purple span{color:#b9a9ff}
+.l5-funding-row{display:grid;grid-template-columns:1.15fr 1.25fr 1.25fr .9fr .7fr .7fr;border:1px solid #1a2730;background:#060c10}
+.l5-funding-row>div{padding:8px 9px;border-right:1px solid #17232c;min-width:0}.l5-funding-row>div:last-child{border-right:0}
+.l5-funding-row b{display:block;margin-top:5px;font:950 13px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;white-space:normal;word-break:break-word}.l5-funding-row small{display:block;margin-top:4px;font:800 7px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:#8ba0ad}
+.l5-funding-primary b{font-size:18px;color:#9fe7ff}.l5-receive.long b{color:var(--green)}.l5-receive.short b{color:var(--green)}
+.l5-econ-row{display:grid;grid-template-columns:1.16fr .95fr 1.16fr .95fr .72fr;gap:5px}
+.l5-econ-card{position:relative;min-width:0;min-height:92px;padding:9px 10px;border:1px solid #1b2933;background:#070d12;display:flex;flex-direction:column;justify-content:center;overflow:hidden}
+.l5-econ-card:before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:#5ecfff}.l5-econ-card .eyebrow{font:950 6.4px Inter,Segoe UI,sans-serif;letter-spacing:.14em;color:#718795}.l5-econ-card .label{margin-top:5px}.l5-econ-card b{margin-top:5px;font:950 clamp(20px,2.25vw,31px) ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;line-height:1;letter-spacing:-.045em;white-space:normal;word-break:break-word}
+.l5-econ-card.revenue{background:linear-gradient(135deg,rgba(102,209,158,.085),#070d12 65%);border-color:rgba(102,209,158,.24)}.l5-econ-card.revenue:before{background:var(--green)}.l5-econ-card.revenue b{color:#8ce9b8}
+.l5-econ-card.expense{background:linear-gradient(135deg,rgba(224,182,101,.07),#070d12 65%);border-color:rgba(224,182,101,.22)}.l5-econ-card.expense:before{background:var(--amber)}.l5-econ-card.expense b{color:var(--amber);font-size:clamp(17px,1.8vw,25px)}
+.l5-econ-card.net:before,.l5-econ-card.net-pct:before{background:#a99cff}.l5-econ-card.net.tone-green,.l5-econ-card.net-pct.tone-green{background:rgba(102,209,158,.06);border-color:rgba(102,209,158,.28)}.l5-econ-card.net.tone-green:before,.l5-econ-card.net-pct.tone-green:before{background:var(--green)}.l5-econ-card.net.tone-green b,.l5-econ-card.net-pct.tone-green b{color:var(--green)}
+.l5-econ-card.net.tone-red,.l5-econ-card.net-pct.tone-red{background:rgba(238,124,136,.06);border-color:rgba(238,124,136,.28)}.l5-econ-card.net.tone-red:before,.l5-econ-card.net-pct.tone-red:before{background:var(--red)}.l5-econ-card.net.tone-red b,.l5-econ-card.net-pct.tone-red b{color:var(--red)}
+.l5-econ-card.net-pct b{font-size:clamp(17px,1.85vw,25px)}
+.l5-exec-strip,.l5-be-strip{display:grid;border:1px solid #1a2730;background:#060b10}.l5-exec-strip{grid-template-columns:repeat(5,1fr)}.l5-be-strip{grid-template-columns:1.05fr .7fr .8fr .85fr 1fr 1.15fr}
+.l5-exec-strip>div,.l5-be-strip>div{padding:6px 8px;border-right:1px solid #17232c;min-width:0}.l5-exec-strip>div:last-child,.l5-be-strip>div:last-child{border-right:0}
+.l5-exec-strip span,.l5-be-strip span{display:block;font:850 6.4px Inter,Segoe UI,sans-serif;color:#718593;letter-spacing:.08em;text-transform:uppercase}.l5-exec-strip b,.l5-be-strip b{display:block;margin-top:4px;font:950 10px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;white-space:normal;word-break:break-word}.l5-be-strip .hero b{font-size:15px;color:#cfc7ff}.l5-be-strip .funding b{color:var(--green)}
+.finance-breakdown-head{margin-top:7px;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:9px 11px;border:1px solid rgba(102,209,158,.28);background:linear-gradient(90deg,rgba(102,209,158,.075),rgba(82,185,216,.045) 55%,rgba(7,12,17,.98));box-shadow:inset 3px 0 0 var(--green)}
+.finance-breakdown-head .kicker{font:950 6.6px Inter,Segoe UI,sans-serif;letter-spacing:.16em;color:#7cd9b1;text-transform:uppercase}.finance-breakdown-head .title{margin-top:2px;font-size:15px;font-weight:950;letter-spacing:.03em;text-transform:none}.finance-breakdown-head .formula{font:900 8px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:#9fb1bc;white-space:nowrap}.finance-breakdown-head .formula i{font-style:normal;color:var(--red);padding:0 5px}.finance-breakdown-head .formula strong{color:#a8efc8;padding-left:5px}
+.finance-statement{display:grid;gap:5px;margin-top:5px}.finance-meta{display:grid;grid-template-columns:1.2fr 1fr .8fr .8fr;border:1px solid #1a2832;background:#060c10}.finance-meta>div{padding:6px 8px;border-right:1px solid #17232c;min-width:0}.finance-meta>div:last-child{border-right:0}.finance-meta span{display:block;font:850 6.2px Inter,Segoe UI,sans-serif;color:#708593;letter-spacing:.08em;text-transform:uppercase}.finance-meta b{display:block;margin-top:3px;font:950 9.5px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;white-space:normal;word-break:break-word;color:#cbd8df}
+.finance-columns{display:grid;grid-template-columns:1.12fr 1.12fr .86fr;gap:5px}.finance-col{min-width:0;border:1px solid #1b2933;background:#070d12;display:flex;flex-direction:column}.finance-col.revenue{border-color:rgba(102,209,158,.25);box-shadow:inset 3px 0 0 var(--green)}.finance-col.costs{border-color:rgba(238,124,136,.24);box-shadow:inset 3px 0 0 var(--red)}.finance-col.result{border-color:rgba(169,156,255,.27);box-shadow:inset 3px 0 0 #a99cff;background:linear-gradient(145deg,rgba(169,156,255,.055),#070d12 62%)}
+.finance-col-head{display:flex;gap:8px;align-items:center;padding:7px 9px;border-bottom:1px solid #18242d}.finance-col-head>span{display:grid;place-items:center;width:25px;height:25px;border:1px solid #253541;font:950 8px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:#8499a6}.finance-col-head b{display:block;font:950 9px Inter,Segoe UI,sans-serif;letter-spacing:.08em;text-transform:uppercase}.finance-col-head small{display:block;margin-top:2px;font-size:6.4px;color:#718593}.finance-col.revenue .finance-col-head b{color:#89e2b4}.finance-col.costs .finance-col-head b{color:#f08e99}.finance-col.result .finance-col-head b{color:#c7bdff}
+.finance-hero{padding:10px 11px;border-bottom:1px solid #18242d}.finance-hero span{display:block;font:900 6.8px Inter,Segoe UI,sans-serif;color:#77909d;letter-spacing:.10em;text-transform:uppercase}.finance-hero b{display:block;margin-top:6px;font:950 clamp(25px,2.8vw,39px) ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;line-height:1;letter-spacing:-.055em}.finance-hero.positive b{color:#8ce9b8}.finance-hero.negative b{color:#f08e99}
+.finance-line{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;align-items:center;padding:7px 10px;border-bottom:1px solid #152129}.finance-line span{font:850 7px Inter,Segoe UI,sans-serif;color:#8396a2}.finance-line b{font:950 11px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}.finance-line.tone-green b{color:var(--green)}.finance-line.tone-red b{color:var(--red)}.finance-line.paid b{color:var(--red)}.finance-line.major b{color:#f29ca5;font-size:13px}
+.finance-subtotal{margin-top:auto;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;align-items:center;padding:9px 10px;background:rgba(102,209,158,.055);border-top:1px solid rgba(102,209,158,.17)}.finance-subtotal span{font:950 7px Inter,Segoe UI,sans-serif;color:#80b89c;letter-spacing:.06em}.finance-subtotal b{font:950 16px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:var(--green)}
+.finance-driver{margin-top:auto;padding:8px 10px;background:rgba(224,182,101,.045);border-top:1px solid rgba(224,182,101,.14)}.finance-driver span{display:block;font:900 6.5px Inter,Segoe UI,sans-serif;color:#9f8961;letter-spacing:.08em;text-transform:uppercase}.finance-driver b{display:block;margin-top:4px;font:900 9px/1.3 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:var(--amber);white-space:normal;word-break:break-word}
+.finance-net{flex:1;display:flex;flex-direction:column;justify-content:center;padding:14px 12px;min-height:160px}.finance-net span{font:950 7px Inter,Segoe UI,sans-serif;color:#9187c8;letter-spacing:.10em;text-transform:uppercase}.finance-net b{display:block;margin-top:8px;font:950 clamp(29px,3.5vw,50px) ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;line-height:.95;letter-spacing:-.065em}.finance-net small{display:block;margin-top:8px;font-size:7px;color:#7e8e9a;line-height:1.45}.finance-net.tone-green b{color:#8ce9b8}.finance-net.tone-red b{color:#f08e99}.finance-net.tone-neutral b{color:#d3ccff}
+.finance-result-rule{padding:9px 10px;border-top:1px solid #1c2832;background:#060b10}.finance-result-rule span{display:block;font:850 6.3px Inter,Segoe UI,sans-serif;color:#708390;letter-spacing:.08em;text-transform:uppercase}.finance-result-rule b{display:block;margin-top:4px;font:900 7.5px/1.35 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:#9aacb7}
+.finance-diagnostics{display:grid;grid-template-columns:1.35fr repeat(3,1fr);border:1px solid rgba(169,156,255,.20);background:#070c12}.finance-diagnostics>div{padding:6px 8px;border-right:1px solid #19242f;min-width:0}.finance-diagnostics>div:last-child{border-right:0}.diag-head span{display:block;font:950 7px Inter,Segoe UI,sans-serif;color:#b8adf5;letter-spacing:.10em;text-transform:uppercase}.diag-head small{display:block;margin-top:2px;font-size:5.9px;color:#706d8f;line-height:1.3}.finance-diagnostics>div:not(.diag-head) span{display:block;font:850 6.2px Inter,Segoe UI,sans-serif;color:#8078a6;letter-spacing:.06em}.finance-diagnostics>div:not(.diag-head) b{display:block;margin-top:3px;font:950 10px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:#c2b8ff}
+@media(max-width:1180px){.l5-identity-row{grid-template-columns:1.3fr 1.3fr 1fr 1fr}.l5-id-mini{grid-row:2}.l5-funding-row{grid-template-columns:repeat(3,1fr)}.l5-econ-row{grid-template-columns:repeat(3,1fr)}.finance-columns{grid-template-columns:1fr 1fr}.finance-col.result{grid-column:1/-1}.finance-net{min-height:110px}.finance-breakdown-head{align-items:flex-start}.finance-breakdown-head .formula{white-space:normal;text-align:right}}
+@media(max-width:760px){.opp-detail.visual-audit>.opp-detail-head{display:block}.opp-detail.visual-audit>.opp-detail-head .note{text-align:left;margin-top:4px}.l5-identity-row{grid-template-columns:1fr 1fr}.l5-identity-row>div{min-height:58px}.l5-id-symbol b{font-size:24px}.l5-logic-row{grid-template-columns:1fr}.l5-funding-row{grid-template-columns:1fr 1fr}.l5-econ-row{grid-template-columns:1fr 1fr}.l5-econ-card{min-height:78px}.l5-econ-card b{font-size:22px}.l5-exec-strip{grid-template-columns:repeat(2,1fr)}.l5-be-strip{grid-template-columns:repeat(2,1fr)}.finance-breakdown-head{display:block}.finance-breakdown-head .formula{margin-top:6px;text-align:left}.finance-meta{grid-template-columns:1fr 1fr}.finance-columns{grid-template-columns:1fr}.finance-col.result{grid-column:auto}.finance-diagnostics{grid-template-columns:1fr 1fr}.diag-head{grid-column:1/-1}.finance-net b{font-size:36px}}
+@media(max-width:440px){.l5-identity-row,.l5-funding-row,.l5-econ-row{grid-template-columns:1fr}.l5-id-mini{grid-row:auto}.l5-exec-strip,.l5-be-strip,.finance-meta,.finance-diagnostics{grid-template-columns:1fr}.diag-head{grid-column:auto}.finance-meta>div,.finance-diagnostics>div,.l5-exec-strip>div,.l5-be-strip>div{border-right:0;border-bottom:1px solid #17232c}.finance-meta>div:last-child,.finance-diagnostics>div:last-child{border-bottom:0}}
+
+/* ===== L6A ANALYTICS ENGINE · COLLAPSED DETAIL TABLE ===== */
+.l6a-engine-bar{margin:6px 0 0;display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:10px;padding:7px 9px;border:1px solid rgba(169,156,255,.24);background:linear-gradient(90deg,rgba(169,156,255,.065),rgba(82,185,216,.035) 46%,#070c11);box-shadow:inset 3px 0 0 #a99cff}
+.l6a-engine-id{display:flex;align-items:center;gap:8px;min-width:0}.l6a-engine-mark{display:grid;place-items:center;width:34px;height:34px;border:1px solid rgba(169,156,255,.34);background:#0b0e18;color:#cbc3ff;font:950 9px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;letter-spacing:.08em}.l6a-engine-copy{min-width:0}.l6a-engine-copy b{display:block;font:950 10px Inter,Segoe UI,sans-serif;letter-spacing:.08em;color:#e4e0ff;text-transform:uppercase}.l6a-engine-copy span{display:block;margin-top:2px;font:800 6.5px Inter,Segoe UI,sans-serif;color:#776f9e;letter-spacing:.08em;text-transform:uppercase}
+.l6a-engine-state{display:flex;align-items:center;gap:8px;min-width:0}.l6a-live-chip{display:inline-flex;align-items:center;gap:6px;padding:4px 7px;border:1px solid rgba(102,209,158,.25);background:rgba(102,209,158,.045);color:#86e5b3;font:950 6.7px Inter,Segoe UI,sans-serif;letter-spacing:.09em;white-space:nowrap}.l6a-live-chip:before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor;box-shadow:0 0 8px currentColor}.l6a-engine-stats{min-width:0;font:900 8px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:#aab8c1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.l6a-toggle{height:30px;padding:0 10px;border:1px solid rgba(169,156,255,.28);background:#0a0d16;color:#cbc3ff;font:950 7px Inter,Segoe UI,sans-serif;letter-spacing:.09em;border-radius:0;white-space:nowrap}.l6a-toggle:hover{border-color:#a99cff;background:rgba(169,156,255,.07)}.l6a-toggle .arrow{display:inline-block;margin-left:5px;font-size:9px}.l6a-table-details{border-left:1px solid rgba(169,156,255,.14);border-right:1px solid rgba(169,156,255,.14)}.l6a-table-details[hidden]{display:none!important}.l6a-table-details .opp-tablewrap{margin:0}.l6a-table-details .footer{background:#070b10;border-bottom:1px solid rgba(169,156,255,.14)}
+@media(max-width:760px){.l6a-engine-bar{grid-template-columns:1fr auto;gap:6px}.l6a-engine-state{grid-column:1/-1;grid-row:2}.l6a-engine-stats{white-space:normal}.l6a-toggle{grid-column:2;grid-row:1}.l6a-engine-copy span{display:none}}
+@media(max-width:460px){.l6a-engine-mark{width:30px;height:30px}.l6a-engine-copy b{font-size:8.5px}.l6a-live-chip{padding:3px 5px}.l6a-engine-stats{font-size:7px}}
+
+
+
+/* ===== L4 EXECUTION & COST ENGINE · COLLAPSED AUDIT ===== */
+.l4-engine-bar{margin:7px 0 0;display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:10px;padding:7px 9px;border:1px solid rgba(82,185,216,.24);background:linear-gradient(90deg,rgba(82,185,216,.065),rgba(224,182,101,.035) 48%,#070c11);box-shadow:inset 3px 0 0 var(--accent)}
+.l4-engine-id{display:flex;align-items:center;gap:8px;min-width:0}.l4-engine-mark{display:grid;place-items:center;width:34px;height:34px;border:1px solid rgba(82,185,216,.34);background:#07121a;color:#bdeeff;font:950 9px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;letter-spacing:.08em}.l4-engine-copy{min-width:0}.l4-engine-copy b{display:block;font:950 10px Inter,Segoe UI,sans-serif;letter-spacing:.08em;color:#e1f5fc;text-transform:uppercase}.l4-engine-copy span{display:block;margin-top:2px;font:800 6.5px Inter,Segoe UI,sans-serif;color:#668694;letter-spacing:.08em;text-transform:uppercase}
+.l4-engine-state{display:flex;align-items:center;gap:8px;min-width:0}.l4-live-chip{display:inline-flex;align-items:center;gap:6px;padding:4px 7px;border:1px solid rgba(102,209,158,.25);background:rgba(102,209,158,.045);color:#86e5b3;font:950 6.7px Inter,Segoe UI,sans-serif;letter-spacing:.09em;white-space:nowrap}.l4-live-chip:before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor;box-shadow:0 0 8px currentColor}.l4-engine-stats{min-width:0;font:900 8px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:#aab8c1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.l4-toggle{height:30px;padding:0 10px;border:1px solid rgba(82,185,216,.28);background:#071119;color:#bdeeff;font:950 7px Inter,Segoe UI,sans-serif;letter-spacing:.09em;border-radius:0;white-space:nowrap}.l4-toggle:hover{border-color:var(--accent);background:rgba(82,185,216,.07)}.l4-toggle .arrow{display:inline-block;margin-left:5px;font-size:9px}.l4-engine-details[hidden]{display:none!important}.l4-engine-details{margin:0}.l4-engine-details>.scanner{margin-top:0}.l4-engine-details>.details{margin-top:7px}
+@media(max-width:760px){.l4-engine-bar{grid-template-columns:1fr auto;gap:6px}.l4-engine-state{grid-column:1/-1;grid-row:2}.l4-engine-stats{white-space:normal}.l4-toggle{grid-column:2;grid-row:1}.l4-engine-copy span{display:none}}
+@media(max-width:460px){.l4-engine-mark{width:30px;height:30px}.l4-engine-copy b{font-size:8.5px}.l4-live-chip{padding:3px 5px}.l4-engine-stats{font-size:7px}}
 
 </style>
 </head>
 <body>
 <div class="app">
-  <header class="header">
-    <section class="brand">
-      <div class="kicker">Cross-Exchange Funding Monitor</div>
-      <h1>Arbitrage Engine</h1>
-      <div class="sub">LAYER 06A · QUALIFICATION-GATED OPPORTUNITY SCORE · FLEXIBLE HORIZON · DEPTH-VERIFIED ECONOMICS</div>
-    </section>
-    <section class="status">
-      <div class="statusrow"><span><span id="bDot" class="dot offline"></span>BINANCE DATA</span><b id="bState">OFFLINE</b></div>
-      <div class="statusrow"><span><span id="gDot" class="dot offline"></span>BITGET DATA</span><b id="gState">OFFLINE</b></div>
-      <div class="statusrow"><span>L4A QUOTE-READY PAIRS</span><b id="pairs">0</b></div>
-      <div class="statusrow"><span>SELECTED DEPTH</span><b id="depthStateTop">—</b></div>
-      <div class="statusrow"><span>LAST UPDATE</span><b id="sync">—</b></div>
-    </section>
-  </header>
+  <section class="top-console" aria-label="Arbitrage control workspace">
+    <div class="top-console-head">
+      <div class="top-brand">
+        <div class="kicker">Cross-Exchange Funding Monitor</div>
+        <h1>Arbitrage Engine</h1>
+        <div class="sub">LAYER 07 · PROFESSIONAL DECISION WORKSPACE · EXECUTION-GATED · LIVE CROSS-EXCHANGE INTELLIGENCE</div>
+      </div>
+      <div class="live-health">
+        <div class="live-cell feed"><span><span id="bDot" class="dot offline"></span>Binance Feed</span><b id="bState">OFFLINE</b></div>
+        <div class="live-cell feed"><span><span id="gDot" class="dot offline"></span>Bitget Feed</span><b id="gState">OFFLINE</b></div>
+        <div class="live-cell sync"><span>Last Market Update · UTC</span><b id="sync">—</b></div>
+      </div>
+    </div>
 
-  <section class="toolbar">
-    <div class="control"><label>Max budget / leg</label><div><input id="notional" type="number" min="1" step="100" value="10000" style="width:118px"> <span class="micro">USDT</span></div></div>
-    <div class="control"><label>Binance taker fee</label><div><input class="feeinput" id="binFee" type="number" min="0" step="0.001" value="0.0500"> <span class="micro">%</span></div><span class="micro">Public regular-user baseline</span></div>
-    <div class="control"><label>Bitget taker fee</label><div><input class="feeinput" id="bitFee" type="number" min="0" step="0.001" value="0.0600"> <span class="micro">%</span></div><span class="micro">Public non-VIP baseline</span></div>
-    <div class="control"><label>View</label><select id="view"><option value="READY">Quote + sizing candidates</option><option value="FUNDING">Funding complete</option><option value="MATCHED">All matched pairs</option><option value="ALL">All normalized</option></select></div>
-    <div class="control"><label>Update</label><button id="refresh">Refresh market + depth</button></div>
-    <div class="control"><label>Depth scope</label><div class="micro">Full depth is loaded for the selected pair only to protect API limits.</div></div>
-    <div class="control"><label>Search asset</label><input class="searchbox" id="search" placeholder="BTC, ETH, XRP… (USDT optional)" autocomplete="off"></div>
+    <div class="command-rack">
+      <div class="command search"><label>Search Asset</label><div class="command-main"><input class="searchbox" id="search" placeholder="BTC · ETH · XRP · USDT optional" autocomplete="off"></div><div class="assist">Search by base asset or full USDT pair</div></div>
+      <div class="command"><label>Max Budget / Leg</label><div class="command-main"><input id="notional" type="number" min="1" step="100" value="10000"><span class="unit">USDT</span></div><div class="command-summary"><b id="kNom">$10,000</b><small>strict per-leg ceiling</small></div></div>
+      <div class="command"><label>Binance Taker Fee</label><div class="command-main"><input class="feeinput" id="binFee" type="number" min="0" step="0.001" value="0.0500"><span class="unit">%</span></div><div class="command-summary"><b id="kBinFee">0.0500%</b><small>editable profile</small></div></div>
+      <div class="command"><label>Bitget Taker Fee</label><div class="command-main"><input class="feeinput" id="bitFee" type="number" min="0" step="0.001" value="0.0600"><span class="unit">%</span></div><div class="command-summary"><b id="kBitFee">0.0600%</b><small>editable profile</small></div></div>
+      <div class="command"><label>Market View</label><div class="command-main"><select id="view"><option value="READY">Quote + sizing candidates</option><option value="FUNDING">Funding complete</option><option value="MATCHED">All matched pairs</option><option value="ALL">All normalized</option></select></div><div class="assist">Controls the Layer 4 reference table</div></div>
+      <div class="command update"><label>Market Update</label><div class="command-main"><button id="refresh">REFRESH MARKET + DEPTH</button></div><div class="assist">One synchronized refresh cycle</div></div>
+    </div>
+
+    <div class="scope-rail"><span class="scope-tag">DEPTH SCOPE</span><span class="scope-text"><b>Selected pair only.</b> Full order-book depth stays rate-limit safe; market-wide discovery continues from normalized funding + quote data.</span></div>
+
+    <div class="market-rail">
+      <div class="market-metric primary"><div class="label">Layer</div><div class="val">L7</div><div class="micro">Decision workspace</div></div>
+      <div class="market-metric"><div class="label">Matched Pairs</div><div class="val" id="kMatch">0</div><div class="micro">Canonical USDT perpetuals</div></div>
+      <div class="market-metric good"><div class="label">Funding Complete</div><div class="val" id="kComplete">0</div><div class="micro">Layer 3 calculation ready</div></div>
+      <div class="market-metric good"><div class="label">4A Quote Ready</div><div class="val" id="kReady">0</div><div class="micro">Valid bid / ask on both venues</div></div>
+      <div class="market-metric depth"><div class="label">Selected Depth State</div><div class="val" id="kDepth">—</div><div class="micro">Full-book simulation · selected pair only</div></div>
+    </div>
   </section>
 
-  <section class="kpis">
-    <div class="kpi primary"><div class="label">Layer Status</div><div class="val">L6A</div><div class="micro">Score engine after Layer 5B qualification · no score can override a gate</div></div>
-    <div class="kpi"><div class="label">Matched Pairs</div><div class="val" id="kMatch">0</div><div class="micro">Same canonical USDT perpetual</div></div>
-    <div class="kpi good"><div class="label">Funding Complete</div><div class="val" id="kComplete">0</div><div class="micro">Layer 3 calculation ready</div></div>
-    <div class="kpi good"><div class="label">4A Ready</div><div class="val" id="kReady">0</div><div class="micro">Funding + valid bid/ask on both venues</div></div>
-    <div class="kpi"><div class="label">Max Budget / Leg</div><div class="val" id="kNom">$10,000</div><div class="micro">Strict ceiling · verified against actual entry VWAP</div></div>
-    <div class="kpi warn"><div class="label">Binance Taker</div><div class="val" id="kBinFee">0.0500%</div><div class="micro">Editable fee profile</div></div>
-    <div class="kpi warn"><div class="label">Bitget Taker</div><div class="val" id="kBitFee">0.0600%</div><div class="micro">Editable fee profile</div></div>
-    <div class="kpi"><div class="label">Selected Depth State</div><div class="val" id="kDepth">—</div><div class="micro">Full-book simulation for active row</div></div>
+
+  <section class="decision-dashboard" id="decisionDashboard">
+    <div class="l7-head">
+      <div class="l7-title-wrap">
+        <div class="l7-mark"><b>L7</b></div>
+        <div><div class="kicker">Professional Decision Dashboard</div><div class="title">Funding Arbitrage Decision Workspace</div><div class="l7-sub">QUALIFICATION FIRST · VERIFIED EXECUTION SECOND · SCORE AND RANKING SUPPORT THE DECISION</div></div>
+      </div>
+      <div class="l7-chips"><span class="l7-chip gate">L5B QUALIFICATION GATE</span><span class="l7-chip score">L6A SCORE + L6B RANK</span><span class="l7-chip depth">FULL DEPTH REQUIRED FOR ENTER</span></div>
+    </div>
+    <div class="l7-hero">
+      <div class="l7-card top">
+        <div class="l7-label">Top Opportunity Now</div>
+        <div class="l7-topline"><div class="l7-symbol" id="l7TopSymbol">—</div><div class="l7-scorebox"><div class="l7-score" id="l7TopScore">—</div><div class="l7-tier" id="l7TopTier">NO RANKABLE DATA</div></div></div>
+        <div class="l7-badges"><span class="l7-badge spread" id="l7TopType">—</span><span class="l7-badge route" id="l7TopRoute">L — → S —</span></div>
+        <div class="l7-metrics"><div class="l7-metric"><span>PROJECTED NET</span><b id="l7TopNet">—</b></div><div class="l7-metric"><span>BREAK-EVEN</span><b id="l7TopBE">—</b></div><div class="l7-metric"><span>COST / GROSS</span><b id="l7TopCostGross">—</b></div></div>
+      </div>
+      <div class="l7-card decision">
+        <div class="l7-label">Selected Opportunity Decision</div>
+        <div class="l7-focus" id="l7Focus">SELECTED · —</div>
+        <div class="l7-decision wait" id="l7Decision">WAITING</div>
+        <div class="l7-reason" id="l7DecisionReason">Select an opportunity or wait for market data.</div>
+        <div class="l7-badges"><span class="l7-badge route" id="l7DecisionQual">QUALIFICATION —</span><span class="l7-badge spread" id="l7DecisionScore">SCORE —</span></div>
+      </div>
+      <div class="l7-card readiness">
+        <div class="l7-label">Execution Readiness</div>
+        <div class="l7-ready-grid">
+          <div class="l7-ready-item" id="l7QtyCard"><span>EXACT MATCHED QTY</span><b id="l7Qty">—</b></div>
+          <div class="l7-ready-item" id="l7DepthCard"><span>DEPTH COVERAGE</span><b id="l7Depth">—</b></div>
+          <div class="l7-ready-item" id="l7SlipCard"><span>SLIPPAGE</span><b id="l7Slip">—</b></div>
+          <div class="l7-ready-item" id="l7FeesCard"><span>ROUND-TRIP FEES</span><b id="l7Fees">—</b></div>
+          <div class="l7-ready-item" id="l7FreshCard"><span>DATA FRESHNESS</span><b id="l7Fresh">—</b></div>
+          <div class="l7-ready-item" id="l7ExecCard"><span>EXECUTION STATE</span><b id="l7ExecState">—</b></div>
+        </div>
+      </div>
+    </div>
+    <div class="l7-mid">
+      <div class="l7-timeline">
+        <div class="l7-section-head"><b>Funding Timeline · Selected</b><span>REAL SCHEDULE · CURRENT RATE PROJECTION</span></div>
+        <div class="l7-time-grid">
+          <div class="l7-time"><div class="venue">BINANCE</div><div class="rate" id="l7BinRate">—</div><div class="next" id="l7BinNext">—</div><div class="position" id="l7BinPos">POSITION —</div></div>
+          <div class="l7-time"><div class="venue">BITGET</div><div class="rate" id="l7BitRate">—</div><div class="next" id="l7BitNext">—</div><div class="position" id="l7BitPos">POSITION —</div></div>
+        </div>
+        <div class="l7-time-foot"><div><span>TIME DIFFERENCE</span><b id="l7TimeDiff">—</b></div><div><span>EVENTS B / G</span><b id="l7Events">—</b></div><div><span>HORIZON</span><b id="l7Horizon">—</b></div></div>
+      </div>
+      <div class="l7-top5">
+        <div class="l7-section-head l7-top5-head"><b>Top 5 Decision Shortlist</b><span>TOP 5 RANKED · CLICK → SELECT + VERIFY DEPTH</span></div>
+        <div class="l7-top5-grid" id="l7Top5Rows"></div>
+      </div>
+    </div>
+    <div class="l7-risk info" id="l7Risk"><div class="tag" id="l7RiskTag">WAITING</div><div class="text" id="l7RiskText">Dashboard is waiting for analyzable funding and quote data.</div></div>
   </section>
 
 
@@ -335,81 +617,183 @@ input,select,button{background:#0a1016;color:var(--text);border:1px solid var(--
       <div class="opp-kpi score-kpi kpi-score"><div class="label">Selected Score</div><div class="v" id="oppKScore">—</div><div class="micro">MARKET EST for all analyzable symbols · VERIFIED after Layer 5B PASS</div></div>
       <div class="opp-kpi kpi-be"><div class="label">Selected Break-even</div><div class="v" id="oppKBreakEven">—</div><div class="micro">Funding settlement cycles / time to cover current round-trip cost</div></div>
     </div>
-    <div class="opp-tablewrap">
-      <table class="opp-table">
-        <thead><tr>
-          <th>Symbol</th><th>Opportunity Type</th><th>Horizon Route</th><th>Binance Funding</th><th>Bitget Funding</th><th>Intervals</th><th>Binance Next</th><th>Bitget Next</th><th>Time Difference</th><th>Events B / G</th><th>Gross / Horizon</th><th>Quote Cost*</th><th>Quote Net Est.*</th><th>Depth Net P&amp;L*</th><th>Break-even Cycles*</th><th>Break-even Time*</th><th>Qualification</th><th>Market / Verified Score</th>
-        </tr></thead>
-        <tbody id="oppRows"></tbody>
-      </table>
-    </div>
-    <div class="footer"><span id="oppShown">SHOWING 0</span><span>DUAL RECEIVE = LONG ON NEGATIVE FUNDING VENUE + SHORT ON POSITIVE FUNDING VENUE, WITH BOTH EVENTS INSIDE THE HORIZON</span><span>* BREAK-EVEN CYCLE = ONE FUNDING SETTLEMENT TIMESTAMP; SIMULTANEOUS BINANCE + BITGET SETTLEMENTS COUNT AS ONE CYCLE. USER THRESHOLDS AFFECT FINAL DEPTH-VERIFIED QUALIFICATION. ALL ANALYZABLE SYMBOLS RECEIVE MARKET SCORE · EST; VERIFIED SCORE REQUIRES FULL DEPTH + LAYER 5B PASS. MARKET SCORE NEVER OVERRIDES QUALIFICATION; QUOTE VALUES REMAIN PRE-DEPTH ESTIMATES.</span></div>
-    <div class="opp-detail visual-audit">
-      <div class="opp-detail-head"><div class="title">Selected Opportunity · Layer 5B Qualification Audit</div><div class="note">Layer 5A discovery and the lower Layer 4 execution audit remain available. Final qualification is issued only after full depth verification.</div></div>
-      <div class="opp-detail-grid" id="oppQualificationGrid">
-        <div class="audit-section-label blue">Opportunity Identity & Route</div>
-        <div class="opp-detail-item tone-blue metric-hero"><span class="label">Symbol</span><b id="oppDSymbol">—</b></div>
-        <div class="opp-detail-item tone-blue metric-primary"><span class="label">Horizon</span><b id="oppDHorizon">—</b></div>
-        <div class="opp-detail-item tone-purple metric-primary"><span class="label">Opportunity Type</span><b id="oppDType">—</b></div>
-        <div class="opp-detail-item tone-green metric-primary"><span class="label">Horizon LONG</span><b id="oppDLong">—</b></div>
-        <div class="opp-detail-item tone-red metric-primary"><span class="label">Horizon SHORT</span><b id="oppDShort">—</b></div>
-        <div class="opp-detail-item tone-blue metric-primary" id="oppDStateCard"><span class="label">Qualification State</span><b id="oppDState">—</b></div>
-        <div class="audit-section-label purple">Qualification Logic</div>
-        <div class="opp-detail-item tone-purple"><span class="label">Qualification Reasons</span><b id="oppDQualReasons">—</b></div>
-        <div class="opp-detail-item tone-neutral"><span class="label">Threshold Snapshot</span><b id="oppDThresholds">—</b></div>
-        <div class="audit-section-label blue">Funding & Timing</div>
-        <div class="opp-detail-item tone-blue metric-primary"><span class="label">Funding Spread / 8H · Reference</span><b id="oppDSpreadRef">—</b></div>
-        <div class="opp-detail-item tone-blue"><span class="label">Binance Funding / Interval</span><b id="oppDBinFunding">—</b></div>
-        <div class="opp-detail-item tone-blue"><span class="label">Bitget Funding / Interval</span><b id="oppDBitFunding">—</b></div>
-        <div class="opp-detail-item"><span class="label">Binance Next Funding</span><b id="oppDBinNext">—</b></div>
-        <div class="opp-detail-item"><span class="label">Bitget Next Funding</span><b id="oppDBitNext">—</b></div>
-        <div class="opp-detail-item"><span class="label">Funding Time Difference</span><b id="oppDTimeDiff">—</b></div>
-        <div class="opp-detail-item"><span class="label">Funding Events B / G</span><b id="oppDEvents">—</b></div>
-        <div class="opp-detail-item tone-green"><span class="label">LONG Receives?</span><b id="oppDLongReceive">—</b></div>
-        <div class="opp-detail-item tone-green"><span class="label">SHORT Receives?</span><b id="oppDShortReceive">—</b></div>
-        <div class="audit-section-label amber">Sizing, Cost & Execution</div>
-        <div class="opp-detail-item"><span class="label">Quote Matched Qty</span><b id="oppDQuoteQty">—</b></div>
-        <div class="opp-detail-item"><span class="label">Depth-Verified Qty</span><b id="oppDDepthQty">—</b></div>
-        <div class="opp-detail-item tone-green metric-hero"><span class="label">Gross Funding / Horizon</span><b id="oppDGross">—</b></div>
-        <div class="opp-detail-item tone-amber metric-primary"><span class="label">Quote Cost Baseline*</span><b id="oppDQuoteCost">—</b></div>
-        <div class="opp-detail-item tone-neutral metric-primary" id="oppDQuoteNetCard"><span class="label">Quote Net Estimate*</span><b id="oppDQuoteNet">—</b></div>
-        <div class="opp-detail-item tone-amber metric-primary"><span class="label">Depth-Verified Execution Cost*</span><b id="oppDDepthCost">—</b></div>
-        <div class="opp-detail-item"><span class="label">Entry Depth Coverage</span><b id="oppDEntryCoverage">—</b></div>
-        <div class="opp-detail-item"><span class="label">Exit Baseline Coverage*</span><b id="oppDExitCoverage">—</b></div>
-        <div class="opp-detail-item tone-amber"><span class="label">Cost / Gross</span><b id="oppDCostGross">—</b></div>
-        <div class="opp-detail-item tone-neutral metric-primary" id="oppDNetPctCard"><span class="label">Projected Net %</span><b id="oppDNetPct">—</b></div>
-        <div class="audit-section-label purple">Break-even Intelligence</div>
-        <div class="opp-detail-item tone-purple"><span class="label">Break-even Cost Basis*</span><b id="oppDBEBasis">—</b></div>
-        <div class="opp-detail-item tone-purple metric-primary"><span class="label">Cycles to Cover Cost*</span><b id="oppDBECycles">—</b></div>
-        <div class="opp-detail-item tone-purple metric-primary"><span class="label">Time to Cover Cost*</span><b id="oppDBETime">—</b></div>
-        <div class="opp-detail-item"><span class="label">Funding Events @ Break-even*</span><b id="oppDBEEvents">—</b></div>
-        <div class="opp-detail-item tone-green"><span class="label">Cumulative Funding @ Break-even*</span><b id="oppDBEGross">—</b></div>
-        <div class="opp-detail-item"><span class="label">Break-even Projection State*</span><b id="oppDBEState">—</b></div>
+
+    <section class="rank-board" id="rankBoard">
+      <div class="rank-head">
+        <div class="rank-title-wrap">
+          <div class="rank-mark"><b>L6B</b></div>
+          <div><div class="kicker">Ranked Opportunity Board</div><div class="title">Execution-Aware Opportunity Ranking</div><div class="rank-sub">VERIFIED PASS FIRST · MARKET EST SECOND · WATCH THIRD · MARKET SCREEN FOURTH · VERIFIED REJECT EXCLUDED</div></div>
+        </div>
+        <div class="rank-tools">
+          <div><label>BOARD SCOPE</label><select id="rankScope"><option value="ALL">ALL RANKABLE</option><option value="VERIFIED">VERIFIED PASS</option><option value="MARKET">MARKET EST + SCREEN</option><option value="DUAL">DUAL RECEIVE</option><option value="WATCH">WATCH</option></select></div>
+          <div><label>SORT WITHIN TIER</label><select id="rankSort"><option value="SMART">SMART RANK</option><option value="SCORE">SCORE</option><option value="NET">NET P&amp;L</option><option value="BE">FASTEST BREAK-EVEN</option><option value="COST">LOWEST COST / GROSS</option></select></div>
+        </div>
       </div>
-      <div class="audit-band execution breakdown-visual-band"><div class="band-title">Funding &amp; Cost Breakdown · Selected Horizon</div><div class="band-note">Explains the projected P&amp;L dollar by dollar. Funding cashflows are signed by venue and position. Slippage is shown diagnostically but is already embedded in VWAP execution price cost and is never added twice.</div></div>
-      <div class="opp-detail-grid" id="oppBreakdownGrid">
-        <div class="audit-section-label blue">Funding Cashflow</div>
-        <div class="opp-detail-item tone-blue"><span class="label">Funding Basis</span><b id="oppDBreakdownBasis">—</b></div>
-        <div class="opp-detail-item tone-blue metric-primary"><span class="label">Breakdown Quantity</span><b id="oppDBreakdownQty">—</b></div>
-        <div class="opp-detail-item tone-blue"><span class="label">Binance Position</span><b id="oppDBinPosition">—</b></div>
-        <div class="opp-detail-item tone-neutral metric-primary" id="oppDBinFundingCashCard"><span class="label">Binance Funding Cashflow</span><b id="oppDBinFundingCash">—</b></div>
-        <div class="opp-detail-item tone-blue"><span class="label">Bitget Position</span><b id="oppDBitPosition">—</b></div>
-        <div class="opp-detail-item tone-neutral metric-primary" id="oppDBitFundingCashCard"><span class="label">Bitget Funding Cashflow</span><b id="oppDBitFundingCash">—</b></div>
-        <div class="opp-detail-item tone-green metric-hero"><span class="label">Total Funding Received</span><b id="oppDFundingReceived">—</b></div>
-        <div class="opp-detail-item tone-red metric-primary"><span class="label">Total Funding Paid</span><b id="oppDFundingPaid">—</b></div>
-        <div class="opp-detail-item tone-green metric-hero"><span class="label">Net Funding Cashflow / Horizon</span><b id="oppDNetFundingCash">—</b></div>
-        <div class="audit-section-label amber">Execution Cost</div>
-        <div class="opp-detail-item tone-amber metric-primary"><span class="label">Actual Entry Fees</span><b id="oppDBreakEntryFees">—</b></div>
-        <div class="opp-detail-item tone-amber metric-primary"><span class="label">Projected Exit Fees*</span><b id="oppDBreakExitFees">—</b></div>
-        <div class="opp-detail-item tone-red metric-hero"><span class="label">VWAP Execution Price Cost*</span><b id="oppDBreakPriceCost">—</b></div>
-        <div class="audit-section-label purple">Depth Diagnostics · Already Embedded In VWAP Cost</div>
-        <div class="opp-detail-item tone-purple"><span class="label">Entry Depth Slippage · Diagnostic</span><b id="oppDBreakEntrySlip">—</b></div>
-        <div class="opp-detail-item tone-purple"><span class="label">Exit Depth Slippage* · Diagnostic</span><b id="oppDBreakExitSlip">—</b></div>
-        <div class="opp-detail-item tone-purple metric-primary"><span class="label">Additional Depth Slippage* · Diagnostic</span><b id="oppDBreakTotalSlip">—</b></div>
-        <div class="audit-section-label amber">Final Cost & P&amp;L</div>
-        <div class="opp-detail-item tone-red metric-hero"><span class="label">Depth-Verified Total Execution Cost*</span><b id="oppDBreakTotalCost">—</b></div>
-        <div class="opp-detail-item tone-neutral metric-hero" id="oppDBreakFinalNetCard"><span class="label">Projected Final Net P&amp;L</span><b id="oppDBreakFinalNet">—</b></div>
-        <div class="opp-detail-item tone-amber metric-primary"><span class="label">Main Loss Driver</span><b id="oppDBreakDriver">—</b></div>
+      <div class="rank-cards">
+        <div class="rank-card verified"><div class="rc-label">#1 BEST VERIFIED</div><div class="rc-symbol" id="rankBestVerifiedSymbol">—</div><div class="rc-value positive" id="rankBestVerifiedValue">—</div><div class="rc-meta" id="rankBestVerifiedMeta">Depth + L5B PASS required</div></div>
+        <div class="rank-card dual"><div class="rc-label">#1 BEST DUAL RECEIVE</div><div class="rc-symbol" id="rankBestDualSymbol">—</div><div class="rc-value positive" id="rankBestDualValue">—</div><div class="rc-meta" id="rankBestDualMeta">Both legs receive funding</div></div>
+        <div class="rank-card fast"><div class="rc-label">FASTEST BREAK-EVEN</div><div class="rc-symbol" id="rankFastSymbol">—</div><div class="rc-value" id="rankFastValue">—</div><div class="rc-meta" id="rankFastMeta">Projected funding recovery time</div></div>
+        <div class="rank-card net"><div class="rc-label">BEST NET P&amp;L</div><div class="rc-symbol" id="rankNetSymbol">—</div><div class="rc-value positive" id="rankNetValue">—</div><div class="rc-meta" id="rankNetMeta">Verified net or market estimate</div></div>
+        <div class="rank-card cost"><div class="rc-label">LOWEST COST / GROSS</div><div class="rc-symbol" id="rankCostSymbol">—</div><div class="rc-value" id="rankCostValue">—</div><div class="rc-meta" id="rankCostMeta">Execution efficiency</div></div>
+      </div>
+      <div class="rank-table-wrap">
+        <table class="rank-table">
+          <thead><tr><th>#</th><th>Symbol</th><th>Tier</th><th>Score</th><th>Qualification</th><th>Type</th><th>Net P&amp;L</th><th>Net %</th><th>Break-even</th><th>Cycles</th><th>Cost / Gross</th><th>Execution</th><th>Timing</th><th>Route</th></tr></thead>
+          <tbody id="rankRows"></tbody>
+        </table>
+      </div>
+      <div class="rank-foot"><span id="rankShown">0 RANKED</span><span>Score ranks quality; Layer 5B remains the execution gate. MARKET EST is discovery intelligence, not trade approval.</span></div>
+    </section>
+
+    <div class="l6a-engine-bar" id="l6aEngineBar">
+      <div class="l6a-engine-id">
+        <div class="l6a-engine-mark">L6A</div>
+        <div class="l6a-engine-copy"><b>Opportunity Analytics Engine</b><span>Analytics source behind L6B ranking</span></div>
+      </div>
+      <div class="l6a-engine-state">
+        <span class="l6a-live-chip">ENGINE ACTIVE</span>
+        <span class="l6a-engine-stats" id="l6aEngineStats">0 ANALYZED · SCORE + QUALIFICATION SOURCE</span>
+      </div>
+      <button class="l6a-toggle" id="l6aDetailsToggle" type="button" aria-expanded="false" aria-controls="l6aTableDetails">SHOW DETAILS <span class="arrow">▾</span></button>
+    </div>
+    <div class="l6a-table-details" id="l6aTableDetails" hidden>
+      <div class="opp-tablewrap">
+        <table class="opp-table">
+          <thead><tr>
+            <th>Symbol</th><th>Opportunity Type</th><th>Horizon Route</th><th>Binance Funding</th><th>Bitget Funding</th><th>Intervals</th><th>Binance Next</th><th>Bitget Next</th><th>Time Difference</th><th>Events B / G</th><th>Gross / Horizon</th><th>Quote Cost*</th><th>Quote Net Est.*</th><th>Depth Net P&amp;L*</th><th>Break-even Cycles*</th><th>Break-even Time*</th><th>Qualification</th><th>Market / Verified Score</th>
+          </tr></thead>
+          <tbody id="oppRows"></tbody>
+        </table>
+      </div>
+      <div class="footer"><span id="oppShown">SHOWING 0</span><span>DUAL RECEIVE = LONG ON NEGATIVE FUNDING VENUE + SHORT ON POSITIVE FUNDING VENUE, WITH BOTH EVENTS INSIDE THE HORIZON</span><span>* BREAK-EVEN CYCLE = ONE FUNDING SETTLEMENT TIMESTAMP; SIMULTANEOUS BINANCE + BITGET SETTLEMENTS COUNT AS ONE CYCLE. USER THRESHOLDS AFFECT FINAL DEPTH-VERIFIED QUALIFICATION. ALL ANALYZABLE SYMBOLS RECEIVE MARKET SCORE · EST; VERIFIED SCORE REQUIRES FULL DEPTH + LAYER 5B PASS. MARKET SCORE NEVER OVERRIDES QUALIFICATION; QUOTE VALUES REMAIN PRE-DEPTH ESTIMATES.</span></div>
+    </div>
+    <div class="opp-detail visual-audit">
+      <div class="opp-detail-head">
+        <div class="opp-audit-heading"><div class="title">Selected Opportunity · Layer 5B Qualification Audit</div><div class="note">Direct symbol search · Full depth is loaded only for the active pair. Search changes the selected opportunity only and does not affect Top 5 ranking.</div></div>
+        <div class="opp-symbol-selector">
+          <label for="oppSymbolSelect">Search Opportunity</label>
+          <input id="oppSymbolSelect" placeholder="FOLKS or FOLKSUSDT" autocomplete="off" spellcheck="false">
+          <button id="oppSymbolLoad" type="button">LOAD</button>
+          <div class="selector-status" id="oppSymbolStatus">TYPE SYMBOL · USDT OPTIONAL</div>
+        </div>
+      </div>
+      <div class="l5-fin-audit" id="oppQualificationGrid">
+        <div class="l5-identity-row">
+          <div class="l5-id-symbol"><span class="label">Selected Symbol</span><b id="oppDSymbol">—</b></div>
+          <div class="l5-id-state tone-blue" id="oppDStateCard"><span class="label">Layer 5B Qualification</span><b id="oppDState">—</b></div>
+          <div class="l5-id-route long"><span class="label">LONG</span><b id="oppDLong">—</b></div>
+          <div class="l5-id-route short"><span class="label">SHORT</span><b id="oppDShort">—</b></div>
+          <div class="l5-id-mini"><span class="label">Horizon</span><b id="oppDHorizon">—</b></div>
+          <div class="l5-id-mini type"><span class="label">Opportunity</span><b id="oppDType">—</b></div>
+        </div>
+
+        <div class="l5-logic-row">
+          <div class="l5-logic-main"><span class="label">Qualification Reasons</span><b id="oppDQualReasons">—</b></div>
+          <div class="l5-logic-threshold"><span class="label">Threshold Snapshot</span><b id="oppDThresholds">—</b></div>
+        </div>
+
+        <div class="l5-section-title blue"><span>Funding & Timing</span><small>LIVE RATE · REAL SETTLEMENT SCHEDULE</small></div>
+        <div class="l5-funding-row">
+          <div class="l5-funding-primary"><span class="label">Funding Spread / 8H</span><b id="oppDSpreadRef">—</b></div>
+          <div class="l5-funding-venue"><span class="label">Binance Funding / Interval</span><b id="oppDBinFunding">—</b><small id="oppDBinNext">—</small></div>
+          <div class="l5-funding-venue"><span class="label">Bitget Funding / Interval</span><b id="oppDBitFunding">—</b><small id="oppDBitNext">—</small></div>
+          <div class="l5-funding-time"><span class="label">Time Difference</span><b id="oppDTimeDiff">—</b><small id="oppDEvents">—</small></div>
+          <div class="l5-receive long"><span class="label">LONG Receives?</span><b id="oppDLongReceive">—</b></div>
+          <div class="l5-receive short"><span class="label">SHORT Receives?</span><b id="oppDShortReceive">—</b></div>
+        </div>
+
+        <div class="l5-section-title money"><span>Opportunity Economics · Preview</span><small>INCOME → COST → NET</small></div>
+        <div class="l5-econ-row">
+          <div class="l5-econ-card revenue">
+            <span class="eyebrow">PROJECTED REVENUE</span>
+            <span class="label">Gross Funding / Horizon</span>
+            <b id="oppDGross">—</b>
+          </div>
+          <div class="l5-econ-card expense">
+            <span class="eyebrow">QUOTE COST</span>
+            <span class="label">Round-trip Baseline*</span>
+            <b id="oppDQuoteCost">—</b>
+          </div>
+          <div class="l5-econ-card net tone-neutral" id="oppDQuoteNetCard">
+            <span class="eyebrow">PRE-DEPTH NET</span>
+            <span class="label">Quote Net Estimate*</span>
+            <b id="oppDQuoteNet">—</b>
+          </div>
+          <div class="l5-econ-card expense verified-cost">
+            <span class="eyebrow">VERIFIED COST</span>
+            <span class="label">Depth Execution Cost*</span>
+            <b id="oppDDepthCost">—</b>
+          </div>
+          <div class="l5-econ-card net-pct tone-neutral" id="oppDNetPctCard">
+            <span class="eyebrow">RETURN</span>
+            <span class="label">Projected Net %</span>
+            <b id="oppDNetPct">—</b>
+          </div>
+        </div>
+
+        <div class="l5-exec-strip">
+          <div><span>Quote Qty</span><b id="oppDQuoteQty">—</b></div>
+          <div><span>Verified Qty</span><b id="oppDDepthQty">—</b></div>
+          <div><span>Entry Coverage</span><b id="oppDEntryCoverage">—</b></div>
+          <div><span>Exit Coverage*</span><b id="oppDExitCoverage">—</b></div>
+          <div><span>Cost / Gross</span><b id="oppDCostGross">—</b></div>
+        </div>
+
+        <div class="l5-section-title purple"><span>Break-even Intelligence</span><small>COST RECOVERY PROJECTION</small></div>
+        <div class="l5-be-strip">
+          <div class="basis"><span>Cost Basis*</span><b id="oppDBEBasis">—</b></div>
+          <div class="hero"><span>Cycles</span><b id="oppDBECycles">—</b></div>
+          <div class="hero"><span>Time</span><b id="oppDBETime">—</b></div>
+          <div><span>Funding Events*</span><b id="oppDBEEvents">—</b></div>
+          <div class="funding"><span>Cumulative Funding*</span><b id="oppDBEGross">—</b></div>
+          <div><span>Projection State*</span><b id="oppDBEState">—</b></div>
+        </div>
+      </div>
+
+      <div class="finance-breakdown-head">
+        <div><span class="kicker">Selected Horizon · Financial Statement</span><div class="title">Funding &amp; Cost Breakdown</div></div>
+        <div class="formula">FUNDING INFLOW <i>−</i> FUNDING PAID <i>−</i> EXECUTION COST <strong>= NET P&amp;L</strong></div>
+      </div>
+      <div class="finance-statement" id="oppBreakdownGrid">
+        <div class="finance-meta">
+          <div><span>Funding Basis</span><b id="oppDBreakdownBasis">—</b></div>
+          <div><span>Matched Quantity</span><b id="oppDBreakdownQty">—</b></div>
+          <div><span>Binance Position</span><b id="oppDBinPosition">—</b></div>
+          <div><span>Bitget Position</span><b id="oppDBitPosition">—</b></div>
+        </div>
+
+        <div class="finance-columns">
+          <section class="finance-col revenue">
+            <div class="finance-col-head"><span>01</span><div><b>Funding Revenue</b><small>Money received from funding settlements</small></div></div>
+            <div class="finance-hero positive"><span>Total Funding Received</span><b id="oppDFundingReceived">—</b></div>
+            <div class="finance-line tone-neutral" id="oppDBinFundingCashCard"><span>Binance Funding Cashflow</span><b id="oppDBinFundingCash">—</b></div>
+            <div class="finance-line tone-neutral" id="oppDBitFundingCashCard"><span>Bitget Funding Cashflow</span><b id="oppDBitFundingCash">—</b></div>
+            <div class="finance-line paid"><span>Funding Paid</span><b id="oppDFundingPaid">—</b></div>
+            <div class="finance-subtotal"><span>Net Funding Cashflow / Horizon</span><b id="oppDNetFundingCash">—</b></div>
+          </section>
+
+          <section class="finance-col costs">
+            <div class="finance-col-head"><span>02</span><div><b>Execution Expenses</b><small>Round-trip trading and price-path cost</small></div></div>
+            <div class="finance-hero negative"><span>Total Execution Cost*</span><b id="oppDBreakTotalCost">—</b></div>
+            <div class="finance-line"><span>Actual Entry Fees</span><b id="oppDBreakEntryFees">—</b></div>
+            <div class="finance-line"><span>Projected Exit Fees*</span><b id="oppDBreakExitFees">—</b></div>
+            <div class="finance-line major"><span>VWAP Execution Price Cost*</span><b id="oppDBreakPriceCost">—</b></div>
+            <div class="finance-driver"><span>Main Cost / Loss Driver</span><b id="oppDBreakDriver">—</b></div>
+          </section>
+
+          <section class="finance-col result">
+            <div class="finance-col-head"><span>03</span><div><b>Final Result</b><small>Funding cashflow after execution expenses</small></div></div>
+            <div class="finance-net tone-neutral" id="oppDBreakFinalNetCard"><span>Projected Final Net P&amp;L</span><b id="oppDBreakFinalNet">—</b><small>Net funding cashflow − depth-verified execution cost</small></div>
+            <div class="finance-result-rule"><span>Interpretation</span><b>POSITIVE = FUNDING COVERS CURRENT ROUND-TRIP COST</b></div>
+          </section>
+        </div>
+
+        <div class="finance-diagnostics">
+          <div class="diag-head"><span>Depth Diagnostics</span><small>INFORMATION ONLY · ALREADY EMBEDDED IN VWAP PRICE COST · NEVER ADDED TWICE</small></div>
+          <div><span>Entry Slippage</span><b id="oppDBreakEntrySlip">—</b></div>
+          <div><span>Exit Slippage*</span><b id="oppDBreakExitSlip">—</b></div>
+          <div><span>Additional Depth Slippage*</span><b id="oppDBreakTotalSlip">—</b></div>
+        </div>
       </div>
       <div class="break-even-hero">
         <div class="be-required-card">
@@ -421,6 +805,22 @@ input,select,button{background:#0a1016;color:var(--text);border:1px solid var(--
           <div class="be-label">Funding Recovery Path</div>
           <div class="be-formula" id="oppDBEPath">—</div>
           <div class="be-sub" id="oppDBEPathSub">Uses the scheduled settlement timeline; simultaneous venue settlements count as one cycle.</div>
+        </div>
+        <div class="be-projection-card">
+          <div class="be-proj-head"><div class="be-label">Cycle Profit Projection</div><div class="be-proj-badge">SCENARIO · LIVE BASIS</div></div>
+          <div class="be-proj-main">
+            <div class="be-cycle-control">
+              <label for="oppCycleProjectionInput">Target Cycles</label>
+              <input id="oppCycleProjectionInput" type="number" min="1" max="1000" step="1" value="30" inputmode="numeric" aria-label="Target funding cycles">
+              <div class="be-cycle-quick"><button type="button" data-cycle-projection="10">10</button><button type="button" data-cycle-projection="20">20</button><button type="button" data-cycle-projection="30">30</button><button type="button" data-cycle-projection="40">40</button></div>
+            </div>
+            <div class="be-proj-results">
+              <div class="be-proj-metric time"><span>Projected Time</span><b id="oppCycleProjectionTime">—</b></div>
+              <div class="be-proj-metric funding"><span>Cumulative Funding</span><b id="oppCycleProjectionFunding">—</b></div>
+              <div class="be-proj-metric net neutral" id="oppCycleProjectionNetCard"><span>Net Profit After Cost</span><b id="oppCycleProjectionNet">—</b></div>
+            </div>
+          </div>
+          <div class="be-sub" id="oppCycleProjectionSub">CURRENT FUNDING RATES ARE REPEATED AS A PROJECTION · FUTURE RATES MAY CHANGE</div>
         </div>
       </div>
       <div class="action-advice info" id="oppAdviceBox">
@@ -455,6 +855,18 @@ input,select,button{background:#0a1016;color:var(--text);border:1px solid var(--
     </div>
   </section>
 
+  <div class="l4-engine-bar" id="l4EngineBar">
+    <div class="l4-engine-id">
+      <div class="l4-engine-mark">L4</div>
+      <div class="l4-engine-copy"><b>Execution &amp; Cost Engine</b><span>Reference + selected-pair full execution audit</span></div>
+    </div>
+    <div class="l4-engine-state">
+      <span class="l4-live-chip">ENGINE ACTIVE</span>
+      <span class="l4-engine-stats" id="l4EngineStats">NO PAIR SELECTED · EXACT SIZE · FULL DEPTH · COST + NET FUNDING</span>
+    </div>
+    <button class="l4-toggle" id="l4DetailsToggle" type="button" aria-expanded="false" aria-controls="l4EngineDetails">SHOW DETAILS <span class="arrow">▾</span></button>
+  </div>
+  <div class="l4-engine-details" id="l4EngineDetails" hidden>
   <section class="scanner">
     <div class="shead">
       <div class="title">Layer 4 Reference · Matched Quantity + Cost + Depth Monitor</div>
@@ -633,11 +1045,17 @@ input,select,button{background:#0a1016;color:var(--text);border:1px solid var(--
 
     <div class="formula">L3: normalized 8H funding and funding direction are preserved. 4A entry: LONG buys at venue ASK; SHORT sells at venue BID. Current exit baseline: LONG sells at BID; SHORT buys at ASK. 4C-A quote sizing first computes the largest exact common quantity step under the budget at the best quotes. Once selected-pair depth is loaded, the engine performs a discrete search over that same common step and selects the largest exact quantity for which both market-order entry paths have 100% depth coverage and both actual VWAP entry notionals are ≤ the entered budget. LONG quantity = SHORT quantity exactly. The entered USDT value is a strict ceiling, not a forced notional. Quoted 4A fees/spread remain reference-only baseline fields. 4B/4C-A is execution-authoritative and recalculates fees from consumed-book notionals, while full VWAP execution price cost already contains quoted spread plus depth slippage, so slippage is not added a second time. Matched gross funding uses the exact depth-verified common quantity when depth is available: SHORT qty × short mark × short normalized funding − LONG qty × long mark × long normalized funding. 4C-B then computes projected Net Funding / 8H only when entry and current-exit baseline depth coverage are both 100%: Gross Funding / 8H − Depth-Verified Total Execution Cost. Additional Depth Slippage remains diagnostic only and is not subtracted again.</div>
   </section>
+  </div>
 </div>
 <script>
 const REFRESH_MS=5000;
 let binMap=new Map(),bitMap=new Map(),activeSymbol="";
 const depthCache=new Map(),depthLoading=new Set();
+let renderFrame=0,cyclePromise=null;
+function scheduleRender(){
+  if(renderFrame)return;
+  renderFrame=requestAnimationFrame(()=>{renderFrame=0;render()});
+}
 const $=id=>document.getElementById(id);
 const finite=v=>v!==null&&v!==undefined&&v!==""&&Number.isFinite(Number(v));
 const positiveNumber=v=>finite(v)&&Number(v)>0;
@@ -1015,19 +1433,20 @@ function calcNetFunding(dc){
   const state=netFunding>0?"NET POSITIVE":netFunding<0?"NET NEGATIVE":"BREAKEVEN";
   return {ready:true,state,grossFunding,totalExecutionCost,combinedEntryNotional,netFunding,netFundingPct,costGrossRatio};
 }
-async function loadDepthFor(symbol,force=false,routeOverride=null){
-  if(!symbol||depthLoading.has(symbol))return;
+async function loadDepthFor(symbol,force=false,routeOverride=null,renderOnComplete=true){
+  if(!symbol||depthLoading.has(symbol))return false;
   const baseRecord=records().find(x=>x.canonical===symbol);
   const r=routeOverride||baseRecord;
-  if(!r||!r.ready4a)return;
+  if(!r||!r.ready4a)return false;
   const sizingExec=calcExecution(r,Math.max(1,Number($("notional").value)||10000));
-  if(!sizingExec?.sizingReady)return;
+  if(!sizingExec?.sizingReady)return false;
   const old=depthCache.get(symbol);
-  if(!force&&old&&finite(old.updated)&&Date.now()-old.updated<3500)return;
+  if(!force&&old&&finite(old.updated)&&Date.now()-old.updated<3500)return false;
 
   depthLoading.add(symbol);
+  // Keep the previous verified depth visible while the new book is fetched.
+  // No full LOADING render: this removes the expand/collapse reflow pulse.
   depthCache.set(symbol,{...(old||{}),loading:true,error:null,updated:old?.updated||null});
-  render();
   const bSym=r.b?.exchangeSymbol||r.canonical,gSym=r.g?.exchangeSymbol||r.canonical;
   const [br,gr]=await Promise.allSettled([fetchBinanceDepth(bSym),fetchBitgetDepth(gSym)]);
   const entry={loading:false,updated:Date.now(),b:br.status==="fulfilled"?br.value:null,g:gr.status==="fulfilled"?gr.value:null,
@@ -1036,7 +1455,42 @@ async function loadDepthFor(symbol,force=false,routeOverride=null){
   depthCache.set(symbol,entry);
   depthLoading.delete(symbol);
   if(depthCache.size>24){const first=[...depthCache.keys()].find(k=>k!==activeSymbol);if(first)depthCache.delete(first)}
-  if(activeSymbol===symbol)render();
+  if(activeSymbol===symbol&&renderOnComplete)scheduleRender();
+  return true;
+}
+
+function setOpportunitySelectorStatus(text,cls=""){
+  const el=$("oppSymbolStatus");if(!el)return;el.textContent=text;el.className="selector-status"+(cls?" "+cls:"");
+}
+function resolveOpportunitySymbol(raw){
+  const cleaned=String(raw||"").trim().toUpperCase().replace(/[^A-Z0-9]/g,"");
+  if(!cleaned)return {record:null,state:"EMPTY",matches:[]};
+  const all=records().filter(r=>r?.b&&r?.g);
+  const canonical=cleaned.endsWith("USDT")?cleaned:cleaned+"USDT";
+  let record=all.find(r=>r.canonical===canonical)||null;
+  if(record)return {record,state:"EXACT",matches:[record]};
+  const baseQ=cleaned.replace(/USDT$/,"");
+  record=all.find(r=>String(r.b?.base||r.g?.base||"").toUpperCase()===baseQ)||null;
+  if(record)return {record,state:"BASE",matches:[record]};
+  const matches=all.filter(r=>r.canonical.startsWith(baseQ)||String(r.b?.base||r.g?.base||"").toUpperCase().startsWith(baseQ));
+  if(matches.length===1)return {record:matches[0],state:"UNIQUE",matches};
+  return {record:null,state:matches.length>1?"AMBIGUOUS":"NOT_FOUND",matches};
+}
+function activateOpportunitySymbol(symbol,forceDepth=true){
+  const resolved=resolveOpportunitySymbol(symbol);
+  if(!resolved.record){
+    if(resolved.state==="AMBIGUOUS")setOpportunitySelectorStatus(`MULTIPLE MATCHES · TYPE MORE LETTERS (${resolved.matches.slice(0,4).map(x=>x.canonical).join(" · ")})`,"warn");
+    else if(resolved.state==="EMPTY")setOpportunitySelectorStatus("TYPE SYMBOL · USDT OPTIONAL","warn");
+    else setOpportunitySelectorStatus("SYMBOL NOT MATCHED ON BOTH VENUES","bad");
+    return false;
+  }
+  activeSymbol=resolved.record.canonical;
+  const input=$("oppSymbolSelect");if(input)input.value=activeSymbol;
+  setOpportunitySelectorStatus(`SELECTED · ${activeSymbol} · ${resolved.record.ready4a?"LOADING DEPTH":"QUOTE/DEPTH NOT READY"}`,resolved.record.ready4a?"good":"warn");
+  const op=buildOpportunity(resolved.record,Math.max(1,Number($("notional").value)||10000),Date.now());
+  render();
+  if(forceDepth&&op?.routeRecord?.ready4a)loadDepthFor(activeSymbol,true,op.routeRecord);
+  return true;
 }
 
 function quality(r,exec){
@@ -1192,6 +1646,27 @@ function breakEvenProjection(routeRecord,cost,quantity,now=Date.now(),maxDays=30
     if(cumulative+1e-9>=Number(cost))return {ready:true,state:"COST COVERED",cycles,timeMs:t-now,bEvents,gEvents,cumulative,lastTime,maxDays,bCash,gCash};
   }
   return {ready:false,state:`NO PROJECTED BREAK-EVEN ≤ ${maxDays}D`,cycles,timeMs:lastTime?lastTime-now:null,bEvents,gEvents,cumulative,lastTime,maxDays,bCash,gCash};
+}
+function cycleProfitProjection(routeRecord,cost,quantity,targetCycles,now=Date.now()){
+  const target=Math.max(1,Math.min(1000,Math.round(Number(targetCycles)||30)));
+  if(!routeRecord||!positiveNumber(quantity)||!finite(cost)||Number(cost)<0)return {ready:false,state:"PROJECTION UNAVAILABLE",targetCycles:target,timeMs:null,bEvents:null,gEvents:null,cumulative:null,net:null};
+  const bNext0=fundingNext(routeRecord.b,now),gNext0=fundingNext(routeRecord.g,now);
+  const bHours=hours(routeRecord.b?.fundingIntervalHours),gHours=hours(routeRecord.g?.fundingIntervalHours);
+  if(!bNext0||!gNext0||!bHours||!gHours)return {ready:false,state:"TIMING MISSING",targetCycles:target,timeMs:null,bEvents:null,gEvents:null,cumulative:null,net:null};
+  const bCash=fundingEventCashflow(routeRecord,"BINANCE",quantity),gCash=fundingEventCashflow(routeRecord,"BITGET",quantity);
+  if(!finite(bCash)||!finite(gCash))return {ready:false,state:"CASHFLOW MISSING",targetCycles:target,timeMs:null,bEvents:null,gEvents:null,cumulative:null,net:null};
+  let bNext=Number(bNext0),gNext=Number(gNext0),cumulative=0,cycles=0,bEvents=0,gEvents=0,lastTime=null;
+  const bStep=bHours*3600000,gStep=gHours*3600000,tol=1000;
+  while(cycles<target){
+    const t=Math.min(bNext,gNext);if(!Number.isFinite(t))break;
+    let cycleCash=0,had=false;
+    if(Math.abs(bNext-t)<=tol){cycleCash+=Number(bCash);bEvents++;bNext+=bStep;had=true}
+    if(Math.abs(gNext-t)<=tol){cycleCash+=Number(gCash);gEvents++;gNext+=gStep;had=true}
+    if(!had)break;
+    cycles++;cumulative+=cycleCash;lastTime=t;
+  }
+  if(cycles!==target||!lastTime)return {ready:false,state:"PROJECTION INCOMPLETE",targetCycles:target,timeMs:lastTime?lastTime-now:null,bEvents,gEvents,cumulative,net:finite(cumulative)?Number(cumulative)-Number(cost):null};
+  return {ready:true,state:"PROJECTED",targetCycles:target,timeMs:lastTime-now,bEvents,gEvents,cumulative,net:Number(cumulative)-Number(cost),cost:Number(cost),bCash:Number(bCash),gCash:Number(gCash)};
 }
 function breakEvenCycleText(be,basis=""){
   if(!be)return "—";
@@ -1438,7 +1913,7 @@ function renderScorePanel(o,qual,thresholds,now=Date.now()){
 function renderOpportunityDetails(o,notional,now){
   const set=(id,val)=>{const el=$(id);if(el)el.textContent=val};
   const thresholds=qualificationThresholds();
-  if(!o){["oppDSymbol","oppDHorizon","oppDType","oppDLong","oppDShort","oppDState","oppDQualReasons","oppDThresholds","oppDSpreadRef","oppDBinFunding","oppDBitFunding","oppDBinNext","oppDBitNext","oppDTimeDiff","oppDEvents","oppDLongReceive","oppDShortReceive","oppDQuoteQty","oppDDepthQty","oppDGross","oppDQuoteCost","oppDQuoteNet","oppDDepthCost","oppDEntryCoverage","oppDExitCoverage","oppDCostGross","oppDNetPct","oppDBEBasis","oppDBECycles","oppDBETime","oppDBEEvents","oppDBEGross","oppDBEState","oppDBreakdownBasis","oppDBreakdownQty","oppDBinPosition","oppDBinFundingCash","oppDBitPosition","oppDBitFundingCash","oppDFundingReceived","oppDFundingPaid","oppDNetFundingCash","oppDBreakEntryFees","oppDBreakExitFees","oppDBreakPriceCost","oppDBreakEntrySlip","oppDBreakExitSlip","oppDBreakTotalSlip","oppDBreakTotalCost","oppDBreakFinalNet","oppDBreakDriver","oppDBERequiredBig","oppDBEPath"].forEach(id=>set(id,"—"));set("oppDNetBig","UNKNOWN");set("oppDQualBig","CANDIDATE");set("oppDQualFoot","SELECT A CANDIDATE TO VERIFY FULL DEPTH BEFORE FINAL QUALIFICATION.");set("oppDBERequiredSub","Execution cost that projected funding must cumulatively cover.");set("oppDBEPathSub","Uses the scheduled settlement timeline; simultaneous venue settlements count as one cycle.");const ab=$("oppAdviceBox");if(ab)ab.className="action-advice info";set("oppAdviceBadge","ANALYZE");set("oppAdviceText","Select an opportunity to generate execution-aware guidance.");renderScorePanel(null,null,thresholds,now);return}
+  if(!o){["oppDSymbol","oppDHorizon","oppDType","oppDLong","oppDShort","oppDState","oppDQualReasons","oppDThresholds","oppDSpreadRef","oppDBinFunding","oppDBitFunding","oppDBinNext","oppDBitNext","oppDTimeDiff","oppDEvents","oppDLongReceive","oppDShortReceive","oppDQuoteQty","oppDDepthQty","oppDGross","oppDQuoteCost","oppDQuoteNet","oppDDepthCost","oppDEntryCoverage","oppDExitCoverage","oppDCostGross","oppDNetPct","oppDBEBasis","oppDBECycles","oppDBETime","oppDBEEvents","oppDBEGross","oppDBEState","oppDBreakdownBasis","oppDBreakdownQty","oppDBinPosition","oppDBinFundingCash","oppDBitPosition","oppDBitFundingCash","oppDFundingReceived","oppDFundingPaid","oppDNetFundingCash","oppDBreakEntryFees","oppDBreakExitFees","oppDBreakPriceCost","oppDBreakEntrySlip","oppDBreakExitSlip","oppDBreakTotalSlip","oppDBreakTotalCost","oppDBreakFinalNet","oppDBreakDriver","oppDBERequiredBig","oppDBEPath","oppCycleProjectionTime","oppCycleProjectionFunding","oppCycleProjectionNet"].forEach(id=>set(id,"—"));const pc=$("oppCycleProjectionNetCard");if(pc)pc.className="be-proj-metric net neutral";set("oppCycleProjectionSub","SELECT AN OPPORTUNITY · CURRENT FUNDING RATES WILL BE REPEATED AS A PROJECTION");set("oppDNetBig","UNKNOWN");set("oppDQualBig","CANDIDATE");set("oppDQualFoot","SELECT A CANDIDATE TO VERIFY FULL DEPTH BEFORE FINAL QUALIFICATION.");set("oppDBERequiredSub","Execution cost that projected funding must cumulatively cover.");set("oppDBEPathSub","Uses the scheduled settlement timeline; simultaneous venue settlements count as one cycle.");const ab=$("oppAdviceBox");if(ab)ab.className="action-advice info";set("oppAdviceBadge","ANALYZE");set("oppAdviceText","Select an opportunity to generate execution-aware guidance.");renderScorePanel(null,null,thresholds,now);return}
   const qual=qualifyOpportunity(o,thresholds);
   set("oppDSymbol",o.r.canonical);set("oppDHorizon",o.spec.label);set("oppDType",o.type||"—");set("oppDLong",o.longVenue||"—");set("oppDShort",o.shortVenue||"—");set("oppDState",qual.state||"—");
   set("oppDQualReasons",qual.reasons.join(" · "));set("oppDThresholds",thresholdSnapshot(thresholds));set("oppDSpreadRef",finite(o.r?.spread)?(Number(o.r.spread)*100).toFixed(5)+"%":"—");
@@ -1490,6 +1965,24 @@ function renderOpportunityDetails(o,notional,now){
   const bePathEl=$("oppDBEPath");if(bePathEl)bePathEl.innerHTML=bePath;
   set("oppDBEPathSub",o.breakEven?.ready?`PROJECTED CUMULATIVE FUNDING ${money(o.breakEven.cumulative)} · EVENTS B ${o.breakEven.bEvents} / G ${o.breakEven.gEvents} · ${o.breakEvenBasis}`:(o.breakEven?.state||"BREAK-EVEN UNKNOWN"));
 
+  // Cycle scenario projection: reuses the exact funding settlement timeline and the same cost/quantity basis as break-even.
+  const cycleInput=$("oppCycleProjectionInput"),targetCycles=Math.max(1,Math.min(1000,Math.round(Number(cycleInput?.value)||30)));
+  if(cycleInput&&Number(cycleInput.value)!==targetCycles)cycleInput.value=String(targetCycles);
+  const projectionQty=o.depthFull&&positiveNumber(o.dc?.exec?.matchedQty)?Number(o.dc.exec.matchedQty):o.exec?.sizingReady&&positiveNumber(o.exec.matchedQty)?Number(o.exec.matchedQty):null;
+  const cycleProjection=cycleProfitProjection(o.routeRecord,beCost,projectionQty,targetCycles,now);
+  const projectionCard=$("oppCycleProjectionNetCard");
+  if(cycleProjection.ready){
+    set("oppCycleProjectionTime",durationText(cycleProjection.timeMs));
+    set("oppCycleProjectionFunding",signedMoney(cycleProjection.cumulative));
+    set("oppCycleProjectionNet",signedMoney(cycleProjection.net));
+    if(projectionCard)projectionCard.className=`be-proj-metric net ${Number(cycleProjection.net)>0?"positive":Number(cycleProjection.net)<0?"negative":"neutral"}`;
+    set("oppCycleProjectionSub",`${targetCycles} CYCLES · EVENTS B ${cycleProjection.bEvents} / G ${cycleProjection.gEvents} · ${o.depthFull?"DEPTH-VERIFIED":"QUOTE ESTIMATE"} COST · CURRENT FUNDING RATES REPEATED AS PROJECTION`);
+  }else{
+    set("oppCycleProjectionTime","—");set("oppCycleProjectionFunding","—");set("oppCycleProjectionNet","—");
+    if(projectionCard)projectionCard.className="be-proj-metric net neutral";
+    set("oppCycleProjectionSub",`${cycleProjection.state} · CURRENT FUNDING RATES ARE NOT SYNTHESIZED WHEN TIMING / CASHFLOW DATA IS MISSING`);
+  }
+
   // Action advice: make horizon-vs-break-even mismatch explicit without overriding the qualification engine.
   const adviceBox=$("oppAdviceBox");
   let adviceKind="info",adviceBadge="VERIFY",adviceText="Load full depth before treating this candidate as executable.";
@@ -1523,11 +2016,191 @@ function renderOpportunityDetails(o,notional,now){
   else if(!o.depthFull)foot.textContent=`${qual.state} · QUOTE GROSS ${money(o.quoteGross)} · QUOTE COST ${money(o.quoteCost)} · QUOTE NET ${money(o.quoteNet)} IS PRE-DEPTH ONLY. CLICK/SELECT THIS ROW TO VERIFY FULL DEPTH. ${o.projectionRepeated?"CURRENT FUNDING RATE IS REPEATED ACROSS MULTIPLE SCHEDULED EVENTS AS A PROJECTION.":""}`;
   else foot.textContent=`${qual.state} · FUNDING: BINANCE ${signedMoney(o.fundingBreakdown?.binance)} + BITGET ${signedMoney(o.fundingBreakdown?.bitget)} = NET ${signedMoney(o.fundingBreakdown?.net)}. COST: ENTRY FEES ${money(o.dc.actualEntryFees)} + EXIT FEES ${money(o.dc.actualExitFees)} + VWAP EXECUTION PRICE COST ${money(o.dc.executionPriceCost)} = ${money(o.dc.totalExecutionCost)}. FINAL ${money(o.depthNet)}. SLIPPAGE ${money(o.dc.totalSlippageCost)} IS DIAGNOSTIC AND ALREADY EMBEDDED IN VWAP PRICE COST; IT IS NOT ADDED AGAIN. EVENTS: BINANCE ${o.be.count}, BITGET ${o.ge.count}. BREAK-EVEN: ${breakEvenCycleText(o.breakEven,o.breakEvenBasis)} · ${breakEvenTimeText(o.breakEven,o.breakEvenBasis)}. CURRENT FUNDING RATES ARE REPEATED ACROSS FUTURE SETTLEMENTS ONLY AS A PROJECTION; FUTURE RATES MAY CHANGE. CURRENT EXIT DEPTH IS A BASELINE, NOT A FUTURE EXIT FORECAST.`;
 }
+
+function rankTier(o){
+  const q=o?.qualification;
+  if(q?.kind==="pass"&&o?.score?.verified)return {order:0,label:"VERIFIED PASS",cls:"verified"};
+  if(q?.kind==="watch")return {order:2,label:"WATCH",cls:"watch"};
+  // Pre-depth quote rejection is still useful discovery intelligence. Keep it visible
+  // as a MARKET SCREEN, but never confuse it with execution approval.
+  if(!o?.depthFull&&o?.score?.eligible){
+    if(finite(o?.quoteNet)&&Number(o.quoteNet)>0)return {order:1,label:"MARKET EST",cls:"market"};
+    return {order:3,label:"MARKET SCREEN",cls:"screen"};
+  }
+  if(q?.kind==="reject")return {order:9,label:"VERIFIED REJECT",cls:"reject"};
+  return {order:1,label:"MARKET EST",cls:"market"};
+}
+function rankBoardEligible(o){
+  if(!o?.ready||!o?.score?.eligible)return false;
+  // Final execution rejection after depth remains excluded from the ranked board.
+  if(o?.depthFull&&o?.qualification?.kind==="reject")return false;
+  return true;
+}
+function rankNet(o){return o?.depthFull&&finite(o.depthNet)?Number(o.depthNet):finite(o?.quoteNet)?Number(o.quoteNet):null}
+function rankGross(o){return o?.depthFull&&finite(o.depthGross)?Number(o.depthGross):finite(o?.quoteGross)?Number(o.quoteGross):null}
+function rankCost(o){return o?.depthFull&&finite(o?.dc?.totalExecutionCost)?Number(o.dc.totalExecutionCost):finite(o?.quoteCost)?Number(o.quoteCost):null}
+function rankCostGross(o){const g=rankGross(o),c=rankCost(o);return positiveNumber(g)&&finite(c)?Number(c)/Number(g):null}
+function rankNetPct(o){
+  if(o?.depthFull&&finite(o.depthNetPct))return Number(o.depthNetPct);
+  const denom=(positiveNumber(o?.exec?.longEntryNotional)&&positiveNumber(o?.exec?.shortEntryNotional))?Number(o.exec.longEntryNotional)+Number(o.exec.shortEntryNotional):null;
+  return positiveNumber(denom)&&finite(o?.quoteNet)?Number(o.quoteNet)/denom:null;
+}
+function rankBE(o){return finite(o?.breakEven?.timeMs)?Number(o.breakEven.timeMs):null}
+function rankCycles(o){return finite(o?.breakEven?.cycles)?Number(o.breakEven.cycles):null}
+function rankExecutionScore(o){return finite(o?.score?.components?.execution?.score)?Number(o.score.components.execution.score):null}
+function rankTimingScore(o){return finite(o?.score?.components?.structure?.timingPts)?Number(o.score.components.structure.timingPts):null}
+function rankComparator(sortMode){
+  return (a,b)=>{
+    const ta=rankTier(a),tb=rankTier(b);if(ta.order!==tb.order)return ta.order-tb.order;
+    const score=(x)=>finite(x?.score?.score)?Number(x.score.score):-Infinity;
+    if(sortMode==="NET"){const av=rankNet(a),bv=rankNet(b);if(finite(av)&&finite(bv)&&bv!==av)return bv-av}
+    else if(sortMode==="BE"){const av=rankBE(a),bv=rankBE(b);if(finite(av)&&finite(bv)&&av!==bv)return av-bv;if(finite(av)!==finite(bv))return finite(av)?-1:1}
+    else if(sortMode==="COST"){const av=rankCostGross(a),bv=rankCostGross(b);if(finite(av)&&finite(bv)&&av!==bv)return av-bv;if(finite(av)!==finite(bv))return finite(av)?-1:1}
+    const ds=score(b)-score(a);if(ds)return ds;
+    const an=rankNet(a),bn=rankNet(b);if(finite(an)&&finite(bn)&&bn!==an)return bn-an;
+    if(a.dualReceive!==b.dualReceive)return a.dualReceive?-1:1;
+    return a.r.canonical.localeCompare(b.r.canonical);
+  };
+}
+function rankCardSet(prefix,o,value,meta){
+  const s=$(prefix+"Symbol"),v=$(prefix+"Value"),m=$(prefix+"Meta");
+  if(s)s.textContent=o?.r?.canonical||"—";if(v)v.textContent=o?value:"—";if(m)m.textContent=o?meta:"No matching market candidate";
+}
+function renderRankBoard(ops,now=Date.now()){
+  const scope=$("rankScope")?.value||"ALL",sortMode=$("rankSort")?.value||"SMART";
+  let pool=ops.filter(rankBoardEligible);
+  if(scope==="VERIFIED")pool=pool.filter(o=>rankTier(o).order===0);
+  else if(scope==="MARKET")pool=pool.filter(o=>{const t=rankTier(o).order;return t===1||t===3});
+  else if(scope==="DUAL")pool=pool.filter(o=>o.dualReceive);
+  else if(scope==="WATCH")pool=pool.filter(o=>rankTier(o).order===2);
+  pool.sort(rankComparator(sortMode));
+
+  const allRankable=ops.filter(rankBoardEligible);
+  const verified=allRankable.filter(o=>rankTier(o).order===0).sort((a,b)=>(b.score?.score||0)-(a.score?.score||0));
+  const dual=allRankable.filter(o=>o.dualReceive).sort(rankComparator("SCORE"));
+  const be=allRankable.filter(o=>finite(rankBE(o))).sort((a,b)=>rankBE(a)-rankBE(b));
+  const net=allRankable.filter(o=>finite(rankNet(o))).sort((a,b)=>rankNet(b)-rankNet(a));
+  const cg=allRankable.filter(o=>finite(rankCostGross(o))).sort((a,b)=>rankCostGross(a)-rankCostGross(b));
+  const bv=verified[0];rankCardSet("rankBestVerified",bv,bv?`${bv.score.score.toFixed(1)} / 100`:"—",bv?`${bv.score.grade.label} · ${money(rankNet(bv))} NET`:"Depth + L5B PASS required");
+  const bd=dual[0];rankCardSet("rankBestDual",bd,bd?`${bd.score.score.toFixed(1)} / 100`:"—",bd?`${rankTier(bd).label} · ${money(rankNet(bd))} NET`:"Both legs receive funding");
+  const bf=be[0];rankCardSet("rankFast",bf,bf?durationText(rankBE(bf)):"—",bf?`${rankCycles(bf)??"—"} cycles · ${rankTier(bf).label}`:"Projected funding recovery time");
+  const bn=net[0];rankCardSet("rankNet",bn,bn?money(rankNet(bn)):"—",bn?`${rankTier(bn).label} · SCORE ${bn.score.score.toFixed(1)}`:"Verified net or market estimate");
+  const bc=cg[0];rankCardSet("rankCost",bc,bc?`${(rankCostGross(bc)*100).toFixed(2)}%`:"—",bc?`${rankTier(bc).label} · COST ${money(rankCost(bc))}`:"Execution efficiency");
+
+  const rows=$("rankRows");if(!rows)return;
+  rows.innerHTML=pool.map((o,i)=>{
+    const tier=rankTier(o),q=o.qualification,netv=rankNet(o),netp=rankNetPct(o),cg=rankCostGross(o),beMs=rankBE(o),cy=rankCycles(o),ex=rankExecutionScore(o),tim=rankTimingScore(o);
+    const score=finite(o.score?.score)?Number(o.score.score):null;
+    return `<tr data-rank-symbol="${o.r.canonical}" class="${activeSymbol===o.r.canonical?'selected':''}"><td><span class="rank-num ${i<3?'top':''}">${i+1}</span></td><td><span class="rank-symbol">${o.r.canonical}</span></td><td><span class="rank-badge ${tier.cls}">${tier.label}</span></td><td><span class="rank-score">${finite(score)?score.toFixed(1):'—'}</span><span class="subline">${o.score?.grade?.label||'—'}</span></td><td><span class="opp-status ${opportunityStatusClass(q.state)}">${q.state}</span></td><td><span class="opp-type ${opportunityTypeClass(o.type)}">${o.type}</span></td><td class="${finite(netv)&&netv>0?'positive':finite(netv)&&netv<0?'negative':'neutral'}">${finite(netv)?money(netv):'—'}</td><td class="${finite(netp)&&netp>0?'positive':finite(netp)&&netp<0?'negative':'neutral'}">${finite(netp)?(netp*100).toFixed(4)+'%':'—'}</td><td>${finite(beMs)?durationText(beMs):'—'}</td><td>${finite(cy)?cy:'—'}</td><td class="${finite(cg)&&cg<=1?'positive':finite(cg)?'warning':'neutral'}">${finite(cg)?(cg*100).toFixed(2)+'%':'—'}</td><td>${finite(ex)?ex.toFixed(1)+' / 20':'—'}</td><td>${finite(tim)?tim.toFixed(1)+' / 5':'—'}</td><td class="rank-route"><span class="long">L ${o.routeRecord?.longVenue||'—'}</span> → <span class="short">S ${o.routeRecord?.shortVenue||'—'}</span></td></tr>`;
+  }).join("")||`<tr><td colspan="14" class="empty">NO MARKET DATA MATCHES THIS BOARD SCOPE</td></tr>`;
+  $("rankShown").textContent=`${pool.length.toLocaleString()} SHOWN · ${verified.length} VERIFIED · ${allRankable.filter(o=>rankTier(o).order===1).length} MARKET EST · ${allRankable.filter(o=>rankTier(o).order===3).length} MARKET SCREEN · ${allRankable.filter(o=>rankTier(o).order===2).length} WATCH`;
+  document.querySelectorAll("#rankRows tr[data-rank-symbol]").forEach(tr=>tr.onclick=()=>activateOpportunitySymbol(tr.dataset.rankSymbol,true));
+}
+
+
+function l7Set(id,val){const el=$(id);if(el)el.textContent=val}
+function l7Class(id,base,state){const el=$(id);if(el)el.className=base+(state?" "+state:"")}
+function l7TopPool(ops){return ops.filter(rankBoardEligible).sort(rankComparator("SMART"))}
+function l7DecisionState(o){
+  if(!o)return {label:"WAITING",cls:"wait",reason:"No analyzable opportunity is selected."};
+  const q=o.qualification||qualifyOpportunity(o);
+  if(o.depthFull&&q?.kind==="pass"&&o.score?.verified)return {label:"ENTER · VERIFIED PASS",cls:"enter",reason:(q.reasons||[]).join(" · ")||"FULL DEPTH + POSITIVE NET + ALL QUALIFICATION GATES PASSED"};
+  if(o.depthFull&&q?.kind==="watch")return {label:"WATCH",cls:"watch",reason:(q.reasons||[]).join(" · ")||"POSITIVE DEPTH NET, BUT ONE OR MORE USER THRESHOLDS ARE NOT MET"};
+  if(o.depthFull&&q?.kind==="reject")return {label:"DO NOT ENTER",cls:"reject",reason:(q.reasons||[]).join(" · ")||"DEPTH-VERIFIED EXECUTION GATE FAILED"};
+  const cache=depthCache.get(o.r?.canonical);
+  if(cache?.loading)return {label:"VERIFYING DEPTH",cls:"verify",reason:"FULL ORDER-BOOK DEPTH IS LOADING FOR THE SELECTED OPPORTUNITY"};
+  if(finite(o.quoteNet)&&Number(o.quoteNet)<=0)return {label:"NO ENTRY NOW",cls:"reject",reason:`QUOTE NET ${money(o.quoteNet)} ≤ 0 INSIDE ${o.spec?.label||"SELECTED HORIZON"} · CURRENT FUNDING DOES NOT COVER QUOTED ROUND-TRIP COST`};
+  if(o.ready&&o.exec?.sizingReady)return {label:"VERIFY DEPTH",cls:"verify",reason:"MARKET / QUOTE ECONOMICS ARE PRE-DEPTH · SELECTED PAIR NEEDS FULL DEPTH BEFORE FINAL QUALIFICATION"};
+  return {label:"WAITING",cls:"wait",reason:o.status||"EXECUTION DATA IS NOT READY"};
+}
+function l7Readiness(o,now=Date.now()){
+  if(!o)return {qty:"—",depth:"—",slip:"—",fees:"—",fresh:"—",exec:"—",q:"",d:"",s:"",f:"",e:""};
+  const dc=o.dc,depth=o.depthFull;
+  const q=depth&&dc?.depthSizing?.matched?dc.depthSizing.qtyText:o.exec?.sizingReady?`${o.exec.sizing?.qtyText||qty(o.exec.matchedQty)} · EST`:"NOT READY";
+  const dep=depth?`ENTRY ${exactCoverageText(dc.entryCoverage)} · EXIT ${exactCoverageText(dc.exitCoverage)}`:"DEPTH REQUIRED";
+  const slip=depth&&finite(dc.totalSlippageCost)?money(dc.totalSlippageCost):"UNKNOWN";
+  const feeVal=depth&&finite(dc.actualEntryFees)&&finite(dc.actualExitFees)?Number(dc.actualEntryFees)+Number(dc.actualExitFees):o.exec?.sizingReady&&finite(o.exec.entryFees)&&finite(o.exec.exitFees)?Number(o.exec.entryFees)+Number(o.exec.exitFees):null;
+  const fees=finite(feeVal)?money(feeVal):(o.exec?.sizingReady?"QUOTE FEES UNKNOWN":"—");
+  const marketAge=Math.max(ageMs(o.r?.b?.timestamp),ageMs(o.r?.g?.timestamp));
+  const cache=depthCache.get(o.r?.canonical),depthAge=cache?.updated?Math.max(0,now-Number(cache.updated)):null;
+  const fresh=depth&&finite(depthAge)?`MKT ${durationText(marketAge)} · DEPTH ${durationText(depthAge)}`:`MKT ${durationText(marketAge)}`;
+  const exec=depth?(o.qualification?.kind==="pass"?"DEPTH VERIFIED":o.qualification?.kind==="watch"?"DEPTH · WATCH":"DEPTH · REJECT"):"PRE-DEPTH";
+  return {qty:q,depth:dep,slip,fees,fresh,exec,q:depth?"good":o.exec?.sizingReady?"warn":"bad",d:depth?"good":"warn",s:depth?"good":"warn",f:marketAge<=20000?"good":"bad",e:depth&&o.qualification?.kind==="pass"?"good":depth&&o.qualification?.kind==="reject"?"bad":"warn"};
+}
+function renderDecisionDashboard(ops,now=Date.now()){
+  const pool=l7TopPool(ops),verified=pool.filter(o=>rankTier(o).order===0);
+  const top=verified[0]||pool[0]||null;
+  const selected=activeSymbol?ops.find(o=>o.r?.canonical===activeSymbol)||null:null;
+  const focus=selected||top;
+  if(activeSymbol){const selectInput=$("oppSymbolSelect");if(selectInput&&document.activeElement!==selectInput)selectInput.value=activeSymbol;setOpportunitySelectorStatus(`SELECTED · ${activeSymbol} · ${selected?.depthFull?"DEPTH VERIFIED":selected?.routeRecord?.ready4a?"DEPTH AVAILABLE":"DEPTH NOT READY"}`,selected?.depthFull?"good":"warn");}
+
+  l7Set("l7TopSymbol",top?.r?.canonical||"—");
+  l7Set("l7TopScore",finite(top?.score?.score)?`${Number(top.score.score).toFixed(1)} / 100`:"—");
+  l7Set("l7TopTier",top?`${rankTier(top).label} · ${top.score?.grade?.label||"—"}`:"NO RANKABLE DATA");
+  l7Set("l7TopType",top?.type||"—");
+  const topTypeEl=$("l7TopType");if(topTypeEl)topTypeEl.className=`l7-badge ${top?.dualReceive?"dual":"spread"}`;
+  l7Set("l7TopRoute",top?.routeRecord?`L ${top.routeRecord.longVenue} → S ${top.routeRecord.shortVenue}`:"L — → S —");
+  const topNet=top?rankNet(top):null,topBE=top?rankBE(top):null,topCG=top?rankCostGross(top):null;
+  l7Set("l7TopNet",finite(topNet)?money(topNet):"—");
+  l7Set("l7TopBE",finite(topBE)?durationText(topBE):"—");
+  l7Set("l7TopCostGross",finite(topCG)?`${(Number(topCG)*100).toFixed(2)}%`:"—");
+
+  const dec=l7DecisionState(focus),qual=focus?.qualification||null;
+  l7Set("l7Focus",focus?`${selected?"SELECTED":"TOP FOCUS"} · ${focus.r.canonical}`:"SELECTED · —");
+  l7Set("l7Decision",dec.label);l7Class("l7Decision","l7-decision",dec.cls);
+  l7Set("l7DecisionReason",dec.reason);
+  l7Set("l7DecisionQual",qual?.state||"QUALIFICATION —");
+  l7Set("l7DecisionScore",finite(focus?.score?.score)?`${focus.score.mode||"SCORE"} · ${Number(focus.score.score).toFixed(1)}`:"SCORE —");
+
+  const rd=l7Readiness(focus,now);
+  l7Set("l7Qty",rd.qty);l7Set("l7Depth",rd.depth);l7Set("l7Slip",rd.slip);l7Set("l7Fees",rd.fees);l7Set("l7Fresh",rd.fresh);l7Set("l7ExecState",rd.exec);
+  [["l7QtyCard",rd.q],["l7DepthCard",rd.d],["l7SlipCard",rd.s],["l7FreshCard",rd.f],["l7ExecCard",rd.e]].forEach(([id,c])=>l7Class(id,"l7-ready-item",c));
+
+  l7Set("l7BinRate",focus?fundingCell(focus.r?.b):"—");l7Set("l7BitRate",focus?fundingCell(focus.r?.g):"—");
+  l7Set("l7BinNext",focus?nextText(focus.be?.next,now):"—");l7Set("l7BitNext",focus?nextText(focus.ge?.next,now):"—");
+  l7Set("l7BinPos",focus?`POSITION ${venuePosition(focus.routeRecord,"BINANCE")}`:"POSITION —");l7Set("l7BitPos",focus?`POSITION ${venuePosition(focus.routeRecord,"BITGET")}`:"POSITION —");
+  l7Set("l7TimeDiff",focus&&finite(focus.nextDiff)?(Number(focus.nextDiff)===0?"ALIGNED · 0m":durationText(focus.nextDiff)):"—");
+  l7Set("l7Events",focus?`B ${focus.be?.count??"—"} · G ${focus.ge?.count??"—"}`:"—");l7Set("l7Horizon",focus?.spec?.label||horizonSpec().label);
+
+  const top5=pool.slice(0,5);
+  const rows=$("l7Top5Rows");
+  if(rows){rows.innerHTML=top5.map((o,i)=>{
+    const tier=rankTier(o),net=rankNet(o),be=rankBE(o),score=finite(o.score?.score)?Number(o.score.score):null;
+    const netCls=finite(net)&&net>0?"positive":finite(net)&&net<0?"negative":"neutral";
+    return `<div class="l7-short-card ${i===0?'is-first':''}" data-l7-symbol="${o.r.canonical}">
+      <div class="l7-short-top"><span class="l7-short-rank">#${i+1}</span><span class="rank-badge ${tier.cls}">${tier.label}</span></div>
+      <div class="l7-short-main"><div class="l7-short-symbol">${o.r.canonical}</div><div class="l7-short-score"><span>SCORE</span><b>${finite(score)?score.toFixed(1):"—"}</b></div></div>
+      <div class="l7-short-metrics">
+        <div><span>NET P&amp;L</span><b class="${netCls}">${finite(net)?money(net):"—"}</b></div>
+        <div><span>BREAK-EVEN</span><b>${finite(be)?durationText(be):"—"}</b></div>
+      </div>
+      <div class="l7-short-route"><span class="long">L ${o.routeRecord?.longVenue||"—"}</span><i>→</i><span class="short">S ${o.routeRecord?.shortVenue||"—"}</span></div>
+    </div>`;
+  }).join("")||`<div class="l7-short-empty">NO RANKABLE OPPORTUNITIES YET</div>`;}
+  document.querySelectorAll("#l7Top5Rows [data-l7-symbol]").forEach(card=>card.onclick=()=>activateOpportunitySymbol(card.dataset.l7Symbol,true));
+
+  let risk={cls:"info",tag:"WAITING",text:"Dashboard is waiting for analyzable funding and quote data."};
+  if(focus){
+    const q=focus.qualification||qualifyOpportunity(focus);
+    if(focus.stale)risk={cls:"bad",tag:"STALE DATA",text:"Market / funding data is older than the allowed freshness gate. No entry decision should be used until data refreshes."};
+    else if(focus.depthFull&&q?.kind==="reject")risk={cls:"bad",tag:"VERIFIED REJECT",text:(q.reasons||[]).join(" · ")||"Depth-verified execution failed a hard gate."};
+    else if(focus.depthFull&&q?.kind==="watch")risk={cls:"warn",tag:"WATCH",text:(q.reasons||[]).join(" · ")||"Positive economics, but one or more user thresholds are not met."};
+    else if(!focus.depthFull&&finite(focus.quoteNet)&&Number(focus.quoteNet)<=0)risk={cls:"bad",tag:"HORIZON / COST",text:`Quote Net ${money(focus.quoteNet)} ≤ 0. Current funding cashflow inside ${focus.spec.label} does not cover quoted round-trip execution cost. Market score remains discovery intelligence only.`};
+    else if(!focus.depthFull)risk={cls:"warn",tag:"DEPTH REQUIRED",text:"Market score and quote economics are pre-depth. Full order-book entry + current exit baseline must be verified before Layer 5B can issue PASS."};
+    else if(q?.kind==="pass"&&focus.projectionRepeated)risk={cls:"good",tag:"VERIFIED PASS",text:"All current execution gates passed. Multiple future settlements reuse the current funding rate as a projection; future funding rates can change, and current exit depth is only a baseline."};
+    else if(q?.kind==="pass")risk={cls:"good",tag:"VERIFIED PASS",text:"All current execution gates passed. Current exit depth is a baseline rather than a forecast of the future closing book."};
+  }
+  const riskEl=$("l7Risk");if(riskEl)riskEl.className=`l7-risk ${risk.cls}`;l7Set("l7RiskTag",risk.tag);l7Set("l7RiskText",risk.text);
+}
+
 function renderOpportunityScanner(all,notional){
   const now=Date.now(),filter=$("oppFilter")?.value||"ALL",thresholds=qualificationThresholds();
   let ops=all.filter(r=>r.b&&r.g).map(r=>buildOpportunity(r,notional,now));
   ops.forEach(o=>{o.qualification=qualifyOpportunity(o,thresholds);o.score=scoreOpportunity(o,o.qualification,thresholds,now)});
+  renderRankBoard(ops,now);
+  renderDecisionDashboard(ops,now);
   const analyzable=ops.filter(o=>o.ready&&o.routeRecord?.ready4a&&!o.stale&&o.type!=="NO HORIZON EDGE");
+  const l6aStats=$("l6aEngineStats");if(l6aStats)l6aStats.textContent=`${analyzable.length.toLocaleString()} ANALYZED · SCORE + QUALIFICATION SOURCE`;
   const dual=analyzable.filter(o=>o.dualReceive),quotePositive=analyzable.filter(o=>finite(o.quoteNet)&&o.quoteNet>0);
   let shown=analyzable.filter(o=>{
     const qs=o.qualification?.state||"";
@@ -1571,12 +2244,7 @@ function renderOpportunityScanner(all,notional){
       <td><span class="opp-status ${statusCls}">${q.state}</span><span class="subline">${q.reasons.join(" · ")}</span></td>
       <td>${o.score?.eligible?`<span class="opp-score-pill ${o.score.grade.cls}">${o.score.score.toFixed(1)}</span><span class="subline">${o.score.verified?"VERIFIED":"MARKET EST"} · ${o.score.grade.label}</span>`:`<span class="opp-score-pill off">—</span><span class="subline">${o.score?.reason||"SCORE UNAVAILABLE"}</span>`}</td></tr>`;
   }).join("")||`<tr><td colspan="18" class="empty">NO OPPORTUNITIES MATCH THE CURRENT HORIZON / QUALIFICATION VIEW</td></tr>`;
-  document.querySelectorAll("#oppRows tr[data-opp-symbol]").forEach(tr=>tr.onclick=()=>{
-    activeSymbol=tr.dataset.oppSymbol;
-    const base=records().find(x=>x.canonical===activeSymbol),op=base?buildOpportunity(base,Math.max(1,Number($("notional").value)||10000),Date.now()):null;
-    render();
-    if(op?.routeRecord?.ready4a)loadDepthFor(activeSymbol,true,op.routeRecord);
-  });
+  document.querySelectorAll("#oppRows tr[data-opp-symbol]").forEach(tr=>tr.onclick=()=>activateOpportunitySymbol(tr.dataset.oppSymbol,true));
   renderOpportunityDetails(active,notional,now);
 }
 
@@ -1584,15 +2252,16 @@ function render(){
   const notional=Math.max(1,Number($("notional").value)||10000);
   const all=records();
   const matched=all.filter(r=>r.b&&r.g), complete=matched.filter(r=>r.complete), feesReady=feeProfileReady(), ready=complete.filter(r=>r.ready4a&&feesReady);
-  $("pairs").textContent=ready.length.toLocaleString();
   $("kMatch").textContent=matched.length.toLocaleString();$("kComplete").textContent=complete.length.toLocaleString();$("kReady").textContent=ready.length.toLocaleString();
   $("kNom").textContent=money(notional);$("kBinFee").textContent=pctDirect($("binFee").value);$("kBitFee").textContent=pctDirect($("bitFee").value);
   const activeRec=activeSymbol?all.find(x=>x.canonical===activeSymbol):null;
   const activeExec=activeRec?calcExecution(activeRec,notional):null;
   const activeDepth=activeRec&&activeExec?calcDepth(activeRec,activeExec,notional):null;
   const depthLabel=activeDepth?activeDepth.state:(activeSymbol?"WAITING":"—");
-  $("kDepth").textContent=depthLabel;$("depthStateTop").textContent=depthLabel;
-  $("kDepth").className="val "+(activeDepth?.cls||"neutral");$("depthStateTop").className=activeDepth?.cls||"neutral";
+  $("kDepth").textContent=depthLabel;
+  $("kDepth").className="val "+(activeDepth?.cls||"neutral");
+  const l4Stats=$("l4EngineStats");
+  if(l4Stats)l4Stats.textContent=activeSymbol?`${activeSymbol} · ${depthLabel} · EXACT SIZE · COST + NET FUNDING`:`NO PAIR SELECTED · EXACT SIZE · FULL DEPTH · COST + NET FUNDING`;
 
   renderOpportunityScanner(all,notional);
 
@@ -1633,7 +2302,7 @@ function render(){
     </tr>`;
   }).join("")||`<tr><td colspan="19" class="empty">NO PAIRS MATCH THE CURRENT VIEW</td></tr>`;
 
-  document.querySelectorAll("#rows tr[data-symbol]").forEach(tr=>tr.onclick=()=>{activeSymbol=tr.dataset.symbol;render();loadDepthFor(activeSymbol,true)});
+  document.querySelectorAll("#rows tr[data-symbol]").forEach(tr=>tr.onclick=()=>activateOpportunitySymbol(tr.dataset.symbol,true));
   if(activeSymbol)details(activeSymbol); else if(shown[0]){activeSymbol=shown[0].canonical;details(activeSymbol)};
 }
 
@@ -1724,22 +2393,47 @@ function details(symbol){
     `PROJECTED GROSS ${money(net.grossFunding)} − DEPTH-VERIFIED CURRENT ROUND-TRIP COST ${money(net.totalExecutionCost)} = ${money(net.netFunding)} · NET % USES COMBINED ACTUAL ENTRY NOTIONAL ${money(net.combinedEntryNotional)} · CURRENT EXIT IS NOT A FUTURE FORECAST`;
 }
 
-async function cycle(){
-  const [br,gr]=await Promise.allSettled([loadBinance(),loadBitget()]);
-  if(br.status==="fulfilled"){binMap=br.value;feedState("bState","bDot",true)}else{feedState("bState","bDot",false);console.error(br.reason)}
-  if(gr.status==="fulfilled"){bitMap=gr.value;feedState("gState","gDot",true)}else{feedState("gState","gDot",false);console.error(gr.reason)}
-  $("sync").textContent=new Date().toISOString().replace("T"," ").replace("Z"," UTC");render();
-  if(activeSymbol){
-    const base=records().find(x=>x.canonical===activeSymbol);
-    const op=base?buildOpportunity(base,Math.max(1,Number($("notional").value)||10000),Date.now()):null;
-    loadDepthFor(activeSymbol,false,op?.routeRecord?.ready4a?op.routeRecord:null);
-  }
+async function cycle(forceDepth=false){
+  // Serialize refresh cycles so a slow request cannot overlap the next 5s tick.
+  if(cyclePromise)return cyclePromise;
+  cyclePromise=(async()=>{
+    const [br,gr]=await Promise.allSettled([loadBinance(),loadBitget()]);
+    if(br.status==="fulfilled"){binMap=br.value;feedState("bState","bDot",true)}else{feedState("bState","bDot",false);console.error(br.reason)}
+    if(gr.status==="fulfilled"){bitMap=gr.value;feedState("gState","gDot",true)}else{feedState("gState","gDot",false);console.error(gr.reason)}
+    $("sync").textContent=new Date().toISOString().replace("T"," ").replace("Z"," UTC");
+
+    // Fetch selected depth silently and commit market + depth in one DOM render.
+    if(activeSymbol){
+      const base=records().find(x=>x.canonical===activeSymbol);
+      const op=base?buildOpportunity(base,Math.max(1,Number($("notional").value)||10000),Date.now()):null;
+      await loadDepthFor(activeSymbol,forceDepth,op?.routeRecord?.ready4a?op.routeRecord:null,false);
+    }
+    render();
+  })();
+  try{return await cyclePromise}finally{cyclePromise=null}
 }
 
-[$("search"),$("notional"),$("binFee"),$("bitFee"),$("oppCustomHours"),$("oppMinNetUsd"),$("oppMinNetPct"),$("oppMaxBEHours"),$("oppMaxBECycles"),$("oppMaxCostGross"),$("oppMinSpread8h")].forEach(el=>el.oninput=render);
-$("view").onchange=render;$("oppFilter").onchange=render;$("oppHorizon").onchange=()=>{$("oppCustomHours").disabled=$("oppHorizon").value!=="CUSTOM";render()};$("oppCustomHours").disabled=$("oppHorizon").value!=="CUSTOM";
-$("refresh").onclick=async()=>{await cycle();if(activeSymbol){const base=records().find(x=>x.canonical===activeSymbol),op=base?buildOpportunity(base,Math.max(1,Number($("notional").value)||10000),Date.now()):null;loadDepthFor(activeSymbol,true,op?.routeRecord?.ready4a?op.routeRecord:null)}};
-setInterval(cycle,REFRESH_MS);cycle();
+[$("search"),$("notional"),$("binFee"),$("bitFee"),$("oppCustomHours"),$("oppMinNetUsd"),$("oppMinNetPct"),$("oppMaxBEHours"),$("oppMaxBECycles"),$("oppMaxCostGross"),$("oppMinSpread8h"),$("oppCycleProjectionInput")].filter(Boolean).forEach(el=>el.oninput=render);
+document.querySelectorAll("[data-cycle-projection]").forEach(btn=>btn.onclick=()=>{const input=$("oppCycleProjectionInput");if(input){input.value=btn.dataset.cycleProjection;render()}});
+$("oppSymbolLoad").onclick=()=>activateOpportunitySymbol($("oppSymbolSelect").value,true);
+$("oppSymbolSelect").onkeydown=e=>{if(e.key==="Enter"){e.preventDefault();activateOpportunitySymbol(e.currentTarget.value,true)}};
+$("view").onchange=render;$("oppFilter").onchange=render;$("rankScope").onchange=render;$("rankSort").onchange=render;$("oppHorizon").onchange=()=>{$("oppCustomHours").disabled=$("oppHorizon").value!=="CUSTOM";render()};$("oppCustomHours").disabled=$("oppHorizon").value!=="CUSTOM";
+$("refresh").onclick=()=>cycle(true);
+const l6aToggle=$("l6aDetailsToggle"),l6aDetails=$("l6aTableDetails");
+if(l6aToggle&&l6aDetails)l6aToggle.onclick=()=>{
+  const open=l6aDetails.hasAttribute("hidden");
+  if(open)l6aDetails.removeAttribute("hidden");else l6aDetails.setAttribute("hidden","");
+  l6aToggle.setAttribute("aria-expanded",open?"true":"false");
+  l6aToggle.innerHTML=open?'HIDE DETAILS <span class="arrow">▴</span>':'SHOW DETAILS <span class="arrow">▾</span>';
+};
+const l4Toggle=$("l4DetailsToggle"),l4Details=$("l4EngineDetails");
+if(l4Toggle&&l4Details)l4Toggle.onclick=()=>{
+  const open=l4Details.hasAttribute("hidden");
+  if(open)l4Details.removeAttribute("hidden");else l4Details.setAttribute("hidden","");
+  l4Toggle.setAttribute("aria-expanded",open?"true":"false");
+  l4Toggle.innerHTML=open?'HIDE DETAILS <span class="arrow">▴</span>':'SHOW DETAILS <span class="arrow">▾</span>';
+};
+setInterval(()=>cycle(false),REFRESH_MS);cycle(false);
 </script>
 </body>
 </html>
