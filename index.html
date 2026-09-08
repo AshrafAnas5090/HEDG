@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Funding Yield Core V1 · Step 5.6 · Multi-Paper Validation · Position Capital Detail</title>
+<title>Funding Yield Core V1 · Step 5.6C · Recovery Change Audit</title>
 <style>
 :root{
   --bg:#05080b;--panel:#091016;--panel2:#0c141b;--line:#1b2a35;--line2:#263a49;
@@ -43,7 +43,18 @@ button,input,select{font:inherit}button{cursor:pointer}.app{max-width:1600px;mar
 .journal-kpis{display:grid;grid-template-columns:1.05fr 1fr 1fr 1fr 1fr;border-bottom:1px solid #17303b}.journal-kpi{padding:7px 9px;border-right:1px solid #17303b;min-width:0}.journal-kpi:last-child{border-right:0}.journal-kpi span{display:block;font-size:6.3px;color:#6f8792;font-weight:900;letter-spacing:.08em;text-transform:uppercase}.journal-kpi b{display:block;margin-top:3px;font:950 clamp(16px,1.8vw,24px) ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;letter-spacing:-.035em}.journal-kpi small{display:block;margin-top:2px;font-size:6.5px;color:var(--muted);line-height:1.3}.journal-kpi.funding b{color:#70e6ad}.journal-kpi.net b.positive{color:var(--green)}.journal-kpi.net b.negative{color:var(--red)}.journal-kpi.recovery b{color:#c5bdff}
 .journal-tablewrap{overflow:auto;max-height:330px}.journal table{min-width:1050px}.journal th{font-size:6.5px;padding:6px 7px;color:#7593a1}.journal td{padding:7px;font-size:8px}.journal .j-symbol{font:950 12px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}.journal .j-route{font-size:7px;font-weight:900}.journal .j-money{font:950 11px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}.journal .j-sub{display:block;margin-top:2px;font-size:6.2px;color:var(--muted)}.journal .outcome{display:inline-flex;padding:4px 7px;border:1px solid #2a3e48;font:950 7px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;letter-spacing:.06em}.journal .outcome.profit{color:var(--green);border-color:rgba(82,227,154,.4);background:rgba(82,227,154,.055)}.journal .outcome.loss{color:var(--red);border-color:rgba(255,102,122,.4);background:rgba(255,102,122,.05)}.journal .outcome.be{color:var(--amber);border-color:rgba(242,200,102,.4);background:rgba(242,200,102,.05)}
 .journal-foot{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;padding:5px 8px;border-top:1px solid #17303b;color:#66808c;font-size:6.2px;letter-spacing:.05em}
-@media(max-width:760px){.journal-kpis{grid-template-columns:1fr 1fr}.journal-kpi{border-bottom:1px solid #17303b}.journal-head{align-items:flex-start}.journal-head .right{text-align:left}.journal-head{flex-direction:column}}
+.journal-head .right{display:flex;flex-direction:column;align-items:flex-end;gap:5px}
+.journal-actions{display:flex;gap:5px;flex-wrap:wrap;justify-content:flex-end}
+.data-btn{height:28px;padding:0 9px;border:1px solid #28404e;background:#071017;color:#9cb3bf;font-size:6.8px;font-weight:950;letter-spacing:.07em;white-space:nowrap}
+.data-btn:hover{border-color:var(--blue);color:var(--text)}
+.data-btn.backup{color:var(--green);border-color:rgba(82,227,154,.34);background:rgba(82,227,154,.045)}
+.data-btn.csv{color:var(--cyan);border-color:rgba(124,230,233,.32);background:rgba(124,230,233,.04)}
+.data-btn.import{color:var(--purple);border-color:rgba(179,165,255,.34);background:rgba(179,165,255,.045)}
+.data-status{max-width:560px;font:850 6.5px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:#718894;letter-spacing:.04em;text-align:right}
+.data-status.good{color:var(--green)}.data-status.warn{color:var(--amber)}.data-status.bad{color:var(--red)}
+.journal-delete{height:25px;padding:0 8px;border:1px solid rgba(255,102,122,.34);background:rgba(255,102,122,.045);color:#ff93a0;font-size:6.5px;font-weight:950;letter-spacing:.07em}
+.journal-delete:hover{background:rgba(255,102,122,.10);border-color:rgba(255,102,122,.60)}
+@media(max-width:760px){.journal-kpis{grid-template-columns:1fr 1fr}.journal-kpi{border-bottom:1px solid #17303b}.journal-head{align-items:flex-start}.journal-head .right{text-align:left;align-items:flex-start;width:100%}.journal-actions{justify-content:flex-start}.data-status{text-align:left}.journal-head{flex-direction:column}}
 
 /* Step 4 · Funding Persistence & Stability */
 .stability{display:none;margin-bottom:8px;border:1px solid rgba(124,230,233,.24);background:linear-gradient(145deg,rgba(8,17,23,.99),rgba(6,11,15,.99));overflow:hidden}.stability.show{display:block}.stab-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 10px;border-bottom:1px solid var(--line)}.stab-head-left{min-width:0}.stab-kicker{font-size:7px;color:var(--cyan);font-weight:950;letter-spacing:.13em;text-transform:uppercase}.stab-title{display:flex;align-items:baseline;gap:8px;margin-top:2px;min-width:0}.stab-title strong{font-size:13px;letter-spacing:.04em}.stab-title b{font:950 15px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:var(--text)}.stab-source{font-size:7px;color:var(--muted);font-weight:850;letter-spacing:.08em;text-align:right}.stab-grid{display:grid;grid-template-columns:1.15fr 1fr 1.25fr .8fr 1fr;gap:6px;padding:7px}.stab-card{min-width:0;min-height:88px;padding:9px 10px;border:1px solid var(--line);background:#071016;position:relative;overflow:hidden}.stab-card:before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:#385263}.stab-card.stability-score:before{background:var(--cyan)}.stab-card.route-age:before{background:var(--purple)}.stab-card.avg-rate:before{background:var(--blue)}.stab-card.reversals:before{background:var(--amber)}.stab-card.reliability:before{background:var(--green)}.stab-card span{display:block;font-size:6.7px;color:var(--muted);font-weight:900;letter-spacing:.1em;text-transform:uppercase}.stab-card b{display:block;margin-top:7px;font:950 clamp(20px,2.1vw,30px) ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;letter-spacing:-.045em;line-height:1}.stab-card small{display:block;margin-top:6px;font-size:7px;color:var(--muted);line-height:1.35}.stab-card.stability-score b{color:var(--cyan)}.stab-card.route-age b{color:var(--purple)}.stab-card.avg-rate b{font-size:clamp(13px,1.45vw,20px);color:var(--blue);line-height:1.2}.stab-card.reversals b{color:var(--amber)}.stab-card.reliability.high b{color:var(--green)}.stab-card.reliability.medium b{color:var(--amber)}.stab-card.reliability.low b{color:var(--red)}.stab-strip{display:grid;grid-template-columns:1fr 1fr 1fr 1.2fr;border-top:1px solid var(--line);background:#060c11}.stab-strip>div{padding:7px 9px;border-right:1px solid var(--line);min-width:0}.stab-strip>div:last-child{border-right:0}.stab-strip span{display:block;font-size:6.3px;color:var(--muted);font-weight:900;letter-spacing:.09em;text-transform:uppercase}.stab-strip b{display:block;margin-top:3px;font:950 10px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.stab-strip small{display:block;margin-top:2px;font-size:6.2px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.stab-loading{color:var(--blue)}.stab-good{color:var(--green)}.stab-warn{color:var(--amber)}.stab-bad{color:var(--red)}
@@ -61,18 +72,29 @@ button,input,select{font:inherit}button{cursor:pointer}.app{max-width:1600px;mar
 .paper-grid{display:grid;grid-template-columns:1fr 1fr}.pm{padding:6px 7px;border-right:1px solid #173028;border-bottom:1px solid #173028;min-width:0}.pm:nth-child(2n){border-right:0}.pm span{display:block;font-size:6.3px;color:#70867e;font-weight:900;letter-spacing:.07em;text-transform:uppercase}.pm b{display:block;margin-top:3px;font:950 12px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;white-space:normal;word-break:break-word}.pm.pnl b{font-size:16px}.pm .pos,.pm.pos b{color:var(--green)}.pm.neg b{color:var(--red)}.paper-funding{padding:7px 8px}.paper-funding span{display:block;font-size:6.5px;color:#70867e;font-weight:900;letter-spacing:.08em;text-transform:uppercase}.paper-funding b{display:block;margin-top:3px;font:950 15px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:#d8f3ff}.paper-funding small{display:block;margin-top:3px;font-size:7px;color:var(--muted);line-height:1.35}
 .paper-center-head{padding:6px 8px;border-bottom:1px solid #173028;font-size:7px;color:#7d9c90;font-weight:950;letter-spacing:.1em;text-transform:uppercase}.paper-net{padding:9px;text-align:center;border-bottom:1px solid #173028;background:radial-gradient(circle at 50% 0,rgba(82,227,154,.10),transparent 65%)}.paper-net span{display:block;font-size:7px;color:#78988b;font-weight:900;letter-spacing:.11em;text-transform:uppercase}.paper-net b{display:block;margin-top:4px;font:950 clamp(31px,4vw,49px) ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;letter-spacing:-.06em}.paper-net.positive b{color:var(--green)}.paper-net.negative b{color:var(--red)}.paper-net small{display:block;margin-top:3px;font-size:7px;color:var(--muted)}
 .paper-be{display:grid;grid-template-columns:1.05fr 1fr;border-bottom:1px solid #173028}.paper-be>div{padding:7px 8px;min-width:0}.paper-be>div:first-child{border-right:1px solid #173028}.paper-be span{display:block;font-size:6.5px;color:#8e86d5;font-weight:900;letter-spacing:.08em;text-transform:uppercase}.paper-be b{display:block;margin-top:3px;font:950 20px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:#d8d1ff}.paper-be strong{display:block;margin-top:2px;font:950 13px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:#b9b0ff}.paper-be small{display:block;margin-top:3px;font-size:7px;color:var(--muted);line-height:1.35}.paper-summary{display:grid;grid-template-columns:repeat(4,1fr)}.paper-summary .pm:nth-child(2n){border-right:1px solid #173028}.paper-summary .pm:last-child{border-right:0}.paper-alert{padding:7px 8px;border-top:1px solid #173028;font-size:8px;font-weight:900;letter-spacing:.04em;line-height:1.35}.paper-alert.good{color:var(--green);background:rgba(82,227,154,.035)}.paper-alert.warn{color:var(--amber);background:rgba(242,200,102,.035)}.paper-alert.bad{color:var(--red);background:rgba(255,102,122,.035)}
+.recovery-audit{border-top:1px solid #203442;border-bottom:1px solid #203442;background:#050b0f}
+.recovery-audit-head{display:grid;grid-template-columns:auto 1fr;align-items:center;gap:10px;padding:7px 9px;border-bottom:1px solid #172832}
+.recovery-audit-head span{font-size:6.7px;color:#78909c;font-weight:950;letter-spacing:.09em;text-transform:uppercase}
+.recovery-audit-head b{font:950 11px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;text-align:right;color:var(--amber);letter-spacing:.025em}
+.recovery-audit-head b.good{color:var(--green)}.recovery-audit-head b.warn{color:var(--amber)}.recovery-audit-head b.bad{color:var(--red)}
+.recovery-audit-grid{display:grid;grid-template-columns:repeat(8,minmax(0,1fr))}
+.recovery-audit-grid>div{padding:7px 8px;min-width:0;border-right:1px solid #172832}.recovery-audit-grid>div:last-child{border-right:0}
+.recovery-audit-grid span{display:block;font-size:5.9px;color:#637b87;font-weight:900;letter-spacing:.07em;text-transform:uppercase}
+.recovery-audit-grid b{display:block;margin-top:3px;font:950 11px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:#d8e4ea;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.recovery-audit-grid small{display:block;margin-top:2px;font-size:5.7px;color:#566e79;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.recovery-audit-grid .good b{color:var(--green)}.recovery-audit-grid .warn b{color:var(--amber)}.recovery-audit-grid .bad b{color:var(--red)}.recovery-audit-grid .info b{color:var(--cyan)}
 .paper-settle{display:grid;grid-template-columns:1.15fr 1fr 1fr 1fr;border-top:1px solid #173028;background:#050c0d}.paper-settle>div{padding:6px 8px;border-right:1px solid #173028;min-width:0}.paper-settle>div:last-child{border-right:0}.paper-settle span{display:block;font-size:6.3px;color:#70867e;font-weight:900;letter-spacing:.07em;text-transform:uppercase}.paper-settle b{display:block;margin-top:3px;font:950 10px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;white-space:normal;word-break:break-word}.paper-note{padding:5px 8px;border-top:1px solid #173028;color:#698078;font-size:6.5px;letter-spacing:.04em}.paper-note strong{color:#8ed9b9}
 @media(max-width:1050px){.paper-core{grid-template-columns:1fr 1fr}.paper-center{grid-column:1/-1;grid-row:1}.paper-head{grid-template-columns:1fr 1fr auto auto}.paper-statebar{grid-template-columns:repeat(3,1fr)}.paper-settle{grid-template-columns:1fr 1fr}}
-@media(max-width:650px){.paper-head{grid-template-columns:1fr 1fr}.paper-route{grid-column:1/-1}.paper-btn{width:100%}.paper-core{grid-template-columns:1fr}.paper-center{grid-column:auto;grid-row:auto}.paper-statebar,.paper-settle{grid-template-columns:1fr 1fr}.paper-summary{grid-template-columns:1fr 1fr}.paper-leg-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:650px){.paper-head{grid-template-columns:1fr 1fr}.paper-route{grid-column:1/-1}.paper-btn{width:100%}.paper-core{grid-template-columns:1fr}.paper-center{grid-column:auto;grid-row:auto}.paper-statebar,.paper-settle{grid-template-columns:1fr 1fr}.paper-summary{grid-template-columns:1fr 1fr}.paper-leg-grid{grid-template-columns:1fr 1fr}.recovery-audit-head{grid-template-columns:1fr}.recovery-audit-head b{text-align:left}.recovery-audit-grid{grid-template-columns:1fr 1fr}.recovery-audit-grid>div{border-bottom:1px solid #172832}}
 
 
 /* ===== Step 5.5 · Expert Opportunity Filter ===== */
-.expert-strip{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px;padding:7px 8px;border-bottom:1px solid var(--line);background:linear-gradient(90deg,rgba(82,227,154,.025),rgba(100,201,255,.025),rgba(179,165,255,.025))}
+.expert-strip{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:6px;padding:7px 8px;border-bottom:1px solid var(--line);background:linear-gradient(90deg,rgba(82,227,154,.025),rgba(100,201,255,.025),rgba(179,165,255,.025))}
 .expert-kpi{min-width:0;border:1px solid #192933;background:#070d12;padding:7px 9px}
 .expert-kpi span{display:block;font-size:7px;color:var(--muted);font-weight:950;letter-spacing:.11em;text-transform:uppercase}
 .expert-kpi b{display:block;margin-top:3px;font:950 16px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;letter-spacing:-.035em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .expert-kpi small{display:block;margin-top:2px;font-size:6.5px;color:#647985;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.expert-kpi.prime b{color:var(--green)}.expert-kpi.qualified b{color:var(--cyan)}.expert-kpi.watch b{color:var(--amber)}.expert-kpi.history b{color:var(--blue)}.expert-kpi.method b{color:var(--purple)}
+.expert-kpi.prime b{color:var(--green)}.expert-kpi.qualified b{color:var(--cyan)}.expert-kpi.watch b{color:var(--amber)}.expert-kpi.history b{color:var(--blue)}.expert-kpi.diag b{color:var(--amber);font-size:11px}.expert-kpi.method b{color:var(--purple)}
 .expert-grade{display:inline-flex;align-items:center;gap:5px;padding:4px 7px;border:1px solid var(--line2);font-size:7px;font-weight:1000;letter-spacing:.075em;line-height:1}
 .expert-grade.prime{color:var(--green);border-color:rgba(82,227,154,.42);background:rgba(82,227,154,.07)}
 .expert-grade.qualified{color:var(--cyan);border-color:rgba(124,230,233,.36);background:rgba(124,230,233,.06)}
@@ -93,12 +115,16 @@ tr.expert-qualified{background:linear-gradient(90deg,rgba(124,230,233,.025),tran
 .multi-brand,.multi-kpi{padding:8px 10px;border-right:1px solid var(--line);min-width:0}.multi-kpi:last-child{border-right:0}
 .multi-brand span,.multi-kpi span{display:block;font-size:6.5px;color:var(--muted);font-weight:950;letter-spacing:.11em;text-transform:uppercase}.multi-brand b{display:block;margin-top:3px;font-size:12px;letter-spacing:.055em}.multi-brand small,.multi-kpi small{display:block;margin-top:2px;font-size:6.3px;color:#667d89;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .multi-kpi b{display:block;margin-top:3px;font:950 15px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.multi-kpi.net b{color:var(--cyan)}.multi-kpi.net.positive b{color:var(--green)}.multi-kpi.net.negative b{color:var(--red)}.multi-kpi.funding b{color:var(--green)}.multi-kpi.next b{color:var(--purple)}.multi-kpi.mix b{color:var(--amber)}
+.multi-tools{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:6px 8px;border-bottom:1px solid #16242c;background:#050b0f;flex-wrap:wrap}
+.multi-filter-group{display:flex;gap:5px;flex-wrap:wrap}.multi-filter{height:27px;padding:0 9px;border:1px solid #243843;background:#071017;color:#718894;font-size:6.5px;font-weight:950;letter-spacing:.07em;white-space:nowrap}
+.multi-filter:hover{border-color:var(--cyan);color:var(--text)}.multi-filter.active{border-color:rgba(124,230,233,.65);background:rgba(124,230,233,.09);color:var(--cyan);box-shadow:inset 0 0 0 1px rgba(124,230,233,.08)}
+.multi-scheduler{font:900 6.4px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:#6d8490;letter-spacing:.05em}.multi-scheduler b{color:var(--green)}
 .multi-cols,.multi-row{display:grid;grid-template-columns:1fr .95fr 1.15fr .7fr 1fr .9fr 1.15fr 1fr .85fr 74px;align-items:stretch}.multi-cols{background:#050b0f;border-bottom:1px solid #16242c}.multi-cols span{padding:5px 7px;border-right:1px solid #14232a;font-size:6px;color:#637986;font-weight:950;letter-spacing:.075em;text-transform:uppercase}.multi-list{min-height:38px}.multi-row{background:#060d11;border-bottom:1px solid #13222a;cursor:pointer}.multi-row:hover{background:#09151a}.multi-row.selected{background:linear-gradient(90deg,rgba(124,230,233,.11),rgba(179,165,255,.035));box-shadow:inset 3px 0 0 var(--cyan)}
-.multi-cell{min-width:0;padding:6px 7px;border-right:1px solid #14232a;display:flex;flex-direction:column;justify-content:center;gap:2px}.multi-cell:last-child{border-right:0}.multi-cell span{font-size:5.8px;color:#657b87;font-weight:900;letter-spacing:.055em;text-transform:uppercase}.multi-cell b{font:950 9px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.multi-cell.symbol b{font-size:12px;color:#eefaff}.multi-cell.net b{font-size:12px}.multi-cell.good b{color:var(--green)}.multi-cell.bad b{color:var(--red)}.multi-cell.warn b{color:var(--amber)}
+.multi-cell{min-width:0;padding:6px 7px;border-right:1px solid #14232a;display:flex;flex-direction:column;justify-content:center;gap:2px}.multi-cell:last-child{border-right:0}.multi-cell span{font-size:5.8px;color:#657b87;font-weight:900;letter-spacing:.055em;text-transform:uppercase}.multi-cell b{font:950 9px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.multi-cell small{font:850 5.5px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:#607581;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.multi-cell.symbol b{font-size:12px;color:#eefaff}.multi-cell.net b{font-size:12px}.multi-cell.good b{color:var(--green)}.multi-cell.bad b{color:var(--red)}.multi-cell.warn b{color:var(--amber)}
 .multi-status{display:inline-flex;width:max-content;max-width:100%;padding:3px 5px;border:1px solid var(--line2);font:950 6.2px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;letter-spacing:.04em}.multi-status.good{color:var(--green);border-color:rgba(82,227,154,.34);background:rgba(82,227,154,.055)}.multi-status.warn{color:var(--amber);border-color:rgba(242,200,102,.34);background:rgba(242,200,102,.05)}.multi-status.bad{color:var(--red);border-color:rgba(255,102,122,.34);background:rgba(255,102,122,.05)}
 .multi-close{min-height:29px;padding:4px 6px;border:1px solid rgba(255,102,122,.38);background:rgba(255,102,122,.055);color:#ff9eaa;font-size:6.5px;font-weight:950;letter-spacing:.055em}.multi-close:hover{background:rgba(255,102,122,.10)}.multi-close:disabled{opacity:.4;cursor:not-allowed}.multi-empty{padding:12px;text-align:center;color:var(--muted);font-size:7px;font-weight:900;letter-spacing:.07em}.multi-foot{display:flex;justify-content:space-between;gap:12px;padding:6px 9px;border-top:1px solid #14232a;background:#050a0d;color:#647985;font-size:6.5px;letter-spacing:.04em}.multi-foot strong{color:var(--cyan)}
 @media(max-width:1100px){.multi-head{grid-template-columns:repeat(3,1fr)}.multi-brand{grid-column:1/-1}.multi-cols{display:none}.multi-list{display:grid;grid-template-columns:1fr 1fr;gap:4px;padding:4px}.multi-row{grid-template-columns:repeat(2,1fr);border:1px solid var(--line)}.multi-cell:nth-child(even){border-right:0}.multi-cell{border-bottom:1px solid #14232a}.multi-cell:nth-last-child(-n+2){border-bottom:0}}
-@media(max-width:650px){.multi-head{grid-template-columns:1fr 1fr}.multi-brand{grid-column:1/-1}.multi-list{grid-template-columns:1fr}.multi-foot{display:block}.multi-foot span{display:block;margin-top:3px}}
+@media(max-width:650px){.multi-head{grid-template-columns:1fr 1fr}.multi-brand{grid-column:1/-1}.multi-list{grid-template-columns:1fr}.multi-tools{align-items:flex-start}.multi-scheduler{width:100%}.multi-foot{display:block}.multi-foot span{display:block;margin-top:3px}}
 
 </style>
 </head>
@@ -107,7 +133,7 @@ tr.expert-qualified{background:linear-gradient(90deg,rgba(124,230,233,.025),tran
   <section class="top">
     <div class="brand">
       <div class="brand-left">
-        <div class="eyebrow">Funding Yield Core · V1 · Step 5.6</div>
+        <div class="eyebrow">Funding Yield Core · V1 · Step 5.6C</div>
         <div class="title">Funding Opportunity Core</div>
         <div class="sub">SCAN → SELECT → VERIFY → TEST LIVE → VALIDATE STABILITY → REVIEW RESULTS</div>
       </div>
@@ -126,7 +152,7 @@ tr.expert-qualified{background:linear-gradient(90deg,rgba(124,230,233,.025),tran
     <div class="ctl"><label>Max Budget / Leg</label><input id="budget" type="number" min="1" step="1" value="10"></div>
     <div class="ctl"><label>Binance Taker %</label><input id="binFee" type="number" min="0" step="0.001" value="0.05"></div>
     <div class="ctl"><label>Bitget Taker %</label><input id="bitFee" type="number" min="0" step="0.001" value="0.06"></div>
-    <div class="ctl"><label>View</label><select id="view"><option value="ALL">All Funding Edges</option><option value="FAST">Recover ≤ 24h</option><option value="DUAL">Dual Receive</option><option value="RECOVER">Projected Recovery</option><option value="EXPERT">PRIME / QUALIFIED</option></select></div>
+    <div class="ctl"><label>View</label><select id="view"><option value="ALL">All Funding Edges</option><option value="FAST">Recover ≤ 24h</option><option value="DUAL">Dual Receive</option><option value="RECOVER">Projected Recovery</option><option value="EXPERT">Expert Candidates · P / Q / Watch</option></select></div>
     <button class="refresh" id="refresh">REFRESH NOW</button>
   </section>
 
@@ -185,16 +211,25 @@ tr.expert-qualified{background:linear-gradient(90deg,rgba(124,230,233,.025),tran
 
   <section class="multi-paper" id="multiPaperConsole">
     <div class="multi-head">
-      <div class="multi-brand"><span>Step 5.6 · Multi-Paper Validation</span><b>Concurrent Funding Tests · Max 5</b><small>SELECT FROM SCANNER → ADD PAPER TEST · CLICK A ROW TO INSPECT IN STEP 3</small></div>
-      <div class="multi-kpi"><span>Open Paper</span><b id="multiOpen">0 / 5</b><small>INDEPENDENT PAPER POSITIONS</small></div>
+      <div class="multi-brand"><span>Step 5.6B · 20-Trade Adaptive Validation</span><b>Concurrent Funding Tests · Max 20</b><small>SELECT FROM SCANNER → ADD PAPER TEST · CLICK A ROW TO INSPECT IN STEP 3</small></div>
+      <div class="multi-kpi"><span>Open Paper</span><b id="multiOpen">0 / 20</b><small>INDEPENDENT PAPER POSITIONS</small></div>
       <div class="multi-kpi net" id="multiNetCard"><span>Total Close-Now Net</span><b id="multiNet">$0.0000</b><small id="multiNetSub">NO OPEN POSITIONS</small></div>
       <div class="multi-kpi funding"><span>Realized Funding</span><b id="multiFunding">$0.0000</b><small>OFFICIAL RECONCILED CASHFLOW</small></div>
       <div class="multi-kpi next"><span>Next Settlement</span><b id="multiNext">—</b><small id="multiNextSub">EARLIEST OPEN POSITION EVENT</small></div>
       <div class="multi-kpi mix"><span>Validation Mix</span><b id="multiMix">P0 · Q0 · W0</b><small>PRIME · QUALIFIED · WATCH/OTHER</small></div>
     </div>
+    <div class="multi-tools">
+      <div class="multi-filter-group">
+        <button class="multi-filter active" type="button" data-multi-filter="ALL">ALL <b id="mfAll">0</b></button>
+        <button class="multi-filter" type="button" data-multi-filter="ATTENTION">NEEDS ATTENTION <b id="mfAttention">0</b></button>
+        <button class="multi-filter" type="button" data-multi-filter="SETTLEMENT">SETTLEMENT &lt;30M <b id="mfSettlement">0</b></button>
+        <button class="multi-filter" type="button" data-multi-filter="PROFIT">B/E · PROFIT <b id="mfProfit">0</b></button>
+      </div>
+      <div class="multi-scheduler">ADAPTIVE POLL · SELECTED <b>3S</b> · PRIORITY TARGETS: &lt;15M <b>7S</b> · ATTENTION <b>10S</b> · NORMAL <b>20S</b></div>
+    </div>
     <div class="multi-cols"><span>Symbol</span><span>Grade</span><span>Route</span><span>Runtime</span><span>Funding B / G</span><span>Realized</span><span>Close Now Net</span><span>Break-even</span><span>Status</span><span>Action</span></div>
     <div class="multi-list" id="multiRows"><div class="multi-empty">NO OPEN PAPER TESTS · SELECT AN OPPORTUNITY AND START A PAPER TEST</div></div>
-    <div class="multi-foot"><strong>SELECTED TRADE: FAST 3S POLL · BACKGROUND: ROUND-ROBIN ~8–10S AT 5 OPEN</strong><span>Open trades persist locally across refresh/reopen. Full depth is used at entry and close; lighter depth is used for live Close-Now monitoring.</span></div>
+    <div class="multi-foot"><strong>PRIORITY QUEUE · SORTED BY NEXT SETTLEMENT · ONE BACKGROUND PAPER REFRESH AT A TIME</strong><span>Open trades persist locally across refresh/reopen. Full depth is used at entry/close and only escalates during live monitoring if light depth cannot cover the exact quantity.</span></div>
   </section>
 
   <section class="paper" id="paperPanel">
@@ -254,6 +289,22 @@ tr.expert-qualified{background:linear-gradient(90deg,rgba(124,230,233,.025),tran
         <div class="paper-funding"><span>Live Funding / Next</span><b id="paperBitFunding">—</b><small id="paperBitFundingDelta">WAITING FOR PAPER START</small></div>
       </section>
     </div>
+    <div class="recovery-audit" id="paperRecoveryAudit">
+      <div class="recovery-audit-head">
+        <span>Recovery Change Audit · What Happened?</span>
+        <b id="paperAuditCause">WAITING FOR LIVE PAPER DATA</b>
+      </div>
+      <div class="recovery-audit-grid">
+        <div class="info"><span>Entry B/E</span><b id="paperAuditEntryBE">—</b><small id="paperAuditEntryBESub">START PROJECTION</small></div>
+        <div><span>Live B/E</span><b id="paperAuditLiveBE">—</b><small id="paperAuditLiveBESub">CURRENT PROJECTION</small></div>
+        <div class="info"><span>Entry 24H Funding</span><b id="paperAuditEntry24">—</b><small id="paperAuditEntry24Sub">ENTRY RATES + CLOCKS</small></div>
+        <div><span>Live 24H Funding</span><b id="paperAuditLive24">—</b><small id="paperAuditLive24Sub">CURRENT RATES + CLOCKS</small></div>
+        <div><span>Funding Change</span><b id="paperAuditFundingChange">—</b><small>LIVE 24H VS ENTRY 24H</small></div>
+        <div><span>Required Now</span><b id="paperAuditRequired">—</b><small id="paperAuditRequiredSub">TO REACH CLOSE-NOW B/E</small></div>
+        <div><span>Market P&amp;L</span><b id="paperAuditMarket">—</b><small id="paperAuditMarketSub">EXECUTABLE PRICE EFFECT</small></div>
+        <div><span>Route</span><b id="paperAuditRoute">—</b><small id="paperAuditRouteSub">ENTRY ROUTE VS LIVE</small></div>
+      </div>
+    </div>
     <div class="paper-settle">
       <div><span>Exact Matched Qty</span><b id="paperQty">—</b></div>
       <div><span>Next Funding Event · Est.</span><b id="paperNextEvent">—</b></div>
@@ -266,7 +317,16 @@ tr.expert-qualified{background:linear-gradient(90deg,rgba(124,230,233,.025),tran
   <section class="journal" id="journalPanel">
     <div class="journal-head">
       <div class="left"><span>Step 5 · Paper Trade Journal &amp; Outcome Review</span><b>Funding Strategy Results</b></div>
-      <div class="right">CLOSED PAPER TESTS ONLY · LOCAL JOURNAL · LAST 100 RESULTS</div>
+      <div class="right">
+        <div>CLOSED PAPER TESTS ONLY · LOCAL JOURNAL · LAST 100 RESULTS</div>
+        <div class="journal-actions">
+          <button class="data-btn backup" id="exportBackup" type="button">EXPORT BACKUP</button>
+          <button class="data-btn csv" id="exportCsv" type="button">EXPORT CSV</button>
+          <button class="data-btn import" id="importBackup" type="button">IMPORT BACKUP</button>
+          <input id="importBackupFile" type="file" accept=".json,application/json" hidden>
+        </div>
+        <div class="data-status" id="dataStatus">LOCAL DATA · EXPORT A BACKUP BEFORE MOVING TO ANOTHER DEVICE</div>
+      </div>
     </div>
     <div class="journal-kpis">
       <div class="journal-kpi"><span>Paper Results</span><b id="jTests">0 TESTS</b><small id="jOutcomeMix">0 PROFIT · 0 LOSS · 0 B/E</small></div>
@@ -277,8 +337,8 @@ tr.expert-qualified{background:linear-gradient(90deg,rgba(124,230,233,.025),tran
     </div>
     <div class="journal-tablewrap">
       <table>
-        <thead><tr><th>Symbol</th><th>Route</th><th>Runtime</th><th>Funding</th><th>Cost / Market</th><th>Final Net / ROI</th><th>Break-even · Start → Actual</th><th>Stability At Entry</th><th>Outcome</th></tr></thead>
-        <tbody id="journalRows"><tr><td colspan="9" class="empty">NO CLOSED PAPER TESTS YET</td></tr></tbody>
+        <thead><tr><th>Symbol</th><th>Route</th><th>Runtime</th><th>Funding</th><th>Cost / Market</th><th>Final Net / ROI</th><th>Break-even · Start → Actual</th><th>Stability At Entry</th><th>Outcome</th><th>Data</th></tr></thead>
+        <tbody id="journalRows"><tr><td colspan="10" class="empty">NO CLOSED PAPER TESTS YET</td></tr></tbody>
       </table>
     </div>
     <div class="journal-foot"><span id="jStored">0 STORED</span><span>ACTUAL RECOVERY = FIRST OBSERVED LIVE CLOSE-NOW NET ≥ $0 DURING THE PAPER TEST</span><span>JOURNAL IS EVIDENCE FOR FUNDING STRATEGY QUALITY · NOT A TRADING SIGNAL</span></div>
@@ -287,14 +347,15 @@ tr.expert-qualified{background:linear-gradient(90deg,rgba(124,230,233,.025),tran
   <section class="scanner">
     <div class="scan-head">
       <strong>FUNDING OPPORTUNITIES · EXPERT FILTER</strong>
-      <span>1 FIND · 2 VERIFY · 3 TEST LIVE · 4 STABILITY · 5 RESULTS · 5.5 EXPERT · 5.6 MULTI VALIDATION</span>
+      <span>1 FIND · 2 VERIFY · 3 TEST LIVE · 4 STABILITY · 5 RESULTS · 5.5 EXPERT · 5.6B 20-TRADE VALIDATION</span>
     </div>
     <div class="expert-strip">
-      <div class="expert-kpi prime"><span>PRIME</span><b id="ePrime">0</b><small>EFF ≥3× · PERSIST ≥80% · ≤3 CYCLES</small></div>
-      <div class="expert-kpi qualified"><span>QUALIFIED</span><b id="eQualified">0</b><small>EFF ≥2× · PERSIST ≥70% · RECOVER ≤24H</small></div>
-      <div class="expert-kpi watch"><span>WATCH / REJECT</span><b id="eWatch">0 / 0</b><small>HISTORY OR ECONOMICS BELOW BASELINE</small></div>
+      <div class="expert-kpi prime"><span>PRIME</span><b id="ePrime">0</b><small>EFF ≥1.75× · PERSIST ≥75% · STAB ≥70 · ≤16H / ≤3C</small></div>
+      <div class="expert-kpi qualified"><span>QUALIFIED</span><b id="eQualified">0</b><small>EFF ≥1.25× · PERSIST ≥60% · STAB ≥55 · ≤24H</small></div>
+      <div class="expert-kpi watch"><span>WATCH / REJECT</span><b id="eWatch">0 / 0</b><small>WATCH = VALIDATION CANDIDATE · REJECT = HARD FAIL</small></div>
       <div class="expert-kpi history"><span>History Intelligence</span><b id="eHistory">0 / 20</b><small>TOP ECONOMIC CANDIDATES · OFFICIAL SETTLEMENTS</small></div>
-      <div class="expert-kpi method"><span>Conservative Method</span><b>24H FUNDING ÷ COST</b><small>USES MIN(CURRENT EDGE, HISTORICAL ROUTE MEDIAN)</small></div>
+      <div class="expert-kpi diag"><span>Diagnostics</span><b id="eDiag">NET 0 · TRANS 0</b><small id="eDiagSub">HIST 0 · ECON 0 · DEPTH 0</small></div>
+      <div class="expert-kpi method"><span>Conservative Method</span><b>24H SCHEDULED ÷ COST</b><small>ACTUAL SETTLEMENT CLOCKS · HISTORICAL MEDIAN DAMPING</small></div>
     </div>
     <div class="tablewrap">
       <table>
@@ -312,7 +373,7 @@ tr.expert-qualified{background:linear-gradient(90deg,rgba(124,230,233,.025),tran
         <tbody id="rows"><tr><td colspan="9" class="empty">CONNECTING TO LIVE FUNDING DATA…</td></tr></tbody>
       </table>
     </div>
-    <div class="foot"><span id="shown">0 SHOWN</span><span>BREAK-EVEN = CURRENT FUNDING RATES REPEATED ON ACTUAL SETTLEMENT SCHEDULE · PROJECTION, NOT GUARANTEE</span><span>YIELD STATUS = EXECUTION RECOVERY STATE · EXPERT FILTER = ECONOMICS + OFFICIAL HISTORY + SELECTED DEPTH WHEN AVAILABLE</span><span>STABILITY = OFFICIAL SETTLEMENT HISTORY + CURRENT LIVE RATE · HEURISTIC, NOT PROBABILITY</span><span>EXPERT = CONSERVATIVE 24H FUNDING ÷ CURRENT RT COST · HISTORY SCANS TOP 20 ECONOMIC CANDIDATES ONLY</span><span>PRIME CANDIDATE STILL REQUIRES SELECTED FULL-DEPTH VERIFICATION · PAPER TEST = SIMULATION ONLY · NO REAL ORDERS</span></div>
+    <div class="foot"><span id="shown">0 SHOWN</span><span>BREAK-EVEN = CURRENT FUNDING RATES REPEATED ON ACTUAL SETTLEMENT SCHEDULE · PROJECTION, NOT GUARANTEE</span><span>YIELD STATUS = EXECUTION RECOVERY STATE · EXPERT FILTER = ECONOMICS + OFFICIAL HISTORY + SELECTED DEPTH WHEN AVAILABLE</span><span>STABILITY = OFFICIAL SETTLEMENT HISTORY + CURRENT LIVE RATE · HEURISTIC, NOT PROBABILITY</span><span>EXPERT = CONSERVATIVE ACTUAL-SCHEDULE 24H FUNDING ÷ RT COST · FIRST EVENT MAY PAY IF LATER EVENTS RECOVER IT</span><span>PRIME CANDIDATE STILL REQUIRES SELECTED FULL-DEPTH VERIFICATION · PAPER TEST = SIMULATION ONLY · NO REAL ORDERS</span></div>
   </section>
 </div>
 <script>
@@ -320,15 +381,15 @@ const REFRESH_MS=5000;
 let binMap=new Map(),bitMap=new Map(),cycleBusy=false;
 let sortKey="expert",sortDir=1,selectedSymbol="",selectedDepth=null,depthBusy=false;
 const PAPER_POLL_MS=3000,PAPER_MARKET_MAX_AGE_MS=20000,PAPER_DEPTH_MAX_AGE_MS=12000,PAPER_SOURCE_MAX_DRIFT_MS=10000,PAPER_RECON_MIN_MS=15000,PAPER_MARK_WINDOW_MS=15000;
-const MULTI_PAPER_MAX=5,MULTI_BG_MS=2200,MULTI_STORAGE_KEY="FundingYieldCoreMultiPaperV1";
+const MULTI_PAPER_MAX=20,MULTI_BG_MS=1100,MULTI_NEAR_MS=7000,MULTI_ATTENTION_MS=10000,MULTI_NORMAL_MS=20000,MULTI_SETTLEMENT_SOON_MS=15*60*1000,MULTI_SETTLEMENT_FILTER_MS=30*60*1000,MULTI_STORAGE_KEY="FundingYieldCoreMultiPaperV1";
 function paperEmptyState(message="SELECT OPPORTUNITY → ADD PAPER TEST · AUTO FRESH VERIFY"){return{mode:"idle",trade:null,live:null,pollPromise:null,lastPollAt:null,lastReconAt:0,lastBeTime:null,lastNextCash:null,prevFunding:{BINANCE:null,BITGET:null},trend:{BINANCE:0,BITGET:0},message}}
 let paperState=paperEmptyState();
-let multiPaper={states:new Map(),selectedId:null,bgBusy:false,bgCursor:0,entryBusy:false};
+let multiPaper={states:new Map(),selectedId:null,bgBusy:false,bgCursor:0,entryBusy:false};let multiFilter="ALL";
 const STABILITY_HISTORY_LIMIT=30,STABILITY_REFRESH_MS=300000;
 let stabilityState={symbol:"",loading:false,error:"",fetchedAt:0,binRows:[],bitRows:[],seq:0};
 const EXPERT_SCAN_SIZE=20,EXPERT_HISTORY_TTL=300000,EXPERT_HISTORY_MIN_STATES=6,EXPERT_HISTORY_CONCURRENCY=2;
 let expertHistoryCache=new Map(),expertQueue=[],expertQueued=new Set(),expertActive=0,expertTargetSymbols=[],expertRenderTimer=null;
-const JOURNAL_DB="FundingYieldCoreJournalV1",JOURNAL_STORE="paperResults",JOURNAL_MAX=100;
+const JOURNAL_DB="FundingYieldCoreJournalV1",JOURNAL_STORE="paperResults",JOURNAL_MAX=100,DATA_BACKUP_VERSION=1,DATA_BACKUP_APP="FundingYieldCoreV1";
 let journalState={ready:false,records:[],error:""};
 const $=id=>document.getElementById(id);
 const finite=v=>v!==null&&v!==undefined&&v!==""&&Number.isFinite(Number(v));
@@ -398,6 +459,26 @@ function breakEvenProjection(r,cost,qty,now=Date.now(),maxDays=30){
 function nextCycleProjection(r,qty,now=Date.now()){
   const bn=fundingNext(r.b,now),gn=fundingNext(r.g,now),bc=fundingCash(r,"BINANCE",qty),gc=fundingCash(r,"BITGET",qty);if(!bn||!gn||!finite(bc)||!finite(gc))return null;const t=Math.min(bn,gn),tol=1000;let cash=0,b=0,g=0;if(Math.abs(bn-t)<=tol){cash+=Number(bc);b=1}if(Math.abs(gn-t)<=tol){cash+=Number(gc);g=1}return{time:t,timeMs:t-now,cash,b,g};
 }
+function scheduledFundingProjection(r,qty,horizonHours=24,now=Date.now()){
+  if(!r||!positive(qty)||!positive(horizonHours))return null;
+  const bn=fundingNext(r.b,now),gn=fundingNext(r.g,now),
+    bh=hours(r.b?.interval),gh=hours(r.g?.interval),
+    bc=fundingCash(r,"BINANCE",qty),gc=fundingCash(r,"BITGET",qty);
+  if(!bn||!gn||!bh||!gh||!finite(bc)||!finite(gc))return null;
+  let bNext=bn,gNext=gn,cash=0,cycles=0,bEvents=0,gEvents=0,firstCash=null,firstTime=null,lastTime=null;
+  const end=now+Number(horizonHours)*3600000,bStep=bh*3600000,gStep=gh*3600000,tol=1000;
+  while(cycles<100){
+    const t=Math.min(bNext,gNext);
+    if(!finite(t)||t>end)break;
+    let eventCash=0,had=false,b=0,g=0;
+    if(Math.abs(bNext-t)<=tol){eventCash+=Number(bc);bNext+=bStep;bEvents++;b=1;had=true}
+    if(Math.abs(gNext-t)<=tol){eventCash+=Number(gc);gNext+=gStep;gEvents++;g=1;had=true}
+    if(!had)break;
+    cycles++;cash+=eventCash;lastTime=t;
+    if(firstCash===null){firstCash=eventCash;firstTime=t}
+  }
+  return{cash,cycles,bEvents,gEvents,firstCash,firstTime,lastTime,horizonHours:Number(horizonHours)};
+}
 function buildOpportunity(base,budget,now){
   const b8=norm8h(base.b.funding,base.b.interval),g8=norm8h(base.g.funding,base.g.interval);if(!finite(b8)||!finite(g8))return null;const signed=b8-g8,spread=Math.abs(signed);if(spread<=1e-12)return null;
   const longVenue=signed>0?"BITGET":"BINANCE",shortVenue=signed>0?"BINANCE":"BITGET";const r={...base,longVenue,shortVenue};const long=venueData(r,longVenue),short=venueData(r,shortVenue);
@@ -405,9 +486,14 @@ function buildOpportunity(base,budget,now){
   const sizing=exactCommonSizing(String(budget),long.askRaw??long.ask,long.step,short.bidRaw??short.bid,short.step,long.minQty,short.minQty,long.maxQty,short.maxQty);if(!sizing?.matched)return{...r,ready:false,status:sizing?.state||"SIZE NOT READY",b8,g8,spread};
   const q=sizing.quantity,lf=longVenue==="BINANCE"?feeDecimal("binFee"):feeDecimal("bitFee"),sf=shortVenue==="BINANCE"?feeDecimal("binFee"):feeDecimal("bitFee");if(!finite(lf)||!finite(sf))return{...r,ready:false,status:"FEE PROFILE MISSING",b8,g8,spread};
   const entryFees=q*long.ask*lf+q*short.bid*sf,exitFees=q*long.bid*lf+q*short.ask*sf,spreadCost=Math.max(0,q*(long.ask-long.bid))+Math.max(0,q*(short.ask-short.bid)),quoteCost=entryFees+exitFees+spreadCost;
-  const dual=Number(long.funding)<0&&Number(short.funding)>0,type=dual?"DUAL RECEIVE":"SPREAD RECEIVE",nextCycle=nextCycleProjection(r,q,now),be=breakEvenProjection(r,quoteCost,q,now),drift=Math.abs(Number(base.b.ts)-Number(base.g.ts)),stale=Math.max(ageMs(base.b.ts),ageMs(base.g.ts))>20000;
-  const status=!nextCycle?"WAITING FUNDING":nextCycle.cash<=0?"NEXT CYCLE ≤ 0":be.ready?(be.timeMs<=24*3600000?"FAST RECOVERY":"RECOVERY PROJECTED"):"COST TOO HIGH";
-  return{...r,ready:true,b8,g8,spread,sizing,qty:q,quoteCost,nextCycle,be,dual,type,status,drift,stale};
+  const dual=Number(long.funding)<0&&Number(short.funding)>0,type=dual?"DUAL RECEIVE":"SPREAD RECEIVE",
+    nextCycle=nextCycleProjection(r,q,now),schedule24=scheduledFundingProjection(r,q,24,now),
+    be=breakEvenProjection(r,quoteCost,q,now),drift=Math.abs(Number(base.b.ts)-Number(base.g.ts)),stale=Math.max(ageMs(base.b.ts),ageMs(base.g.ts))>20000;
+  const firstPay=!!nextCycle&&Number(nextCycle.cash)<0;
+  const status=!nextCycle?"WAITING FUNDING":be.ready
+    ?(firstPay?(be.timeMs<=24*3600000?"FIRST PAY · FAST RECOVERY":"FIRST PAY · RECOVERY"):(be.timeMs<=24*3600000?"FAST RECOVERY":"RECOVERY PROJECTED"))
+    :"COST TOO HIGH";
+  return{...r,ready:true,b8,g8,spread,sizing,qty:q,quoteCost,nextCycle,schedule24,be,dual,type,status,drift,stale};
 }
 
 function depthLevels(data,side){
@@ -446,14 +532,17 @@ function depthForSelected(o){
 }
 function decisionFor(o,cost,be,depthState){
   if(!o?.ready||!o.nextCycle)return{label:"WAITING",cls:"wait",sub:o?.status||"DATA INCOMPLETE"};
-  if(Number(o.nextCycle.cash)<=0)return{label:"REJECT",cls:"reject",sub:"NEXT FUNDING EVENT DOES NOT PAY THE HEDGE"};
+  const scheduled24=positive(o?.qty)?scheduledFundingProjection(o,o.qty,24,Date.now()):null,
+    firstPay=finite(o.nextCycle.cash)&&Number(o.nextCycle.cash)<0;
+  if(!scheduled24||!positive(scheduled24.cash))return{label:"REJECT",cls:"reject",sub:"SCHEDULED 24H FUNDING CASHFLOW ≤ 0"};
   if(depthState==="INSUFFICIENT DEPTH")return{label:"REJECT",cls:"reject",sub:"FULL EXACT QUANTITY CANNOT BE EXECUTED"};
   if(depthState==="DEPTH ERROR")return{label:"WATCH · VERIFY",cls:"watch",sub:"DEPTH REQUEST FAILED · QUOTE RESULT IS NOT FINAL"};
   if(!be?.ready)return{label:"REJECT",cls:"reject",sub:be?.state||"NO PROJECTED RECOVERY"};
-  if(depthState==="DEPTH STALE")return{label:"WATCH",cls:"watch",sub:"DEPTH IS OLD · VERIFY AGAIN"};
-  if(depthState!=="DEPTH VERIFIED")return{label:be.timeMs<=86400000?"GOOD · VERIFY":"WATCH · VERIFY",cls:be.timeMs<=86400000?"good":"watch",sub:"QUOTE ESTIMATE · VERIFY FULL DEPTH BEFORE DECISION"};
-  if(be.timeMs<=86400000)return{label:"GOOD",cls:"good",sub:"DEPTH VERIFIED · FUNDING RECOVERS CURRENT ROUND-TRIP COST ≤ 24H"};
-  return{label:"WATCH",cls:"watch",sub:"DEPTH VERIFIED · RECOVERY PROJECTED > 24H"};
+  const firstNote=firstPay?"FIRST EVENT PAYS · LATER SCHEDULE RECOVERS · ":"";
+  if(depthState==="DEPTH STALE")return{label:"WATCH",cls:"watch",sub:`${firstNote}DEPTH IS OLD · VERIFY AGAIN`};
+  if(depthState!=="DEPTH VERIFIED")return{label:be.timeMs<=86400000?"GOOD · VERIFY":"WATCH · VERIFY",cls:be.timeMs<=86400000?"good":"watch",sub:`${firstNote}QUOTE ESTIMATE · VERIFY FULL DEPTH BEFORE DECISION`};
+  if(be.timeMs<=86400000)return{label:"GOOD",cls:"good",sub:`${firstNote}DEPTH VERIFIED · FUNDING RECOVERS CURRENT ROUND-TRIP COST ≤ 24H`};
+  return{label:"WATCH",cls:"watch",sub:`${firstNote}DEPTH VERIFIED · RECOVERY PROJECTED > 24H`};
 }
 function renderSelected(now=Date.now()){
   const panel=$("selectedPanel"),o=selectedOpportunity(now);if(!selectedSymbol||!o){panel.classList.remove("show");return}panel.classList.add("show");
@@ -498,13 +587,227 @@ function journalOpen(){return new Promise((resolve,reject)=>{if(!("indexedDB" in
 async function journalLoad(){try{const db=await journalOpen(),rows=await new Promise((resolve,reject)=>{const tx=db.transaction(JOURNAL_STORE,"readonly"),req=tx.objectStore(JOURNAL_STORE).getAll();req.onsuccess=()=>resolve(req.result||[]);req.onerror=()=>reject(req.error)});db.close();journalState={ready:true,records:rows.sort((a,b)=>Number(b.closedAt)-Number(a.closedAt)).slice(0,JOURNAL_MAX),error:""};renderJournal()}catch(e){journalState={ready:false,records:[],error:e?.message||"JOURNAL LOAD FAILED"};renderJournal()}}
 async function journalSave(rec){if(!rec)return;try{const db=await journalOpen();await new Promise((resolve,reject)=>{const tx=db.transaction(JOURNAL_STORE,"readwrite"),st=tx.objectStore(JOURNAL_STORE);st.put(rec);tx.oncomplete=resolve;tx.onerror=()=>reject(tx.error);tx.onabort=()=>reject(tx.error)});db.close();await journalTrim();await journalLoad()}catch(e){console.error("JOURNAL SAVE",e);journalState.error=e?.message||"JOURNAL SAVE FAILED";renderJournal()}}
 async function journalTrim(){const db=await journalOpen();const rows=await new Promise((resolve,reject)=>{const tx=db.transaction(JOURNAL_STORE,"readonly"),req=tx.objectStore(JOURNAL_STORE).getAll();req.onsuccess=()=>resolve(req.result||[]);req.onerror=()=>reject(req.error)});if(rows.length>JOURNAL_MAX){const remove=rows.sort((a,b)=>Number(b.closedAt)-Number(a.closedAt)).slice(JOURNAL_MAX);await new Promise((resolve,reject)=>{const tx=db.transaction(JOURNAL_STORE,"readwrite"),st=tx.objectStore(JOURNAL_STORE);remove.forEach(x=>st.delete(x.id));tx.oncomplete=resolve;tx.onerror=()=>reject(tx.error)})}db.close()}
+
+function setDataStatus(text,kind=""){
+  const el=$("dataStatus");if(!el)return;
+  el.textContent=String(text||"");
+  el.className=`data-status ${kind||""}`.trim();
+}
+function journalReadAll(){
+  return journalOpen().then(db=>new Promise((resolve,reject)=>{
+    const tx=db.transaction(JOURNAL_STORE,"readonly"),req=tx.objectStore(JOURNAL_STORE).getAll();
+    req.onsuccess=()=>{const rows=req.result||[];db.close();resolve(rows)};
+    req.onerror=()=>{db.close();reject(req.error||new Error("JOURNAL READ FAILED"))}
+  }));
+}
+async function journalDeleteRecord(id){
+  const rec=(journalState.records||[]).find(x=>String(x.id)===String(id));
+  if(!rec)return;
+  if(!confirm(`DELETE CLOSED PAPER TEST?\n\n${rec.symbol} · ${new Date(rec.closedAt).toISOString()}\n\nThis removes it from the local Journal and recalculates results.`))return;
+  try{
+    const db=await journalOpen();
+    await new Promise((resolve,reject)=>{
+      const tx=db.transaction(JOURNAL_STORE,"readwrite");
+      tx.objectStore(JOURNAL_STORE).delete(rec.id);
+      tx.oncomplete=resolve;tx.onerror=()=>reject(tx.error);tx.onabort=()=>reject(tx.error);
+    });
+    db.close();
+    await journalLoad();
+    setDataStatus(`DELETED · ${rec.symbol} · JOURNAL RECALCULATED`,"good");
+  }catch(e){
+    console.error("JOURNAL DELETE",e);
+    setDataStatus(e?.message||"DELETE FAILED","bad");
+  }
+}
+function dataDownload(content,mime,name){
+  const blob=new Blob([content],{type:mime}),url=URL.createObjectURL(blob),a=document.createElement("a");
+  a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();
+  setTimeout(()=>URL.revokeObjectURL(url),1000);
+}
+function dataStamp(){
+  return new Date().toISOString().replace(/[:.]/g,"-");
+}
+function backupSettings(){
+  return{
+    budget:$("budget")?.value??"10",
+    binFee:$("binFee")?.value??"0.05",
+    bitFee:$("bitFee")?.value??"0.06",
+    view:$("view")?.value??"ALL",
+    sortKey,sortDir
+  };
+}
+async function exportDataBackup(){
+  try{
+    const closed=(await journalReadAll()).sort((a,b)=>Number(b.closedAt)-Number(a.closedAt)).slice(0,JOURNAL_MAX);
+    const open=multiOpenStates().map(multiSnapshotState);
+    const payload={
+      app:DATA_BACKUP_APP,
+      backupVersion:DATA_BACKUP_VERSION,
+      exportedAt:new Date().toISOString(),
+      source:"Step 5.6B 20-Trade Adaptive Validation",
+      settings:backupSettings(),
+      openPaper:open,
+      closedJournal:closed
+    };
+    const name=`FUNDING_VALIDATION_BACKUP_${dataStamp()}.json`;
+    dataDownload(JSON.stringify(payload,null,2),"application/json;charset=utf-8",name);
+    setDataStatus(`BACKUP EXPORTED · ${open.length} OPEN · ${closed.length} CLOSED`,"good");
+  }catch(e){
+    console.error("BACKUP EXPORT",e);
+    setDataStatus(e?.message||"BACKUP EXPORT FAILED","bad");
+  }
+}
+function csvValue(v){
+  if(v===null||v===undefined)return"";
+  const text=typeof v==="object"?JSON.stringify(v):String(v);
+  return `"${text.replace(/"/g,'""')}"`;
+}
+async function exportJournalCsv(){
+  try{
+    const rows=(await journalReadAll()).sort((a,b)=>Number(b.closedAt)-Number(a.closedAt)).slice(0,JOURNAL_MAX);
+    const cols=[
+      "id","symbol","longVenue","shortVenue","openedAt","closedAt","runtimeMs",
+      "entryFundingB","entryFundingG","avgFundingB","avgFundingG","realizedFunding",
+      "fundingEvents","entryFees","exitFees","marketPnl","totalCostBurden","finalNet","roi",
+      "actualBreakEvenMs","actualBreakEvenCycles","exitReason","outcome",
+      "expertAtEntry","stabilityAtEntry","startBreakEven"
+    ];
+    const lines=[cols.map(csvValue).join(",")];
+    for(const r of rows){
+      const enriched={...r,openedAt:r.openedAt?new Date(r.openedAt).toISOString():"",closedAt:r.closedAt?new Date(r.closedAt).toISOString():""};
+      lines.push(cols.map(k=>csvValue(enriched[k])).join(","));
+    }
+    dataDownload("\ufeff"+lines.join("\r\n"),"text/csv;charset=utf-8",`FUNDING_VALIDATION_JOURNAL_${dataStamp()}.csv`);
+    setDataStatus(`CSV EXPORTED · ${rows.length} CLOSED TESTS`,"good");
+  }catch(e){
+    console.error("CSV EXPORT",e);
+    setDataStatus(e?.message||"CSV EXPORT FAILED","bad");
+  }
+}
+async function journalMergeRecords(records){
+  const valid=(Array.isArray(records)?records:[]).filter(x=>x&&x.id&&x.symbol&&finite(x.closedAt));
+  if(!valid.length)return{imported:0};
+  const db=await journalOpen();
+  await new Promise((resolve,reject)=>{
+    const tx=db.transaction(JOURNAL_STORE,"readwrite"),st=tx.objectStore(JOURNAL_STORE);
+    valid.forEach(x=>st.put(x));
+    tx.oncomplete=resolve;tx.onerror=()=>reject(tx.error);tx.onabort=()=>reject(tx.error);
+  });
+  db.close();
+  await journalTrim();
+  return{imported:valid.length};
+}
+function restoreImportedOpen(snapshot){
+  if(!snapshot?.trade?.symbol||!snapshot.trade?.openedAt)return{ok:false,reason:"INVALID"};
+  const id=snapshot.trade.id||`${snapshot.trade.symbol}-${snapshot.trade.openedAt}`;
+  if(multiPaper.states.has(id))return{ok:false,reason:"DUPLICATE_ID"};
+  if(multiFindSymbol(snapshot.trade.symbol))return{ok:false,reason:"DUPLICATE_SYMBOL"};
+  if(multiOpenStates().length>=MULTI_PAPER_MAX)return{ok:false,reason:"MAX_OPEN"};
+  const st={
+    ...paperEmptyState("IMPORTED PAPER TEST · REFRESHING LIVE DATA"),
+    ...snapshot,mode:"running",live:null,pollPromise:null,lastPollAt:null
+  };
+  st.trade={...snapshot.trade,id};
+  multiPaper.states.set(id,st);
+  return{ok:true,id};
+}
+function applyImportedSettings(cfg){
+  if(!cfg||typeof cfg!=="object")return;
+  if(cfg.budget!==undefined&&$("budget"))$("budget").value=cfg.budget;
+  if(cfg.binFee!==undefined&&$("binFee"))$("binFee").value=cfg.binFee;
+  if(cfg.bitFee!==undefined&&$("bitFee"))$("bitFee").value=cfg.bitFee;
+  if(cfg.view!==undefined&&$("view")&&[...$("view").options].some(o=>o.value===cfg.view))$("view").value=cfg.view;
+  if(typeof cfg.sortKey==="string")sortKey=cfg.sortKey;
+  if(Number(cfg.sortDir)===1||Number(cfg.sortDir)===-1)sortDir=Number(cfg.sortDir);
+  selectedDepth=null;
+}
+async function importDataBackupFile(file){
+  if(!file)return;
+  try{
+    const raw=await file.text(),payload=JSON.parse(raw);
+    if(!payload||payload.app!==DATA_BACKUP_APP||Number(payload.backupVersion)!==DATA_BACKUP_VERSION){
+      throw new Error("UNSUPPORTED OR INVALID FUNDING YIELD BACKUP");
+    }
+    const closed=Array.isArray(payload.closedJournal)?payload.closedJournal:[];
+    const open=Array.isArray(payload.openPaper)?payload.openPaper:[];
+    const merged=await journalMergeRecords(closed);
+    let openImported=0,dupId=0,dupSymbol=0,maxSkipped=0,invalid=0;
+    for(const snap of open){
+      const r=restoreImportedOpen(snap);
+      if(r.ok)openImported++;
+      else if(r.reason==="DUPLICATE_ID")dupId++;
+      else if(r.reason==="DUPLICATE_SYMBOL")dupSymbol++;
+      else if(r.reason==="MAX_OPEN")maxSkipped++;
+      else invalid++;
+    }
+    applyImportedSettings(payload.settings);
+    persistMultiPaper();
+    if(!multiPaper.selectedId){
+      const first=multiOpenStates()[0];
+      if(first){multiPaper.selectedId=first.trade.id;paperState=first;selectedSymbol=first.trade.symbol}
+    }
+    await journalLoad();
+    render();
+    setDataStatus(
+      `IMPORT OK · CLOSED ${merged.imported} MERGED · OPEN ${openImported} RESTORED · SKIP ID ${dupId} · SYMBOL ${dupSymbol} · MAX ${maxSkipped}${invalid?` · INVALID ${invalid}`:""}`,
+      "good"
+    );
+  }catch(e){
+    console.error("BACKUP IMPORT",e);
+    setDataStatus(e?.message||"BACKUP IMPORT FAILED","bad");
+  }finally{
+    if($("importBackupFile"))$("importBackupFile").value="";
+  }
+}
+
 function paperFundingSample(trade,live){if(!trade||!live)return;trade.fundingSamples=trade.fundingSamples||{BINANCE:[],BITGET:[]};for(const venue of ["BINANCE","BITGET"]){const v=paperVenue(live,venue);if(!finite(v?.funding))continue;const arr=trade.fundingSamples[venue],last=arr[arr.length-1];if(!last||Math.abs(Number(last.rate)-Number(v.funding))>1e-12||Date.now()-Number(last.ts)>15000)arr.push({ts:Date.now(),rate:Number(v.funding)});if(arr.length>1000)arr.splice(0,arr.length-1000)}}
 function journalAvgRate(trade,venue){const arr=trade?.fundingSamples?.[venue]||[];return arr.length?arr.reduce((a,x)=>a+Number(x.rate),0)/arr.length:null}
 function journalFundingCycles(trade,until=Infinity){const times=(trade?.ledger||[]).map(x=>Number(x.time)).filter(t=>Number.isFinite(t)&&t<=Number(until)).sort((a,b)=>a-b);let cycles=0,last=null;for(const t of times){if(last===null||Math.abs(t-last)>1000){cycles++;last=t}}return cycles}
 function journalOutcome(net){if(!finite(net))return{label:"UNKNOWN",cls:"be"};if(Number(net)>0.0000005)return{label:"PROFITABLE",cls:"profit"};if(Number(net)<-0.0000005)return{label:"LOSS",cls:"loss"};return{label:"BREAK-EVEN",cls:"be"}}
 function journalRecordFromTrade(trade){const f=trade?.final;if(!trade||!f?.ready)return null;const avgB=journalAvgRate(trade,"BINANCE"),avgG=journalAvgRate(trade,"BITGET"),out=journalOutcome(f.net),actualMs=finite(trade.breakEvenHitAt)?Number(trade.breakEvenHitAt)-Number(trade.openedAt):null;return{id:`${trade.symbol}-${trade.openedAt}`,symbol:trade.symbol,longVenue:trade.longVenue,shortVenue:trade.shortVenue,openedAt:trade.openedAt,closedAt:trade.closedAt,runtimeMs:Number(trade.closedAt)-Number(trade.openedAt),entryFundingB:trade.b?.funding,entryFundingG:trade.g?.funding,avgFundingB:avgB,avgFundingG:avgG,realizedFunding:paperRealized(trade),fundingEvents:trade.ledger?.length||0,entryFees:trade.entryFees,exitFees:f.exitFees,marketPnl:f.marketPnl,totalCostBurden:Number(trade.entryFees||0)+Number(f.exitFees||0)+Math.max(0,-Number(f.marketPnl||0)),finalNet:f.net,roi:f.roi,startBreakEven:trade.startBreakEven||null,actualBreakEvenMs:actualMs,actualBreakEvenCycles:trade.breakEvenFundingCycles??null,stabilityAtEntry:trade.stabilityAtEntry||null,expertAtEntry:trade.expertAtEntry||null,exitReason:"MANUAL PAPER CLOSE",outcome:out.label}}
-function renderJournal(){const rows=journalState.records||[],tests=rows.length,profit=rows.filter(x=>x.outcome==="PROFITABLE").length,loss=rows.filter(x=>x.outcome==="LOSS").length,be=rows.filter(x=>x.outcome==="BREAK-EVEN").length,totalFunding=rows.reduce((a,x)=>a+(finite(x.realizedFunding)?Number(x.realizedFunding):0),0),totalNet=rows.reduce((a,x)=>a+(finite(x.finalNet)?Number(x.finalNet):0),0),hits=rows.filter(x=>finite(x.actualBreakEvenMs));$("jTests").textContent=`${tests} TEST${tests===1?"":"S"}`;$("jOutcomeMix").textContent=`${profit} PROFIT · ${loss} LOSS · ${be} B/E`;$("jFunding").textContent=money(totalFunding);const net=$("jNet");net.textContent=signedMoney(totalNet);net.className=totalNet>0?"positive":totalNet<0?"negative":"";$("jWinRate").textContent=tests?`${(profit/tests*100).toFixed(0)}%`:"—";if(hits.length){const avgMs=hits.reduce((a,x)=>a+Number(x.actualBreakEvenMs),0)/hits.length,cycleRows=hits.filter(x=>finite(x.actualBreakEvenCycles)),avgCycles=cycleRows.length?cycleRows.reduce((a,x)=>a+Number(x.actualBreakEvenCycles),0)/cycleRows.length:null;$("jRecovery").textContent=durationText(avgMs);$("jRecoverySub").textContent=finite(avgCycles)?`${avgCycles.toFixed(1)} FUNDING CYCLES AVG`:`${hits.length} OBSERVED BREAK-EVEN TESTS`}else{$("jRecovery").textContent="—";$("jRecoverySub").textContent="NO OBSERVED BREAK-EVEN YET"}$("jStored").textContent=journalState.error?journalState.error:`${tests} STORED · LOCAL BROWSER`;$("journalRows").innerHTML=rows.length?rows.map(x=>{const o=journalOutcome(x.finalNet),start=x.startBreakEven?.ready?`${x.startBreakEven.cycles}C · ${durationText(x.startBreakEven.timeMs)}`:(x.startBreakEven?.state||"—"),actual=finite(x.actualBreakEvenMs)?`${x.actualBreakEvenCycles??"—"}C · ${durationText(x.actualBreakEvenMs)}`:"NOT HIT",stab=x.stabilityAtEntry?.reliability?`${x.expertAtEntry?.label?x.expertAtEntry.label+" · ":""}${x.stabilityAtEntry.reliability} · ${Math.round(x.stabilityAtEntry.score||0)}/100`:(x.expertAtEntry?.label||"—");return`<tr><td><span class="j-symbol">${x.symbol}</span><span class="j-sub">${new Date(x.closedAt).toISOString().slice(0,16).replace("T"," ")} UTC</span></td><td><span class="j-route">L ${x.longVenue} → S ${x.shortVenue}</span></td><td>${durationText(x.runtimeMs)}<span class="j-sub">${x.fundingEvents||0} REALIZED EVENTS</span></td><td><span class="j-money ${Number(x.realizedFunding)>0?'pos':Number(x.realizedFunding)<0?'neg':''}">${paperSigned(x.realizedFunding)}</span><span class="j-sub">AVG B ${pctRate(x.avgFundingB)} · G ${pctRate(x.avgFundingG)}</span></td><td>${money(x.totalCostBurden)}<span class="j-sub">FEES ${money(Number(x.entryFees||0)+Number(x.exitFees||0))} · MKT ${paperSigned(x.marketPnl)}</span></td><td><span class="j-money ${Number(x.finalNet)>0?'pos':Number(x.finalNet)<0?'neg':''}">${paperSigned(x.finalNet)}</span><span class="j-sub">ROI ${finite(x.roi)?(Number(x.roi)*100).toFixed(4)+'%':'—'}</span></td><td>${start} → ${actual}</td><td>${stab}<span class="j-sub">${x.stabilityAtEntry?.label||"NO HISTORY SNAPSHOT"}</span></td><td><span class="outcome ${o.cls}">${o.label}</span></td></tr>`}).join(""):`<tr><td colspan="9" class="empty">NO CLOSED PAPER TESTS YET</td></tr>`}
-
+function renderJournal(){
+  const rows=journalState.records||[],tests=rows.length,
+    profit=rows.filter(x=>x.outcome==="PROFITABLE").length,
+    loss=rows.filter(x=>x.outcome==="LOSS").length,
+    be=rows.filter(x=>x.outcome==="BREAK-EVEN").length,
+    totalFunding=rows.reduce((a,x)=>a+(finite(x.realizedFunding)?Number(x.realizedFunding):0),0),
+    totalNet=rows.reduce((a,x)=>a+(finite(x.finalNet)?Number(x.finalNet):0),0),
+    hits=rows.filter(x=>finite(x.actualBreakEvenMs));
+  $("jTests").textContent=`${tests} TEST${tests===1?"":"S"}`;
+  $("jOutcomeMix").textContent=`${profit} PROFIT · ${loss} LOSS · ${be} B/E`;
+  $("jFunding").textContent=money(totalFunding);
+  const net=$("jNet");net.textContent=signedMoney(totalNet);net.className=totalNet>0?"positive":totalNet<0?"negative":"";
+  $("jWinRate").textContent=tests?`${(profit/tests*100).toFixed(0)}%`:"—";
+  if(hits.length){
+    const avgMs=hits.reduce((a,x)=>a+Number(x.actualBreakEvenMs),0)/hits.length,
+      cycleRows=hits.filter(x=>finite(x.actualBreakEvenCycles)),
+      avgCycles=cycleRows.length?cycleRows.reduce((a,x)=>a+Number(x.actualBreakEvenCycles),0)/cycleRows.length:null;
+    $("jRecovery").textContent=durationText(avgMs);
+    $("jRecoverySub").textContent=finite(avgCycles)?`${avgCycles.toFixed(1)} FUNDING CYCLES AVG`:`${hits.length} OBSERVED BREAK-EVEN TESTS`;
+  }else{
+    $("jRecovery").textContent="—";$("jRecoverySub").textContent="NO OBSERVED BREAK-EVEN YET";
+  }
+  $("jStored").textContent=journalState.error?journalState.error:`${tests} STORED · LOCAL BROWSER`;
+  $("journalRows").innerHTML=rows.length?rows.map(x=>{
+    const o=journalOutcome(x.finalNet),
+      start=x.startBreakEven?.ready?`${x.startBreakEven.cycles}C · ${durationText(x.startBreakEven.timeMs)}`:(x.startBreakEven?.state||"—"),
+      actual=finite(x.actualBreakEvenMs)?`${x.actualBreakEvenCycles??"—"}C · ${durationText(x.actualBreakEvenMs)}`:"NOT HIT",
+      stab=x.stabilityAtEntry?.reliability?`${x.expertAtEntry?.label?x.expertAtEntry.label+" · ":""}${x.stabilityAtEntry.reliability} · ${Math.round(x.stabilityAtEntry.score||0)}/100`:(x.expertAtEntry?.label||"—"),
+      safeId=encodeURIComponent(String(x.id));
+    return`<tr>
+      <td><span class="j-symbol">${x.symbol}</span><span class="j-sub">${new Date(x.closedAt).toISOString().slice(0,16).replace("T"," ")} UTC</span></td>
+      <td><span class="j-route">L ${x.longVenue} → S ${x.shortVenue}</span></td>
+      <td>${durationText(x.runtimeMs)}<span class="j-sub">${x.fundingEvents||0} REALIZED EVENTS</span></td>
+      <td><span class="j-money ${Number(x.realizedFunding)>0?'pos':Number(x.realizedFunding)<0?'neg':''}">${paperSigned(x.realizedFunding)}</span><span class="j-sub">AVG B ${pctRate(x.avgFundingB)} · G ${pctRate(x.avgFundingG)}</span></td>
+      <td>${money(x.totalCostBurden)}<span class="j-sub">FEES ${money(Number(x.entryFees||0)+Number(x.exitFees||0))} · MKT ${paperSigned(x.marketPnl)}</span></td>
+      <td><span class="j-money ${Number(x.finalNet)>0?'pos':Number(x.finalNet)<0?'neg':''}">${paperSigned(x.finalNet)}</span><span class="j-sub">ROI ${finite(x.roi)?(Number(x.roi)*100).toFixed(4)+'%':'—'}</span></td>
+      <td>${start} → ${actual}</td>
+      <td>${stab}<span class="j-sub">${x.stabilityAtEntry?.label||"NO HISTORY SNAPSHOT"}</span></td>
+      <td><span class="outcome ${o.cls}">${o.label}</span></td>
+      <td><button class="journal-delete" type="button" data-journal-delete="${safeId}">DELETE</button></td>
+    </tr>`;
+  }).join(""):`<tr><td colspan="10" class="empty">NO CLOSED PAPER TESTS YET</td></tr>`;
+}
 /* ===== Step 3 · Live Funding Paper Test ===== */
 const paperPrice=v=>!positive(v)?"—":Number(v).toLocaleString(undefined,{minimumFractionDigits:Number(v)>=1000?2:Number(v)>=1?4:6,maximumFractionDigits:Number(v)>=1000?2:Number(v)>=1?4:8});
 const paperSet=(id,v)=>{const el=$(id);if(el)el.textContent=v};
@@ -531,6 +834,100 @@ function paperHealth(live,now=Date.now()){if(!live)return{ready:false,issues:["L
 function paperEntryEval(draft,live){const q=Number(draft.quantity),long=paperVenue(live,draft.longVenue),short=paperVenue(live,draft.shortVenue);if(!positive(q)||!long?.depth||!short?.depth)return{ready:false,state:"ENTRY DEPTH MISSING"};const le=simulateQty(depthLevels(long.depth,"asks"),q),se=simulateQty(depthLevels(short.depth,"bids"),q);if(!le.full||!se.full)return{ready:false,state:"ENTRY DEPTH INSUFFICIENT"};const entryFees=le.quote*Number(draft.longFee)+se.quote*Number(draft.shortFee);return{ready:true,le,se,entryFees,combinedEntry:le.quote+se.quote}}
 function paperCloseEval(trade,live){if(!trade||!live)return{ready:false,state:"LIVE EXIT REQUIRED"};const q=Number(trade.quantity),long=paperVenue(live,trade.longVenue),short=paperVenue(live,trade.shortVenue);if(!positive(q)||!long?.depth||!short?.depth)return{ready:false,state:"LIVE DEPTH REQUIRED"};const lc=simulateQty(depthLevels(long.depth,"bids"),q),sc=simulateQty(depthLevels(short.depth,"asks"),q);if(!lc.full||!sc.full)return{ready:false,state:`EXIT DEPTH PARTIAL · ${(Math.min(lc.coverage||0,sc.coverage||0)*100).toFixed(1)}%`};const longPnl=lc.quote-Number(trade.longEntryQuote),shortPnl=Number(trade.shortEntryQuote)-sc.quote,marketPnl=longPnl+shortPnl,exitFees=lc.quote*Number(trade.longFee)+sc.quote*Number(trade.shortFee),real=paperRealized(trade),net=marketPnl+real-Number(trade.entryFees)-exitFees,roi=positive(trade.combinedEntry)?net/Number(trade.combinedEntry):null;return{ready:true,state:"EXECUTABLE CLOSE READY",lc,sc,longPnl,shortPnl,marketPnl,exitFees,realized:real,net,roi}}
 function paperProjectionNext(ts,step,now){if(!finite(ts)||!positive(step))return null;let t=Number(ts),guard=0;while(t<=now&&guard++<1000)t+=Number(step);return t>now?t:null}
+function paperFundingWindow(trade,bData,gData,horizonHours=24,now=Date.now()){
+  if(!trade||!bData||!gData||!positive(horizonHours))return null;
+  const bh=hours(bData.interval||trade.b?.interval),gh=hours(gData.interval||trade.g?.interval),
+    bs=bh*3600000,gs=gh*3600000,
+    bc=paperFundingCash(trade,"BINANCE",bData.funding,bData.mark),
+    gc=paperFundingCash(trade,"BITGET",gData.funding,gData.mark);
+  if(!positive(bs)||!positive(gs)||!finite(bc)||!finite(gc)||!finite(bData.next)||!finite(gData.next))return null;
+  let bn=paperProjectionNext(bData.next,bs,now),gn=paperProjectionNext(gData.next,gs,now),
+    cash=0,cycles=0,bEvents=0,gEvents=0,firstCash=null,lastTime=null;
+  const end=now+Number(horizonHours)*3600000,tol=1000;
+  while(cycles<1000){
+    const t=Math.min(bn,gn);if(!finite(t)||t>end)break;
+    let eventCash=0,had=false;
+    if(Math.abs(bn-t)<=tol){eventCash+=Number(bc);bn+=bs;bEvents++;had=true}
+    if(Math.abs(gn-t)<=tol){eventCash+=Number(gc);gn+=gs;gEvents++;had=true}
+    if(!had)break;
+    cycles++;cash+=eventCash;lastTime=t;if(firstCash===null)firstCash=eventCash;
+  }
+  return{cash,cycles,bEvents,gEvents,firstCash,lastTime,horizonHours:Number(horizonHours)};
+}
+function paperAuditBEText(r){
+  if(!r)return"—";
+  if(r.ready)return r.cycles===0?"NOW":`${r.cycles}C · ${durationText(r.timeMs)}`;
+  return r.state||"NO RECOVERY";
+}
+function paperAuditClassByNumber(v,positiveGood=true){
+  if(!finite(v))return"";
+  const n=Number(v);if(Math.abs(n)<=1e-12)return"";
+  return positiveGood?(n>0?"good":"bad"):(n>0?"bad":"good");
+}
+function paperRecoveryCause(trade,live,ev,recovery,entry24,live24,now=Date.now()){
+  if(!trade||!live||!ev?.ready)return{kind:"warn",text:"WAITING FOR COMPLETE LIVE EXIT + FUNDING DATA"};
+  if(finite(trade.closedAt))return{kind:Number(ev.net)>=0?"good":"bad",text:`PAPER CLOSED · FINAL NET ${paperSigned(ev.net)} · RECOVERY AUDIT FROZEN`};
+  const route=paperRouteState(trade,live),needed=Math.max(0,-Number(ev.net)),
+    entryCash=entry24&&finite(entry24.cash)?Number(entry24.cash):null,
+    liveCash=live24&&finite(live24.cash)?Number(live24.cash):null,
+    change=positive(entryCash)&&finite(liveCash)?(liveCash/entryCash-1)*100:null,
+    start=trade.startBreakEven;
+  if(route.kind==="bad")return{kind:"bad",text:`ROUTE FLIPPED · LIVE FUNDING NOW FAVORS THE OPPOSITE HEDGE`};
+  if(finite(liveCash)&&liveCash<=0)return{kind:"bad",text:`24H FUNDING EDGE COLLAPSED · LIVE PROJECTED FUNDING ${paperSigned(liveCash)}`};
+  if(!recovery?.ready){
+    if(finite(change)&&change<=-80)return{kind:"bad",text:`FUNDING COLLAPSED ${change.toFixed(0)}% VS ENTRY · CURRENT YIELD CANNOT RECOVER ${money(needed)} ≤30D`};
+    if(finite(change)&&change<=-35)return{kind:"bad",text:`FUNDING WEAKENED ${change.toFixed(0)}% VS ENTRY · RECOVERY NOW EXCEEDS 30D`};
+    if(finite(ev.marketPnl)&&Number(ev.marketPnl)<-Math.max(.000001,Number(trade.entryFees||0)))return{kind:"bad",text:`MARKET / EXIT PATH WORSENED · ${paperSigned(ev.marketPnl)} MARKET P&L · ${money(needed)} NOW REQUIRED`};
+    return{kind:"bad",text:`CURRENT FUNDING IS TOO SMALL TO RECOVER ${money(needed)} WITHIN 30 DAYS`};
+  }
+  if(start?.ready&&recovery.ready&&Number(recovery.cycles)>Number(start.cycles)){
+    return{kind:"warn",text:`RECOVERY EXTENDED · ENTRY ${start.cycles}C → LIVE ${recovery.cycles}C${finite(change)?` · FUNDING ${change>=0?"+":""}${change.toFixed(0)}%`:""}`};
+  }
+  if(finite(change)&&change<=-20)return{kind:"warn",text:`FUNDING WEAKENED ${change.toFixed(0)}% VS ENTRY · RECOVERY REMAINS POSSIBLE`};
+  if(recovery.cycles===0)return{kind:"good",text:"BREAK-EVEN REACHED · CLOSE-NOW NET IS AT / ABOVE ZERO"};
+  return{kind:"good",text:`RECOVERY PATH STILL ACTIVE · ${recovery.cycles}C · ${durationText(recovery.timeMs)}`};
+}
+function renderPaperRecoveryAudit(trade,live,ev,recovery,now=Date.now()){
+  const causeEl=$("paperAuditCause");
+  if(!trade){
+    ["paperAuditEntryBE","paperAuditLiveBE","paperAuditEntry24","paperAuditLive24","paperAuditFundingChange","paperAuditRequired","paperAuditMarket","paperAuditRoute"].forEach(id=>paperSet(id,"—"));
+    if(causeEl){causeEl.textContent="WAITING FOR LIVE PAPER DATA";causeEl.className="warn"}return;
+  }
+  const entry24=paperFundingWindow(trade,trade.b,trade.g,24,trade.openedAt),
+    live24=live?paperFundingWindow(trade,live.b,live.g,24,now):null,
+    entryCash=entry24&&finite(entry24.cash)?Number(entry24.cash):null,
+    liveCash=live24&&finite(live24.cash)?Number(live24.cash):null,
+    fundingChange=positive(entryCash)&&finite(liveCash)?(liveCash/entryCash-1)*100:null,
+    needed=ev?.ready?Math.max(0,-Number(ev.net)):null,
+    route=live?paperRouteState(trade,live):null,
+    startReq=finite(trade.startAudit?.required)?Number(trade.startAudit.required):null;
+  paperSet("paperAuditEntryBE",paperAuditBEText(trade.startBreakEven));
+  paperSet("paperAuditEntryBESub",trade.startBreakEven?.ready?`START · EVENTS B${trade.startBreakEven.bEvents}/G${trade.startBreakEven.gEvents}`:(trade.startBreakEven?.state||"START PROJECTION"));
+  paperSet("paperAuditLiveBE",paperAuditBEText(recovery));
+  paperSet("paperAuditLiveBESub",recovery?.ready?`NOW · EVENTS B${recovery.bEvents}/G${recovery.gEvents}`:(recovery?.state||"CURRENT PROJECTION"));
+  paperSet("paperAuditEntry24",finite(entryCash)?paperSigned(entryCash):"—");
+  paperSet("paperAuditEntry24Sub",entry24?`B ${pctRate(trade.b?.funding)} · G ${pctRate(trade.g?.funding)} · ${entry24.bEvents}/${entry24.gEvents} EV`:"ENTRY RATES + CLOCKS");
+  paperSet("paperAuditLive24",finite(liveCash)?paperSigned(liveCash):"—");
+  paperSet("paperAuditLive24Sub",live24?`B ${pctRate(live?.b?.funding)} · G ${pctRate(live?.g?.funding)} · ${live24.bEvents}/${live24.gEvents} EV`:"CURRENT RATES + CLOCKS");
+  paperSet("paperAuditFundingChange",finite(fundingChange)?`${fundingChange>=0?"+":""}${fundingChange.toFixed(0)}%`:"—");
+  paperSet("paperAuditRequired",finite(needed)?money(needed):"—");
+  paperSet("paperAuditRequiredSub",finite(startReq)?`START ${money(startReq)} → NOW ${money(needed)}`:"CURRENT CLOSE-NOW DEFICIT");
+  paperSet("paperAuditMarket",ev?.ready?paperSigned(ev.marketPnl):"—");
+  paperSet("paperAuditMarketSub",ev?.ready?`EXIT FEES ${money(ev.exitFees)} · ENTRY FEES ${money(trade.entryFees)}`:"EXECUTABLE PRICE EFFECT");
+  paperSet("paperAuditRoute",route?(route.kind==="bad"?"FLIPPED":"ALIGNED"):"—");
+  paperSet("paperAuditRouteSub",route?.text||"ENTRY ROUTE VS LIVE");
+  const ids={
+    paperAuditLiveBE:recovery?.ready?"good":"bad",
+    paperAuditLive24:paperAuditClassByNumber(liveCash,true),
+    paperAuditFundingChange:finite(fundingChange)?(fundingChange>=-10?"good":fundingChange<=-50?"bad":"warn"):"",
+    paperAuditRequired:finite(needed)&&needed>0?"warn":"good",
+    paperAuditMarket:paperAuditClassByNumber(ev?.marketPnl,true),
+    paperAuditRoute:route?.kind==="bad"?"bad":route?"good":""
+  };
+  for(const [id,cls] of Object.entries(ids)){const el=$(id)?.parentElement;if(el){el.classList.remove("good","warn","bad","info");if(cls)el.classList.add(cls)}}
+  const cause=paperRecoveryCause(trade,live,ev,recovery,entry24,live24,now);
+  if(causeEl){causeEl.textContent=cause.text;causeEl.className=cause.kind||"warn"}
+}
 function paperRecovery(trade,live,needed,now=Date.now(),maxDays=30){if(!trade||!live||!finite(needed)||Number(needed)<0)return{ready:false,state:"PROJECTION MISSING"};if(Number(needed)<=1e-12)return{ready:true,state:"BREAK-EVEN NOW",cycles:0,timeMs:0,bEvents:0,gEvents:0,cumulative:0,nextCash:0,nextTime:now};const bh=hours(trade.b.interval),gh=hours(live.g.interval||trade.g.interval),bc=paperFundingCash(trade,"BINANCE",live.b.funding,live.b.mark),gc=paperFundingCash(trade,"BITGET",live.g.funding,live.g.mark);if(!bh||!gh||!finite(live.b.next)||!finite(live.g.next)||!finite(bc)||!finite(gc))return{ready:false,state:"LIVE FUNDING TIMING MISSING"};const bs=bh*3600000,gs=gh*3600000;let bn=paperProjectionNext(live.b.next,bs,now),gn=paperProjectionNext(live.g.next,gs,now),cum=0,cycles=0,bEvents=0,gEvents=0,nextCash=null,nextTime=null,last=null;const end=now+maxDays*86400000,tol=1000;while(cycles<1000){const t=Math.min(bn,gn);if(!finite(t)||t>end)break;let cash=0,had=false;if(Math.abs(bn-t)<=tol){cash+=Number(bc);bEvents++;bn+=bs;had=true}if(Math.abs(gn-t)<=tol){cash+=Number(gc);gEvents++;gn+=gs;had=true}if(!had)break;cycles++;cum+=cash;last=t;if(cycles===1){nextCash=cash;nextTime=t}if(cum+1e-9>=Number(needed))return{ready:true,state:"RECOVERY PROJECTED",cycles,timeMs:t-now,bEvents,gEvents,cumulative:cum,nextCash,nextTime}}return{ready:false,state:`NO RECOVERY ≤ ${maxDays}D`,cycles,timeMs:last?last-now:null,bEvents,gEvents,cumulative:cum,nextCash,nextTime}}
 function paperRouteState(trade,live){if(!trade||!live)return{kind:"warn",text:"WAITING FOR LIVE FUNDING"};const b8=norm8h(live.b.funding,trade.b.interval),g8=norm8h(live.g.funding,live.g.interval||trade.g.interval);if(!finite(b8)||!finite(g8))return{kind:"warn",text:"LIVE FUNDING ROUTE UNKNOWN"};const signed=Number(b8)-Number(g8);if(Math.abs(signed)<=1e-12)return{kind:"warn",text:"LIVE FUNDING EDGE IS FLAT · PAPER ENTRY REMAINS OPEN"};const l=signed>0?"BITGET":"BINANCE",sh=signed>0?"BINANCE":"BITGET";return l===trade.longVenue&&sh===trade.shortVenue?{kind:"good",text:`ENTRY ROUTE STILL ALIGNED · LONG ${trade.longVenue} / SHORT ${trade.shortVenue}`}:{kind:"bad",text:`FUNDING ROUTE FLIPPED · LIVE FAVORS LONG ${l} / SHORT ${sh} · PAPER ENTRY REMAINS FIXED`}}
 function paperTrend(venue,rate,st=paperState){st.prevFunding=st.prevFunding||{BINANCE:null,BITGET:null};st.trend=st.trend||{BINANCE:0,BITGET:0};const prev=st.prevFunding[venue];let t=0;if(finite(prev)&&finite(rate)){if(Number(rate)>Number(prev)+1e-14)t=1;else if(Number(rate)<Number(prev)-1e-14)t=-1}st.prevFunding[venue]=finite(rate)?Number(rate):prev;st.trend[venue]=t;return t}
@@ -549,14 +946,105 @@ function multiSnapshotState(st){
 function persistMultiPaper(){try{const rows=multiOpenStates().map(multiSnapshotState);localStorage.setItem(MULTI_STORAGE_KEY,JSON.stringify(rows))}catch(e){console.warn("MULTI PAPER PERSIST",e)}}
 function restoreMultiPaper(){try{const rows=JSON.parse(localStorage.getItem(MULTI_STORAGE_KEY)||"[]");for(const x of Array.isArray(rows)?rows.slice(0,MULTI_PAPER_MAX):[]){if(!x?.trade?.symbol||!x.trade?.openedAt)continue;const st={...paperEmptyState("RESTORED OPEN PAPER TEST · REFRESHING LIVE DATA"),...x,mode:"running",live:null,pollPromise:null,lastPollAt:null};const id=x.trade.id||`${x.trade.symbol}-${x.trade.openedAt}`;st.trade.id=id;multiPaper.states.set(id,st)}const first=multiOpenStates()[0];if(first){multiPaper.selectedId=first.trade.id;paperState=first;selectedSymbol=first.trade.symbol}}catch(e){console.warn("MULTI PAPER RESTORE",e)}}
 function multiSelect(id,syncSymbol=true){const st=multiPaper.states.get(id);if(!st)return false;multiPaper.selectedId=id;paperState=st;if(syncSymbol&&st.trade?.symbol){selectedSymbol=st.trade.symbol;if(selectedDepth?.symbol!==selectedSymbol)selectedDepth=null}render();return true}
-function multiStatus(st,ev,recovery,route){if(st?.mode==="closing")return{kind:"warn",text:"CLOSING"};if(st?.message&&String(st.message).startsWith("LIVE SYNC DEGRADED"))return{kind:"bad",text:"SYNC DEGRADED"};if(route?.kind==="bad")return{kind:"bad",text:"ROUTE FLIPPED"};if(ev?.ready&&Number(ev.net)>=0)return{kind:"good",text:"B/E · PROFIT"};if(recovery?.ready&&Number(recovery.timeMs)>86400000)return{kind:"warn",text:"SLOW RECOVERY"};if(recovery&&!recovery.ready)return{kind:"bad",text:"NO B/E"};return{kind:"good",text:"RUNNING"}}
+function multiNextEventTime(st,now=Date.now()){
+  const t=st?.trade;
+  const times=[st?.live?.b?.next,st?.live?.g?.next,t?.nextReconB,t?.nextReconG].filter(finite).map(Number).filter(x=>x>now);
+  return times.length?Math.min(...times):Infinity;
+}
+function multiMeta(st,now=Date.now()){
+  const t=st?.trade,ev=paperCloseEval(t,st?.live),needed=ev?.ready?Math.max(0,-Number(ev.net)):null,
+    recovery=ev?.ready?paperRecovery(t,st.live,needed,now):null,
+    route=t&&st?.live?paperRouteState(t,st.live):{kind:"warn",text:"WAITING LIVE"},
+    net=ev?.ready?Number(ev.net):null,nextTime=multiNextEventTime(st,now),
+    nextMs=Number.isFinite(nextTime)?Math.max(0,nextTime-now):Infinity,
+    startNext=Number(t?.startBreakEven?.nextCash),currentNext=Number(recovery?.nextCash),
+    weakening=positive(startNext)&&finite(currentNext)&&currentNext<startNext*.85,
+    syncBad=!!st?.message&&String(st.message).startsWith("LIVE SYNC DEGRADED"),
+    stale=!st?.lastPollAt||now-Number(st.lastPollAt)>Math.max(45000,MULTI_NORMAL_MS*2),
+    settlementSoon=nextMs<=MULTI_SETTLEMENT_SOON_MS,
+    settlement30=nextMs<=MULTI_SETTLEMENT_FILTER_MS,
+    profit=finite(net)&&net>=0,
+    noRecovery=!!recovery&&!recovery.ready,
+    routeTransition=route?.kind==="bad";
+  const attention=syncBad||stale||routeTransition||profit||noRecovery||weakening||settlementSoon;
+  let status={kind:"good",text:"RUNNING"};
+  if(st?.mode==="closing")status={kind:"warn",text:"CLOSING"};
+  else if(syncBad)status={kind:"bad",text:"SYNC DEGRADED"};
+  else if(routeTransition)status={kind:"warn",text:"ROUTE TRANSITION"};
+  else if(profit)status={kind:"good",text:"B/E · PROFIT"};
+  else if(noRecovery)status={kind:"bad",text:"NO B/E"};
+  else if(weakening)status={kind:"warn",text:"FUNDING WEAKENING"};
+  else if(settlementSoon)status={kind:"warn",text:"SETTLEMENT SOON"};
+  else if(recovery?.ready&&Number(recovery.timeMs)>86400000)status={kind:"warn",text:"SLOW RECOVERY"};
+  else if(stale)status={kind:"warn",text:"POLL STALE"};
+  return{ev,needed,recovery,route,net,nextTime,nextMs,weakening,syncBad,stale,settlementSoon,settlement30,profit,noRecovery,routeTransition,attention,status};
+}
+function multiTargetPollMs(st,now=Date.now()){
+  const m=multiMeta(st,now);
+  if(m.settlementSoon)return MULTI_NEAR_MS;
+  if(m.attention)return MULTI_ATTENTION_MS;
+  return MULTI_NORMAL_MS;
+}
+function multiVisibleMeta(st,now=Date.now()){
+  const m=multiMeta(st,now);
+  if(multiFilter==="ATTENTION")return m.attention;
+  if(multiFilter==="SETTLEMENT")return m.settlement30;
+  if(multiFilter==="PROFIT")return m.profit;
+  return true;
+}
+function multiFilterSet(name){
+  multiFilter=["ALL","ATTENTION","SETTLEMENT","PROFIT"].includes(name)?name:"ALL";
+  renderMultiPaper();
+}
 function renderMultiPaper(now=Date.now()){
-  const el=$("multiRows");if(!el)return;const open=multiOpenStates();let totalNet=0,netReady=0,realized=0,nextTime=Infinity,nextSymbol="—",prime=0,qual=0,watch=0;
-  for(const st of open){const t=st.trade,ev=paperCloseEval(t,st.live);realized+=paperRealized(t);if(ev?.ready){totalNet+=Number(ev.net);netReady++}const times=[st.live?.b?.next,st.live?.g?.next,t?.nextReconB,t?.nextReconG].filter(finite).map(Number).filter(x=>x>now);const n=times.length?Math.min(...times):Infinity;if(n<nextTime){nextTime=n;nextSymbol=t.symbol}const g=String(t.expertAtEntry?.label||"");if(g.startsWith("PRIME"))prime++;else if(g.startsWith("QUALIFIED"))qual++;else watch++}
-  paperSet("multiOpen",`${open.length} / ${MULTI_PAPER_MAX}`);paperSet("multiFunding",paperSigned(realized));paperSet("multiNet",open.length&&netReady===open.length?paperSigned(totalNet):open.length?`PARTIAL ${netReady}/${open.length}`:money(0));paperSet("multiNetSub",open.length?`${netReady}/${open.length} EXECUTABLE LIVE EXITS READY`:"NO OPEN POSITIONS");paperSet("multiNext",Number.isFinite(nextTime)?paperCountdown(nextTime,now):"—");paperSet("multiNextSub",Number.isFinite(nextTime)?`${nextSymbol} · ${new Date(nextTime).toISOString().slice(11,16)} UTC`:"EARLIEST OPEN POSITION EVENT");paperSet("multiMix",`P${prime} · Q${qual} · W${watch}`);const nc=$("multiNetCard");if(nc)nc.className=`multi-kpi net ${netReady===open.length&&open.length?(totalNet>0?"positive":totalNet<0?"negative":""):""}`;
+  const el=$("multiRows");if(!el)return;
+  const open=multiOpenStates(),metaMap=new Map();
+  let totalNet=0,netReady=0,realized=0,nextTime=Infinity,nextSymbol="—",prime=0,qual=0,watch=0,attention=0,settlement=0,profit=0;
+  for(const st of open){
+    const t=st.trade,m=multiMeta(st,now);metaMap.set(t.id,m);
+    realized+=paperRealized(t);if(m.ev?.ready){totalNet+=Number(m.ev.net);netReady++}
+    if(m.nextTime<nextTime){nextTime=m.nextTime;nextSymbol=t.symbol}
+    const g=String(t.expertAtEntry?.label||"");if(g.startsWith("PRIME"))prime++;else if(g.startsWith("QUALIFIED"))qual++;else watch++;
+    if(m.attention)attention++;if(m.settlement30)settlement++;if(m.profit)profit++;
+  }
+  paperSet("multiOpen",`${open.length} / ${MULTI_PAPER_MAX}`);paperSet("multiFunding",paperSigned(realized));
+  paperSet("multiNet",open.length&&netReady===open.length?paperSigned(totalNet):open.length?`PARTIAL ${netReady}/${open.length}`:money(0));
+  paperSet("multiNetSub",open.length?`${netReady}/${open.length} EXECUTABLE LIVE EXITS READY`:"NO OPEN POSITIONS");
+  paperSet("multiNext",Number.isFinite(nextTime)?paperCountdown(nextTime,now):"—");
+  paperSet("multiNextSub",Number.isFinite(nextTime)?`${nextSymbol} · ${new Date(nextTime).toISOString().slice(11,16)} UTC`:"EARLIEST OPEN POSITION EVENT");
+  paperSet("multiMix",`P${prime} · Q${qual} · W${watch}`);
+  paperSet("mfAll",String(open.length));paperSet("mfAttention",String(attention));paperSet("mfSettlement",String(settlement));paperSet("mfProfit",String(profit));
+  document.querySelectorAll("[data-multi-filter]").forEach(b=>b.classList.toggle("active",b.dataset.multiFilter===multiFilter));
+  const nc=$("multiNetCard");if(nc)nc.className=`multi-kpi net ${netReady===open.length&&open.length?(totalNet>0?"positive":totalNet<0?"negative":""):""}`;
   if(!open.length){el.innerHTML='<div class="multi-empty">NO OPEN PAPER TESTS · SELECT AN OPPORTUNITY AND START A PAPER TEST</div>';return}
-  el.innerHTML=open.map(st=>{const t=st.trade,ev=paperCloseEval(t,st.live),needed=ev?.ready?Math.max(0,-Number(ev.net)):null,recovery=ev?.ready?paperRecovery(t,st.live,needed,now):null,route=t&&st.live?paperRouteState(t,st.live):{kind:"warn",text:"WAITING LIVE"},status=multiStatus(st,ev,recovery,route),net=ev?.ready?Number(ev.net):null,bf=st.live?.b?.funding,gf=st.live?.g?.funding,grade=t.expertAtEntry?.label||"UNRATED",be=recovery?.ready?(recovery.cycles===0?"NOW":`${recovery.cycles}C · ${durationText(recovery.timeMs)}`):(recovery?.state||"WAITING"),cls=finite(net)?(net>0?"good":net<0?"bad":""):"";return`<div class="multi-row ${multiPaper.selectedId===t.id?"selected":""}" data-paper-id="${t.id}"><div class="multi-cell symbol"><span>Symbol</span><b>${t.symbol}</b></div><div class="multi-cell"><span>Grade</span><b>${grade}</b></div><div class="multi-cell"><span>Route</span><b>L ${t.longVenue} → S ${t.shortVenue}</b></div><div class="multi-cell"><span>Runtime</span><b>${paperRuntime(t,now)}</b></div><div class="multi-cell"><span>Funding B / G</span><b>${finite(bf)?pctRate(bf):"—"} / ${finite(gf)?pctRate(gf):"—"}</b></div><div class="multi-cell ${paperRealized(t)>0?"good":paperRealized(t)<0?"bad":""}"><span>Realized</span><b>${paperSigned(paperRealized(t))}</b></div><div class="multi-cell net ${cls}"><span>Close Net</span><b>${finite(net)?paperSigned(net):"—"}</b></div><div class="multi-cell ${recovery?.ready&&recovery.timeMs>86400000?"warn":""}"><span>Break-even</span><b>${be}</b></div><div class="multi-cell"><span>Status</span><strong class="multi-status ${status.kind}">${status.text}</strong></div><div class="multi-cell"><button class="multi-close" data-close-id="${t.id}" ${st.mode!=="running"?"disabled":""}>CLOSE</button></div></div>`}).join("");
-  el.querySelectorAll(".multi-row[data-paper-id]").forEach(row=>row.addEventListener("click",e=>{if(e.target.closest("button"))return;multiSelect(row.dataset.paperId,true)}));el.querySelectorAll("button[data-close-id]").forEach(btn=>btn.addEventListener("click",e=>{e.stopPropagation();const st=multiPaper.states.get(btn.dataset.closeId);if(st){multiPaper.selectedId=st.trade.id;paperState=st;selectedSymbol=st.trade.symbol;closePaperTest()}}));
+  const visible=open.filter(st=>multiVisibleMeta(st,now)).sort((a,b)=>{
+    const am=metaMap.get(a.trade.id)||multiMeta(a,now),bm=metaMap.get(b.trade.id)||multiMeta(b,now);
+    const at=Number.isFinite(am.nextTime)?am.nextTime:Infinity,bt=Number.isFinite(bm.nextTime)?bm.nextTime:Infinity;
+    return at-bt||String(a.trade.symbol).localeCompare(String(b.trade.symbol));
+  });
+  if(!visible.length){el.innerHTML=`<div class="multi-empty">NO OPEN PAPER TESTS MATCH ${multiFilter} FILTER · ${open.length} TOTAL OPEN</div>`;return}
+  el.innerHTML=visible.map(st=>{
+    const t=st.trade,m=metaMap.get(t.id)||multiMeta(st,now),ev=m.ev,recovery=m.recovery,net=m.net,
+      bf=st.live?.b?.funding,gf=st.live?.g?.funding,grade=t.expertAtEntry?.label||"UNRATED",
+      be=recovery?.ready?(recovery.cycles===0?"NOW":`${recovery.cycles}C · ${durationText(recovery.timeMs)}`):(recovery?.state||"WAITING"),
+      cls=finite(net)?(net>0?"good":net<0?"bad":""):"",
+      nextText=Number.isFinite(m.nextTime)?`NEXT ${paperCountdown(m.nextTime,now)}`:"NEXT —",
+      pollAge=st.lastPollAt?`${Math.max(0,(now-st.lastPollAt)/1000).toFixed(0)}S POLL`:"POLL WAIT";
+    return`<div class="multi-row ${multiPaper.selectedId===t.id?"selected":""}" data-paper-id="${t.id}">
+      <div class="multi-cell symbol"><span>Symbol</span><b>${t.symbol}</b></div>
+      <div class="multi-cell"><span>Grade</span><b>${grade}</b></div>
+      <div class="multi-cell"><span>Route</span><b>L ${t.longVenue} → S ${t.shortVenue}</b></div>
+      <div class="multi-cell"><span>Runtime</span><b>${paperRuntime(t,now)}</b></div>
+      <div class="multi-cell"><span>Funding B / G</span><b>${finite(bf)?pctRate(bf):"—"} / ${finite(gf)?pctRate(gf):"—"}</b></div>
+      <div class="multi-cell ${paperRealized(t)>0?"good":paperRealized(t)<0?"bad":""}"><span>Realized</span><b>${paperSigned(paperRealized(t))}</b></div>
+      <div class="multi-cell net ${cls}"><span>Close Net</span><b>${finite(net)?paperSigned(net):"—"}</b></div>
+      <div class="multi-cell ${recovery?.ready&&recovery.timeMs>86400000?"warn":""}"><span>Break-even</span><b>${be}</b></div>
+      <div class="multi-cell"><span>Status</span><strong class="multi-status ${m.status.kind}">${m.status.text}</strong><small>${nextText} · ${pollAge}</small></div>
+      <div class="multi-cell"><button class="multi-close" data-close-id="${t.id}" ${st.mode!=="running"?"disabled":""}>CLOSE</button></div>
+    </div>`;
+  }).join("");
+  el.querySelectorAll(".multi-row[data-paper-id]").forEach(row=>row.addEventListener("click",e=>{if(e.target.closest("button"))return;multiSelect(row.dataset.paperId,true)}));
+  el.querySelectorAll("button[data-close-id]").forEach(btn=>btn.addEventListener("click",e=>{e.stopPropagation();const st=multiPaper.states.get(btn.dataset.closeId);if(st){multiPaper.selectedId=st.trade.id;paperState=st;selectedSymbol=st.trade.symbol;closePaperTest()}}));
 }
 async function paperReconcile(force=false,st=paperState){const trade=st?.trade;if(!trade||st.mode!=="running"&&st.mode!=="closing")return;const now=Date.now(),due=Math.min(finite(trade.nextReconB)?Number(trade.nextReconB):Infinity,finite(trade.nextReconG)?Number(trade.nextReconG):Infinity);if(!force&&(!Number.isFinite(due)||now<due+1500))return;if(!force&&now-Number(st.lastReconAt||0)<PAPER_RECON_MIN_MS)return;st.lastReconAt=now;if(st===paperState)paperSet("paperRecon","RECONCILING…");try{const[br,gr]=await Promise.allSettled([paperBinHistory(trade,now),paperBitHistory(trade,now)]),existing=new Set((trade.ledger||[]).map(x=>x.key));if(br.status==="fulfilled")for(const e of br.value){const key=`BINANCE|${e.time}`;if(existing.has(key))continue;const mk=positive(e.mark)?e.mark:paperNearestMark(trade,"BINANCE",e.time)?.mark,cash=paperFundingCash(trade,"BINANCE",e.rate,mk);if(!finite(cash))continue;trade.ledger.push({key,venue:"BINANCE",time:e.time,rate:e.rate,mark:mk,cashflow:Number(cash),source:"OFFICIAL RATE"});existing.add(key)}if(gr.status==="fulfilled")for(const e of gr.value){const key=`BITGET|${e.time}`;if(existing.has(key))continue;const mk=await paperBitSettlementMark(trade,e.time),cash=paperFundingCash(trade,"BITGET",e.rate,mk.mark);if(!finite(cash))continue;trade.ledger.push({key,venue:"BITGET",time:e.time,rate:e.rate,mark:mk.mark,cashflow:Number(cash),source:`OFFICIAL RATE · ${mk.source}`});existing.add(key)}trade.ledger.sort((a,b)=>a.time-b.time||a.venue.localeCompare(b.venue));const bstep=hours(trade.b.interval)*3600000,gstep=hours(trade.g.interval)*3600000,bmax=Math.max(-Infinity,...trade.ledger.filter(x=>x.venue==="BINANCE").map(x=>x.time)),gmax=Math.max(-Infinity,...trade.ledger.filter(x=>x.venue==="BITGET").map(x=>x.time));if(positive(bstep)&&Number.isFinite(bmax))while(trade.nextReconB<=bmax+1000)trade.nextReconB+=bstep;if(positive(gstep)&&Number.isFinite(gmax))while(trade.nextReconG<=gmax+1000)trade.nextReconG+=gstep;if(finite(st.live?.b?.next)&&Number(st.live.b.next)>now&&Number(st.live.b.next)>=Number(trade.nextReconB)-1000)trade.nextReconB=Number(st.live.b.next);if(finite(st.live?.g?.next)&&Number(st.live.g.next)>now&&Number(st.live.g.next)>=Number(trade.nextReconG)-1000)trade.nextReconG=Number(st.live.g.next);if(st===paperState)paperSet("paperRecon",trade.ledger.length?`${trade.ledger.length} EVENT${trade.ledger.length===1?"":"S"} RECONCILED`:"NO SETTLEMENT YET");persistMultiPaper()}catch(e){console.error("PAPER RECON",e);if(st===paperState)paperSet("paperRecon","RECON ERROR")}}
 async function startPaperTest(){
@@ -573,18 +1061,31 @@ async function startPaperTest(){
     const longFee=longVenue==="BINANCE"?feeDecimal("binFee"):feeDecimal("bitFee"),shortFee=shortVenue==="BINANCE"?feeDecimal("binFee"):feeDecimal("bitFee"),draft={symbol,longVenue,shortVenue,quantity:sizing.quantity,longFee,shortFee},entry=paperEntryEval(draft,live);if(!entry.ready)throw new Error(entry.state);
     const freshOpp={...base,longVenue,shortVenue,qty:sizing.quantity,sizing,b:{...base.b,funding:live.b.funding,interval:bInterval,next:live.b.next,mark:live.b.mark},g:{...base.g,funding:live.g.funding,interval:gInterval,next:live.g.next,mark:live.g.mark}},verifyResult=depthCostFor(freshOpp,{bin:live.b.depth,bit:live.g.depth});selectedDepth={symbol,qtyText:sizing.qtyText,binFee:$("binFee").value,bitFee:$("bitFee").value,result:{...verifyResult,ts:Date.now()}};
     const now=Date.now(),stab=stabilityMetrics(freshOpp,now),eg=expertGrade(freshOpp,now),trade={...draft,id:`${symbol}-${now}-${Math.random().toString(36).slice(2,7)}`,openedAt:now,closedAt:null,status:"RUNNING",longEntryVwap:entry.le.vwap,shortEntryVwap:entry.se.vwap,longEntryQuote:entry.le.quote,shortEntryQuote:entry.se.quote,entryFees:entry.entryFees,combinedEntry:entry.combinedEntry,b:{funding:live.b.funding,interval:bInterval,next:live.b.next,mark:live.b.mark},g:{funding:live.g.funding,interval:gInterval,next:live.g.next,mark:live.g.mark},ledger:[],markSamples:{BINANCE:[],BITGET:[]},fundingSamples:{BINANCE:[],BITGET:[]},breakEvenHitAt:null,breakEvenFundingCycles:null,stabilityAtEntry:stab&&!stab.insufficient?{score:stab.score,label:stab.label,reliability:stab.reliability,persistence:stab.persistence,trendPct:stab.trendPct}:null,expertAtEntry:eg?{label:eg.label,eff:eg.eff,persistence:eg.persistence,depth:eg.depth}:null,nextReconB:live.b.next,nextReconG:live.g.next};
-    const startEval=paperCloseEval(trade,live);trade.startBreakEven=startEval.ready?paperRecovery(trade,live,Math.max(0,-Number(startEval.net)),now):{ready:false,state:startEval.state||"START BREAK-EVEN UNKNOWN"};const st={...paperEmptyState(),mode:"running",trade,live,lastPollAt:Date.now(),lastReconAt:0,prevFunding:{BINANCE:live.b.funding,BITGET:live.g.funding},trend:{BINANCE:0,BITGET:0},message:"LIVE PAPER POSITION · ENTRY FIXED FROM FRESH FULL DEPTH"};paperMarkSample(trade,"BINANCE",live.b.ts,live.b.mark);paperMarkSample(trade,"BITGET",live.g.ts,live.g.mark);paperFundingSample(trade,live);multiPaper.states.set(trade.id,st);multiPaper.selectedId=trade.id;paperState=st;persistMultiPaper();render();
+    const startEval=paperCloseEval(trade,live),startNeeded=startEval.ready?Math.max(0,-Number(startEval.net)):null,start24=paperFundingWindow(trade,trade.b,trade.g,24,now);trade.startBreakEven=startEval.ready?paperRecovery(trade,live,startNeeded,now):{ready:false,state:startEval.state||"START BREAK-EVEN UNKNOWN"};trade.startAudit=startEval.ready?{required:startNeeded,closeNet:Number(startEval.net),marketPnl:Number(startEval.marketPnl),exitFees:Number(startEval.exitFees),funding24:start24&&finite(start24.cash)?Number(start24.cash):null}:null;const st={...paperEmptyState(),mode:"running",trade,live,lastPollAt:Date.now(),lastReconAt:0,prevFunding:{BINANCE:live.b.funding,BITGET:live.g.funding},trend:{BINANCE:0,BITGET:0},message:"LIVE PAPER POSITION · ENTRY FIXED FROM FRESH FULL DEPTH"};paperMarkSample(trade,"BINANCE",live.b.ts,live.b.mark);paperMarkSample(trade,"BITGET",live.g.ts,live.g.mark);paperFundingSample(trade,live);multiPaper.states.set(trade.id,st);multiPaper.selectedId=trade.id;paperState=st;persistMultiPaper();render();
   }catch(e){console.error("PAPER START",e);paperState=paperEmptyState(e?.message||"PAPER START FAILED");multiPaper.selectedId=null;render()}finally{multiPaper.entryBusy=false;renderPaperTest();renderMultiPaper()}
 }
 async function refreshPaperState(st,full=false){if(!st||st.mode!=="running"||!st.trade||st.pollPromise)return st?.pollPromise;st.pollPromise=(async()=>{try{let live=await paperFetchPair(st.trade,full);if(!full){const ev=paperCloseEval(st.trade,live);if(!ev.ready&&String(ev.state).startsWith("EXIT DEPTH PARTIAL"))live=await paperFetchPair(st.trade,true)}st.live=live;st.lastPollAt=Date.now();const h=paperHealth(live);st.message=h.ready?"LIVE PAPER POSITION · MARKET + FUNDING SYNCED":`LIVE SYNC DEGRADED · ${h.issues.join(" · ")}`;paperTrend("BINANCE",live.b.funding,st);paperTrend("BITGET",live.g.funding,st);paperMarkSample(st.trade,"BINANCE",live.b.ts,live.b.mark);paperMarkSample(st.trade,"BITGET",live.g.ts,live.g.mark);paperFundingSample(st.trade,live);await paperReconcile(false,st);const ev=paperCloseEval(st.trade,live);if(ev.ready&&Number(ev.net)>=0&&!finite(st.trade.breakEvenHitAt)){st.trade.breakEvenHitAt=Date.now();st.trade.breakEvenFundingCycles=journalFundingCycles(st.trade,Date.now())}persistMultiPaper();if(st===paperState)renderPaperTest();renderMultiPaper()}catch(e){console.error("PAPER LIVE",e);st.message=e?.message||"LIVE PAPER REFRESH FAILED";if(st===paperState)renderPaperTest();renderMultiPaper()}finally{st.pollPromise=null}})();return st.pollPromise}
 async function refreshPaperLive(full=false){return refreshPaperState(paperState,full)}
-async function multiBackgroundTick(){if(multiPaper.bgBusy)return;const bg=multiOpenStates().filter(st=>st.mode==="running"&&st.trade?.id!==multiPaper.selectedId);if(!bg.length)return;multiPaper.bgBusy=true;try{multiPaper.bgCursor%=bg.length;const st=bg[multiPaper.bgCursor++];await refreshPaperState(st,false)}finally{multiPaper.bgBusy=false}}
+async function multiBackgroundTick(){
+  if(multiPaper.bgBusy)return;
+  const now=Date.now(),bg=multiOpenStates().filter(st=>st.mode==="running"&&st.trade?.id!==multiPaper.selectedId);
+  if(!bg.length)return;
+  const due=bg.map(st=>{
+    const target=multiTargetPollMs(st,now),age=st.lastPollAt?now-Number(st.lastPollAt):Infinity,m=multiMeta(st,now);
+    return{st,target,age,m,score:Number.isFinite(age)?age/target:999};
+  }).filter(x=>!Number.isFinite(x.age)||x.age>=x.target)
+    .sort((a,b)=>b.score-a.score||(a.m.nextTime||Infinity)-(b.m.nextTime||Infinity));
+  if(!due.length)return;
+  multiPaper.bgBusy=true;
+  try{await refreshPaperState(due[0].st,false)}finally{multiPaper.bgBusy=false}
+}
 async function closePaperTest(){const st=paperState;if(st.mode!=="running"||!st.trade)return;st.mode="closing";st.message="REFRESHING FULL DEPTH + FUNDING HISTORY BEFORE PAPER CLOSE";renderPaperTest();renderMultiPaper();try{await paperReconcile(true,st);const live=await paperFetchPair(st.trade,true),h=paperHealth(live);if(!h.ready)throw new Error(`PAPER CLOSE BLOCKED · ${h.issues.join(" · ")}`);const ev=paperCloseEval(st.trade,live);if(!ev.ready)throw new Error(`PAPER CLOSE BLOCKED · ${ev.state}`);const now=Date.now();st.live=live;paperFundingSample(st.trade,live);st.trade.closedAt=now;st.trade.status="CLOSED";st.trade.final={...ev,closedAt:now};if(Number(ev.net)>=0&&!finite(st.trade.breakEvenHitAt)){st.trade.breakEvenHitAt=now;st.trade.breakEvenFundingCycles=journalFundingCycles(st.trade,Date.now())}st.mode="closed";st.message="PAPER TEST CLOSED · SAVED TO JOURNAL · SLOT RELEASED";const rec=journalRecordFromTrade(st.trade);if(rec)await journalSave(rec);multiPaper.states.delete(st.trade.id);multiPaper.selectedId=null;persistMultiPaper();paperState=st;renderPaperTest();renderMultiPaper()}catch(e){console.error("PAPER CLOSE",e);st.mode="running";st.message=e?.message||"PAPER CLOSE FAILED";persistMultiPaper();renderPaperTest();renderMultiPaper()}}
 function paperLegData(trade,ev,venue){if(!trade)return{};const isLong=trade.longVenue===venue,entry=isLong?trade.longEntryVwap:trade.shortEntryVwap,entryQuote=isLong?trade.longEntryQuote:trade.shortEntryQuote,close=ev?.ready?(isLong?ev.lc.vwap:ev.sc.vwap):null,pnl=ev?.ready?(isLong?ev.longPnl:ev.shortPnl):null;return{pos:paperPos(trade,venue),entry,entryQuote,qty:trade.quantity,close,pnl,real:paperRealized(trade,venue)}}
 function renderPaperTest(now=Date.now()){const panel=$("paperPanel"),sel=selectedOpportunity(now),trade=paperState.trade;if(!sel&&!trade){panel.classList.remove("show");return}panel.classList.add("show");const live=paperState.live,ev=paperState.mode==="closed"&&trade?.final?trade.final:paperCloseEval(trade,live),symbol=trade?.symbol||sel?.symbol||"—";paperSet("paperSymbol",symbol);paperSet("paperRoute",trade?`LONG ${trade.longVenue} → SHORT ${trade.shortVenue}`:sel?`LONG ${sel.longVenue} → SHORT ${sel.shortVenue}`:"SELECT OPPORTUNITY");paperSet("paperRuntime",paperRuntime(trade,now));paperSet("paperPollAge",paperState.lastPollAt?`${((now-paperState.lastPollAt)/1000).toFixed(1)}s AGO`:"—");paperSet("paperDrift",live?`${Math.round(live.marketDrift)}ms MKT · ${Math.round(live.depthDrift)}ms DEPTH`:"—");paperSet("paperRecon",trade?.ledger?.length?`${trade.ledger.length} EVENT${trade.ledger.length===1?"":"S"} RECONCILED`:trade?"WAITING FOR SETTLEMENT":"WAITING");const st=$("paperState");if(st){st.textContent=paperState.mode==="idle"?"READY · AUTO VERIFY":paperState.mode.toUpperCase();st.className=paperState.mode==="running"?"state-good":paperState.mode==="closed"?"state-warn":paperState.mode==="starting"||paperState.mode==="closing"?"state-warn":""}const o=sel,start=$("paperStart"),closeBtn=$("paperClose"),duplicate=o?multiFindSymbol(o.symbol):null,openCount=multiOpenStates().length;if(start){start.disabled=multiPaper.entryBusy||!o?.ready||!!duplicate||openCount>=MULTI_PAPER_MAX;start.textContent=multiPaper.entryBusy?"ADDING PAPER…":duplicate?"ALREADY OPEN":openCount>=MULTI_PAPER_MAX?`MAX ${MULTI_PAPER_MAX} OPEN`:"ADD SELECTED PAPER · AUTO VERIFY"}if(closeBtn){closeBtn.disabled=paperState.mode!=="running";closeBtn.textContent=paperState.mode==="closing"?"CLOSING SELECTED…":"CLOSE SELECTED PAPER"}
   for(const venue of["BINANCE","BITGET"]){const pre=venue==="BINANCE"?"paperBin":"paperBit",ld=paperLegData(trade,ev,venue),lv=paperVenue(live,venue),pos=$(pre+"Pos");if(pos){pos.textContent=ld.pos||"—";pos.className=`paper-pos ${ld.pos==="LONG"?"long":ld.pos==="SHORT"?"short":""}`}paperSet(pre+"Used",finite(ld.entryQuote)?money(ld.entryQuote):"—");paperSet(pre+"Qty",finite(ld.qty)?String(ld.qty):"—");paperSet(pre+"Entry",finite(ld.entry)?paperPrice(ld.entry):"—");paperSet(pre+"EntryMeta",trade?`${trade.quantity} QTY · FIXED ${new Date(trade.openedAt).toISOString().slice(11,19)} UTC`:"NO PAPER ENTRY");paperSet(pre+"Mark",positive(lv?.mark)?paperPrice(lv.mark):"—");paperSet(pre+"Close",finite(ld.close)?paperPrice(ld.close):ev?.state||"—");paperSet(pre+"Pnl",finite(ld.pnl)?paperSigned(ld.pnl):"—");paperSet(pre+"Realized",trade?paperSigned(ld.real):"$0.0000");paperSet(pre+"Funding",lv&&finite(lv.funding)?`${pctRate(lv.funding)} · NEXT ${paperCountdown(lv.next,now)}`:"—");paperSet(pre+"FundingDelta",trade&&lv?paperFundingDelta(trade,venue,lv.funding):"WAITING FOR PAPER START")}
   const net=ev?.ready?Number(ev.net):null,netCard=$("paperNetCard");if(netCard)netCard.className=`paper-net ${finite(net)?net>0?"positive":net<0?"negative":"":""}`;paperSet("paperNet",finite(net)?paperSigned(net):ev?.state||"—");paperSet("paperNetMeta",paperState.mode==="closed"?"FINAL PAPER RESULT":ev?.ready?`LIVE EXECUTABLE CLOSE · ${live?.full?"FULL":"LIGHT"} DEPTH`:"WAITING FOR EXECUTABLE EXIT");paperSet("paperMarketPnl",ev?.ready?paperSigned(ev.marketPnl):"—");paperSet("paperRealized",trade?paperSigned(paperRealized(trade)):"$0.0000");paperSet("paperEntryFees",trade?money(trade.entryFees):"—");paperSet("paperExitFees",ev?.ready?money(ev.exitFees):"—");paperSet("paperQty",trade?String(trade.quantity):sel?.sizing?.qtyText||"—");
   let route=trade&&live?paperRouteState(trade,live):{kind:"warn",text:paperState.message||"SELECT OPPORTUNITY → START PAPER TEST · AUTO VERIFY"},recovery=null,nextCash=null,nextTime=null;if(trade&&live&&ev?.ready&&paperState.mode!=="closed"){const needed=Math.max(0,-Number(ev.net));recovery=paperRecovery(trade,live,needed,now);nextCash=recovery?.nextCash;nextTime=recovery?.nextTime;paperSet("paperBECycles",recovery?.ready?(recovery.cycles===0?"NOW":`${recovery.cycles} CYCLES`):recovery?.state||"NOT PROJECTED");paperSet("paperBETime",recovery?.ready?(recovery.cycles===0?"NOW":durationText(recovery.timeMs)):"—");paperSet("paperBEMeta",recovery?.ready?`CURRENT EXECUTABLE NET ${paperSigned(ev.net)} · EVENTS B${recovery.bEvents}/G${recovery.gEvents}`:recovery?.state||"LIVE FUNDING PROJECTION UNAVAILABLE");paperSet("paperRemaining",money(needed));paperSet("paperNextCash",finite(nextCash)?paperSigned(nextCash):"—");paperSet("paperNextCashMeta",finite(nextTime)?`${new Date(nextTime).toISOString().replace("T"," ").replace("Z"," UTC")} · ${paperCountdown(nextTime,now)}`:"NEXT FUNDING EVENT ESTIMATE");let status=route;if(recovery?.ready&&recovery.cycles===0)status={kind:"good",text:"BREAK-EVEN NOW · CLOSE-NOW NET IS AT / ABOVE $0"};else if(route.kind!=="bad"&&recovery?.ready){const prev=paperState.lastBeTime;if(finite(prev)){if(recovery.timeMs<Number(prev)-60000)status={kind:"good",text:`RECOVERY IMPROVING ↑ · ${recovery.cycles} CYCLES · ${durationText(recovery.timeMs)}`};else if(recovery.timeMs>Number(prev)+60000)status={kind:"warn",text:`RECOVERY WORSENING ↓ · ${recovery.cycles} CYCLES · ${durationText(recovery.timeMs)}`}}if(finite(paperState.lastNextCash)&&finite(nextCash)&&Number(nextCash)<Number(paperState.lastNextCash)*.99)status={kind:"warn",text:`FUNDING WEAKENING ↓ · NEXT EVENT ${paperSigned(nextCash)} · BE ${recovery.cycles} CYCLES`};paperState.lastBeTime=recovery.timeMs;paperState.lastNextCash=nextCash}route=status}else if(paperState.mode==="closed"&&trade?.final){paperSet("paperBECycles",Number(trade.final.net)>=0?"BREAK-EVEN":"CLOSED");paperSet("paperBETime","FINAL");paperSet("paperBEMeta","PAPER TEST CLOSED · NO FUTURE FUNDING PROJECTED");paperSet("paperRemaining",Number(trade.final.net)>=0?money(0):money(-Number(trade.final.net)));paperSet("paperNextCash","—");paperSet("paperNextCashMeta","PAPER TEST CLOSED");route={kind:Number(trade.final.net)>=0?"good":"bad",text:Number(trade.final.net)>=0?"PAPER TEST CLOSED · NET POSITIVE":"PAPER TEST CLOSED · NET NEGATIVE"}}else{paperSet("paperBECycles","—");paperSet("paperBETime","—");paperSet("paperBEMeta","CURRENT EXECUTABLE EXIT + LIVE FUNDING");paperSet("paperRemaining","—");paperSet("paperNextCash","—");paperSet("paperNextCashMeta","NEXT FUNDING EVENT ESTIMATE")}
+  renderPaperRecoveryAudit(trade,live,ev,recovery,now);
   const alert=$("paperAlert");if(alert){const syncBad=paperState.mode==="running"&&String(paperState.message||"").startsWith("LIVE SYNC DEGRADED");alert.textContent=syncBad?paperState.message:(paperState.message&&paperState.mode!=="running"?paperState.message:route.text);alert.className=`paper-alert ${syncBad?"bad":route.kind||"warn"}`}
   let eventText="—";if(trade&&live){const bc=paperFundingCash(trade,"BINANCE",live.b.funding,live.b.mark),gc=paperFundingCash(trade,"BITGET",live.g.funding,live.g.mark),t=Math.min(Number(live.b.next)||Infinity,Number(live.g.next)||Infinity),tol=1000,cash=(Math.abs(Number(live.b.next)-t)<=tol&&finite(bc)?Number(bc):0)+(Math.abs(Number(live.g.next)-t)<=tol&&finite(gc)?Number(gc):0);if(Number.isFinite(t))eventText=`${paperSigned(cash)} · ${paperCountdown(t,now)} · ${Math.abs(Number(live.b.next)-Number(live.g.next))<=tol?"B + G":"ONE VENUE"}`}paperSet("paperNextEvent",eventText);paperSet("paperFundingEvents",String(trade?.ledger?.length||0));const last=trade?.ledger?.[trade.ledger.length-1];paperSet("paperLatestSettlement",last?`${last.venue} · ${paperSigned(last.cashflow)} · ${new Date(last.time).toISOString().slice(0,16).replace("T"," ")} UTC`:"NONE YET")
 }
@@ -600,21 +1101,19 @@ function expertMedian(values){
   const m=Math.floor(a.length/2);
   return a.length%2?a[m]:(a[m-1]+a[m])/2;
 }
-function expertCurrent24hIncome(o){
-  if(!o?.ready||!positive(o.qty)||!finite(o.b8)||!finite(o.g8))return null;
-  const q=Number(o.qty);
-  const bMark=positive(o.b?.mark)?Number(o.b.mark):(positive(o.b?.bid)&&positive(o.b?.ask)?(Number(o.b.bid)+Number(o.b.ask))/2:null);
-  const gMark=positive(o.g?.mark)?Number(o.g.mark):(positive(o.g?.bid)&&positive(o.g?.ask)?(Number(o.g.bid)+Number(o.g.ask))/2:null);
-  if(!positive(bMark)||!positive(gMark))return null;
-  const bCash8=(o.longVenue==="BINANCE"?-1:1)*q*bMark*Number(o.b8);
-  const gCash8=(o.longVenue==="BITGET"?-1:1)*q*gMark*Number(o.g8);
-  return 3*(bCash8+gCash8);
+function expertCurrent24hIncome(o,now=Date.now()){
+  if(!o?.ready||!positive(o.qty))return null;
+  const p=scheduledFundingProjection(o,o.qty,24,now);
+  return p&&finite(p.cash)?Number(p.cash):null;
 }
-function expertPreScore(o){
-  const inc=expertCurrent24hIncome(o),cost=Number(o?.quoteCost),eff=positive(cost)&&finite(inc)?Number(inc)/cost:null;
-  if(!o?.ready||!o.nextCycle||Number(o.nextCycle.cash)<=0||!o.be?.ready||!positive(inc)||!positive(cost))return -Infinity;
-  const beHours=Number(o.be.timeMs)/3600000;
-  return (finite(eff)?Math.min(20,eff)*1000:0)+(o.dual?400:0)+Math.max(0,48-beHours)*10+Math.log10(Math.max(1e-8,Number(inc)) + 1)*25;
+function expertPreScore(o,now=Date.now()){
+  const inc=expertCurrent24hIncome(o,now),cost=Number(o?.quoteCost),
+    eff=positive(cost)&&finite(inc)?Number(inc)/cost:null,
+    be=positive(cost)&&positive(o?.qty)?breakEvenProjection(o,cost,o.qty,now):null;
+  if(!o?.ready||!positive(inc)||!positive(cost))return -Infinity;
+  const beHours=be?.ready?Number(be.timeMs)/3600000:72;
+  const firstPay=o.nextCycle&&finite(o.nextCycle.cash)&&Number(o.nextCycle.cash)<0;
+  return (finite(eff)?Math.min(20,eff)*1000:0)+(o.dual?300:0)+Math.max(0,48-beHours)*10-(firstPay?40:0)+Math.log10(Math.max(1e-8,Number(inc))+1)*25;
 }
 function expertHistorySource(symbol){
   if(stabilityState.symbol===symbol&&stabilityState.fetchedAt&&Date.now()-stabilityState.fetchedAt<=EXPERT_HISTORY_TTL&&(stabilityState.binRows.length||stabilityState.bitRows.length)){
@@ -668,7 +1167,7 @@ function expertHistoryMetrics(o,h,now=Date.now()){
   let reversals=0,totalDur=0,matchDur=0;
   for(let i=1;i<states.length;i++)if(states[i].route!==states[i-1].route)reversals++;
   for(let i=0;i<states.length;i++){
-    const end=i+1<states.length?states[i+1].time:now,d=Math.max(0,end-states[i].time);
+    const end=i+1<states.length?states[i+1].time:(sameLatest?now:states[i].time),d=Math.max(0,end-states[i].time);
     totalDur+=d;if(states[i].route===currentRoute)matchDur+=d;
   }
   const persistence=totalDur>0?matchDur/totalDur:states.filter(x=>x.route===currentRoute).length/states.length;
@@ -692,45 +1191,75 @@ function expertDepthContext(o,now=Date.now()){
   return{state:d.state||"DEPTH ERROR",cost:Number(o.quoteCost)};
 }
 function expertGrade(o,now=Date.now()){
-  const current24=expertCurrent24hIncome(o),dc=expertDepthContext(o,now),cost=Number(dc.cost),be=positive(cost)&&positive(o?.qty)?breakEvenProjection(o,cost,o.qty,now):null;
-  const currentEff=positive(cost)&&finite(current24)?Number(current24)/cost:null;
-  if(!o?.ready)return{label:"REJECT",cls:"reject",rank:5,eff:null,persistence:null,sub:o?.status||"DATA INCOMPLETE",depth:dc.state};
-  if(!o.nextCycle||Number(o.nextCycle.cash)<=0)return{label:"REJECT",cls:"reject",rank:5,eff:currentEff,persistence:null,sub:"NEXT FUNDING EVENT ≤ 0",depth:dc.state};
-  if(!be?.ready||!positive(current24)||!positive(cost))return{label:"REJECT",cls:"reject",rank:5,eff:currentEff,persistence:null,sub:be?.state||"NO ECONOMIC RECOVERY",depth:dc.state};
-  if(dc.state==="INSUFFICIENT DEPTH")return{label:"REJECT",cls:"reject",rank:5,eff:currentEff,persistence:null,sub:"SELECTED FULL DEPTH INSUFFICIENT",depth:dc.state};
+  const current24=expertCurrent24hIncome(o,now),dc=expertDepthContext(o,now),cost=Number(dc.cost),
+    be=positive(cost)&&positive(o?.qty)?breakEvenProjection(o,cost,o.qty,now):null,
+    currentEff=positive(cost)&&finite(current24)?Number(current24)/cost:null,
+    schedule24=positive(o?.qty)?scheduledFundingProjection(o,o.qty,24,now):null,
+    firstPay=!!schedule24&&finite(schedule24.firstCash)&&Number(schedule24.firstCash)<0;
+
+  if(!o?.ready)return{label:"REJECT",cls:"reject",rank:6,eff:null,persistence:null,reason:"DATA",sub:o?.status||"DATA INCOMPLETE",depth:dc.state};
+  if(!schedule24||!positive(schedule24.cash))return{label:"REJECT",cls:"reject",rank:6,eff:currentEff,persistence:null,reason:"NO_24H_NET",sub:"SCHEDULED FUNDING 24H ≤ 0",depth:dc.state,schedule24};
+  if(!positive(cost))return{label:"REJECT",cls:"reject",rank:6,eff:null,persistence:null,reason:"DATA",sub:"EXECUTION COST NOT READY",depth:dc.state,schedule24};
+  if(!be?.ready)return{label:"REJECT",cls:"reject",rank:6,eff:currentEff,persistence:null,reason:"NO_RECOVERY",sub:be?.state||"NO ECONOMIC RECOVERY",depth:dc.state,schedule24};
+  if(dc.state==="INSUFFICIENT DEPTH")return{label:"REJECT",cls:"reject",rank:6,eff:currentEff,persistence:null,reason:"DEPTH",sub:"SELECTED FULL DEPTH INSUFFICIENT",depth:dc.state,schedule24};
 
   const h=expertHistorySource(o.symbol);
   if(!h){
     const target=expertTargetSymbols.includes(o.symbol);
     return target
-      ?{label:"SCANNING",cls:"scanning",rank:3,eff:currentEff,persistence:null,sub:"FETCHING OFFICIAL FUNDING HISTORY",depth:dc.state}
-      :{label:"WATCH",cls:"watch",rank:4,eff:currentEff,persistence:null,sub:"OUTSIDE TOP-20 ECONOMIC HISTORY SCAN",depth:dc.state};
+      ?{label:"SCANNING",cls:"scanning",rank:3,eff:currentEff,persistence:null,reason:"HISTORY",sub:`FETCHING OFFICIAL HISTORY${firstPay?" · FIRST EVENT PAY":""}`,depth:dc.state,schedule24}
+      :{label:"WATCH",cls:"watch",rank:5,eff:currentEff,persistence:null,reason:"HISTORY",sub:`OUTSIDE TOP-20 HISTORY SCAN${firstPay?" · FIRST EVENT PAY":""}`,depth:dc.state,schedule24};
   }
+
   const hm=expertHistoryMetrics(o,h,now);
-  if(!hm?.ready)return{label:"WATCH",cls:"watch",rank:4,eff:currentEff,persistence:null,sub:hm?.error||"INSUFFICIENT HISTORY",depth:dc.state};
+  if(!hm?.ready)return{label:"WATCH",cls:"watch",rank:5,eff:currentEff,persistence:null,reason:"HISTORY",sub:hm?.error||"INSUFFICIENT HISTORY",depth:dc.state,schedule24};
 
-  const currentEdge=Math.abs(Number(o.b8)-Number(o.g8));
-  const conservativeEdge=positive(currentEdge)&&positive(hm.medianRouteEdge)?Math.min(currentEdge,Number(hm.medianRouteEdge)):null;
-  const conservativeFactor=positive(currentEdge)&&finite(conservativeEdge)?Math.max(0,Math.min(1,Number(conservativeEdge)/currentEdge)):0;
-  const conservative24=finite(current24)?Number(current24)*conservativeFactor:null;
-  const eff=positive(cost)&&finite(conservative24)?Number(conservative24)/cost:null;
-  const be24=Number(be.timeMs)<=86400000,be3=Number(be.cycles)<=3;
+  const currentEdge=Math.abs(Number(o.b8)-Number(o.g8)),
+    conservativeEdge=positive(currentEdge)&&positive(hm.medianRouteEdge)?Math.min(currentEdge,Number(hm.medianRouteEdge)):null,
+    conservativeFactor=positive(currentEdge)&&finite(conservativeEdge)?Math.max(0,Math.min(1,Number(conservativeEdge)/currentEdge)):0,
+    conservative24=finite(current24)?Number(current24)*conservativeFactor:null,
+    eff=positive(cost)&&finite(conservative24)?Number(conservative24)/cost:null,
+    conservativeNet=finite(conservative24)?Number(conservative24)-cost:null,
+    be24=Number(be.timeMs)<=86400000,be16=Number(be.timeMs)<=16*3600000,be3=Number(be.cycles)<=3;
 
-  if(!hm.sameLatest)return{label:"REJECT",cls:"reject",rank:5,eff,persistence:hm.persistence,sub:`LIVE ROUTE ≠ LAST SETTLED · P ${(hm.persistence*100).toFixed(0)}%`,depth:dc.state,history:hm,conservative24};
-  if(hm.persistence<.45||!positive(conservative24))return{label:"REJECT",cls:"reject",rank:5,eff,persistence:hm.persistence,sub:`LOW ROUTE PERSISTENCE ${(hm.persistence*100).toFixed(0)}%`,depth:dc.state,history:hm,conservative24};
+  // A fresh live route change is a validation candidate, not a hard reject.
+  if(!hm.sameLatest){
+    return{label:"WATCH · ROUTE TRANSITION",cls:"watch",rank:4,eff,persistence:hm.persistence,reason:"TRANSITION",
+      sub:`LIVE ROUTE CHANGED · LAST ${hm.latestRoute} · ${firstPay?"FIRST EVENT PAY · ":""}OBSERVE SETTLEMENT`,
+      depth:dc.state,history:hm,conservative24,conservativeNet,schedule24};
+  }
 
-  const prime=finite(eff)&&eff>=3&&hm.persistence>=.80&&hm.stabilityScore>=75&&be24&&be3&&hm.routeEdgeSamples>=4;
-  const qualified=finite(eff)&&eff>=2&&hm.persistence>=.70&&hm.stabilityScore>=65&&be24&&hm.routeEdgeSamples>=4;
+  if(!positive(conservative24)||!finite(conservativeNet)||Number(conservativeNet)<=0){
+    return{label:"REJECT",cls:"reject",rank:6,eff,persistence:hm.persistence,reason:"NO_24H_NET",
+      sub:`CONSERVATIVE 24H NET ≤ 0 · EFF ${finite(eff)?eff.toFixed(2)+"×":"—"}`,
+      depth:dc.state,history:hm,conservative24,conservativeNet,schedule24};
+  }
+
+  // Expert baseline before Step 6: intentionally permissive enough to create a validation dataset.
+  const prime=finite(eff)&&eff>=1.75&&hm.persistence>=.75&&hm.stabilityScore>=70&&be16&&be3&&hm.routeEdgeSamples>=4;
+  const qualified=finite(eff)&&eff>=1.25&&hm.persistence>=.60&&hm.stabilityScore>=55&&be24&&hm.routeEdgeSamples>=4;
 
   if(prime){
     const verified=dc.state==="DEPTH VERIFIED";
-    return{label:verified?"PRIME VERIFIED":"PRIME CANDIDATE",cls:"prime",rank:verified?0:1,eff,persistence:hm.persistence,sub:`STAB ${Math.round(hm.stabilityScore)}/100 · ${be.cycles}C · ${dc.state}`,depth:dc.state,history:hm,conservative24};
+    return{label:verified?"PRIME VERIFIED":"PRIME CANDIDATE",cls:"prime",rank:verified?0:1,eff,persistence:hm.persistence,reason:"PASS",
+      sub:`STAB ${Math.round(hm.stabilityScore)}/100 · ${be.cycles}C / ${durationText(be.timeMs)}${firstPay?" · FIRST EVENT PAY":""} · ${dc.state}`,
+      depth:dc.state,history:hm,conservative24,conservativeNet,schedule24};
   }
   if(qualified){
     const verified=dc.state==="DEPTH VERIFIED";
-    return{label:verified?"QUALIFIED VERIFIED":"QUALIFIED",cls:"qualified",rank:2,eff,persistence:hm.persistence,sub:`STAB ${Math.round(hm.stabilityScore)}/100 · ${durationText(be.timeMs)} · ${dc.state}`,depth:dc.state,history:hm,conservative24};
+    return{label:verified?"QUALIFIED VERIFIED":"QUALIFIED",cls:"qualified",rank:2,eff,persistence:hm.persistence,reason:"PASS",
+      sub:`STAB ${Math.round(hm.stabilityScore)}/100 · ${durationText(be.timeMs)}${firstPay?" · FIRST EVENT PAY":""} · ${dc.state}`,
+      depth:dc.state,history:hm,conservative24,conservativeNet,schedule24};
   }
-  return{label:"WATCH",cls:"watch",rank:4,eff,persistence:hm.persistence,sub:`EFF ${finite(eff)?eff.toFixed(2)+"×":"—"} · P ${(hm.persistence*100).toFixed(0)}% · STAB ${Math.round(hm.stabilityScore)}`,depth:dc.state,history:hm,conservative24};
+
+  const econReason=finite(eff)&&eff<1?"EFF <1×":finite(eff)&&eff<1.25?"EFF <1.25×":
+    hm.persistence<.60?`PERSIST ${(hm.persistence*100).toFixed(0)}%`:
+    hm.stabilityScore<55?`STAB ${Math.round(hm.stabilityScore)}`:
+    !be24?`RECOVERY ${durationText(be.timeMs)}`:
+    hm.routeEdgeSamples<4?`ROUTE SAMPLES ${hm.routeEdgeSamples}`:"BELOW PRIME / QUALIFIED";
+  return{label:"WATCH",cls:"watch",rank:5,eff,persistence:hm.persistence,reason:"ECON",
+    sub:`${econReason} · ${firstPay?"FIRST EVENT PAY · ":""}NET24 ${finite(conservativeNet)?signedMoney(conservativeNet):"—"}`,
+    depth:dc.state,history:hm,conservative24,conservativeNet,schedule24};
 }
 function expertCell(o,now=Date.now()){
   const e=expertGrade(o,now);
@@ -743,17 +1272,27 @@ function expertSortValue(o,now=Date.now()){
   return e.rank*1000000-eff*1000-p*100;
 }
 function renderExpertSummary(ops,now=Date.now()){
-  const grades=(ops||[]).map(o=>expertGrade(o,now));
-  const prime=grades.filter(x=>x.cls==="prime").length,qualified=grades.filter(x=>x.cls==="qualified").length,watch=grades.filter(x=>x.cls==="watch"||x.cls==="scanning").length,reject=grades.filter(x=>x.cls==="reject").length;
+  const grades=(ops||[]).map(o=>expertGrade(o,now)),
+    prime=grades.filter(x=>x.cls==="prime").length,
+    qualified=grades.filter(x=>x.cls==="qualified").length,
+    watch=grades.filter(x=>x.cls==="watch"||x.cls==="scanning").length,
+    reject=grades.filter(x=>x.cls==="reject").length,
+    net=grades.filter(x=>x.reason==="NO_24H_NET"||x.reason==="NO_RECOVERY").length,
+    trans=grades.filter(x=>x.reason==="TRANSITION").length,
+    hist=grades.filter(x=>x.reason==="HISTORY").length,
+    econ=grades.filter(x=>x.reason==="ECON").length,
+    depth=grades.filter(x=>x.reason==="DEPTH").length;
   const ready=expertTargetSymbols.filter(sym=>{const h=expertHistorySource(sym);return h&&now-Number(h.fetchedAt)<=EXPERT_HISTORY_TTL}).length;
   if($("ePrime"))$("ePrime").textContent=String(prime);
   if($("eQualified"))$("eQualified").textContent=String(qualified);
   if($("eWatch"))$("eWatch").textContent=`${watch} / ${reject}`;
   if($("eHistory"))$("eHistory").textContent=`${ready} / ${expertTargetSymbols.length||EXPERT_SCAN_SIZE}`;
+  if($("eDiag"))$("eDiag").textContent=`NET ${net} · TRANS ${trans}`;
+  if($("eDiagSub"))$("eDiagSub").textContent=`HIST ${hist} · ECON ${econ} · DEPTH ${depth}`;
 }
 
-function statusClass(o){if(!o?.ready)return"wait";if(o.status==="FAST RECOVERY")return"fast";if(o.status==="RECOVERY PROJECTED")return"recover";if(o.status==="COST TOO HIGH"||o.status==="NEXT CYCLE ≤ 0")return"reject";return"slow"}
-function sortValue(o,key){switch(key){case"symbol":return o.symbol;case"route":return o.longVenue+o.shortVenue;case"funding":return o.spread??-Infinity;case"income":return o.nextCycle?.cash??-Infinity;case"cost":return o.quoteCost??Infinity;case"be":return o.be?.ready?o.be.timeMs:Infinity;case"type":return o.dual?0:1;case"expert":return expertSortValue(o);case"status":return["FAST RECOVERY","RECOVERY PROJECTED","COST TOO HIGH","NEXT CYCLE ≤ 0"].indexOf(o.status);default:return 0}}
+function statusClass(o){if(!o?.ready)return"wait";if(o.status==="FAST RECOVERY"||o.status==="FIRST PAY · FAST RECOVERY")return"fast";if(o.status==="RECOVERY PROJECTED"||o.status==="FIRST PAY · RECOVERY")return"recover";if(o.status==="COST TOO HIGH")return"reject";return"slow"}
+function sortValue(o,key){switch(key){case"symbol":return o.symbol;case"route":return o.longVenue+o.shortVenue;case"funding":return o.spread??-Infinity;case"income":return o.nextCycle?.cash??-Infinity;case"cost":return o.quoteCost??Infinity;case"be":return o.be?.ready?o.be.timeMs:Infinity;case"type":return o.dual?0:1;case"expert":return expertSortValue(o);case"status":return["FAST RECOVERY","FIRST PAY · FAST RECOVERY","RECOVERY PROJECTED","FIRST PAY · RECOVERY","COST TOO HIGH"].indexOf(o.status);default:return 0}}
 function compare(a,b){const av=sortValue(a,sortKey),bv=sortValue(b,sortKey);if(typeof av==="string")return sortDir*av.localeCompare(bv);if(av===bv)return a.symbol.localeCompare(b.symbol);return sortDir*(av-bv)}
 function render(){
   const now=Date.now(),budget=Math.max(1,Number($("budget").value)||10),q=$("search").value.trim().toUpperCase().replace(/\s+/g,""),view=$("view").value;const basePairs=matchedRecords();let allOps=basePairs.map(r=>buildOpportunity(r,budget,now)).filter(Boolean);
@@ -770,7 +1309,7 @@ function render(){
   if(view==="FAST")ops=ops.filter(o=>o.be?.ready&&o.be.timeMs<=86400000);
   else if(view==="DUAL")ops=ops.filter(o=>o.dual);
   else if(view==="RECOVER")ops=ops.filter(o=>o.be?.ready);
-  else if(view==="EXPERT")ops=ops.filter(o=>["prime","qualified"].includes(expertGrade(o,now).cls));
+  else if(view==="EXPERT")ops=ops.filter(o=>expertGrade(o,now).cls!=="reject");
   ops.sort(compare);
 
   $("rows").innerHTML=ops.map(o=>{
@@ -780,7 +1319,7 @@ function render(){
     const be=o.be?.ready?`<span class="be-main">${o.be.cycles} CYCLES</span><span class="be-sub">${durationText(o.be.timeMs)} · B${o.be.bEvents}/G${o.be.gEvents}</span>`:`<span class="status reject">${o.be?.state||'—'}</span>`;
     const eg=expertGrade(o,now),rowClass=eg.cls==="prime"?"expert-prime":eg.cls==="qualified"?"expert-qualified":"";
     return`<tr data-symbol="${o.symbol}" class="${o.stale?'stale ':''}${selectedSymbol===o.symbol?'selected-row ':''}${rowClass}"><td><span class="symbol">${o.symbol}</span></td><td>${route}</td><td>${funding}</td><td>${income}</td><td><span class="cost">${finite(o.quoteCost)?money(o.quoteCost):'—'}</span><span class="be-sub">QUOTE ROUND TRIP</span></td><td>${be}</td><td><span class="badge ${o.dual?'dual':'spread'}">${o.type||'—'}</span></td><td>${expertCell(o,now)}</td><td><span class="status ${statusClass(o)}">${o.status||'WAITING'}</span><span class="be-sub">${o.ready?'EXACT QTY '+o.sizing.qtyText:'PRE-SCREEN'}</span></td></tr>`;
-  }).join("")||`<tr><td colspan="9" class="empty">${view==="EXPERT"?"EXPERT HISTORY IS STILL SCANNING OR NO PRIME / QUALIFIED CANDIDATES":"NO OPPORTUNITIES MATCH CURRENT FILTER"}</td></tr>`;
+  }).join("")||`<tr><td colspan="9" class="empty">${view==="EXPERT"?"NO NON-REJECTED EXPERT CANDIDATES · CHECK DIAGNOSTICS":"NO OPPORTUNITIES MATCH CURRENT FILTER"}</td></tr>`;
 
   $("shown").textContent=`${ops.length.toLocaleString()} SHOWN · ${edges.toLocaleString()} FUNDING EDGES · ${matched.toLocaleString()} MATCHED PAIRS`;
   document.querySelectorAll("#rows tr[data-symbol]").forEach(tr=>tr.addEventListener("click",()=>selectOpportunitySymbol(tr.dataset.symbol)));
@@ -792,6 +1331,15 @@ function render(){
 }
 async function cycle(){if(cycleBusy)return;cycleBusy=true;try{const[br,gr]=await Promise.allSettled([loadBinance(),loadBitget()]);if(br.status==="fulfilled"){binMap=br.value;$("binState").textContent="ONLINE";$("binState").className="online"}else{$("binState").textContent="ERROR";$("binState").className="offline";console.error(br.reason)}if(gr.status==="fulfilled"){bitMap=gr.value;$("bitState").textContent="ONLINE";$("bitState").className="online"}else{$("bitState").textContent="ERROR";$("bitState").className="offline";console.error(gr.reason)}$("lastUpdate").textContent=new Date().toISOString().slice(11,19)+" UTC";render()}finally{cycleBusy=false}}
 [$("search"),$("budget"),$("binFee"),$("bitFee")].forEach(el=>el.addEventListener("input",()=>{if(el.id!=="search")selectedDepth=null;render()}));$("view").addEventListener("change",render);$("refresh").addEventListener("click",cycle);$("verifyDepth").addEventListener("click",verifySelectedDepth);$("paperStart").addEventListener("click",startPaperTest);$("paperClose").addEventListener("click",closePaperTest);
+$("exportBackup").addEventListener("click",exportDataBackup);
+$("exportCsv").addEventListener("click",exportJournalCsv);
+$("importBackup").addEventListener("click",()=>$("importBackupFile").click());
+$("importBackupFile").addEventListener("change",e=>importDataBackupFile(e.target.files?.[0]));
+document.querySelectorAll("[data-multi-filter]").forEach(btn=>btn.addEventListener("click",()=>multiFilterSet(btn.dataset.multiFilter)));
+$("journalRows").addEventListener("click",e=>{
+  const btn=e.target.closest("[data-journal-delete]");
+  if(btn)journalDeleteRecord(decodeURIComponent(btn.dataset.journalDelete));
+});
 document.querySelectorAll("th[data-sort]").forEach(th=>th.addEventListener("click",()=>{const k=th.dataset.sort;if(sortKey===k)sortDir*=-1;else{sortKey=k;sortDir=k==="symbol"||k==="route"||k==="type"||k==="status"||k==="expert"?1:-1}document.querySelectorAll('th[data-sort] span').forEach(x=>x.textContent='');const a=$("a_"+k);if(a)a.textContent=sortDir===1?'▲':'▼';render()}));
 $("a_expert").textContent="▲";journalLoad();restoreMultiPaper();renderMultiPaper();setInterval(cycle,REFRESH_MS);setInterval(()=>{if(paperState.mode==="running")refreshPaperLive(false);else if(paperState.trade)renderPaperTest();renderMultiPaper()},PAPER_POLL_MS);setInterval(()=>{if(paperState.trade)renderPaperTest();renderMultiPaper()},1000);setInterval(multiBackgroundTick,MULTI_BG_MS);cycle();
 </script>
